@@ -1,10 +1,10 @@
 #ifndef _DESPESA_H_
 #define _DESPESA_H_
 
-class despesa{
+class Despesa{
 
     public:
-        despesa();
+        Despesa();
         //...
 
     protected:

@@ -1,10 +1,12 @@
 #ifndef _SOCIO_H_
 #define _SOCIO_H_
 
-class socio{
+#include "pessoa.h"
+
+class Socio: Public Pessoa{
 
     public:
-        socio();
+        Socio();
         //...
 
     protected:

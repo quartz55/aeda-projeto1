@@ -1,10 +1,10 @@
 #ifndef _QUOTA_H_
 #define _QUOTA_H_
 
-class quota{
+class Quota{
 
     public:
-        quota();
+        Quota();
         //...
 
     protected:

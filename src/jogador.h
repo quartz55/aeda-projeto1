@@ -1,10 +1,12 @@
 #ifndef _JOGADOR_H_
 #define _JOGADOR_H_
 
-class jogador{
+#include "pessoa.h"
+
+class Jogador: Public Pessoa{
 
     public:
-        jogador();
+        Jogador();
         //...
 
     protected:

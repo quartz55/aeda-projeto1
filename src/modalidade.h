@@ -1,10 +1,10 @@
 #ifndef _MODALIDADE_H_
 #define _MODALIDADE_H_
 
-class modalidade{
+class Modalidade{
 
     public:
-        modalidade();
+        Modalidade();
         //...
 
     protected:
