@@ -9,6 +9,6 @@ class Despesa{
 
     protected:
         //...
-}
+};
 
 #endif

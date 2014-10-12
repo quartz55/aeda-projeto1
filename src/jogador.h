@@ -11,6 +11,6 @@ class Jogador: Public Pessoa{
 
     protected:
         //...
-}
+};
 
 #endif

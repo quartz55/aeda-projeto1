@@ -9,6 +9,6 @@ class Quota{
 
     protected:
         //...
-}
+};
 
 #endif

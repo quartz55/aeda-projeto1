@@ -11,6 +11,6 @@ class Socio: Public Pessoa{
 
     protected:
         //...
-}
+};
 
 #endif
