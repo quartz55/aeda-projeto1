@@ -3,6 +3,13 @@
 Jogador::Jogador(string nome, unsigned int idade, unsigned long NIF):Pessoa(nome,idade,NIF){
 
 }
+void Jogador::showInfo() const{
+    cout << "----------------------\n";
+    Pessoa::showInfo();
+    cout << "Jogador\n";
+    cout << "----------------------\n";
+    showSubModalidades();
+}
 
 bool Jogador::addModalidade(Modalidade *mod){
     for(unsigned int i = 0; i<modalidades.size(); i++)

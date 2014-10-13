@@ -18,7 +18,7 @@ class Jogador: public Pessoa{
     Jogador(string nome, unsigned int idade, unsigned long NIF);
 
     bool addModalidade(Modalidade *mod);
-    void showInfo() const {Pessoa::showInfo();}
+    void showInfo() const;
     void showModalidades() const;
     void showSubModalidades() const;
     bool addSubModalidade(SubModalidade *sub);

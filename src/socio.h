@@ -3,19 +3,19 @@
 
 #include <vector>
 
-#include "pessoa.h"
-#include "modalidade.h"
+#include "jogador.h"
+#include "quota.h"
 
 using std::vector;
 
-class Socio: public Pessoa{
+class Socio: public Jogador{
 
-    vector<Modalidade *> modalidades;
+    vector <Quota *> quotas;
 
     public:
     Socio(string nome, unsigned int idade, unsigned long NIF);
 
-    void showInfo() const {Pessoa::showInfo();}
+    void showInfo() const {Jogador::showInfo();}
 
     protected:
     //...
