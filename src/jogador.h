@@ -5,17 +5,23 @@
 
 #include "pessoa.h"
 #include "modalidade.h"
+#include "submodalidade.h"
 
 using std::vector;
 
 class Jogador: public Pessoa{
 
     vector<Modalidade *> modalidades;
+    vector<SubModalidade *> sub_modalidades;
 
     public:
     Jogador(string nome, unsigned int idade, unsigned long NIF);
 
+    bool addModalidade(Modalidade *mod);
     void showInfo() const {Pessoa::showInfo();}
+    void showModalidades() const;
+    void showSubModalidades() const;
+    bool addSubModalidade(SubModalidade *sub);
 
     protected:
     //...
