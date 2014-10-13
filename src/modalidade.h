@@ -17,6 +17,9 @@ class Modalidade{
     //GET
     string getNome(){return nome;}
 
+    //CHANGE
+    void changeNome(string nome){this->nome = nome;}
+
     protected:
         //...
 };

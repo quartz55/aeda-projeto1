@@ -8,9 +8,6 @@ using std::cout; using std::cin; using std::string; using std::endl;
 
 class Pessoa{
 
-    std::string nome;
-    unsigned int idade;
-    unsigned long NIF;
 
     public:
     Pessoa(string nome, unsigned int idade, unsigned long NIF);
@@ -28,6 +25,10 @@ class Pessoa{
     virtual void showInfo() const;
 
     protected:
+
+    std::string nome;
+    unsigned int idade;
+    unsigned long NIF;
 
 };
 

@@ -38,10 +38,10 @@ bool Jogador::addSubModalidade(SubModalidade *sub){
 }
 
 void Jogador::showModalidades() const{
-    if(modalidades.size() < 1) cout << "O jogador nao pertence a nenhuma modalidade\n";
+    if(modalidades.size() < 1) cout << "O jogador " << nome << " nao pertence a nenhuma modalidade\n";
     else{
-        cout << "Modalidades:\n";
-        cout << "------------\n";
+        cout << "Modalidades de " << nome << std::endl;
+        cout << "-.------------------------\n";
         for(unsigned int i = 0; i<modalidades.size(); i++){
             cout << "» " << modalidades[i]->getNome() << std::endl;
         }
@@ -49,11 +49,11 @@ void Jogador::showModalidades() const{
 }
 
 void Jogador::showSubModalidades() const{
-    if(modalidades.size() < 1) cout << "O jogador nao pertence a nenhuma modalidade\n";
+    if(modalidades.size() < 1) cout << "O jogador " << nome << " nao pertence a nenhuma modalidade\n";
     else{
 
-        cout << "Modalidades e sub-modalidades associadas:\n";
-        cout << "-----------------------------------------\n";
+        cout << "Modalidades e sub-modalidades de " << nome << std::endl;
+        cout << "--------------------------------------------\n";
 
         for(unsigned int i = 0; i < modalidades.size(); i++){
             cout << "» "<< modalidades[i]->getNome() << std::endl;
