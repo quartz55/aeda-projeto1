@@ -16,9 +16,6 @@ class Socio: public Jogador{
     Socio(string nome, unsigned int idade, unsigned long NIF);
 
     void showInfo() const {Jogador::showInfo();}
-
-    protected:
-    //...
 };
 
 #endif

@@ -9,8 +9,19 @@ int main(){
 
     Clube clube;
 
+    //Pessoa *p1 = new Pessoa("Joao Costa", 18, 0);
+    //p1->setExterno();
+
     Jogador *p1 = new Jogador("Joao Costa", 18, 14702805);
     clube.addJogador(p1);
+    Jogador *p2 = new Jogador("Joao Almeida", 19, 123123);
+    clube.addJogador(p2);
+    p2 = new Jogador("Hugo Almeida", 25, 592312);
+    clube.addJogador(p2);
+    p2 = new Jogador("Cardoso", 24, 292312);
+    clube.addJogador(p2);
+    p2 = new Jogador("Luisao", 94, 219234);
+    clube.addJogador(p2);
 
     Modalidade *m1 = new Modalidade("Futebol");
     Modalidade *m2 = new Modalidade("Basket");
@@ -32,7 +43,7 @@ int main(){
 
     clube.changeSubModalidade("Sub21", "Sub19");
 
-    p1->showInfo();
+    clube.CRUD();
 
     return 0;
 }

@@ -14,9 +14,9 @@ using std::vector;
 
 class Clube{
 
+    vector <Pessoa *> externos;
     vector <Jogador *> jogadores;
     vector <Socio *> socios;
-    vector <Pessoa *> externos;
 
     vector <Modalidade *> modalidades;
     vector <SubModalidade *> sub_modalidades;
@@ -44,6 +44,8 @@ class Clube{
     bool changeSubModalidade(string name, string new_name);
 
     void CRUD();
+    bool manutencaoJogadores();
+    bool manutencaoJogador(Jogador * j1);
 
 
 };

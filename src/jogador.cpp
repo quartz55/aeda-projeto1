@@ -1,13 +1,11 @@
 #include "jogador.h"
 
 Jogador::Jogador(string nome, unsigned int idade, unsigned long NIF):Pessoa(nome,idade,NIF){
-
+    this->classe = "Jogador";
 }
 void Jogador::showInfo() const{
-    cout << "----------------------\n";
     Pessoa::showInfo();
-    cout << "Jogador\n";
-    cout << "----------------------\n";
+    cout << "--------------------------------------------\n";
     showSubModalidades();
 }
 
@@ -48,7 +46,7 @@ void Jogador::showModalidades() const{
     if(modalidades.size() < 1) cout << "O jogador " << nome << " nao pertence a nenhuma modalidade\n";
     else{
         cout << "Modalidades de " << nome << std::endl;
-        cout << "-.------------------------\n";
+        cout << "--------------------------\n";
         for(unsigned int i = 0; i<modalidades.size(); i++){
             cout << "» " << modalidades[i]->getNome() << std::endl;
         }

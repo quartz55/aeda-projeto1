@@ -8,7 +8,6 @@ using std::cout; using std::cin; using std::string; using std::endl;
 
 class Pessoa{
 
-
     public:
     Pessoa(string nome, unsigned int idade, unsigned long NIF);
 
@@ -21,6 +20,7 @@ class Pessoa{
     void changeNome(string nome){this->nome = nome;}
     void changeIdade(unsigned int idade){this->idade = idade;}
     void changeNIF(unsigned long NIF){this->NIF = NIF;}
+    void setExterno(){this->classe = "Externo";}
 
     virtual void showInfo() const;
 
@@ -29,6 +29,7 @@ class Pessoa{
     std::string nome;
     unsigned int idade;
     unsigned long NIF;
+    string classe;
 
 };
 

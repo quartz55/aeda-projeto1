@@ -23,8 +23,6 @@ class Jogador: public Pessoa{
     void showSubModalidades() const;
     bool addSubModalidade(SubModalidade *sub);
 
-    protected:
-    //...
 };
 
 #endif
