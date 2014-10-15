@@ -30,7 +30,7 @@ class Clube{
 
     //ADD
     bool addJogador(Jogador *j){jogadores.push_back(j); return true;}
-    bool addSocio(Socio *s);
+    bool addSocio(Socio *s){socios.push_back(j); return true;}
     bool addExterno(Pessoa *e);
 
     bool addModalidade(Modalidade *m){modalidades.push_back(m); return true;}

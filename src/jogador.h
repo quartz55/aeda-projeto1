@@ -15,7 +15,7 @@ class Jogador: public Pessoa{
     vector<SubModalidade *> sub_modalidades;
 
     public:
-    Jogador(string nome, unsigned int idade, unsigned long NIF);
+    Jogador(string nome, unsigned int idade, unsigned long NIF, string sexo);
 
     bool addModalidade(Modalidade *mod);
     void showInfo() const;

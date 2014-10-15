@@ -1,6 +1,6 @@
 #include "jogador.h"
 
-Jogador::Jogador(string nome, unsigned int idade, unsigned long NIF):Pessoa(nome,idade,NIF){
+Jogador::Jogador(string nome, unsigned int idade, unsigned long NIF, string sex):Pessoa(nome,idade,NIF, sexo){
     this->classe = "Jogador";
 }
 void Jogador::showInfo() const{

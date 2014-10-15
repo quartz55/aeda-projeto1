@@ -13,7 +13,7 @@ class Socio: public Jogador{
     vector <Quota *> quotas;
 
     public:
-    Socio(string nome, unsigned int idade, unsigned long NIF);
+    Socio(string nome, unsigned int idade, unsigned long NIF, string sexo);
 
     void showInfo() const {Jogador::showInfo();}
 };

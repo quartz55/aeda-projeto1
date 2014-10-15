@@ -1,6 +1,8 @@
 #ifndef _PESSOA_H
 #define _PESSOA_H
 
+#include "despesa.h"
+
 #include <iostream>
 #include <string>
 
@@ -9,7 +11,7 @@ using std::cout; using std::cin; using std::string; using std::endl;
 class Pessoa{
 
     public:
-    Pessoa(string nome, unsigned int idade, unsigned long NIF);
+    Pessoa(string nome, unsigned int idade, unsigned long NIF, string sexo);
 
     //GET
     string getNome() const {return nome;}
@@ -26,10 +28,12 @@ class Pessoa{
 
     protected:
 
-    std::string nome;
+    string nome;
+    string sexo;
     unsigned int idade;
     unsigned long NIF;
     string classe;
+    Despesa *despesa;
 
 };
 
