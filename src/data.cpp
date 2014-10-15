@@ -83,3 +83,15 @@ bool Data::operator< (const Data &d1) const{
         return false;
     }
 }
+
+int Data::getDay() const {
+	return day;
+}
+
+int Data::getMonth() const {
+	return month;
+}
+
+int Data::getYear() const {
+	return year;
+}
