@@ -17,7 +17,8 @@ class Data : public Calendario{
     void addMonths(int months);
     void addYears(int years);
     void showData() const;
-    bool operator< (Data &d1) const;
+    void setData(int day, int month, int year) const;
+    bool operator< (const Data &d1) const;
 
 };
 

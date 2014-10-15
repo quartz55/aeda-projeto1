@@ -14,7 +14,7 @@ bool Data::leapYear() const {
 void Data::addDays(int days){
     if(leapYear()){
         while(days > 0){
-            if(day < daysOfMonthL[month-1]){
+            if(day < daysOfMonthL[month]){
                 day++;
                 days--;
             }
@@ -35,7 +35,7 @@ void Data::addDays(int days){
     }
     else {
         while(days > 0){
-            if(day < daysOfMonth[month-1]){
+            if(day < daysOfMonth[month]){
                 day++;
                 days--;
             }
@@ -70,7 +70,16 @@ void Data::addYears(int years){
 }
 
 
+
 void Data::showData() const {
-    cout << day << "/" << month << "/" << year << endl;
+    cout << day << " de " << nomes[month] << " de " << year << endl;
     
+}
+bool Data::operator< (const Data &d1) const{
+    if(year * 10000 + month * 10 + day  < d1.year * 10000 + d1.month * 10 + d1.day){
+        return true;
+    }
+    else {
+        return false;
+    }
 }
