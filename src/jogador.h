@@ -18,10 +18,11 @@ class Jogador: public Pessoa{
     Jogador(string nome, unsigned int idade, unsigned long NIF, string sexo);
 
     bool addModalidade(Modalidade *mod);
+    bool addSubModalidade(SubModalidade *sub);
+
     void showInfo() const;
     void showModalidades() const;
     void showSubModalidades() const;
-    bool addSubModalidade(SubModalidade *sub);
 
 };
 

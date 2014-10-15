@@ -2,6 +2,36 @@
 
 Clube::Clube(){};
 
+bool Clube::addExterno(Pessoa *p){
+    if(p->getClasse() == "Externo"){
+        externos.push_back(p);
+        return true;
+    }
+    else return false;
+}
+
+bool Clube::addJogador(Jogador *j){
+    for(unsigned int i = 0; i<jogadores.size(); i++){
+        if(jogadores[i] == j)
+            return false;
+    }
+    jogadores.push_back(j);
+    return true;
+}
+
+bool Clube::addSocio(Socio *s){
+    for(unsigned int i = 0; i<socios.size(); i++){
+        if(socios[i] == s)
+            return false;
+    }
+    socios.push_back(s);
+    return true;
+}
+
+bool Clube::removeJogador(Jogador *j){
+    return true;
+}
+
 bool Clube::changeModalidade(string name, string new_name){
     if(modalidades.size() < 1){
         cout << "O clube nao tem modalidades associadas.\n";
@@ -44,16 +74,56 @@ void Clube::CRUD(){
     }
 }
 
+void Clube::listarPessoas(){
+    cout << "-------------------------------\n";
+    cout << "Listagem de todos os associados ao clube\n";
+    cout << "-------------------------------\n";
+    cout << "-------------------------------\n";
+    listarExternos();
+    cout << "-------------------------------\n";
+    listarJogadores();
+    cout << "-------------------------------\n";
+    listarSocios();
+    cout << "-------------------------------\n";
+    cout << endl;
+}
+
+void Clube::listarExternos(){
+    cout << "Listagem de externos:\n";
+    unsigned int counter = 0;
+    for(unsigned int i = 0; i < externos.size(); i++){
+        cout << externos[i]->getNome() << "    ";
+        counter++;
+        if(counter>3){ cout << endl; counter = 0;}
+    }
+    cout << endl;
+}
+
+void Clube::listarJogadores(){
+    cout << "Listagem de jogadores\n";
+    unsigned int counter = 0;
+    for(unsigned int i = 0; i < jogadores.size(); i++){
+        cout << jogadores[i]->getNome() << "    ";
+        counter++;
+        if(counter>3){ cout << endl; counter = 0;}
+    }
+    cout << endl;
+}
+
+void Clube::listarSocios(){
+    cout << "Listagem de socios:\n";
+    unsigned int counter = 0;
+    for(unsigned int i = 0; i < socios.size(); i++){
+        cout << socios[i]->getNome() << "    ";
+        counter++;
+        if(counter>3){ cout << endl; counter = 0;}
+    }
+    cout << endl;
+}
+
 bool Clube::manutencaoJogadores(){
     while(1){
-        cout << "Listagem de jogadores\n";
-        unsigned int counter = 0;
-        for(unsigned int i = 0; i < jogadores.size(); i++){
-            cout << jogadores[i]->getNome() << "    ";
-            counter++;
-            if(counter>3){ cout << endl; counter = 0;}
-        }
-        cout << endl;
+        listarJogadores();
         cout << "Escolha o jogador a gerir: ";
         string nome_input;
         cin.get();

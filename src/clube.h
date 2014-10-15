@@ -29,9 +29,9 @@ class Clube{
     Clube();
 
     //ADD
-    bool addJogador(Jogador *j){jogadores.push_back(j); return true;}
-    bool addSocio(Socio *s){socios.push_back(j); return true;}
-    bool addExterno(Pessoa *e);
+    bool addExterno(Pessoa *p);
+    bool addJogador(Jogador *j);
+    bool addSocio(Socio *s);
 
     bool addModalidade(Modalidade *m){modalidades.push_back(m); return true;}
     bool addSubModalidade(SubModalidade *sm){sub_modalidades.push_back(sm); return true;}
@@ -40,12 +40,22 @@ class Clube{
     bool addDespesa(Despesa *d);
     //#######################################
 
+    //REMOVE
+    bool removeJogador(Jogador *j);
+    bool removeSocio(Socio *s);
+    //#######################################
+
     bool changeModalidade(string name, string new_name);
     bool changeSubModalidade(string name, string new_name);
+
+    //LISTAGEM
+    void listarPessoas();
+    void listarExternos();
+    void listarJogadores();
+    void listarSocios();
 
     void CRUD();
     bool manutencaoJogadores();
     bool manutencaoJogador(Jogador * j1);
-
 
 };

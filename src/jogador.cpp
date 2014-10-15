@@ -1,12 +1,13 @@
 #include "jogador.h"
 
-Jogador::Jogador(string nome, unsigned int idade, unsigned long NIF, string sex):Pessoa(nome,idade,NIF, sexo){
+Jogador::Jogador(string nome, unsigned int idade, unsigned long NIF, string sexo):Pessoa(nome,idade,NIF, sexo){
     this->classe = "Jogador";
 }
 void Jogador::showInfo() const{
     Pessoa::showInfo();
     cout << "--------------------------------------------\n";
     showSubModalidades();
+    cout << "--------------------------------------------\n";
 }
 
 bool Jogador::addModalidade(Modalidade *mod){
@@ -59,7 +60,6 @@ void Jogador::showSubModalidades() const{
 
         cout << "Modalidades e sub-modalidades de " << nome << std::endl;
         cout << "--------------------------------------------\n";
-
         for(unsigned int i = 0; i < modalidades.size(); i++){
             cout << "» "<< modalidades[i]->getNome() << std::endl;
             for(unsigned int k = 0; k < sub_modalidades.size(); k ++)
@@ -68,3 +68,5 @@ void Jogador::showSubModalidades() const{
         }
     }
 }
+
+
