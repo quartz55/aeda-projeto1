@@ -2,3 +2,5 @@
 *.d
 main.exe
 main
+.cproject
+.project
