@@ -22,6 +22,7 @@ int main(){
 
     //clube.CRUD();
     clube.listarPessoas();
+    clube.writeJogadores();
 
     return 0;
 }

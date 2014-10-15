@@ -155,3 +155,23 @@ bool Clube::manutencaoJogador(Jogador *j1){
     cin >> command;
     return true;
 }
+
+bool Clube::writeJogadores(){
+    std::ofstream file;
+    file.open(FILE_JOGADORES.c_str());
+    if(file.is_open()){
+        for(unsigned int i = 0; i<jogadores.size(); i++){
+            std::stringstream ss;
+            ss << jogadores[i]->getNome() << " # ";
+            ss << jogadores[i]->getIdade() << " # ";
+            ss << jogadores[i]->getSexo() << " # ";
+            ss << jogadores[i]->getNIF();
+            file << ss.str();
+            file << endl;
+        }
+            file.close();
+        return true;
+    }
+    cout << "Unable to open file\n";
+    return false;
+}

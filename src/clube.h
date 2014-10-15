@@ -1,4 +1,6 @@
 #include <vector>
+#include <fstream>
+#include <sstream>
 
 #include "pessoa.h"
 #include "jogador.h"
@@ -11,6 +13,8 @@
 #include "despesa.h"
 
 using std::vector;
+
+const string FILE_JOGADORES = "txt/jogadores.txt";
 
 class Clube{
 
@@ -57,5 +61,8 @@ class Clube{
     void CRUD();
     bool manutencaoJogadores();
     bool manutencaoJogador(Jogador * j1);
+
+    //FILE MANAGEMENT
+    bool writeJogadores();
 
 };
