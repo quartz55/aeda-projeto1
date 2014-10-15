@@ -6,10 +6,14 @@
 using std::vector;
 
 class Calendario{
-
-
-    public:
-    Calendario();
+protected:
+    
+    const char daysOfMonth[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
+    const char daysOfMonthL[12] = {31,29,31,30,31,30,31,31,30,31,30,31};
+    
+public:
+    
+    //Calendario();
 
 };
 
