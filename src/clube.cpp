@@ -121,6 +121,15 @@ void Clube::listarSocios(){
     cout << endl;
 }
 
+void Clube::listarModalidades(){
+    for(unsigned int i = 0; i < modalidades.size(); i++){
+        cout << "» "<< modalidades[i]->getNome() << std::endl;
+        for(unsigned int k = 0; k < sub_modalidades.size(); k ++)
+            if(sub_modalidades[k]->getMod()->getNome() == modalidades[i]->getNome())
+                cout << "   -" << sub_modalidades[k]->getNome() << std::endl;
+    }
+}
+
 bool Clube::manutencaoJogadores(){
     while(1){
         listarJogadores();
@@ -156,20 +165,90 @@ bool Clube::manutencaoJogador(Jogador *j1){
     return true;
 }
 
-bool Clube::writeJogadores(){
+bool Clube::readModalidades(){
+    std::ifstream file;
+    file.open(FILE_MODALIDADES.c_str());
+    if(file.is_open()){
+        string line;
+        while(getline(file,line)){
+            Modalidade *m1 = new Modalidade(line);
+            modalidades.push_back(m1);
+            getline(file, line);
+            std::stringstream ss(line);
+            string helper;
+            ss >> helper;
+            while(helper != "#"){
+                std::stringstream sub;
+                while(helper != "/"){
+                    sub << helper << " ";
+                    ss >> helper;
+                }
+                string nome_sub = sub.str();
+                nome_sub.erase(nome_sub.size()-1);
+                SubModalidade *s1 = new SubModalidade(nome_sub, m1);
+                sub_modalidades.push_back(s1);
+                ss >> helper;
+            }
+        }
+        file.close();
+        return true;
+    }
+    cout << "Unable to open file '" << FILE_MODALIDADES.c_str() << "'\n";
+    return false;
+}
+
+bool Clube::writeModalidades(vector<Modalidade *> modalidades){
+    std::ofstream file;
+    file.open(FILE_MODALIDADES.c_str());
+    if(file.is_open()){
+        for(unsigned int i = 0; i<modalidades.size(); i++){
+            string modalidade_nome =  modalidades[i]->getNome();
+            file << modalidade_nome << endl;
+            std::stringstream ss;
+            for(unsigned int k = 0; k<sub_modalidades.size(); k++){
+                if(sub_modalidades[k]->getMod()->getNome() == modalidade_nome)
+                    ss << sub_modalidades[k]->getNome() << " / ";
+            }
+            ss << "#";
+            file << ss.str();
+            file << endl;
+        }
+        file.close();
+        return true;
+    }
+    cout << "Unable to open file\n";
+    return false;
+}
+
+bool Clube::writeJogadores(vector<Jogador *> jogadores){
     std::ofstream file;
     file.open(FILE_JOGADORES.c_str());
     if(file.is_open()){
         for(unsigned int i = 0; i<jogadores.size(); i++){
             std::stringstream ss;
             ss << jogadores[i]->getNome() << " # ";
-            ss << jogadores[i]->getIdade();
-            ss << jogadores[i]->getSexo();
+            ss << jogadores[i]->getIdade() << " ";
+            ss << jogadores[i]->getSexo() << " ";
             ss << jogadores[i]->getNIF();
             file << ss.str();
             file << endl;
+            vector <Modalidade *> mods = jogadores[i]->getMods();
+            vector <SubModalidade *> sub_mods = jogadores[i]->getSubMods();
+            for(unsigned int k = 0; k < mods.size(); k++){
+                string mod_nome = mods[k]->getNome();
+                file << mod_nome << endl;;
+                ss.str(string()); //Clears the stringstream
+                for(unsigned int j = 0; j < sub_mods.size(); j++){
+                    if(sub_mods[j]->getMod()->getNome() == mod_nome)
+                        ss << sub_mods[j]->getNome() << " / ";
+                }
+                ss << "#";
+                file << ss.str();
+                file << endl;
+            }
+            file << "--------\n";
         }
-            file.close();
+        file.close();
         return true;
     }
     cout << "Unable to open file\n";

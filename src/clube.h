@@ -15,6 +15,7 @@
 using std::vector;
 
 const string FILE_JOGADORES = "txt/jogadores.txt";
+const string FILE_MODALIDADES = "txt/modalidades.txt";
 
 class Clube{
 
@@ -31,6 +32,10 @@ class Clube{
     public:
 
     Clube();
+
+    //GET
+    vector<Modalidade *> getMods(){return modalidades;}
+    vector<Jogador *> getJogadores(){return jogadores;}
 
     //ADD
     bool addExterno(Pessoa *p);
@@ -58,11 +63,15 @@ class Clube{
     void listarJogadores();
     void listarSocios();
 
+    void listarModalidades();
+
     void CRUD();
     bool manutencaoJogadores();
     bool manutencaoJogador(Jogador * j1);
 
     //FILE MANAGEMENT
-    bool writeJogadores();
+    bool readModalidades();
+    bool writeModalidades(vector<Modalidade *> modalidade);
+    bool writeJogadores(vector<Jogador *> jogadores);
 
 };

@@ -17,6 +17,9 @@ class Jogador: public Pessoa{
     public:
     Jogador(string nome, unsigned int idade, unsigned long NIF, string sexo);
 
+    vector <Modalidade *> getMods(){return modalidades;}
+    vector <SubModalidade *> getSubMods(){return sub_modalidades;}
+
     bool addModalidade(Modalidade *mod);
     bool addSubModalidade(SubModalidade *sub);
 
