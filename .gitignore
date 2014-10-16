@@ -2,3 +2,10 @@
 *.d
 main.exe
 main
+*.opensdf
+*.sdf
+*.sln
+*.suo
+*.vcxproj
+*.vcxproj.filters
+Debug
