@@ -6,3 +6,10 @@ main
 .project
 *.xcodeproj
 .DS_Store
+*.opensdf
+*.sdf
+*.sln
+*.suo
+*.vcxproj
+*.vcxproj.filters
+Debug
