@@ -8,7 +8,7 @@ using std::cout; using std::endl;
 
 class Data : public Calendario{
 
-	int day, month, year;
+    int day, month, year;
 
     public:
     Data(int day, int month, int year);
@@ -19,9 +19,9 @@ class Data : public Calendario{
     void showData() const;
     void setData(int day, int month, int year) const;
     bool operator< (const Data &d1) const;
-	int getDay() const;
-	int getMonth() const;
-	int getYear() const;
+    int getDay() const;
+    int getMonth() const;
+    int getYear() const;
 };
 
 #endif

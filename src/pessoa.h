@@ -10,22 +10,6 @@ using std::cout; using std::cin; using std::string; using std::endl;
 
 class Pessoa{
 
-    public:
-    Pessoa(string nome, unsigned int idade, unsigned long NIF, string sexo);
-
-    //GET
-    string getNome() const {return nome;}
-    unsigned int getIdade() const {return idade;}
-    unsigned long getNIF() const {return NIF;}
-
-    //CHANGE
-    void changeNome(string nome){this->nome = nome;}
-    void changeIdade(unsigned int idade){this->idade = idade;}
-    void changeNIF(unsigned long NIF){this->NIF = NIF;}
-    void setExterno(){this->classe = "Externo";}
-
-    virtual void showInfo() const;
-
     protected:
 
     string nome;
@@ -34,6 +18,26 @@ class Pessoa{
     unsigned long NIF;
     string classe;
     Despesa *despesa;
+
+    public:
+    Pessoa(string nome, unsigned int idade, unsigned long NIF, string sexo);
+
+    //GET
+    string getNome() const {return nome;}
+    unsigned int getIdade() const {return idade;}
+    unsigned long getNIF() const {return NIF;}
+    string getSexo() const {return sexo;}
+    string getClasse() const {return classe;}
+
+
+    //CHANGE
+    bool changeNome(string nome);
+    bool changeIdade(unsigned int idade);
+    bool changeNIF(unsigned long NIF);
+    bool changeSexo(string sexo);
+    void setExterno(){this->classe = "Externo";}
+
+    virtual void showInfo() const;
 
 };
 
