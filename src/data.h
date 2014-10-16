@@ -9,7 +9,7 @@ using std::cout; using std::endl;
 class Data : public Calendario{
 
 	int day, month, year;
-    
+
     public:
     Data(int day, int month, int year);
     bool leapYear() const;
