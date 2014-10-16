@@ -64,7 +64,7 @@ void Jogador::showSubModalidades() const{
             cout << "» "<< modalidades[i]->getNome() << std::endl;
             for(unsigned int k = 0; k < sub_modalidades.size(); k ++)
                 if(sub_modalidades[k]->getMod()->getNome() == modalidades[i]->getNome())
-                    cout << "   ˪" << sub_modalidades[k]->getNome() << std::endl;
+                    cout << "   -" << sub_modalidades[k]->getNome() << std::endl;
         }
     }
 }

@@ -2,6 +2,10 @@
 *.d
 main.exe
 main
+.cproject
+.project
+*.xcodeproj
+.DS_Store
 *.opensdf
 *.sdf
 *.sln
