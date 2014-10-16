@@ -163,8 +163,8 @@ bool Clube::writeJogadores(){
         for(unsigned int i = 0; i<jogadores.size(); i++){
             std::stringstream ss;
             ss << jogadores[i]->getNome() << " # ";
-            ss << jogadores[i]->getIdade() << " # ";
-            ss << jogadores[i]->getSexo() << " # ";
+            ss << jogadores[i]->getIdade();
+            ss << jogadores[i]->getSexo();
             ss << jogadores[i]->getNIF();
             file << ss.str();
             file << endl;
