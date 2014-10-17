@@ -7,8 +7,8 @@ class Quota{
 
 public:
 	Quota(int m, int ano);
-	const Data*& getLastPayed() const;
-	void setLastPayed(const Data*& lastPayed);
+	const Data* getLastPayed() const;
+	void setLastPayed(Data* lastPayed);
 	float getPreco() const;
 	void setPreco(float preco);
 	void pagarQuota(int meses);

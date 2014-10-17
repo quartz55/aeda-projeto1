@@ -7,8 +7,8 @@ class Despesa{
 
 public:
 	Despesa(int d, int m, int y, float valor, string info);
-	const Data*& getData() const;
-	void setData(const Data*& data);
+	const Data* getData() const;
+	void setData(Data* data);
 	const string& getInfo() const;
 	void setInfo(const string& info);
 	float getValor() const;

@@ -1,16 +1,16 @@
 #include "despesa.h"
 
 
-Despesa::Despesa(int d, int m, int y, float valor, string info): data(Data(d,m,y)){
+Despesa::Despesa(int d, int m, int y, float valor, string info): data(new Data(d,m,y)){
     this->valor = valor;
     this->info = info;
 }
 
-const Data*& Despesa::getData() const {
+const Data* Despesa::getData() const {
 	return data;
 }
 
-void Despesa::setData(const Data*& data) {
+void Despesa::setData(Data* data) {
 	this->data = data;
 }
 
