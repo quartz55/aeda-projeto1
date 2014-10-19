@@ -197,6 +197,81 @@ bool Clube::readModalidades(){
     return false;
 }
 
+bool Clube::readJogadores(){
+    std::ifstream file;
+    file.open(FILE_JOGADORES.c_str());
+    if(file.is_open()){
+        string line;
+        while(getline(file,line)){
+
+            std::stringstream dados_jogador(line);
+
+            //Ler nome jogador
+            std::stringstream nome_jogador;
+            string helper;
+            dados_jogador >> helper;
+            while(helper != "#"){
+                nome_jogador << helper << " ";
+                dados_jogador >> helper;
+            }
+            string nome = nome_jogador.str();
+            nome.erase(nome.size()-1);
+            //------------
+            //DADOS INICIAIS DO JOGADOR
+            unsigned int idade;
+            unsigned long NIF;
+            string sexo;
+            dados_jogador >> idade;
+            dados_jogador >> sexo;
+            dados_jogador >> NIF;
+            Jogador *j1 = new Jogador(nome,idade,NIF,sexo);
+            //------------
+            addJogador(j1);
+
+
+            //ATRIBUIR (SUB-)MODALIDADES
+            getline(file, line);
+            while(line != "--------"){
+                for(unsigned int i = 0; i < modalidades.size(); i++){
+                    if(modalidades[i]->getNome() == line)
+                        j1->addModalidade(modalidades[i]);
+                }
+
+                string helper;
+                getline(file,line);
+
+                std::stringstream ss(line);
+
+                ss >> helper;
+                while(helper != "#"){
+                    std::stringstream sub;
+                    while(helper != "/"){
+                        sub << helper << " ";
+                        ss >> helper;
+                        cout << helper;
+                    }
+                    string nome_sub = sub.str();
+                    nome_sub.erase(nome_sub.size()-1);
+                    cout << nome_sub;
+                    for(unsigned int i = 0; i < sub_modalidades.size(); i++){
+                        if(sub_modalidades[i]->getNome() == nome_sub)
+                            j1->addSubModalidade(sub_modalidades[i]);
+                    }
+                    ss >> helper;
+                }
+                cout << line;
+
+                getline(file, line);
+            }
+            //------------
+        }
+        file.close();
+        return true;
+    }
+    cout << "Unable to open file '" << FILE_MODALIDADES.c_str() << "'\n";
+    return false;
+}
+
 bool Clube::writeModalidades(vector<Modalidade *> modalidades){
     std::ofstream file;
     file.open(FILE_MODALIDADES.c_str());

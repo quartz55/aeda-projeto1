@@ -71,6 +71,7 @@ class Clube{
 
     //FILE MANAGEMENT
     bool readModalidades();
+    bool readJogadores();
     bool writeModalidades(vector<Modalidade *> modalidade);
     bool writeJogadores(vector<Jogador *> jogadores);
 
