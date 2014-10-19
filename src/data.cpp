@@ -73,7 +73,7 @@ void Data::addYears(int years){
 
 void Data::showData() const {
     cout << day << " de " << nomes[month] << " de " << year << endl;
-    
+
 }
 bool Data::operator< (const Data &d1) const{
     if(year * 10000 + month * 10 + day  < d1.year * 10000 + d1.month * 10 + d1.day){
