@@ -12,10 +12,8 @@
 #include "quota.h"
 #include "despesa.h"
 
-using std::vector;
+using std::vector;using std::string;
 
-const string FILE_JOGADORES = "txt/jogadores.txt";
-const string FILE_MODALIDADES = "txt/modalidades.txt";
 
 class Clube{
 
@@ -31,11 +29,11 @@ class Clube{
 
     public:
 
-    Clube();
 
     //GET
     vector<Modalidade *> getMods(){return modalidades;}
     vector<Jogador *> getJogadores(){return jogadores;}
+    vector<Socio *> getSocios(){return socios;}
 
     //ADD
     bool addExterno(Pessoa *p);
@@ -70,9 +68,12 @@ class Clube{
     bool manutencaoJogador(Jogador * j1);
 
     //FILE MANAGEMENT
-    bool readModalidades();
-    bool readJogadores();
-    bool writeModalidades(vector<Modalidade *> modalidade);
-    bool writeJogadores(vector<Jogador *> jogadores);
+    bool readModalidades(string filename);
+    bool readJogadores(string filename);
+    bool readSocios(string filename);
+
+    bool writeModalidades(vector<Modalidade *> modalidade, string filename);
+    bool writeJogadores(vector<Jogador *> jogadores, string filename);
+    bool writeSocios(vector<Socio *> socios, string filename);
 
 };
