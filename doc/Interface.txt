@@ -1,0 +1,23 @@
+Para usarem a implementaçao da interface que tem agora primeiro tem de instalar isto: http://pdcurses.sourceforge.net/
+
+E a seguir adicionar o ".dll" as librarias externas (no eclipse ou VS) ou entao adicionar "-lncurses" ao Makefile
+
+
+------------------
+Funcoes principais:
+------------------
+(TEEM DE SER USADAS A PARTIR DO clube.cpp. Se quiserem usar numa classe façam retornar uma string!)
+
+drawString(std::string STRING); //Imprime uma string
+
+readCh(char &CHAR); //Le a proxima tecla a ser premida do teclado e guarda na variavel CHAR
+
+read(Type &var); //Le qualquer tipo de variavel no buffer ate ao proximo espaço " " e guarda na variavle var
+
+readLine(std::string STRING); //A mesma coisa que getline(), nao le o \n e guarda na variavel STRING
+
+cleanScr(); //Limpa o ecra
+
+
+
+PS: Depois ponho isto melhor um bocadinho
