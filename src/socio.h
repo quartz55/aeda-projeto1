@@ -15,7 +15,7 @@ class Socio: public Jogador{
     public:
     Socio(string nome, unsigned int idade, unsigned long NIF, string sexo);
 
-    void showInfo() const {Jogador::showInfo();}
+    string showInfo() const {return Jogador::showInfo();}
 };
 
 #endif

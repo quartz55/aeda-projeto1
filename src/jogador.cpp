@@ -3,11 +3,13 @@
 Jogador::Jogador(string nome, unsigned int idade, unsigned long NIF, string sexo):Pessoa(nome,idade,NIF, sexo){
     this->classe = "Jogador";
 }
-void Jogador::showInfo() const{
-    Pessoa::showInfo();
-    cout << "--------------------------------------------\n";
-    showSubModalidades();
-    cout << "--------------------------------------------\n";
+string Jogador::showInfo() const{
+    std::stringstream s;
+    s << Pessoa::showInfo();
+    s << "--------------------------------------------\n";
+    s << showSubModalidades();
+    s << "--------------------------------------------\n";
+    return s.str();
 }
 
 bool Jogador::addModalidade(Modalidade *mod){
@@ -43,30 +45,34 @@ bool Jogador::addSubModalidade(SubModalidade *sub){
     return true;
 }
 
-void Jogador::showModalidades() const{
-    if(modalidades.size() < 1) cout << "O jogador " << nome << " nao pertence a nenhuma modalidade\n";
+string Jogador::showModalidades() const{
+    std::stringstream s;
+    if(modalidades.size() < 1) s << "O jogador " << nome << " nao pertence a nenhuma modalidade\n";
     else{
-        cout << "Modalidades de " << nome << std::endl;
-        cout << "--------------------------\n";
+        s << "Modalidades de " << nome << std::endl;
+        s << "--------------------------\n";
         for(unsigned int i = 0; i<modalidades.size(); i++){
-            cout << "» " << modalidades[i]->getNome() << std::endl;
+            s << "» " << modalidades[i]->getNome() << std::endl;
         }
     }
+    return s.str();
 }
 
-void Jogador::showSubModalidades() const{
-    if(modalidades.size() < 1) cout << "O jogador " << nome << " nao pertence a nenhuma modalidade\n";
+string Jogador::showSubModalidades() const{
+    std::stringstream s;
+    if(modalidades.size() < 1) s << "O jogador " << nome << " nao pertence a nenhuma modalidade\n";
     else{
 
-        cout << "Modalidades e sub-modalidades de " << nome << std::endl;
-        cout << "--------------------------------------------\n";
+        s << "Modalidades e sub-modalidades de " << nome << std::endl;
+        s << "--------------------------------------------\n";
         for(unsigned int i = 0; i < modalidades.size(); i++){
-            cout << "» "<< modalidades[i]->getNome() << std::endl;
+            s << "» "<< modalidades[i]->getNome() << std::endl;
             for(unsigned int k = 0; k < sub_modalidades.size(); k ++)
                 if(sub_modalidades[k]->getMod()->getNome() == modalidades[i]->getNome())
-                    cout << "   -" << sub_modalidades[k]->getNome() << std::endl;
+                    s << "   -" << sub_modalidades[k]->getNome() << std::endl;
         }
     }
+    return s.str();
 }
 
 

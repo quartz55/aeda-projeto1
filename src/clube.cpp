@@ -1,5 +1,17 @@
 #include "clube.h"
 
+string Clube::FILE_JOGADORES = "txt/jogadores.txt";
+string Clube::FILE_MODALIDADES = "txt/modalidades.txt";
+string Clube::FILE_SOCIOS = "txt/socios.txt";
+Interface *Clube::iface = new Interface();
+
+Clube::Clube(){
+    readAll();
+}
+
+//#############################
+//##          ADD            ##
+//#############################
 bool Clube::addExterno(Pessoa *p){
     if(p->getClasse() == "Externo"){
         externos.push_back(p);
@@ -26,13 +38,38 @@ bool Clube::addSocio(Socio *s){
     return true;
 }
 
+//#############################
+//##          REMOVE         ##
+//#############################
+bool Clube::removeExterno(Pessoa *p){
+    for(unsigned int i = 0; i < externos.size(); i++)
+        if(p == externos[i]){
+            externos.erase(externos.begin()+i);
+            return true;
+        }
+    return false;
+}
+
 bool Clube::removeJogador(Jogador *j){
-    return true;
+    for(unsigned int i = 0; i < jogadores.size(); i++)
+        if(j == jogadores[i]){
+            jogadores.erase(jogadores.begin()+i);
+            return true;
+        }
+    return false;
+}
+bool Clube::removeSocio(Socio *s){
+    for(unsigned int i = 0; i < socios.size(); i++)
+        if(s == socios[i]){
+            socios.erase(socios.begin()+i);
+            return true;
+        }
+    return false;
 }
 
 bool Clube::changeModalidade(string name, string new_name){
     if(modalidades.size() < 1){
-        cout << "O clube nao tem modalidades associadas.\n";
+        iface->drawString("O clube nao tem modalidades associadas.\n");
         return 1;
     }
     for(unsigned int i = 0; i < modalidades.size(); i++){
@@ -41,12 +78,12 @@ bool Clube::changeModalidade(string name, string new_name){
             return 0;
         }
     }
-    cout << "Modalidade nao encontrada.\n";
+    iface->drawString("Modalidade nao encontrada.\n");
     return 1;
 }
 bool Clube::changeSubModalidade(string name, string new_name){
     if(sub_modalidades.size() < 1){
-        cout << "O clube nao tem sub-modalidades associadas.\n";
+        iface->drawString("O clube nao tem sub-modalidades associadas.\n");
         return 1;
     }
     for(unsigned int i = 0; i < sub_modalidades.size(); i++){
@@ -55,86 +92,121 @@ bool Clube::changeSubModalidade(string name, string new_name){
             return 0;
         }
     }
-    cout << "Sub-modalidade nao encontrada.\n";
+    iface->drawString("Sub-modalidade nao encontrada.\n");
     return 1;
 }
 
 void Clube::CRUD(){
     while(1){
+        iface->cleanScr();
         char command;
-        cout << "a. Manutencao\n";
-        cout << "   » ";
-        cin >> command;
-        cout << "a. Manutencao Jogadores\n";
-        cout << "   » ";
-        cin >> command;
+        iface->drawString("a. Manutencao\n");
+        iface->drawString( "q. Sair(!)\n");
+        iface->drawString( "   » ");
+        iface->readChar(command);
+        if(command == 'a') manutencao();
+        else if(command == 'q'){
+            iface->drawString( "Tem a certeza que deseja sair? (y/N)\n");
+            iface->drawString( "   » ");
+            iface->readChar(command);
+            if(command == 'y'){
+                iface->drawString( "Deseja gravar todas as alteracoes que efetuou? (Y/n)\n");
+                iface->drawString( "   » ");
+                iface->readChar(command);
+                if(command != 'n'){
+                    iface->drawString( "A gravar alteracoes...\n");
+                    writeAll();
+                    iface->drawString( "Alteracoes gravadas com sucesso, a sair...\n");
+                    quit();
+                    return;
+                }
+                iface->drawString( "A sair sem gravar alteracoes...\n");
+                quit();
+                return;
+            }
+            continue;
+        }
+    }
+}
+
+void Clube::manutencao(){
+    while(1){
+        iface->cleanScr();
+        char command;
+        iface->drawString("a. Manutencao Jogadores\n");
+        iface->drawString("q. Voltar\n");
+        iface->drawString("   » ");
+        iface->readChar(command);
         if(command == 'a') manutencaoJogadores();
+        else if(command == 'q') return;
     }
 }
 
 void Clube::listarPessoas(){
-    cout << "-------------------------------\n";
-    cout << "Listagem de todos os associados ao clube\n";
-    cout << "-------------------------------\n";
-    cout << "-------------------------------\n";
+    iface->drawString("-------------------------------\n");
+    iface->drawString("Listagem de todos os associados ao clube\n");
+    iface->drawString("-------------------------------\n");
+    iface->drawString("-------------------------------\n");
     listarExternos();
-    cout << "-------------------------------\n";
+    iface->drawString("-------------------------------\n");
     listarJogadores();
-    cout << "-------------------------------\n";
+    iface->drawString("-------------------------------\n");
     listarSocios();
-    cout << "-------------------------------\n";
-    cout << endl;
+    iface->drawString("-------------------------------\n");
+    iface->newLine();
 }
 
 void Clube::listarExternos(){
-    cout << "Listagem de externos:\n";
+    iface->drawString("Listagem de externos:\n");
     unsigned int counter = 0;
     for(unsigned int i = 0; i < externos.size(); i++){
-        cout << externos[i]->getNome() << "    ";
+        iface->drawString(externos[i]->getNome()); iface->drawString("    ");
         counter++;
-        if(counter>3){ cout << endl; counter = 0;}
+        if(counter>3){ iface->newLine(); counter = 0;}
     }
-    cout << endl;
+    iface->newLine();
 }
 
 void Clube::listarJogadores(){
-    cout << "Listagem de jogadores\n";
+    iface->drawString("Listagem de jogadores\n");
     unsigned int counter = 0;
     for(unsigned int i = 0; i < jogadores.size(); i++){
-        cout << jogadores[i]->getNome() << "    ";
+        iface->drawString(jogadores[i]->getNome()); iface->drawString("    ");
         counter++;
-        if(counter>3){ cout << endl; counter = 0;}
+        if(counter>3){ iface->newLine(); counter = 0;}
     }
-    cout << endl;
+    iface->newLine();
 }
 
 void Clube::listarSocios(){
-    cout << "Listagem de socios:\n";
+    iface->drawString("Listagem de socios:\n");
     unsigned int counter = 0;
     for(unsigned int i = 0; i < socios.size(); i++){
-        cout << socios[i]->getNome() << "    ";
+        iface->drawString(socios[i]->getNome()); iface->drawString("    ");
         counter++;
-        if(counter>3){ cout << endl; counter = 0;}
+        if(counter>3){ iface->newLine(); counter = 0;}
     }
-    cout << endl;
+    iface->newLine();
 }
 
 void Clube::listarModalidades(){
     for(unsigned int i = 0; i < modalidades.size(); i++){
-        cout << "» "<< modalidades[i]->getNome() << std::endl;
+        iface->drawString("» "); iface->drawString(modalidades[i]->getNome());
+        iface->newLine();
         for(unsigned int k = 0; k < sub_modalidades.size(); k ++)
-            if(sub_modalidades[k]->getMod()->getNome() == modalidades[i]->getNome())
-                cout << "   -" << sub_modalidades[k]->getNome() << std::endl;
+            if(sub_modalidades[k]->getMod()->getNome() == modalidades[i]->getNome()){
+                iface->drawString("   -"); iface->drawString(sub_modalidades[k]->getNome()); iface->newLine();
+            }
     }
 }
 
 bool Clube::manutencaoJogadores(){
     while(1){
+        iface->cleanScr();
         listarJogadores();
-        cout << "Escolha o jogador a gerir: ";
+        iface->drawString("Escolha o jogador a gerir: ");
         string nome_input;
-        cin.get();
-        getline(cin, nome_input);
+        iface->readLine(nome_input);
         if(nome_input == "q") return true;
         Jogador *j1 = NULL;
         for(unsigned int i = 0; i<jogadores.size(); i++){
@@ -142,7 +214,7 @@ bool Clube::manutencaoJogadores(){
         }
         if(j1 != NULL) manutencaoJogador(j1);
         else {
-            cout << "Jogador nao existe!\n";
+            iface->drawString("Jogador nao existe!\n");
             continue;
         }
     }
@@ -150,17 +222,76 @@ bool Clube::manutencaoJogadores(){
 }
 
 bool Clube::manutencaoJogador(Jogador *j1){
-    cout << "Informacao do jogador:\n";
-    j1->showInfo();
-    cout << "\n\na. Mudar nome\n";
-    cout << "b. Mudar idade\n";
-    cout << "c. Mudar NIF\n";
-    cout << "d. Associacao de (sub-)modalidades\n";
-    cout << "e. Remover jogador(!)\n";
-    char command;
-    cout << "   » ";
-    cin >> command;
-    return true;
+    while(1){
+        iface->cleanScr();
+        iface->drawString("Informacao do jogador:\n");
+        iface->drawString(j1->showInfo());
+        iface->drawString("\n\na. Mudar nome\n");
+        iface->drawString("b. Mudar idade\n");
+        iface->drawString("c. Mudar NIF\n");
+        iface->drawString("d. Mudar sexo\n");
+        iface->drawString("e. Associacao de (sub-)modalidades\n");
+        iface->drawString("f. Remover jogador(!)\n");
+        iface->drawString("q. Voltar...\n");
+        iface->drawString("   » ");
+        char command;
+        iface->readChar(command);
+        if(command == 'a'){
+            iface->drawString("Novo nome? ");
+            string nome;
+            iface->readLine(nome);
+            if(j1->changeNome(nome)){
+                iface->cleanScr();
+                iface->drawString("\nNome foi mudado com sucesso\n\n");
+                iface->readChar(command);
+                continue;
+            }
+            else{
+                iface->cleanScr();
+                iface->drawString("\nOcorreu um erro...\n\n");
+                iface->readChar(command);
+                continue;
+            }
+        }
+        if(command == 'b'){
+            iface->drawString("Nova idade? ");
+            unsigned int idade;
+            iface->read(idade);
+            if(j1->changeIdade(idade)){
+                iface->cleanScr();
+                iface->drawString("\nIdade foi mudada com sucesso\n\n");
+                iface->readChar(command);
+                continue;
+            }
+            else{
+                iface->cleanScr();
+                iface->drawString("\nOcorreu um erro...\n\n");
+                iface->readChar(command);
+                continue;
+            }
+        }
+        if(command == 'c'){
+            iface->drawString("Novo NIF? ");
+            unsigned long NIF;
+            iface->read(NIF);
+            if(j1->changeNIF(NIF)){
+                iface->cleanScr();
+                iface->drawString("\nNIF foi mudado com sucesso\n\n");
+                iface->readChar(command);
+                continue;
+            }
+            else{
+                iface->cleanScr();
+                iface->drawString("\nOcorreu um erro...\n\n");
+                iface->readChar(command);
+                continue;
+            }
+        }
+        else if(command == 'q'){
+            return true;
+        }
+    }
+    return false;
 }
 
 bool Clube::readModalidades(string filename){
@@ -191,7 +322,7 @@ bool Clube::readModalidades(string filename){
         file.close();
         return true;
     }
-    cout << "Unable to open file '" << filename << "'\n";
+    iface->drawString("Unable to open file '"); iface->drawString(filename); iface->drawString("'"); iface->newLine();
     return false;
 }
 
@@ -263,7 +394,7 @@ bool Clube::readJogadores(string filename){
         file.close();
         return true;
     }
-    cout << "Unable to open file '" << filename << "'\n";
+    iface->drawString("Unable to open file '"); iface->drawString(filename); iface->drawString("'"); iface->newLine();
     return false;
 }
 
@@ -335,7 +466,7 @@ bool Clube::readSocios(string filename){
         file.close();
         return true;
     }
-    cout << "Unable to open file '" << filename << "'\n";
+    iface->drawString("Unable to open file '"); iface->drawString(filename); iface->drawString("'"); iface->newLine();
     return false;
 }
 bool Clube::writeModalidades(vector<Modalidade *> modalidades, string filename){
@@ -357,7 +488,7 @@ bool Clube::writeModalidades(vector<Modalidade *> modalidades, string filename){
         file.close();
         return true;
     }
-    cout << "Unable to open file '" << filename << "'\n";
+    iface->drawString("Unable to open file '"); iface->drawString(filename); iface->drawString("'"); iface->newLine();
     return false;
 }
 
@@ -392,7 +523,7 @@ bool Clube::writeJogadores(vector<Jogador *> jogadores, string filename){
         file.close();
         return true;
     }
-    cout << "Unable to open file '" << filename << "'\n";
+    iface->drawString("Unable to open file '"); iface->drawString(filename); iface->drawString("'"); iface->newLine();
     return false;
 }
 
@@ -427,6 +558,30 @@ bool Clube::writeSocios(vector<Socio *> socios, string filename){
         file.close();
         return true;
     }
-    cout << "Unable to open file '" << filename << "'\n";
+    iface->drawString("Unable to open file '"); iface->drawString(filename); iface->drawString("'"); iface->newLine();
     return false;
+}
+
+bool Clube::readAll(){
+    if(!readModalidades(FILE_MODALIDADES)) return false;
+    if(!readJogadores(FILE_JOGADORES)) return false;
+    if(!readSocios(FILE_SOCIOS)) return false;
+
+    return true;
+}
+
+bool Clube::writeAll(){
+    if(!writeModalidades(modalidades, FILE_MODALIDADES)) return false;
+    if(!writeJogadores(jogadores, FILE_JOGADORES)) return false;
+    if(!writeSocios(socios, FILE_SOCIOS)) return false;
+
+    return true;
+}
+
+bool Clube::quit(){
+    char C;
+    iface->drawString("\n\n\n*Press ANY KEY to exit...*\n");
+    iface->readChar(C);
+    delete iface;
+    return true;
 }

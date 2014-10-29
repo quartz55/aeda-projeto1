@@ -23,9 +23,9 @@ class Jogador: public Pessoa{
     bool addModalidade(Modalidade *mod);
     bool addSubModalidade(SubModalidade *sub);
 
-    void showInfo() const;
-    void showModalidades() const;
-    void showSubModalidades() const;
+    string showInfo() const;
+    string showModalidades() const;
+    string showSubModalidades() const;
 
 };
 

@@ -3,7 +3,7 @@
 
 #include "despesa.h"
 
-#include <iostream>
+#include <sstream>
 #include <string>
 
 using std::cout; using std::cin; using std::string; using std::endl;
@@ -37,7 +37,7 @@ class Pessoa{
     bool changeSexo(string sexo);
     void setExterno(){this->classe = "Externo";}
 
-    virtual void showInfo() const;
+    virtual string showInfo() const;
 
 };
 

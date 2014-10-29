@@ -25,8 +25,8 @@ bool Pessoa::changeSexo(string sexo){
     return true;
 }
 
-void Pessoa::showInfo() const{
-    cout << sexo << ", " <<  nome << ", " << idade << " anos\n";
-    cout << "NIF: " << NIF << endl;;
-    cout << classe << endl;
+string Pessoa::showInfo() const{
+    std::stringstream s;
+    s << sexo << ", " << nome << ", " << idade << " anos\nNIF: " << NIF << std::endl;
+    return s.str();
 }

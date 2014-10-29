@@ -2,6 +2,8 @@
 #include <fstream>
 #include <sstream>
 
+#include "interface.h"
+
 #include "pessoa.h"
 #include "jogador.h"
 #include "socio.h"
@@ -27,13 +29,22 @@ class Clube{
     vector <Quota *> quotas;
     vector <Despesa *> despesas;
 
+
     public:
 
+    Clube();
+
+    //DATA
+    static string FILE_JOGADORES;
+    static string FILE_MODALIDADES;
+    static string FILE_SOCIOS;
+    static Interface *iface;
 
     //GET
     vector<Modalidade *> getMods(){return modalidades;}
     vector<Jogador *> getJogadores(){return jogadores;}
     vector<Socio *> getSocios(){return socios;}
+    //#######################################
 
     //ADD
     bool addExterno(Pessoa *p);
@@ -48,6 +59,7 @@ class Clube{
     //#######################################
 
     //REMOVE
+    bool removeExterno(Pessoa *p);
     bool removeJogador(Jogador *j);
     bool removeSocio(Socio *s);
     //#######################################
@@ -62,10 +74,14 @@ class Clube{
     void listarSocios();
 
     void listarModalidades();
+    //#######################################
 
+    //CRUD
     void CRUD();
+    void manutencao();
     bool manutencaoJogadores();
     bool manutencaoJogador(Jogador * j1);
+    //#######################################
 
     //FILE MANAGEMENT
     bool readModalidades(string filename);
@@ -75,5 +91,13 @@ class Clube{
     bool writeModalidades(vector<Modalidade *> modalidade, string filename);
     bool writeJogadores(vector<Jogador *> jogadores, string filename);
     bool writeSocios(vector<Socio *> socios, string filename);
+
+    bool readAll();
+    bool writeAll();
+    //#######################################
+
+    bool quit();
+
+    void clearScr();
 
 };
