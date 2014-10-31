@@ -12,6 +12,7 @@ public:
 	float getPreco() const;
 	void setPreco(float preco);
 	void pagarQuota(int meses);
+	bool operator< (const Quota& quota);
 
 protected:
 	Data * last_payed; // data da ultima quota paga
