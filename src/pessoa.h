@@ -4,6 +4,7 @@
 #include "despesa.h"
 
 #include <sstream>
+#include <stdio.h>
 #include <string>
 
 using std::cout; using std::cin; using std::string; using std::endl;

@@ -12,10 +12,10 @@ class Modalidade{
 
 
     public:
-        Modalidade(string nome);
+    Modalidade(string nome);
 
-	//OPERATOR'S
-	bool operator< (const Modalidade& mod);
+    //OPERATOR'S
+    bool operator< (const Modalidade& mod);
 
     //GET
     string getNome(){return nome;}
@@ -24,7 +24,7 @@ class Modalidade{
     void changeNome(string nome){this->nome = nome;}
 
     protected:
-        //...
+    //...
 };
 
 #endif

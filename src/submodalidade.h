@@ -8,11 +8,11 @@ class SubModalidade: public Modalidade{
     Modalidade *mod;
 
     public:
-        SubModalidade(string nome, Modalidade *mod);
+    SubModalidade(string nome, Modalidade *mod);
 
-        Modalidade* getMod() const {return mod;}
+    Modalidade* getMod() const {return mod;}
     protected:
-        //...
+    //...
 };
 
 #endif

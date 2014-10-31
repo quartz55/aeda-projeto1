@@ -1,7 +1,7 @@
 #ifndef _INTERFACE_H_
 #define _INTERFACE_H_
 
-#include <ncurses.h>
+#include "ncurses/curses.h"
 #include <string>
 #include <sstream>
 
