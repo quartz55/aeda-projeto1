@@ -22,6 +22,7 @@ class Data : public Calendario{
     int getDay() const;
     int getMonth() const;
     int getYear() const;
+	bool operator< (const Data& dat);
 };
 
 #endif

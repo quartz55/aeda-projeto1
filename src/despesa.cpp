@@ -29,3 +29,8 @@ float Despesa::getValor() const {
 void Despesa::setValor(float valor) {
 	this->valor = valor;
 }
+
+bool Despesa::operator< (const Despesa& despesa)
+{
+	return data < despesa.data;
+}

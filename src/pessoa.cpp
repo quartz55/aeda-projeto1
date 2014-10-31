@@ -8,6 +8,15 @@ Pessoa::Pessoa(string nome, unsigned int idade, unsigned long NIF, string sexo){
     this->classe = "Pessoa";
 }
 
+
+bool Pessoa::operator< (const Pessoa& pessoa)
+{	
+	if (strcmp(nome.c_str(), pessoa.nome.c_str()) < 0)
+		return false;
+	else
+		return true;
+}
+
 bool Pessoa::changeNome(string nome){
     this->nome = nome;
     return true;

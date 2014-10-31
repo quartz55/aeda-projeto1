@@ -22,6 +22,9 @@ class Pessoa{
     public:
     Pessoa(string nome, unsigned int idade, unsigned long NIF, string sexo);
 
+	//OPERATOR'S
+	bool operator< (const Pessoa& pessoa);
+
     //GET
     string getNome() const {return nome;}
     unsigned int getIdade() const {return idade;}

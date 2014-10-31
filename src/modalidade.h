@@ -14,6 +14,9 @@ class Modalidade{
     public:
         Modalidade(string nome);
 
+	//OPERATOR'S
+	bool operator< (const Modalidade& mod);
+
     //GET
     string getNome(){return nome;}
 

@@ -95,3 +95,14 @@ int Data::getMonth() const {
 int Data::getYear() const {
 	return year;
 }
+
+bool Data::operator< (const Data& dat)
+{
+	if (year < dat.year)
+		return true;
+	if (year == dat.year && month < dat.month)
+		return true;
+	if (year == dat.year && month == dat.month && day < dat.day)
+		return true;
+	return false;
+}
