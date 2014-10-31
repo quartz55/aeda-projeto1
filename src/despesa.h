@@ -13,6 +13,7 @@ public:
 	void setInfo(const string& info);
 	float getValor() const;
 	void setValor(float valor);
+	bool operator< (const Despesa& despesa);
 
 protected:
 	Data *data; // quando pagar
