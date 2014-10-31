@@ -4,45 +4,51 @@
 using std::string;
 
 Interface::Interface(){
-    this->X = 0;
-    this->Y = 0;
-    initscr();
-    clear();
-    cbreak();
-    move(X,Y);
-    cleanScr();
+    //this->X = 0;
+    //this->Y = 0;
+    //initscr();
+    //clear();
+    //cbreak();
+    //move(X,Y);
+    //cleanScr();
 }
 
 Interface::~Interface(){
-    endwin();
+    //endwin();
 }
 
 void Interface::drawChar(char CHAR){
-    mvaddch(CHAR,Y,X);
-    getyx(stdscr, Y,X);
-    refresh();
+    //mvaddch(CHAR,Y,X);
+    //getyx(stdscr, Y,X);
+    //refresh();
+    std::cout << CHAR;
 }
 void Interface::drawString(string STRING){
-    const char *STR = STRING.c_str();
-    mvaddstr(Y,X,STR);
-    getyx(stdscr, Y, X);
-    refresh();
+    //const char *STR = STRING.c_str();
+    //mvaddstr(Y,X,STR);
+    //getyx(stdscr, Y, X);
+    //refresh();
+    std::cout << STRING;
 }
 
 void Interface::readLine(std::string &STRING){
-    char *STR = new char;
-    getstr(STR);
-    STRING = std::string(STR);
+    //char *STR = new char;
+    //getstr(STR);
+    //STRING = std::string(STR);
+    getline(std::cin, STRING);
 }
 
 void Interface::cleanScr(){
-    clear();
-    refresh();
-    this->X = 0;
-    this->Y = 2;
+    //clear();
+    //refresh();
+    //this->X = 0;
+    //this->Y = 2;
+    for(unsigned int i = 0; i < 100; i++)
+        std::cout << std::endl;
 }
 void Interface::newLine(){
-    this->Y++;
-    this->X = 0;
+    //this->Y++;
+    //this->X = 0;
+    std::cout << std::endl;
 }
 

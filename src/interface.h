@@ -1,7 +1,8 @@
 #ifndef _INTERFACE_H_
 #define _INTERFACE_H_
 
-#include "ncurses/curses.h"
+//#include <curses.h>
+#include <iostream>
 #include <string>
 #include <sstream>
 
@@ -30,15 +31,17 @@ class Interface{
 
 template<typename Type>
 void Interface::readChar(Type &var){
-    var = getch();
+    //var = getch();
+    std::cin >> var;
 }
 
 template<typename Type>
 void Interface::read(Type &var){
-    char *input = new char;
-    getstr(input);
-    std::stringstream s(input);
-    s >> var;
+    //char *input = new char;
+    //getstr(input);
+    //std::stringstream s(input);
+    //s >> var;
+    std::cin >> var;
 }
 
 
