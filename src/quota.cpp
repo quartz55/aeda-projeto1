@@ -23,8 +23,3 @@ void Quota::setPreco(float preco) {
 void Quota::pagarQuota(int meses) {
 	last_payed->addMonths(meses);
 }
-
-bool Quota::operator< (const Quota& quota)
-{
-	return last_payed < quota.last_payed;
-}
