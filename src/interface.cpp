@@ -1,5 +1,4 @@
 #include "interface.h"
-#include <iostream>
 
 using std::string;
 
@@ -54,6 +53,10 @@ Interface::Interface(){
 Interface::~Interface(){
 }
 
+void Interface::getInput(){
+    std::cin.get();
+}
+
 void Interface::drawChar(char CHAR){
     std::cout << CHAR;
 }
@@ -62,7 +65,7 @@ void Interface::drawString(string STRING){
 }
 
 void Interface::readLine(std::string &STRING){
-    std::cin.get();
+    //std::cin.get();
     getline(std::cin, STRING);
 }
 

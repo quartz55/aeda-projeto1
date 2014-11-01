@@ -243,13 +243,13 @@ bool Clube::manutencaoJogador(Jogador *j1){
             if(j1->changeNome(nome)){
                 iface->cleanScr();
                 iface->drawString("\nNome foi mudado com sucesso\n\n");
-                iface->readChar(command);
+                iface->getInput();
                 continue;
             }
             else{
                 iface->cleanScr();
                 iface->drawString("\nOcorreu um erro...\n\n");
-                iface->readChar(command);
+                iface->getInput();
                 continue;
             }
         }
@@ -260,13 +260,13 @@ bool Clube::manutencaoJogador(Jogador *j1){
             if(j1->changeIdade(idade)){
                 iface->cleanScr();
                 iface->drawString("\nIdade foi mudada com sucesso\n\n");
-                iface->readChar(command);
+                iface->getInput();
                 continue;
             }
             else{
                 iface->cleanScr();
                 iface->drawString("\nOcorreu um erro...\n\n");
-                iface->readChar(command);
+                iface->getInput();
                 continue;
             }
         }
@@ -277,13 +277,13 @@ bool Clube::manutencaoJogador(Jogador *j1){
             if(j1->changeNIF(NIF)){
                 iface->cleanScr();
                 iface->drawString("\nNIF foi mudado com sucesso\n\n");
-                iface->readChar(command);
+                iface->getInput();
                 continue;
             }
             else{
                 iface->cleanScr();
                 iface->drawString("\nOcorreu um erro...\n\n");
-                iface->readChar(command);
+                iface->getInput();
                 continue;
             }
         }
@@ -579,9 +579,8 @@ bool Clube::writeAll(){
 }
 
 bool Clube::quit(){
-    char C;
     iface->drawString("\n\n\n*Press ANY KEY to exit...*\n");
-    iface->readChar(C);
+    iface->getInput();
     delete iface;
     return true;
 }

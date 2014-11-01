@@ -14,6 +14,8 @@ class Interface{
     Interface();
     ~Interface();
 
+    void getInput();
+
     template<typename Type>
     void readChar(Type &var);
 
@@ -33,6 +35,7 @@ template<typename Type>
 void Interface::readChar(Type &var){
     //var = getch();
     std::cin >> var;
+    std::cin.ignore();
 }
 
 template<typename Type>
@@ -42,6 +45,7 @@ void Interface::read(Type &var){
     //std::stringstream s(input);
     //s >> var;
     std::cin >> var;
+    std::cin.ignore();
 }
 
 
