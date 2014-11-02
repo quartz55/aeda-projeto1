@@ -1,4 +1,5 @@
 #include "despesa.h"
+#include "data.h"
 
 
 Despesa::Despesa(int d, int m, int y, float valor, string info): data(new Data(d,m,y)){
@@ -30,7 +31,13 @@ void Despesa::setValor(float valor) {
 	this->valor = valor;
 }
 
-bool Despesa::operator< (const Despesa& despesa)
+bool Despesa::operator< (const Despesa& despesa) const
 {
 	return data < despesa.data;
+}
+
+string Despesa::showInfo() {
+	stringstream ss;
+	ss <<  "» " << data->showData() << " | " << info << " | " << valor;
+	return ss.str();
 }

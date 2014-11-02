@@ -13,11 +13,14 @@
 
 #include "quota.h"
 #include "despesa.h"
+#include "data.h"
 
 using std::vector;using std::string;
 
 
 class Clube{
+
+	Data dataActual;
 
     vector <Pessoa *> externos;
     vector <Jogador *> jogadores;
@@ -26,8 +29,8 @@ class Clube{
     vector <Modalidade *> modalidades;
     vector <SubModalidade *> sub_modalidades;
 
-    vector <Quota *> quotas;
     vector <Despesa *> despesas;
+
 
 
     public:
@@ -38,6 +41,7 @@ class Clube{
     static string FILE_JOGADORES;
     static string FILE_MODALIDADES;
     static string FILE_SOCIOS;
+    static string FILE_DATA;
     static Interface *iface;
 
     //GET
@@ -54,7 +58,6 @@ class Clube{
     bool addModalidade(Modalidade *m){modalidades.push_back(m); return true;}
     bool addSubModalidade(SubModalidade *sm){sub_modalidades.push_back(sm); return true;}
 
-    bool addQuota(Quota *q);
     bool addDespesa(Despesa *d);
     //#######################################
 
@@ -62,10 +65,18 @@ class Clube{
     bool removeExterno(Pessoa *p);
     bool removeJogador(Jogador *j);
     bool removeSocio(Socio *s);
+
+    bool removeModalidade(Modalidade *m);
+    bool removeSubModalidade(SubModalidade *sm);
+
+    bool removeDespesa(Despesa *d);
+
     //#######################################
 
     bool changeModalidade(string name, string new_name);
     bool changeSubModalidade(string name, string new_name);
+
+    bool changeDespesa(Despesa* d, string newInfo, Data* novaData, float novoValor);
 
     //LISTAGEM
     void listarPessoas();
@@ -74,6 +85,8 @@ class Clube{
     void listarSocios();
 
     void listarModalidades();
+
+    void listarDespesas();
     //#######################################
 
     //CRUD
@@ -87,10 +100,12 @@ class Clube{
     bool readModalidades(string filename);
     bool readJogadores(string filename);
     bool readSocios(string filename);
+    bool readData(string filename);
 
     bool writeModalidades(vector<Modalidade *> modalidade, string filename);
     bool writeJogadores(vector<Jogador *> jogadores, string filename);
     bool writeSocios(vector<Socio *> socios, string filename);
+    bool writeData(string filename);
 
     bool readAll();
     bool writeAll();

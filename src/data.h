@@ -4,7 +4,7 @@
 #include "calendario.h"
 #include <iostream>
 
-using std::cout; using std::endl;
+using std::stringstream;
 
 class Data : public Calendario{
 
@@ -16,8 +16,8 @@ class Data : public Calendario{
     void addDays(int days);
     void addMonths(int months);
     void addYears(int years);
-    void showData() const;
-    void setData(int day, int month, int year) const;
+    string showData() const;
+    void setData(int day, int month, int year);
     bool operator< (const Data &d1) const;
     int getDay() const;
     int getMonth() const;

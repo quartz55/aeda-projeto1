@@ -1,4 +1,5 @@
 #include "data.h"
+#include <sstream>
 
 
 Data::Data(int day, int month, int year){
@@ -78,11 +79,14 @@ void Data::addYears(int years){
 
 
 
-void Data::showData() const {
-	cout << day << " de " << nomes[month] << " de " << year << endl;
+string Data::showData() const {
+	stringstream ss;
+	ss << day << " de " << nomes[month] << " de " << year;
+	return ss.str();
 
 }
 bool Data::operator< (const Data &d1) const{
+
 	if(year * 10000 + month * 10 + day  < d1.year * 10000 + d1.month * 10 + d1.day){
 		return true;
 	}
@@ -97,6 +101,12 @@ int Data::getDay() const {
 
 int Data::getMonth() const {
 	return month;
+}
+
+void Data::setData(int day, int month, int year) {
+	this->day = day;
+	this->month = month;
+	this->year = year;
 }
 
 int Data::getYear() const {

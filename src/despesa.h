@@ -2,6 +2,9 @@
 #define _DESPESA_H_
 
 #include "data.h"
+#include <sstream>
+
+using std::stringstream;
 
 class Despesa{
 
@@ -13,7 +16,8 @@ public:
 	void setInfo(const string& info);
 	float getValor() const;
 	void setValor(float valor);
-	bool operator< (const Despesa& despesa);
+	bool operator< (const Despesa& despesa) const;
+	string showInfo();
 
 protected:
 	Data *data; // quando pagar

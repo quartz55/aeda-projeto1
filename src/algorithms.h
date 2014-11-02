@@ -52,6 +52,7 @@ int SequentialSearch(const vector<T> &v, T x)
 }
 
 // metodo de pesquisa com complexidade temporal O(log n)
+
 template <class T>
 int BinarySearch(const vector<T> &v, T x)
 {
