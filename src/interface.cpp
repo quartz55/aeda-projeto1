@@ -1,9 +1,9 @@
 #include "interface.h"
-#include <iostream>
 
 using std::string;
 
-Interface::Interface(){
+//NCURSES
+//Interface::Interface(){
     //this->X = 0;
     //this->Y = 0;
     //initscr();
@@ -11,44 +11,69 @@ Interface::Interface(){
     //cbreak();
     //move(X,Y);
     //cleanScr();
-}
+//}
 
-Interface::~Interface(){
+//Interface::~Interface(){
     //endwin();
-}
+//}
 
-void Interface::drawChar(char CHAR){
+//void Interface::drawChar(char CHAR){
     //mvaddch(CHAR,Y,X);
     //getyx(stdscr, Y,X);
     //refresh();
-    std::cout << CHAR;
-}
-void Interface::drawString(string STRING){
+//}
+//void Interface::drawString(string STRING){
     //const char *STR = STRING.c_str();
     //mvaddstr(Y,X,STR);
     //getyx(stdscr, Y, X);
     //refresh();
-    std::cout << STRING;
-}
+//}
 
-void Interface::readLine(std::string &STRING){
+//void Interface::readLine(std::string &STRING){
     //char *STR = new char;
     //getstr(STR);
     //STRING = std::string(STR);
-    getline(std::cin, STRING);
-}
+//}
 
-void Interface::cleanScr(){
+//void Interface::cleanScr(){
     //clear();
     //refresh();
     //this->X = 0;
     //this->Y = 2;
+//}
+//void Interface::newLine(){
+    //this->Y++;
+    //this->X = 0;
+//}
+
+//IOSTREAM
+Interface::Interface(){
+}
+
+Interface::~Interface(){
+}
+
+void Interface::getInput(){
+    std::cin.get();
+}
+
+void Interface::drawChar(char CHAR){
+    std::cout << CHAR;
+}
+void Interface::drawString(string STRING){
+    std::cout << STRING;
+}
+
+void Interface::readLine(std::string &STRING){
+    //std::cin.get();
+    getline(std::cin, STRING);
+}
+
+void Interface::cleanScr(){
     for(unsigned int i = 0; i < 100; i++)
         std::cout << std::endl;
 }
 void Interface::newLine(){
-    //this->Y++;
-    //this->X = 0;
     std::cout << std::endl;
 }
 

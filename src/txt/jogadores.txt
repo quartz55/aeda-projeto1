@@ -8,7 +8,7 @@ Carlos Almeida # 67 Macho 123123
 --------
 Hyugo Almeedas # 25 Macho 592312
 --------
-Cardosa # 23 Femea 12345678
+Cardoso # 24 Femea 12345678
 --------
-Luisao # 31 Femea 219234
+Luisa # 31 Femea 219234
 --------
