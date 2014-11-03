@@ -5,7 +5,7 @@
 
 #include "jogador.h"
 #include "quota.h"
-#include "data.h"
+#include "Data.h"
 
 using std::vector;
 
