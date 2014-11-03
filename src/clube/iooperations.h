@@ -297,6 +297,7 @@ bool Clube::writeData(string filename) {
 	if(file.is_open()){
 		file << dataActual.getDay() << " " << dataActual.getMonth() << " " << dataActual.getYear();
 		file.close();
+        return true;
 	}
 	iface->drawString("Unable to open file '"); iface->drawString(filename); iface->drawString("'"); iface->newLine();
 	return false;

@@ -66,7 +66,7 @@ string Jogador::showSubModalidades() const{
         s << "Modalidades e sub-modalidades de " << nome << std::endl;
         s << "--------------------------------------------\n";
         for(unsigned int i = 0; i < modalidades.size(); i++){
-            s << "» "<< modalidades[i]->getNome() << std::endl;
+            s << "> "<< modalidades[i]->getNome() << std::endl;
             for(unsigned int k = 0; k < sub_modalidades.size(); k ++)
                 if(sub_modalidades[k]->getMod()->getNome() == modalidades[i]->getNome())
                     s << "   -" << sub_modalidades[k]->getNome() << std::endl;
