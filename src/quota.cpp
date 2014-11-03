@@ -1,7 +1,8 @@
 #include "quota.h"
 
 float Quota::preco = 3.0;
-Quota::Quota(int m, int ano, Modalidade * mod): last_payed(new Data(8,m,ano)), modalidade(mod) { //preco de uma quota de uma modalidade
+Quota::Quota(int m, int ano, Modalidade * mod): last_payed(new Data(8,m,ano)) { //preco de uma quota de uma modalidade
+	modalidade =mod;
 }
 
 const Data* Quota::getLastPayed() const {
