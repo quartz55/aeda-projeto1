@@ -94,6 +94,8 @@ class Clube{
     void manutencao();
     bool manutencaoJogadores();
     bool manutencaoJogador(Jogador * j1);
+	bool manutencaoModalidades();
+	bool manutencaoModalidade(Modalidade * m1);
     //#######################################
 
     //FILE MANAGEMENT

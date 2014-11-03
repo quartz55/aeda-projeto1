@@ -166,11 +166,19 @@ void Clube::manutencao(){
 	while(1){
 		iface->cleanScr();
 		char command;
-		iface->drawString("a. Manutencao Jogadores\n");
+		iface->drawString("a. Manutencao de jogadores\n");
+		iface->drawString("b. Manutencao de modalidades\n");
+		iface->drawString("c. Manutencao de socios\n");
+		iface->drawString("d. Manutencao de despesas\n");
+		iface->drawString("e. Manutencao de quotas\n");
 		iface->drawString("q. Voltar\n");
 		iface->drawString("   > ");
 		iface->readChar(command);
 		if(command == 'a') manutencaoJogadores();
+		if (command == 'b') manutencaoModalidades();
+		if (command == 'c'); //manutencaoSocios();
+		if (command == 'd'); //manutencaoDespesas();
+		if (command == 'e'); //manutencaoQuotas();
 		else if(command == 'q') return;
 	}
 }
@@ -332,6 +340,73 @@ bool Clube::manutencaoJogador(Jogador *j1){
 	}
 	return false;
 }
+
+bool Clube::manutencaoModalidades(){
+	while (1){
+		iface->cleanScr();
+		listarModalidades();
+		iface->drawString("Escolha a modalidade a gerir: ");
+		string nome_input;
+		iface->readLine(nome_input);
+		if (nome_input == "q") return true;
+		Modalidade *m1 = NULL;
+		for (unsigned int i = 0; i<modalidades.size(); i++){
+			if (modalidades[i]->getNome() == nome_input) m1 = modalidades[i];
+		}
+		if (m1 != NULL) manutencaoModalidade(m1);
+		else {
+			iface->drawString("Modalidade nao existe!\n");
+			continue;
+		}
+	}
+	return false;
+}
+
+bool Clube::manutencaoModalidade(Modalidade * m1){
+	while (1){
+		iface->cleanScr();
+		iface->drawString("Informacao da modalidade:\n");
+		iface->drawString(m1->showInfo());
+		iface->drawString("\n\na. Mudar nome\n");
+		iface->drawString("b. Criar submodalidade\n");
+		iface->drawString("c. Remover modalidade(!)\n");
+		iface->drawString("q. Voltar...\n");
+		iface->drawString("   > ");
+		char command;
+		iface->readChar(command);
+		if (command == 'a'){
+			iface->drawString("Novo nome? ");
+			string nome;
+			iface->readLine(nome);
+			if (m1->changeNome(nome)){
+				iface->cleanScr();
+				iface->drawString("\nNome foi mudado com sucesso\n\n");
+				iface->getInput();
+				continue;
+			}
+			else{
+				iface->cleanScr();
+				iface->drawString("\nOcorreu um erro...\n\n");
+				iface->getInput();
+				continue;
+			}
+		}
+		if (command == 'b'){
+			iface->drawString("Nova submodalidade\nNome? ");
+			string nome;
+			iface->read(nome);
+			SubModalidade sm1(nome, m1);
+			//sub_modalidades.push_back(sm1);
+			iface->drawString("Submodalidade criada com sucesso\n");
+			continue;
+		}
+		else if (command == 'q'){
+			return true;
+		}
+	}
+	return false;
+}
+
 
 bool Clube::readModalidades(string filename){
 	std::ifstream file;

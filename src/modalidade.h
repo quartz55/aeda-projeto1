@@ -22,7 +22,9 @@ class Modalidade{
     string getNome(){return nome;}
 
     //CHANGE
-    void changeNome(string nome){this->nome = nome;}
+	bool changeNome(string nome);
+
+	string showInfo() const;
 
     protected:
     //...
