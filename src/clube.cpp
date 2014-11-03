@@ -1,5 +1,7 @@
 #include "clube.h"
 
+#include <algorithm>
+
 string Clube::FILE_JOGADORES = "../txt/jogadores.txt";
 string Clube::FILE_MODALIDADES = "../txt/modalidades.txt";
 string Clube::FILE_SOCIOS = "../txt/socios.txt";
@@ -10,6 +12,11 @@ Interface *Clube::iface = new Interface();
 Clube::Clube(): dataActual(1,1,1900){
 	readAll();
 }
+
+//SORT FUNCTIONS
+#include "./clube/sorts.h"
+//#############################
+
 
 //READ AND WRITE OPERATIONS
 #include "./clube/iooperations.h"
@@ -192,16 +199,16 @@ void Clube::listarPessoas(){
 	iface->drawString("Listagem de todos os associados ao clube\n");
 	iface->drawString("-------------------------------\n");
 	iface->drawString("-------------------------------\n");
-	listarExternos();
+	listarExternos(externos);
 	iface->drawString("-------------------------------\n");
-	listarJogadores();
+	listarJogadores(jogadores);
 	iface->drawString("-------------------------------\n");
-	listarSocios();
+	listarSocios(socios);
 	iface->drawString("-------------------------------\n");
 	iface->newLine();
 }
 
-void Clube::listarExternos(){
+void Clube::listarExternos(vector<Pessoa *> externos){
 	iface->drawString("Listagem de externos:\n");
 	unsigned int counter = 0;
 	for(unsigned int i = 0; i < externos.size(); i++){
@@ -212,7 +219,7 @@ void Clube::listarExternos(){
 	iface->newLine();
 }
 
-void Clube::listarJogadores(){
+void Clube::listarJogadores(vector<Jogador *> jogadores){
 	iface->drawString("Listagem de jogadores\n");
 	unsigned int counter = 0;
 	for(unsigned int i = 0; i < jogadores.size(); i++){
@@ -223,7 +230,7 @@ void Clube::listarJogadores(){
 	iface->newLine();
 }
 
-void Clube::listarSocios(){
+void Clube::listarSocios(vector<Socio *> socios){
 	iface->drawString("Listagem de socios:\n");
 	unsigned int counter = 0;
 	for(unsigned int i = 0; i < socios.size(); i++){
@@ -250,11 +257,12 @@ void Clube::listarDespesas() {
 		iface->drawString(despesas[i]->showInfo());
 	}
 }
-
 bool Clube::manutencaoJogadores(){
 	while(1){
 		iface->cleanScr();
-		listarJogadores();
+        vector <Jogador *> teste = jogadores;
+        std::sort(teste.begin(), teste.end(), sortByIdade);
+		listarJogadores(teste);
 		iface->drawString("Escolha o jogador a gerir: ");
 		string nome_input;
 		iface->readLine(nome_input);
