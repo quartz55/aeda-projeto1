@@ -11,11 +11,11 @@ class Despesa{
 public:
 	Despesa(int d, int m, int y, float valor, string info);
 	const Data* getData() const;
-	void setData(Data* data);
+	bool setData(Data* data);
 	const string& getInfo() const;
-	void setInfo(const string& info);
+	bool setInfo(const string& info);
 	float getValor() const;
-	void setValor(float valor);
+	bool setValor(float valor);
 	bool operator< (const Despesa& despesa) const;
 	string showInfo();
 

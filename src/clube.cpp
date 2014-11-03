@@ -179,10 +179,12 @@ void Clube::manutencao(){
 		iface->cleanScr();
 		char command;
 		iface->drawString("a. Manutencao Jogadores\n");
+		iface->drawString("b. Manutencao Despesas\n");
 		iface->drawString("q. Voltar\n");
 		iface->drawString("   » ");
 		iface->readChar(command);
 		if(command == 'a') manutencaoJogadores();
+		if(command == 'b') manutencaoDespesas();
 		else if(command == 'q') return;
 	}
 }
@@ -248,7 +250,108 @@ void Clube::listarModalidades(){
 void Clube::listarDespesas() {
 	for(unsigned int i = 0; i < despesas.size(); i++){
 		iface->drawString(despesas[i]->showInfo());
+		iface->newLine();
 	}
+}
+bool Clube::manutencaoDespesas() {
+	while(1){
+		iface->cleanScr();
+		listarDespesas();
+		iface->drawString("Escolha a despesa a gerir: ");
+		string nome_input;
+		iface->readLine(nome_input);
+		if(nome_input == "q") return true;
+		Despesa *d1 = NULL;
+		for(unsigned int i = 0; i< despesas.size(); i++){
+			if(despesas[i]->getInfo() == nome_input) d1 = despesas[i];
+		}
+		if(d1 != NULL) manutencaoDespesa(d1);
+		else {
+			iface->drawString("Essa despesa nao existe!\n");
+			continue;
+		}
+	}
+	return false;
+}
+
+bool Clube::manutencaoDespesa(Despesa* d1) {
+	while(1){
+		iface->cleanScr();
+		iface->drawString("Informacao da despesa:\n");
+		iface->drawString(d1->showInfo());
+		iface->drawString("\n\na. Mudar info\n");
+		iface->drawString("b. Mudar valor\n");
+		iface->drawString("c. Mudar data\n");
+		iface->drawString("d. Remover despesa(!)\n");
+		iface->drawString("q. Voltar...\n");
+		iface->drawString("   » ");
+		char command;
+		iface->readChar(command);
+		if(command == 'a'){
+			iface->drawString("Nova info? ");
+			string nome;
+			iface->readLine(nome);
+			if(d1->setInfo(nome)){
+				iface->cleanScr();
+				iface->drawString("\n Info foi mudada com sucesso\n\n");
+				iface->getInput();
+				continue;
+			}
+			else{
+				iface->cleanScr();
+				iface->drawString("\nOcorreu um erro...\n\n");
+				iface->getInput();
+				continue;
+			}
+		}
+		if(command == 'b'){
+			iface->drawString("Novo valor? ");
+			float valor;
+			iface->read(valor);
+			if(d1->setValor(valor)){
+				iface->cleanScr();
+				iface->drawString("\nValor foi mudado com sucesso\n\n");
+				iface->getInput();
+				continue;
+			}
+			else{
+				iface->cleanScr();
+				iface->drawString("\nOcorreu um erro...\n\n");
+				iface->getInput();
+				continue;
+			}
+		}
+		if(command == 'c'){
+			iface->drawString(d1->getData()->showData());
+			iface->drawString("Novo Dia? ");
+			unsigned int dia;
+			iface->read(dia);
+			iface->drawString("Novo Mes (inteiro equivalente)? ");
+			unsigned int mes;
+			iface->read(mes);
+			iface->drawString("Novo Ano ? ");
+			unsigned int ano;
+			iface->read(ano);
+			Data * data = new Data(dia, mes, ano);
+			if(d1->setData(data)){
+				iface->cleanScr();
+				iface->drawString("\nData alterada com sucesso\n\n");
+				iface->getInput();
+				continue;
+			}
+			else{
+				iface->cleanScr();
+				iface->drawString("\nOcorreu um erro...\n\n");
+				iface->getInput();
+				continue;
+			}
+		}
+		else if(command == 'q'){
+			return true;
+		}
+	}
+	return false;
+
 }
 bool Clube::manutencaoJogadores(){
 	while(1){

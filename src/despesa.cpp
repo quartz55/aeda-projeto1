@@ -11,29 +11,32 @@ const Data* Despesa::getData() const {
 	return data;
 }
 
-void Despesa::setData(Data* data) {
+bool Despesa::setData(Data* data) {
 	this->data = data;
+	return true;
 }
 
 const string& Despesa::getInfo() const {
 	return info;
 }
 
-void Despesa::setInfo(const string& info) {
+bool Despesa::setInfo(const string& info) {
 	this->info = info;
+	return true;
 }
 
 float Despesa::getValor() const {
 	return valor;
 }
 
-void Despesa::setValor(float valor) {
+bool Despesa::setValor(float valor) {
 	this->valor = valor;
+	return true;
 }
 
 bool Despesa::operator< (const Despesa& despesa) const
 {
-	return data < despesa.data;
+	return *data < *despesa.data;
 }
 
 string Despesa::showInfo() {
