@@ -459,11 +459,26 @@ bool Clube::manutencaoModalidade(Modalidade * m1){
             iface->drawString("Nova submodalidade\nNome? ");
             string nome;
             iface->read(nome);
-            SubModalidade sm1(nome, m1);
-            //sub_modalidades.push_back(sm1);
+			SubModalidade *s1 = new SubModalidade(nome, m1);
+			sub_modalidades.push_back(s1);
             iface->drawString("Submodalidade criada com sucesso\n");
+			iface->getInput();
             continue;
         }
+		if (command == 'c'){
+			for (size_t i = 0; i < modalidades.size(); i++)
+			{
+				if (modalidades[i] == m1)
+					modalidades.erase(modalidades.begin() + i);
+			}
+			for (size_t i = 0; i < jogadores.size(); i++)
+			{
+				jogadores[i]->removeModalidade(m1);
+			}
+			iface->drawString("Modalidade removida com sucesso\n");
+			iface->getInput();
+			return true;
+		}
         else if (command == 'q'){
             return true;
         }

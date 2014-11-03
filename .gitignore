@@ -14,3 +14,5 @@ main
 *.vcxproj.filters
 Debug
 .settings
+
+AEDA.vcxproj.user

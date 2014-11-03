@@ -75,4 +75,16 @@ string Jogador::showSubModalidades() const{
     return s.str();
 }
 
+bool Jogador::removeModalidade(Modalidade *mod)
+{
+	for (size_t i = 0; i < modalidades.size(); i++)
+	{
+		if (modalidades[i] == mod)
+		{
+			modalidades.erase(modalidades.begin() + i);
+			return true;
+		}
+	}
+	return false;
+}
 
