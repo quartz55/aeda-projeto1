@@ -48,6 +48,32 @@ bool Clube::readData(string filename){
 	return false;
 
 }
+bool Clube::readDespesas(string filename){
+	int dia, mes, ano;
+	float valor;
+	string line,info;
+	std::ifstream file;
+	file.open(filename.c_str());
+	if(file.is_open()){
+		while(getline(file,line)){
+			std::stringstream ss;
+			ss << line;
+			ss >> dia >> mes >> ano;
+			getline(file,info);
+			getline(file,line);
+			ss.str("");
+			ss << line;
+			ss >> valor;
+			Despesa * d1 = new Despesa(dia,mes,ano,valor,info);
+			despesas.push_back(d1);
+		}
+		file.close();
+		return true;
+	}
+	iface->drawString("Unable to open file '"); iface->drawString(filename); iface->drawString("'"); iface->newLine();
+	return false;
+
+}
 
 bool Clube::readJogadores(string filename){
 	std::ifstream file;
@@ -295,12 +321,29 @@ bool Clube::writeData(string filename) {
 	iface->drawString("Unable to open file '"); iface->drawString(filename); iface->drawString("'"); iface->newLine();
 	return false;
 }
+bool Clube::writeDespesas(string filename){
+	string line,info;
+	std::ofstream file;
+	file.open(filename.c_str());
+	if(file.is_open()){
+		for(size_t i = 0; i < despesas.size();i++){
+			file << despesas[i]->getData()->getDay() << " " << despesas[i]->getData()->getMonth() << " " << despesas[i]->getData()->getYear() << endl;
+			file << despesas[i]->getInfo() << endl;
+			file << despesas[i]->getValor() << endl;
+		}
+		file.close();
+	}
+	iface->drawString("Unable to open file '"); iface->drawString(filename); iface->drawString("'"); iface->newLine();
+	return false;
+
+}
 
 bool Clube::readAll(){
+	if(!readData(FILE_DATA)) return false;
 	if(!readModalidades(FILE_MODALIDADES)) return false;
 	if(!readJogadores(FILE_JOGADORES)) return false;
 	if(!readSocios(FILE_SOCIOS)) return false;
-	if(!readData(FILE_DATA)) return false;
+	if(!readDespesas(FILE_DESPESAS)) return false;
 
 	return true;
 }
@@ -310,6 +353,7 @@ bool Clube::writeAll(){
 	if(!writeJogadores(jogadores, FILE_JOGADORES)) return false;
 	if(!writeSocios(socios, FILE_SOCIOS)) return false;
 	if(!writeData(FILE_DATA)) return false;
+	if(!writeDespesas(FILE_DESPESAS)) return false;
 
 
 	return true;
