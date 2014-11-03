@@ -78,12 +78,16 @@ void Clube::listarJogadores(){
 
 void Clube::listarModalidades(){
     for(unsigned int i = 0; i < modalidades.size(); i++){
-        iface->drawString("> "); iface->drawString(modalidades[i]->getNome());
+        iface->drawString("> ");
+        iface->drawString(modalidades[i]->getNome());
         iface->newLine();
-        for(unsigned int k = 0; k < sub_modalidades.size(); k ++)
+        for(unsigned int k = 0; k < sub_modalidades.size(); k ++){
             if(sub_modalidades[k]->getMod()->getNome() == modalidades[i]->getNome()){
-                iface->drawString("   -"); iface->drawString(sub_modalidades[k]->getNome()); iface->newLine();
+                iface->drawString("   -");
+                iface->drawString(sub_modalidades[k]->getNome());
+                iface->newLine();
             }
+        }
     }
 }
 

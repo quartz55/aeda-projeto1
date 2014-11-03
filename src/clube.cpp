@@ -144,7 +144,6 @@ bool Clube::changeDespesa(Despesa* d, string newInfo, Data* novaData, float novo
 
 void Clube::CRUD(){
     while(1){
-        readAll();
         iface->cleanScr();
         char command;
         iface->drawString(dataActual.showData());
@@ -194,10 +193,11 @@ void Clube::manutencao(){
         if(command == 'a') manutencaoJogadores();
         else if (command == 'b') manutencaoModalidades();
         else if (command == 'c'); //manutencaoSocios();
-        else if (command == 'd'); //manutencaoDespesas();
+        else if (command == 'd') manutencaoDespesas();
         else if (command == 'e'); //manutencaoQuotas();
         else if(command == 'q') return;
     }
+    return;
 }
 
 void Clube::listarDespesas() {
@@ -420,6 +420,7 @@ bool Clube::manutencaoModalidades(){
         if (m1 != NULL) manutencaoModalidade(m1);
         else {
             iface->drawString("Modalidade nao existe!\n");
+            iface->getInput();
             continue;
         }
     }
