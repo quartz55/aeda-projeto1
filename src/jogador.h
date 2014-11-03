@@ -10,7 +10,7 @@
 using std::vector;
 
 class Jogador: public Pessoa{
-
+	protected:
     vector<Modalidade *> modalidades;
     vector<SubModalidade *> sub_modalidades;
 
@@ -20,7 +20,7 @@ class Jogador: public Pessoa{
     vector <Modalidade *> getMods(){return modalidades;}
     vector <SubModalidade *> getSubMods(){return sub_modalidades;}
 
-    bool addModalidade(Modalidade *mod);
+    virtual bool addModalidade(Modalidade *mod);
     bool addSubModalidade(SubModalidade *sub);
 
     string showInfo() const;

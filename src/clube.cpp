@@ -490,7 +490,7 @@ bool Clube::readSocios(string filename){
 			while(line != "--------"){
 				for(unsigned int i = 0; i < modalidades.size(); i++){
 					if(modalidades[i]->getNome() == line)
-						s1->addModalidade(modalidades[i]);
+						s1->addModalidade(modalidades[i], dataActual.getMonth(),dataActual.getYear());
 				}
 
 				string helper;
@@ -637,10 +637,10 @@ bool Clube::readAll(){
 }
 
 bool Clube::writeAll(){
+	if(!writeData(FILE_DATA)) return false;
 	if(!writeModalidades(modalidades, FILE_MODALIDADES)) return false;
 	if(!writeJogadores(jogadores, FILE_JOGADORES)) return false;
 	if(!writeSocios(socios, FILE_SOCIOS)) return false;
-	if(!writeData(FILE_DATA)) return false;
 
 
 	return true;
