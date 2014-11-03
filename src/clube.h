@@ -80,9 +80,13 @@ class Clube{
 
     //LISTAGEM
     void listarPessoas();
-    void listarExternos(vector<Pessoa *> ext);
-    void listarJogadores(vector<Jogador *> jog);
-    void listarSocios(vector<Socio *> soc);
+
+    template<class C>
+    void listar(vector <C *> pessoas, bool idade, bool sexo);
+
+    void listarExternos();
+    void listarJogadores();
+    void listarSocios();
 
     void listarModalidades();
 

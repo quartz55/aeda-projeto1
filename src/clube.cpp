@@ -17,6 +17,9 @@ Clube::Clube(): dataActual(1,1,1900){
 #include "./clube/sorts.h"
 //#############################
 
+//LISTING FUNCTIONS
+#include "./clube/listagens.h"
+//#############################
 
 //READ AND WRITE OPERATIONS
 #include "./clube/iooperations.h"
@@ -177,7 +180,8 @@ void Clube::manutencao(){
     while(1){
         iface->cleanScr();
         char command;
-        iface->drawString("a. Manutencao Jogadores\n");
+        iface->drawString("MANUTENCAO\n\n");
+        iface->drawString("a. Manutencao de jogadores\n");
         iface->drawString("b. Manutencao de modalidades\n");
         iface->drawString("c. Manutencao de socios\n");
         iface->drawString("d. Manutencao de despesas\n");
@@ -194,73 +198,16 @@ void Clube::manutencao(){
     }
 }
 
-void Clube::listarPessoas(){
-    iface->drawString("-------------------------------\n");
-    iface->drawString("Listagem de todos os associados ao clube\n");
-    iface->drawString("-------------------------------\n");
-    iface->drawString("-------------------------------\n");
-    listarExternos(externos);
-    iface->drawString("-------------------------------\n");
-    listarJogadores(jogadores);
-    iface->drawString("-------------------------------\n");
-    listarSocios(socios);
-    iface->drawString("-------------------------------\n");
-    iface->newLine();
-}
-
-void Clube::listarExternos(vector<Pessoa *> externos){
-    iface->drawString("Listagem de externos:\n");
-    unsigned int counter = 0;
-    for(unsigned int i = 0; i < externos.size(); i++){
-        iface->drawString(externos[i]->getNome()); iface->drawString("    ");
-        counter++;
-        if(counter>3){ iface->newLine(); counter = 0;}
-    }
-    iface->newLine();
-}
-
-void Clube::listarJogadores(vector<Jogador *> jogadores){
-    iface->drawString("Listagem de jogadores\n");
-    unsigned int counter = 0;
-    for(unsigned int i = 0; i < jogadores.size(); i++){
-        iface->drawString(jogadores[i]->getNome()); iface->drawString("    ");
-        counter++;
-        if(counter>3){ iface->newLine(); counter = 0;}
-    }
-    iface->newLine();
-}
-
-void Clube::listarSocios(vector<Socio *> socios){
-    iface->drawString("Listagem de socios:\n");
-    unsigned int counter = 0;
-    for(unsigned int i = 0; i < socios.size(); i++){
-        iface->drawString(socios[i]->getNome()); iface->drawString("    ");
-        counter++;
-        if(counter>3){ iface->newLine(); counter = 0;}
-    }
-    iface->newLine();
-}
-
-void Clube::listarModalidades(){
-    for(unsigned int i = 0; i < modalidades.size(); i++){
-        iface->drawString("> "); iface->drawString(modalidades[i]->getNome());
-        iface->newLine();
-        for(unsigned int k = 0; k < sub_modalidades.size(); k ++)
-            if(sub_modalidades[k]->getMod()->getNome() == modalidades[i]->getNome()){
-                iface->drawString("   -"); iface->drawString(sub_modalidades[k]->getNome()); iface->newLine();
-            }
-    }
-}
-
 void Clube::listarDespesas() {
     for(unsigned int i = 0; i < despesas.size(); i++){
         iface->drawString(despesas[i]->showInfo());
     }
 }
 bool Clube::manutencaoJogadores(){
-    while(1){
         iface->cleanScr();
-        listarJogadores(jogadores);
+        listarJogadores();
+        iface->drawString("(q para sair)\n");
+    while(1){
         iface->drawString("Escolha o jogador a gerir: ");
         string nome_input;
         iface->readLine(nome_input);
@@ -269,9 +216,13 @@ bool Clube::manutencaoJogadores(){
         for(unsigned int i = 0; i<jogadores.size(); i++){
             if(jogadores[i]->getNome() == nome_input) j1 = jogadores[i];
         }
-        if(j1 != NULL) manutencaoJogador(j1);
+        if(j1 != NULL){
+            manutencaoJogador(j1);
+            return true;
+        }
         else {
             iface->drawString("Jogador nao existe!\n");
+            iface->getInput();
             continue;
         }
     }
@@ -420,6 +371,7 @@ bool Clube::manutencaoModalidade(Modalidade * m1){
 bool Clube::quit(){
     iface->drawString("\n\n\n*Press ANY KEY to exit...*\n");
     iface->getInput();
+    iface->cleanScr();
     delete iface;
     return true;
 }
