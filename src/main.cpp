@@ -4,8 +4,7 @@ int main(){
 
     Clube clube;
 
-	if (clube.readAll())
-		clube.CRUD();
-	system("PAUSE");
+    clube.CRUD();
+
     return 0;
 }

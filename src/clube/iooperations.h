@@ -2,13 +2,6 @@
 //##READ AND WRITE OPERATIONS RELATED TO CLUBE##
 //##############################################
 
-string Clube::FILE_JOGADORES = "../txt/jogadores.txt";
-string Clube::FILE_MODALIDADES = "../txt/modalidades.txt";
-string Clube::FILE_SOCIOS = "../txt/socios.txt";
-string Clube::FILE_DATA = "../txt/data.txt";
-
-
-
 bool Clube::readModalidades(string filename){
 	std::ifstream file;
 	file.open(filename.c_str());
