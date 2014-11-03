@@ -260,9 +260,7 @@ void Clube::listarDespesas() {
 bool Clube::manutencaoJogadores(){
 	while(1){
 		iface->cleanScr();
-        vector <Jogador *> teste = jogadores;
-        std::sort(teste.begin(), teste.end(), sortByIdade);
-		listarJogadores(teste);
+		listarJogadores(jogadores);
 		iface->drawString("Escolha o jogador a gerir: ");
 		string nome_input;
 		iface->readLine(nome_input);
