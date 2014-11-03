@@ -1,9 +1,16 @@
 #include "clube.h"
 
+<<<<<<< HEAD
+/*string Clube::FILE_JOGADORES = "../txt/jogadores.txt";
+string Clube::FILE_MODALIDADES = "../txt/modalidades.txt";
+string Clube::FILE_SOCIOS = "../txt/socios.txt";
+string Clube::FILE_DATA = "../txt/data.txt";*/
+=======
 string Clube::FILE_JOGADORES = "txt/jogadores.txt";
 string Clube::FILE_MODALIDADES = "txt/modalidades.txt";
 string Clube::FILE_SOCIOS = "txt/socios.txt";
 string Clube::FILE_DATA = "txt/data.txt";
+>>>>>>> 14f62964990b467f6381e96ec282cc461afe55f8
 
 Interface *Clube::iface = new Interface();
 

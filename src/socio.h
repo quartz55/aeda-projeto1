@@ -5,6 +5,7 @@
 
 #include "jogador.h"
 #include "quota.h"
+#include "Data.h"
 
 using std::vector;
 
@@ -14,6 +15,9 @@ class Socio: public Jogador{
 
     public:
     Socio(string nome, unsigned int idade, unsigned long NIF, string sexo);
+    bool addModalidade(Modalidade *mod, int mes, int ano);
+    int QuotasAtrasadas(Data dataActual, Modalidade *mod);
+    float pagarQuotas(int meses, Data dataActual, Modalidade *mod);
 
     string showInfo() const {return Jogador::showInfo();}
 };
