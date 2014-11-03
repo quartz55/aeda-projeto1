@@ -26,9 +26,9 @@ void Quota::pagarQuota(int meses) {
 	last_payed->setData(8, last_payed->getMonth(), last_payed->getYear());
 }
 
-bool Quota::operator< (const Quota& quota)
+bool Quota::operator< (const Quota& quota) const
 {
-	return (last_payed < quota.last_payed);
+	return *last_payed < *quota.last_payed;
 }
 
 const Modalidade* Quota::getModalidade() const {
