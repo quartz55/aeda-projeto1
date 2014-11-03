@@ -15,7 +15,7 @@ public:
 	float getPreco() const;
 	void setPreco(float preco);
 	void pagarQuota(int meses);
-	bool operator< (const Quota& quota);
+	bool operator< (const Quota& quota) const;
 	string showQuota() const;
 
 protected:
