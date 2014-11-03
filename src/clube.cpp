@@ -1,9 +1,9 @@
 #include "clube.h"
 
-string Clube::FILE_JOGADORES = "txt/jogadores.txt";
-string Clube::FILE_MODALIDADES = "txt/modalidades.txt";
-string Clube::FILE_SOCIOS = "txt/socios.txt";
-string Clube::FILE_DATA = "txt/data.txt";
+string Clube::FILE_JOGADORES = "../txt/jogadores.txt";
+string Clube::FILE_MODALIDADES = "../txt/modalidades.txt";
+string Clube::FILE_SOCIOS = "../txt/socios.txt";
+string Clube::FILE_DATA = "../txt/data.txt";
 
 Interface *Clube::iface = new Interface();
 
@@ -129,23 +129,22 @@ bool Clube::changeDespesa(Despesa* d, string newInfo, Data* novaData, float novo
 
 void Clube::CRUD(){
 	while(1){
-		readAll();
 		iface->cleanScr();
 		char command;
 		iface->drawString(dataActual.showData());
 		iface->drawString("\n \n");
 		iface->drawString("a. Manutencao\n");
 		iface->drawString( "q. Sair(!)\n");
-		iface->drawString( "   » ");
+		iface->drawString( "   > ");
 		iface->readChar(command);
 		if(command == 'a') manutencao();
 		else if(command == 'q'){
 			iface->drawString( "Tem a certeza que deseja sair? (y/N)\n");
-			iface->drawString( "   » ");
+			iface->drawString( "   > ");
 			iface->readChar(command);
 			if(command == 'y'){
 				iface->drawString( "Deseja gravar todas as alteracoes que efetuou? (Y/n)\n");
-				iface->drawString( "   » ");
+				iface->drawString( "   > ");
 				iface->readChar(command);
 				if(command != 'n'){
 					iface->drawString( "A gravar alteracoes...\n");
@@ -169,7 +168,7 @@ void Clube::manutencao(){
 		char command;
 		iface->drawString("a. Manutencao Jogadores\n");
 		iface->drawString("q. Voltar\n");
-		iface->drawString("   » ");
+		iface->drawString("   > ");
 		iface->readChar(command);
 		if(command == 'a') manutencaoJogadores();
 		else if(command == 'q') return;
@@ -225,7 +224,7 @@ void Clube::listarSocios(){
 
 void Clube::listarModalidades(){
 	for(unsigned int i = 0; i < modalidades.size(); i++){
-		iface->drawString("» "); iface->drawString(modalidades[i]->getNome());
+		iface->drawString("> "); iface->drawString(modalidades[i]->getNome());
 		iface->newLine();
 		for(unsigned int k = 0; k < sub_modalidades.size(); k ++)
 			if(sub_modalidades[k]->getMod()->getNome() == modalidades[i]->getNome()){
@@ -273,7 +272,7 @@ bool Clube::manutencaoJogador(Jogador *j1){
 		iface->drawString("e. Associacao de (sub-)modalidades\n");
 		iface->drawString("f. Remover jogador(!)\n");
 		iface->drawString("q. Voltar...\n");
-		iface->drawString("   » ");
+		iface->drawString("   > ");
 		char command;
 		iface->readChar(command);
 		if(command == 'a'){
