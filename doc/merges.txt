@@ -1,0 +1,29 @@
+Pessoal so para nao haver mais tretas de conflitos com os merges façam assim:
+
+Supondo que voces vao começar agora um branch novo facam isto:
+
+
+git checkout -b NOME (ele cria um branch novo e faz checkout logo)
+...
+depois de voces fazerem os commits e tal se quiserem fazer merge com o master primeiro convem atualizar o vosso branch com o master antes de fazerem merge
+por isso primeiro atualizam o branch master com os updates todos:
+
+git checkout master
+git pull
+(ele atualiza o master)
+...
+agora que o master ta actualizado voces vao ao vosso branch e atualizam o proprio branch com o master que fizeram update agora:
+
+git checkout NOME
+git merge master
+(assim atualiza o vosso branch com as modificaçoes do master todas)
+
+so agora depois de resolverem os conflitos todos é que esta bom para fazer o merge inicial:
+
+git checkout master
+git merge NOME
+git push
+
+
+
+E TA FEITO, espero que percebam :D
