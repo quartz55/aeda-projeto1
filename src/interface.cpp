@@ -60,9 +60,6 @@ void Interface::getInput(){
 void Interface::drawChar(char CHAR){
     std::cout << CHAR;
 }
-void Interface::drawString(string STRING){
-    std::cout << STRING;
-}
 
 void Interface::readLine(std::string &STRING){
     //std::cin.get();

@@ -25,7 +25,9 @@ class Interface{
     void read(Type &var);
 
     void drawChar(char CHAR);
-    void drawString(std::string STRING);
+
+    template<typename Type>
+    void drawString(Type STRING);
     void newLine();
 
     void cleanScr();
@@ -48,5 +50,9 @@ void Interface::read(Type &var){
     std::cin.ignore();
 }
 
+template<typename Type>
+void Interface::drawString(Type STRING){
+    std::cout << STRING;
+}
 
 #endif
