@@ -165,7 +165,7 @@ bool Clube::readSocios(string filename){
 			while(line != "--------"){
 				for(unsigned int i = 0; i < modalidades.size(); i++){
 					if(modalidades[i]->getNome() == line)
-						s1->addModalidade(modalidades[i]);
+						s1->addModalidade(modalidades[i], dataActual.getMonth(), dataActual.getYear());
 				}
 
 				string helper;
