@@ -37,6 +37,8 @@ class Clube{
 
     Clube();
 
+	void main();
+
     //DATA
     static string FILE_JOGADORES;
     static string FILE_MODALIDADES;
@@ -98,7 +100,6 @@ class Clube{
     //#######################################
 
     //CRUD
-    void CRUD();
     void manutencao();
     bool manutencaoJogadores();
     bool manutencaoJogador(Jogador * j1);
