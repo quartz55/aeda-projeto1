@@ -27,6 +27,8 @@ class Jogador: public Pessoa{
     string showModalidades() const;
     string showSubModalidades() const;
 
+	bool removeModalidade(Modalidade *mod);
+
 };
 
 #endif
