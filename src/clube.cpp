@@ -202,6 +202,8 @@ void Clube::manutencao(){
         iface->drawString("b. Manutencao de modalidades\n");
         iface->drawString("c. Manutencao de socios\n");
         iface->drawString("d. Manutencao de despesas\n");
+        iface->drawString("e. Manutencao de quotas\n");
+		iface->drawString("f. Alterar data\n");
         iface->drawString("q. Voltar\n");
         iface->drawString("   > ");
         iface->readChar(command);
@@ -209,6 +211,8 @@ void Clube::manutencao(){
         else if (command == 'b') manutencaoModalidades();
         else if (command == 'c') manutencaoSocios();
         else if (command == 'd') manutencaoDespesas();
+        else if (command == 'e'); //manutencaoQuotas();
+		else if (command == 'f') alterarData();
         else if(command == 'q') return;
     }
     return;
@@ -720,6 +724,53 @@ bool Clube::manutencaoModalidade(Modalidade * m1){
         }
     }
     return false;
+}
+
+void Clube::alterarData(){
+	iface->cleanScr();
+	iface->drawString(dataActual.showData());
+	iface->drawString("\n\n\n\nNovo Dia? ");
+	unsigned int dia;
+	iface->read(dia);
+	if (dia < 1 || dia > 31){
+		iface->drawString("Erro, dia invalido!");
+		iface->getInput();
+		return;
+	}
+	iface->drawString("Novo Mes (inteiro equivalente)? ");
+	unsigned int mes;
+	iface->read(mes);
+	if (mes < 1 || mes > 12){
+		iface->drawString("Erro, mes invalido!");
+		iface->getInput();
+		return;
+	}
+	iface->drawString("Novo Ano ? ");
+	unsigned int ano;
+	iface->read(ano);
+	Data data = Data(dia, mes, ano);
+	iface->drawString("Alterar data atual de ");
+	iface->drawString(dataActual.showData());
+	iface->drawString(" para ");
+	iface->drawString(data.showData());
+	iface->drawString("? (y/n)\n");
+	iface->drawString("   > ");
+	char command;
+	iface->readChar(command);
+	if (command == 'y')
+	{
+		dataActual.setData(dia, mes, ano);
+		iface->cleanScr();
+		iface->drawString("\nData alterada com sucesso\n\n");
+		iface->getInput();
+	}
+	else
+	{
+		iface->drawString("\nOperacao cancelada\n\n");
+		iface->getInput();
+	}
+
+	return;
 }
 
 bool Clube::quit(){

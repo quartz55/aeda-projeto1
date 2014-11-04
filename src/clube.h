@@ -109,6 +109,7 @@ class Clube{
 	bool manutencaoSocio(Socio * s1);
 	bool manutencaoDespesas();
 	bool manutencaoDespesa(Despesa* d1);
+	void alterarData();
     //#######################################
 
     //FILE MANAGEMENT
