@@ -341,7 +341,33 @@ bool Clube::manutencaoSocio(Socio *s1){
                 continue;
             }
         }
+        if (command == 'e'){
+        	iface->cleanScr();
+        	listarModalidades();
+        	iface->drawString("Escolha a modalidade a associar: ");
+        	string nome_input;
+        	iface->readLine(nome_input);
+        	if (nome_input == "q") return true;
+        	if(s1->QuotasAtrasadas(dataActual) == 0){
+        		for(size_t i = 0; i < modalidades.size(); i++){
+        			if(modalidades[i]->getNome() == nome_input){
+        				s1->addModalidade(modalidades[i], dataActual.getMonth(),dataActual.getYear());
+        				break;
+        			}
+        		}
+        	}
+        	else{
+        		iface->cleanScr();
+        		iface->drawString("Nao se pode associar a uma nova modalidade com quotas em atraso\n");
+        		iface->getInput();
+        		return false;
+        	}
+        	iface->drawString("\nModalidade desassociada com sucesso\n\n");
+        	iface->getInput();
+        	return true;
+        }
         if (command == 'f'){
+        	iface->cleanScr();
         	s1->showModalidades();
         	iface->drawString("Escolha a modalidade a remover: ");
         	string nome_input;
@@ -350,6 +376,7 @@ bool Clube::manutencaoSocio(Socio *s1){
         	for(size_t i = 0; i < modalidades.size(); i++){
         		if(modalidades[i]->getNome() == nome_input){
                 	s1->removeModalidade(modalidades[i]);
+                	s1->removeQuota(modalidades[i]);
                 	break;
         		}
         	}

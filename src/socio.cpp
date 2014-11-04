@@ -43,3 +43,13 @@ float Socio::pagarQuotas(int meses,Data dataActual) {
 	}
 	return total + multa;
 }
+
+bool Socio::removeQuota(Modalidade* mod) {
+	for(size_t i = 0;i < quotas.size(); i++){
+		if(quotas[i]->getModalidade() == mod){
+			quotas.erase(quotas.begin()+i);
+			return true;
+		}
+	}
+	return false;
+}
