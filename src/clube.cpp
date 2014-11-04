@@ -301,12 +301,12 @@ bool Clube::manutencaoSocios(){
 		iface->read(idade);
 		iface->drawString("NIF: ");
 		iface->read(nif);
-		Jogador *j1 = new Jogador(nome, idade, nif, sexo);
-		jogadores.push_back(j1);
+		Socio *s1 = new Socio(nome, idade, nif, sexo);
+		socios.push_back(s1);
 		iface->cleanScr();
-		iface->drawString(j1->showInfo());
+		iface->drawString(s1->showInfo());
 		iface->drawString("\n");
-		iface->drawString("O jogador foi criado");
+		iface->drawString("O socio foi criado");
 		iface->drawString("\n\n\n* Press ANY key to continue... *\n");
 		iface->getInput();
 		return true;
