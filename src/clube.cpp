@@ -346,6 +346,7 @@ bool Clube::manutencaoSocios(){
 	}
 	else if (command == 'q')
 		return false;
+	return false;
 }
 
 bool Clube::manutencaoSocio(Socio *s1){
@@ -692,6 +693,7 @@ bool Clube::manutencaoJogadores(){
     }
     else if (command == 'q')
         return false;
+    return false;
 }
 
 
