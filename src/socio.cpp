@@ -15,13 +15,11 @@ int Socio::QuotasAtrasadas(Data dataActual) {
 	if(dataActual.getDay() <= 8){
 		if(quotas[0]->getLastPayed()->getMonth() < dataActual.getMonth() - 1){
 			meses_atrasados = dataActual.getMonth() - 1 - quotas[0]->getLastPayed()->getMonth();
-			break;
 		}
 	}
 	else{
 		if(quotas[0]->getLastPayed()->getMonth() < dataActual.getMonth()){
 			meses_atrasados = dataActual.getMonth() - quotas[0]->getLastPayed()->getMonth();
-			break;
 		}
 	}
 	return meses_atrasados;
