@@ -101,6 +101,8 @@ class Clube{
     bool manutencaoJogador(Jogador * j1);
 	bool manutencaoModalidades();
 	bool manutencaoModalidade(Modalidade * m1);
+	bool manutencaoSocios();
+	bool manutencaoSocio(Socio * s1);
 	bool manutencaoDespesas();
 	bool manutencaoDespesa(Despesa* d1);
     //#######################################
