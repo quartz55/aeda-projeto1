@@ -89,8 +89,8 @@ class Clube{
     void listarPorModalidades(vector<C *> pessoas);
 
     void listarExternos();
-    void listarJogadores();
-    void listarSocios();
+    bool listarJogadores();
+    bool listarSocios();
 
     void listarModalidades();
 

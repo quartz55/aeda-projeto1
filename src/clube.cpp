@@ -210,7 +210,14 @@ void Clube::listarDespesas() {
 
 bool Clube::manutencaoSocios(){
 	iface->cleanScr();
-	listarSocios();
+    if(socios.size() == 0){
+        iface->drawString("O clube nao tem socios associados!\n");
+        iface->getInput();
+        return false;
+    }
+	if(!listarSocios())
+        return false;
+
 	iface->drawString("(q para sair)\n");
 	while (1){
 		iface->drawString("Escolha o socio a gerir: ");
@@ -447,7 +454,14 @@ bool Clube::manutencaoDespesa(Despesa* d1) {
 }
 bool Clube::manutencaoJogadores(){
     iface->cleanScr();
-    listarJogadores();
+    if(jogadores.size() == 0){
+        iface->drawString("O clube nao tem jogadores associados!\n");
+        iface->getInput();
+        return false;
+    }
+    if(!listarJogadores())
+        return false;
+
     iface->drawString("(q para sair)\n");
     while(1){
         iface->drawString("Escolha o jogador a gerir: ");
