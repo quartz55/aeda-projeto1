@@ -10,38 +10,46 @@ bool Socio::addModalidade(Modalidade* mod, int mes, int ano) {
 	return Jogador::addModalidade(mod);
 }
 
-int Socio::QuotasAtrasadas(Data dataActual, Modalidade *mod) {
+int Socio::QuotasAtrasadas(Data dataActual) {
 	int meses_atrasados = 0;
-	for(size_t i  = 0; i < quotas.size();i++){
-		if(quotas[i]->getModalidade() == mod){
-			if(dataActual.getDay() <= 8){
-				if(quotas[i]->getLastPayed()->getMonth() < dataActual.getMonth() - 1){
-					meses_atrasados = dataActual.getMonth() - 1 - quotas[i]->getLastPayed()->getMonth();
-					break;
-				}
-			}
-			else{
-				if(quotas[i]->getLastPayed()->getMonth() < dataActual.getMonth()){
-					meses_atrasados = dataActual.getMonth() - quotas[i]->getLastPayed()->getMonth();
-					break;
-				}
-			}
+	if(dataActual.getDay() <= 8){
+		if(quotas[0]->getLastPayed()->getMonth() < dataActual.getMonth() - 1){
+			meses_atrasados = dataActual.getMonth() - 1 - quotas[0]->getLastPayed()->getMonth();
+		}
+	}
+	else{
+		if(quotas[0]->getLastPayed()->getMonth() < dataActual.getMonth()){
+			meses_atrasados = dataActual.getMonth() - quotas[0]->getLastPayed()->getMonth();
 		}
 	}
 	return meses_atrasados;
 }
 
-float Socio::pagarQuotas(int meses,Data dataActual, Modalidade *mod) {
+float Socio::pagarQuotas(int meses,Data dataActual) {
 	float total = 0;
 	float multa = 0;
-	for(size_t i = 0; i < quotas.size(); i++){
-		if(quotas[i]->getModalidade() == mod){
-			total += quotas[i]->getPreco();
-			multa = 5*QuotasAtrasadas(dataActual,mod);
+	if(QuotasAtrasadas(dataActual) >= meses){
+			multa = 5*meses;
 		}
+		else{
+			multa = QuotasAtrasadas(dataActual)*5;
+		}
+	for(size_t i = 0; i < quotas.size(); i++){
+			total += quotas[i]->getPreco();
+			quotas[i]->pagarQuota(meses);
 	}
 	if(modalidades.size() >= 3){
 		total *= 0.95;
 	}
 	return total + multa;
+}
+
+bool Socio::removeQuota(Modalidade* mod) {
+	for(size_t i = 0;i < quotas.size(); i++){
+		if(quotas[i]->getModalidade() == mod){
+			quotas.erase(quotas.begin()+i);
+			return true;
+		}
+	}
+	return false;
 }
