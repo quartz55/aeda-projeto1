@@ -5,22 +5,22 @@
 #include <algorithm>
 #include <vector>
 
-void Clube::listarPessoas(){
+void Clube::listarPessoal(){
     iface->drawString("-------------------------------\n");
     iface->drawString("Listagem de todos os associados ao clube\n");
     iface->drawString("-------------------------------\n");
     iface->drawString("-------------------------------\n");
-    listar(externos, false, false);
+    listarPessoas(externos, false, false);
     iface->drawString("-------------------------------\n");
-    listar(jogadores, false, false);
+    listarPessoas(jogadores, false, false);
     iface->drawString("-------------------------------\n");
-    listar(socios, false, false);
+    listarPessoas(socios, false, false);
     iface->drawString("-------------------------------\n");
     iface->newLine();
 }
 
 template<class C>
-void Clube::listar(vector<C *> pessoas, bool idade, bool sexo){
+void Clube::listarPessoas(vector<C *> pessoas, bool idade, bool sexo){
     for(unsigned int i = 0; i < pessoas.size(); i++){
         iface->drawString("   > ");
         iface->drawString(pessoas[i]->getNome());
@@ -55,7 +55,7 @@ void Clube::listarPorModalidades(vector<C *> pessoas){
             }
         }
         if(!existe){
-            iface->drawString("    Nenhum ");
+            iface->drawString("   * Nenhum ");
             iface->drawString(pessoas[0]->getClasse());
             iface->drawString(" pertence a esta modalidade\n");
         }
@@ -81,21 +81,21 @@ bool Clube::listarJogadores(){
             std::sort(ordenado.begin(), ordenado.end(), sortByName);
             iface->cleanScr();
             iface->drawString("Jogadores ordenados por ordem alfabetica (A-Z):\n");
-            listar(ordenado, false, false);
+            listarPessoas(ordenado, false, false);
         }
         else if (command == 'b'){
             std::vector <Jogador *> ordenado = jogadores;
             std::sort(ordenado.begin(), ordenado.end(), sortByIdade);
             iface->cleanScr();
             iface->drawString("Jogadores ordenados por ordem de idade:\n");
-            listar(ordenado, true, false);
+            listarPessoas(ordenado, true, false);
         }
         else if (command == 'c'){
             std::vector <Jogador *> ordenado = jogadores;
             std::sort(ordenado.begin(), ordenado.end(), sortBySexo);
             iface->cleanScr();
             iface->drawString("Jogadores ordenados por sexo:\n");
-            listar(ordenado, false, true);
+            listarPessoas(ordenado, false, true);
         }
         else if (command == 'd'){
             iface->cleanScr();
@@ -126,21 +126,21 @@ bool Clube::listarSocios(){
             std::sort(ordenado.begin(), ordenado.end(), sortByName);
             iface->cleanScr();
             iface->drawString("Socios ordenados por ordem alfabetica (A-Z):\n");
-            listar(ordenado, false, false);
+            listarPessoas(ordenado, false, false);
         }
         else if (command == 'b'){
             std::vector <Socio *> ordenado = socios;
             std::sort(ordenado.begin(), ordenado.end(), sortByIdade);
             iface->cleanScr();
             iface->drawString("Socios ordenados por ordem de idade:\n");
-            listar(ordenado, true, false);
+            listarPessoas(ordenado, true, false);
         }
         else if (command == 'c'){
             std::vector <Socio *> ordenado = socios;
             std::sort(ordenado.begin(), ordenado.end(), sortBySexo);
             iface->cleanScr();
             iface->drawString("Socios ordenados por sexo:\n");
-            listar(ordenado, false, true);
+            listarPessoas(ordenado, false, true);
         }
         else if (command == 'd'){
             iface->cleanScr();
@@ -154,17 +154,24 @@ bool Clube::listarSocios(){
 }
 
 void Clube::listarModalidades(){
-    for(unsigned int i = 0; i < modalidades.size(); i++){
-        iface->drawString("> ");
-        iface->drawString(modalidades[i]->getNome());
+    bool tem_subs = false;
+    std::vector <Modalidade *> ordenado(modalidades);
+    std::sort(ordenado.begin(), ordenado.end(), sortByNome);
+    for(unsigned int i = 0; i < ordenado.size(); i++){
+        iface->drawString(" - ");
+        iface->drawString(ordenado[i]->getNome());
         iface->newLine();
         for(unsigned int k = 0; k < sub_modalidades.size(); k ++){
-            if(sub_modalidades[k]->getMod()->getNome() == modalidades[i]->getNome()){
-                iface->drawString("   -");
+            if(sub_modalidades[k]->getMod()->getNome() == ordenado[i]->getNome()){
+                tem_subs = true;
+                iface->drawString("   > ");
                 iface->drawString(sub_modalidades[k]->getNome());
                 iface->newLine();
             }
         }
+        if(!tem_subs) iface->drawString("   * Nao tem subordenado associadas\n");
+        iface->newLine();
+        tem_subs = false;
     }
 }
 

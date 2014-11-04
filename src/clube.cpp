@@ -44,13 +44,36 @@ void Clube::main()
 		iface->drawString("   > ");
         iface->readChar(command);
         if (command == 'a'){
+            if(jogadores.size() == 0){
+                iface->drawString("O clube nao tem jogadores associados!\n");
+                iface->getInput();
+                continue;
+            }
             while(1){
                 if(!listarJogadores()) break;
                 iface->drawString("* Press ANY key to continue... *\n");
                 iface->getInput();
             }
         }
-        if (command == 'f') manutencao();
+        else if (command == 'b'){
+            if(socios.size() == 0){
+                iface->drawString("O clube nao tem socios associados!\n");
+                iface->getInput();
+                continue;
+            }
+            while(1){
+                if(!listarSocios()) break;
+                iface->drawString("* Press ANY key to continue... *\n");
+                iface->getInput();
+            }
+        }
+        else if (command == 'c'){
+            iface->cleanScr();
+            listarModalidades();
+            iface->drawString("\n\n* Press ANY key to continue... *\n");
+            iface->getInput();
+        }
+        else if (command == 'f') manutencao();
         else if (command == 'q'){
             iface->drawString("Tem a certeza que deseja sair? (y/n)\n");
             iface->drawString("   > ");

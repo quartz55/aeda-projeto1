@@ -82,10 +82,10 @@ class Clube{
     bool changeDespesa(Despesa* d, string newInfo, Data* novaData, float novoValor);
 
     //LISTAGEM
-    void listarPessoas();
+    void listarPessoal();
 
     template<class C>
-    void listar(vector <C *> pessoas, bool idade, bool sexo);
+    void listarPessoas(vector <C *> pessoas, bool idade, bool sexo);
 
     template<class C>
     void listarPorModalidades(vector<C *> pessoas);
