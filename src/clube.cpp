@@ -49,7 +49,7 @@ void Clube::main()
                 iface->getInput();
             }
         }
-        if (command == 'f') manutencao();
+        if (command == 'e') manutencao();
         else if (command == 'q'){
             iface->drawString("Tem a certeza que deseja sair? (y/n)\n");
             iface->drawString("   > ");
@@ -535,36 +535,73 @@ bool Clube::manutencaoDespesa(Despesa* d1) {
 
 }
 bool Clube::manutencaoJogadores(){
-    iface->cleanScr();
-    if(jogadores.size() == 0){
-        iface->drawString("O clube nao tem jogadores associados!\n");
-        iface->getInput();
-        return false;
-    }
-    if(!listarJogadores())
-        return false;
-    iface->drawString("(q para sair)\n");
-    while(1){
-        iface->drawString("Escolha o jogador a gerir: ");
-        string nome_input;
-        iface->readLine(nome_input);
-        if(nome_input == "q") return true;
-        Jogador *j1 = NULL;
-        for(unsigned int i = 0; i<jogadores.size(); i++){
-            if(jogadores[i]->getNome() == nome_input) j1 = jogadores[i];
-        }
-        if(j1 != NULL){
-            manutencaoJogador(j1);
-            return true;
-        }
-        else {
-            iface->drawString("Jogador nao existe!\n");
-            iface->getInput();
-            continue;
-        }
-    }
-    return false;
+	iface->cleanScr();
+	if (jogadores.size() == 0){
+		iface->drawString("O clube nao tem jogadores associados!\n");
+		iface->getInput();
+		return false;
+	}
+	iface->drawString("a. Adicionar jogador\n");
+	iface->drawString("b. Alterar jogador existente\n");
+	iface->drawString("\n(q para sair)\n\n\n");
+	iface->drawString("   > ");
+	char command;
+	iface->readChar(command);
+	if (command == 'a')
+	{
+		iface->cleanScr();
+		string nome, sexo;
+		iface->drawString("Nome: ");
+		iface->readLine(nome);
+		if (nome == "q") return true;
+		iface->drawString("Sexo: ");
+		iface->readLine(sexo);
+		if (sexo == "q") return true;
+		unsigned int idade, nif;
+		iface->drawString("Idade: ");
+		iface->read(idade);
+		iface->drawString("NIF: ");
+		iface->read(nif);
+		Jogador *j1 = new Jogador(nome, idade, nif, sexo);
+		jogadores.push_back(j1);
+		iface->cleanScr();
+		iface->drawString(j1->showInfo());
+		iface->drawString("\n");
+		iface->drawString("O jogador foi criado");
+		iface->drawString("\n\n\n* Press ANY key to continue... *\n");
+		iface->getInput();
+		return true;
+
+	}
+	else if (command == 'b') {
+		if (!listarJogadores())
+			return false;
+		iface->drawString("(q para sair)\n");
+		while (1){
+			iface->drawString("Escolha o jogador a gerir: ");
+			string nome_input;
+			iface->readLine(nome_input);
+			if (nome_input == "q") return true;
+			Jogador *j1 = NULL;
+			for (unsigned int i = 0; i < jogadores.size(); i++){
+				if (jogadores[i]->getNome() == nome_input) j1 = jogadores[i];
+			}
+			if (j1 != NULL){
+				manutencaoJogador(j1);
+				return true;
+			}
+			else {
+				iface->drawString("Jogador nao existe!\n");
+				iface->getInput();
+				continue;
+			}
+		}
+		return false;
+	}
+	else if (command == 'q')
+		return false;
 }
+	
 
 bool Clube::manutencaoJogador(Jogador *j1){
     while(1){
@@ -581,7 +618,7 @@ bool Clube::manutencaoJogador(Jogador *j1){
         iface->drawString("e. Remover sub-modalidades\n");
         iface->drawString("f. Remover jogador(!)\n");
         iface->drawString("q. Voltar...\n");
-        iface->drawString("   » ");
+        iface->drawString("   > ");
         char command;
         iface->readChar(command);
         if(command == 'a'){
