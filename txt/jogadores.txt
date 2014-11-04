@@ -5,10 +5,22 @@ Basket
 #
 --------
 Joao Almeida # 19 Macho 123123
+Futebol
+Futebol Masculino / Sub19 / #
 --------
 Hugo Almeida # 25 Macho 592312
+Futebol
+Futebol Masculino / #
 --------
 Cardoso # 24 Femea 292312
+Futebol
+Futebol Masculino / #
 --------
 Luisao # 94 Femea 219234
+Futebol
+Futebol Masculino / #
+--------
+Michael Jordanos # 34 Macho 18273641
+Basket
+#
 --------
