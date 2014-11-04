@@ -75,6 +75,18 @@ void Clube::main()
                 iface->getInput();
             }
         }
+        else if (command == 'd'){
+        	if(despesas.size() == 0){
+        		iface->drawString("O clube nao tem despesas associadas!\n");
+        		iface->getInput();
+        		continue;
+        	}
+        	while(1){
+        		if(!listarDespesas()) break;
+        		iface->drawString("* Press ANY key to continue... *\n");
+        		iface->getInput();
+        	}
+        }
         if (command == 'e') manutencao();
         else if (command == 'q'){
             iface->drawString("Tem a certeza que deseja sair? (y/n)\n");
@@ -269,14 +281,6 @@ void Clube::manutencao(){
     }
     return;
 }
-
-void Clube::listarDespesas() {
-    for(unsigned int i = 0; i < despesas.size(); i++){
-        iface->drawString(despesas[i]->showInfo());
-        iface->newLine();
-    }
-}
-
 
 bool Clube::manutencaoSocios(){
 	iface->cleanScr();
@@ -561,7 +565,8 @@ bool Clube::manutencaoDespesas() {
 	else if (command == 'b'){
 		while (1){
 			iface->cleanScr();
-			listarDespesas();
+			if (!listarDespesas())
+				return false;
 			iface->drawString("Escolha a despesa a gerir: ");
 			string nome_input;
 			iface->readLine(nome_input);
@@ -581,6 +586,7 @@ bool Clube::manutencaoDespesas() {
 	else if (command == 'q'){
 		return true;
 	}
+	return false;
 }
 
 bool Clube::manutencaoDespesa(Despesa* d1) {
