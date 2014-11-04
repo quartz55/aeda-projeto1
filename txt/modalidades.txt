@@ -2,3 +2,11 @@ Futebol
 Futebol Masculino / Sub19 / #
 Basket
 #
+Hoquei
+#
+Natacao
+50 metros / 100 metros / #
+Atletismo
+50 metros / 100 metros / Cooper / 1000 metros / #
+Futsal
+#
