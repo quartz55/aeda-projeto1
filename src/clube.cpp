@@ -739,6 +739,11 @@ bool Clube::manutencaoModalidade(Modalidade * m1){
             {
                 jogadores[i]->removeModalidade(m1);
             }
+            for (size_t i = 0; i < socios.size(); i++)
+            {
+            	socios[i]->removeModalidade(m1);
+            	socios[i]->removeQuota(m1);
+            }
             iface->drawString("Modalidade removida com sucesso\n");
             iface->getInput();
             return true;
