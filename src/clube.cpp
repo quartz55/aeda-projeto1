@@ -37,9 +37,8 @@ void Clube::main()
 		iface->drawString("a. Jogadores\n");
 		iface->drawString("b. Socios\n");
 		iface->drawString("c. Modalidades e submodalidades\n");
-		iface->drawString("d. Quotas\n");
-		iface->drawString("e. Despesas\n");
-		iface->drawString("f. Manutencao\n");
+		iface->drawString("d. Despesas\n");
+		iface->drawString("e. Manutencao\n");
 		iface->drawString("q. Sair(!)\n");
 		iface->drawString("   > ");
         iface->readChar(command);
@@ -202,8 +201,7 @@ void Clube::manutencao(){
         iface->drawString("b. Manutencao de modalidades\n");
         iface->drawString("c. Manutencao de socios\n");
         iface->drawString("d. Manutencao de despesas\n");
-        iface->drawString("e. Manutencao de quotas\n");
-		iface->drawString("f. Alterar data\n");
+		iface->drawString("e. Alterar data\n");
         iface->drawString("q. Voltar\n");
         iface->drawString("   > ");
         iface->readChar(command);
@@ -211,8 +209,7 @@ void Clube::manutencao(){
         else if (command == 'b') manutencaoModalidades();
         else if (command == 'c') manutencaoSocios();
         else if (command == 'd') manutencaoDespesas();
-        else if (command == 'e'); //manutencaoQuotas();
-		else if (command == 'f') alterarData();
+		else if (command == 'e') alterarData();
         else if(command == 'q') return;
     }
     return;
