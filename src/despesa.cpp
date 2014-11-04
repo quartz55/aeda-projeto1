@@ -41,6 +41,6 @@ bool Despesa::operator< (const Despesa& despesa) const
 
 string Despesa::showInfo() {
 	stringstream ss;
-	ss <<  "» " << data->showData() << " | " << info << " | " << valor;
+	ss <<  "	" << data->showData() << " | " << info << " | " << valor;
 	return ss.str();
 }
