@@ -153,7 +153,7 @@ bool Clube::listarSocios(){
     }
 }
 
-void Clube::listarModalidades(){
+void Clube::listarMods(vector <Modalidade *> modalidades){
     bool tem_subs = false;
     std::vector <Modalidade *> ordenado(modalidades);
     std::sort(ordenado.begin(), ordenado.end(), sortByNome);
@@ -172,6 +172,59 @@ void Clube::listarModalidades(){
         if(!tem_subs) iface->drawString("   * Nao tem subordenado associadas\n");
         iface->newLine();
         tem_subs = false;
+    }
+}
+
+bool Clube::listarModalidades(){
+    while (1){
+        iface->cleanScr();
+        char command;
+        iface->drawString("LISTAGEM DE MODALIDADES\n\n");
+        iface->drawString("a. Listar por ordem alfabetica\n");
+        iface->drawString("b. Listar por numero de submodalidades\n");
+        iface->drawString("c. Listar com jogadores\n");
+        iface->drawString("d. Listar com socios\n");
+        iface->drawString("q. Voltar\n");
+        iface->drawString("   > ");
+        iface->readChar(command);
+        if (command == 'a'){
+            std::vector <Modalidade *> ordenado(modalidades);
+            std::sort(ordenado.begin(), ordenado.end(), sortByNome);
+            iface->cleanScr();
+            iface->drawString("Modalidades por ordem alfabetica (A-Z):\n");
+            listarMods(ordenado);
+        }
+        else if (command == 'b'){
+            std::vector <Modalidade *> ordenado(modalidades);
+            std::sort(ordenado.begin(), ordenado.end(), sortByNome);
+            //std::sort(ordenado.begin(), ordenado.end(), sortByIdade);
+            iface->cleanScr();
+            iface->drawString("Modalidades por numero de submodalidades:\n");
+            listarMods(ordenado);
+        }
+        else if (command == 'c'){
+            if(jogadores.size() == 0){
+                iface->drawString("O clube nao tem socios associados!\n");
+                iface->getInput();
+                continue;
+            }
+            iface->cleanScr();
+            iface->drawString("Modalidades com jogadores:\n");
+            listarPorModalidades(jogadores);
+        }
+        else if (command == 'd'){
+            if(socios.size() == 0){
+                iface->drawString("O clube nao tem socios associados!\n");
+                iface->getInput();
+                continue;
+            }
+            iface->cleanScr();
+            iface->drawString("Modalidades com socios:\n");
+            listarPorModalidades(socios);
+        }
+        else if(command == 'q') return false;
+        else continue;
+        return true;
     }
 }
 

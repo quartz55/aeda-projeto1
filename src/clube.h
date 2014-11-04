@@ -94,7 +94,8 @@ class Clube{
     bool listarJogadores();
     bool listarSocios();
 
-    void listarModalidades();
+    void listarMods(vector <Modalidade *> modalidades);
+    bool listarModalidades();
 
     void listarDespesas();
     //#######################################
