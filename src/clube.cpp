@@ -150,16 +150,16 @@ void Clube::CRUD(){
         iface->drawString("\n \n");
         iface->drawString("a. Manutencao\n");
         iface->drawString( "q. Sair(!)\n");
-        iface->drawString( "   » ");
+        iface->drawString( "   > ");
         iface->readChar(command);
         if(command == 'a') manutencao();
         else if(command == 'q'){
-            iface->drawString( "Tem a certeza que deseja sair? (y/N)\n");
-            iface->drawString( "   » ");
+            iface->drawString( "Tem a certeza que deseja sair? (y/n)\n");
+            iface->drawString( "   > ");
             iface->readChar(command);
             if(command == 'y'){
-                iface->drawString( "Deseja gravar todas as alteracoes que efetuou? (Y/n)\n");
-                iface->drawString( "   » ");
+                iface->drawString( "Deseja gravar todas as alteracoes que efetuou? (y/n)\n");
+                iface->drawString( "   > ");
                 iface->readChar(command);
                 if(command != 'n'){
                     iface->drawString( "A gravar alteracoes...\n");
@@ -653,7 +653,7 @@ bool Clube::manutencaoModalidade(Modalidade * m1){
 }
 
 bool Clube::quit(){
-    iface->drawString("\n\n\n*Press ANY KEY to exit...*\n");
+    iface->drawString("\n\n\n* Press ANY KEY to exit... *\n");
     iface->getInput();
     iface->cleanScr();
     delete iface;

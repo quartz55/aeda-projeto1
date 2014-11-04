@@ -60,9 +60,8 @@ bool Clube::readDespesas(string filename){
 			ss << line;
 			ss >> dia >> mes >> ano;
 			getline(file,info);
+			file >> valor;
 			getline(file,line);
-			ss << line;
-			ss >> valor;
 			Despesa * d1 = new Despesa(dia,mes,ano,valor,info);
 			despesas.push_back(d1);
 		}
@@ -330,6 +329,7 @@ bool Clube::writeDespesas(string filename){
             file << despesas[i]->getValor() << endl;
         }
         file.close();
+        return true;
     }
     iface->drawString("Unable to open file '"); iface->drawString(filename); iface->drawString("'"); iface->newLine();
     return false;
