@@ -87,9 +87,12 @@ class Clube{
     template<class C>
     void listar(vector <C *> pessoas, bool idade, bool sexo);
 
+    template<class C>
+    void listarPorModalidades(vector<C *> pessoas);
+
     void listarExternos();
-    void listarJogadores();
-    void listarSocios();
+    bool listarJogadores();
+    bool listarSocios();
 
     void listarModalidades();
 
