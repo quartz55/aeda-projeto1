@@ -223,6 +223,191 @@ bool Clube::listarModalidades(){
         else continue;
         return true;
     }
+    return true;
+}
+bool Clube::listarDespesas() {
+	while(1){
+		char command;
+	    iface->cleanScr();
+	    iface->drawString("LISTAGEM DE DESPESAS\n\n");
+	    iface->drawString("a. Listar por data\n");
+	    iface->drawString("b. Listar por valor\n");
+	    iface->drawString("q. Voltar\n");
+	    iface->drawString("   > ");
+	    iface->readChar(command);
+	    if (command == 'a'){
+			std::sort(despesas.begin(),despesas.end(),sortByData);
+	    	while(1){
+	    		iface->cleanScr();
+	    		iface->drawString("Alguma data especifica (y/n) \n");
+	    		iface->drawString("   > ");
+	    		iface->readChar(command);
+	    		if(command == 'y'){
+	    			while(1){
+	    				iface->cleanScr();
+	    				iface->drawString("a. Mes e Ano \n");
+	    				iface->drawString("b. Ano \n");
+	    				iface->drawString("q. Voltar\n");
+	    				iface->drawString("   > ");
+	    				iface->readChar(command);
+	    				if (command == 'a'){
+	    					iface->cleanScr();
+	    					iface->drawString("Mes (inteiro correspondente) :");
+	    					int mes;
+	    					iface->read(mes);
+	    					if(mes < 0 || mes > 12){
+	    						iface->drawString("Mes invalido!\n");
+	    					}
+	    					else {
+	    						iface->drawString("Ano :");
+	    						int ano;
+	    						iface->read(ano);
+	    						if(ano < 0 || ano > 3000){
+	    							iface->drawString("Ano invalido!\n");
+	    						}
+	    						else{
+	    							iface->cleanScr();
+	    							iface->drawString("Despesas de ");
+	    							iface->drawString(mes);
+	    							iface->drawString(" de ");
+	    							iface->drawString(ano);
+	    							iface->drawString(": \n\n");
+	    							for(unsigned int i = 0; i < despesas.size(); i++){
+	    								if(despesas[i]->getData()->getMonth() == mes && despesas[i]->getData()->getYear() == ano){
+	    									iface->drawString(despesas[i]->showInfo());
+	    									iface->newLine();
+	    								}
+	    							}
+	    							return true;
+	    						}
+	    					}
+	    				}
+	    				if (command == 'b'){
+	    					iface->cleanScr();
+	    					iface->drawString("Ano :");
+	    					int ano;
+	    					iface->read(ano);
+	    					if(ano < 0 || ano > 3000){
+	    						iface->drawString("Ano invalido!\n");
+	    					}
+	    					else{
+	    						iface->cleanScr();
+	    						iface->drawString("Despesas de ");;
+	    						iface->drawString(ano);
+	    						iface->drawString(": \n\n");
+	    						for(unsigned int i = 0; i < despesas.size(); i++){
+	    							if(despesas[i]->getData()->getYear() == ano){
+	    								iface->drawString(despesas[i]->showInfo());
+	    								iface->newLine();
+	    							}
+	    						}
+	    						return true;
+	    					}
+	    				}
+	    				else if(command == 'q'){
+	    					break;
+	    				}
+	    			}
+	    		}
+	    		else if(command == 'n'){
+	    			iface->cleanScr();
+	    			iface->drawString("Despesas listadas por data\n\n");
+	    			for(unsigned int i = 0; i < despesas.size(); i++){
+	    				iface->drawString(despesas[i]->showInfo());
+	    				iface->newLine();
+	    			}
+		    		return true;
+	    		}
+	    	}
+	    }
+	    if (command == 'b'){
+	    	std::sort(despesas.begin(),despesas.end(),sortByValor);
+	    	while(1){
+	    		iface->cleanScr();
+	    		iface->drawString("Alguma data especifica (y/n) \n");
+	    		iface->drawString("   > ");
+	    		iface->readChar(command);
+	    		if(command == 'y'){
+	    			while(1){
+	    				iface->cleanScr();
+	    				iface->drawString("a. Mes e Ano \n");
+	    				iface->drawString("b. Ano \n");
+	    				iface->drawString("q. Voltar\n");
+	    				iface->drawString("   > ");
+	    				iface->readChar(command);
+	    				if (command == 'a'){
+	    					iface->cleanScr();
+	    					iface->drawString("Mes (inteiro correspondente) :");
+	    					int mes;
+	    					iface->read(mes);
+	    					if(mes < 0 || mes > 12){
+	    						iface->drawString("Mes invalido!\n");
+	    					}
+	    					else {
+	    						iface->drawString("Ano :");
+	    						int ano;
+	    						iface->read(ano);
+	    						if(ano < 0 || ano > 3000){
+	    							iface->drawString("Ano invalido!\n");
+	    						}
+	    						else{
+	    							iface->cleanScr();
+	    							iface->drawString("Despesas de ");
+	    							iface->drawString(mes);
+	    							iface->drawString(" de ");
+	    							iface->drawString(ano);
+	    							iface->drawString(": \n\n");
+	    							for(unsigned int i = 0; i < despesas.size(); i++){
+	    								if(despesas[i]->getData()->getMonth() == mes && despesas[i]->getData()->getYear() == ano){
+	    									iface->drawString(despesas[i]->showInfo());
+	    									iface->newLine();
+	    								}
+	    							}
+	    							return true;
+	    						}
+	    					}
+	    				}
+	    				if (command == 'b'){
+	    					iface->cleanScr();
+	    					iface->drawString("Ano :");
+	    					int ano;
+	    					iface->read(ano);
+	    					if(ano < 0 || ano > 3000){
+	    						iface->drawString("Ano invalido!\n");
+	    					}
+	    					else{
+	    						iface->cleanScr();
+	    						iface->drawString("Despesas de ");
+	    						iface->drawString(ano);
+	    						iface->drawString(": \n\n");
+	    						for(unsigned int i = 0; i < despesas.size(); i++){
+	    							if(despesas[i]->getData()->getYear() == ano){
+	    								iface->drawString(despesas[i]->showInfo());
+	    								iface->newLine();
+	    							}
+	    						}
+	    						return true;
+	    					}
+	    				}
+	    				else if(command == 'q'){
+	    					break;
+	    				}
+	    			}
+	    		}
+	    		else if(command == 'n'){
+	    			iface->cleanScr();
+	    			iface->drawString("Despesas listadas por valor\n\n");
+	    			for(unsigned int i = 0; i < despesas.size(); i++){
+	    				iface->drawString(despesas[i]->showInfo());
+	    				iface->newLine();
+	    			}
+		    		return true;
+	    		}
+	    	}
+	    }
+	    else if (command == 'q') return false;
+	}
+	return true;
 }
 
 #endif
