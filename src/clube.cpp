@@ -202,7 +202,6 @@ void Clube::manutencao(){
         iface->drawString("b. Manutencao de modalidades\n");
         iface->drawString("c. Manutencao de socios\n");
         iface->drawString("d. Manutencao de despesas\n");
-        iface->drawString("e. Manutencao de quotas\n");
         iface->drawString("q. Voltar\n");
         iface->drawString("   > ");
         iface->readChar(command);
@@ -210,7 +209,6 @@ void Clube::manutencao(){
         else if (command == 'b') manutencaoModalidades();
         else if (command == 'c') manutencaoSocios();
         else if (command == 'd') manutencaoDespesas();
-        else if (command == 'e'); //manutencaoQuotas();
         else if(command == 'q') return;
     }
     return;
@@ -266,10 +264,12 @@ bool Clube::manutencaoSocio(Socio *s1){
         iface->drawString("b. Mudar idade\n");
         iface->drawString("c. Mudar NIF\n");
         iface->drawString("d. Mudar sexo\n");
-        iface->drawString("e. Associacao de (sub-)modalidades\n");
-        iface->drawString("f. Remover socio(!)\n");
+        iface->drawString("e. Associacao de modalidades\n");
+        iface->drawString("f. Remover modalidades\n");
+        iface->drawString("g. Pagar quotas\n");
+        iface->drawString("h. Remover socio(!)\n");
         iface->drawString("q. Voltar...\n");
-        iface->drawString("   » ");
+        iface->drawString("   > ");
         char command;
         iface->readChar(command);
         if (command == 'a'){
@@ -341,6 +341,44 @@ bool Clube::manutencaoSocio(Socio *s1){
             }
         }
         if (command == 'f'){
+        	s1->showModalidades();
+        	iface->drawString("Escolha a modalidade a remover: ");
+        	string nome_input;
+        	iface->readLine(nome_input);
+        	if (nome_input == "q") return true;
+        	for(size_t i = 0; i < modalidades.size(); i++){
+        		if(modalidades[i]->getNome() == nome_input){
+                	s1->removeModalidade(modalidades[i]);
+                	break;
+        		}
+        	}
+        	iface->drawString("\nModalidade desassociada com sucesso\n\n");
+        	iface->getInput();
+        	return true;
+        }
+        if (command == 'g'){
+        	iface->cleanScr();
+        	iface->drawString("O socio tem ");
+        	iface->drawString(s1->QuotasAtrasadas(dataActual));
+        	iface->drawString(" meses de quotas em atraso \n \n \n");
+        	iface->drawString("Quantos meses deseja pagar? (q para sair)");
+        	iface->drawString("   > ");
+        	string nome_input;
+        	iface->readLine(nome_input);
+        	int meses;
+        	std::stringstream ss;
+        	ss << nome_input;
+        	ss >> meses;
+        	if (nome_input == "q") return true;
+        	iface->cleanScr();
+        	iface->drawString("Quotas pagas: �");
+        	iface->drawString(s1->pagarQuotas(meses, dataActual));
+        	iface->drawString("\n");
+        	iface->drawString("\nQuotas pagas com sucesso\n\n");
+        	iface->getInput();
+        	return true;
+        }
+        if (command == 'h'){
             for (size_t i = 0; i < socios.size(); i++)
             {
                 if (socios[i] == s1)
@@ -388,7 +426,7 @@ bool Clube::manutencaoDespesa(Despesa* d1) {
         iface->drawString("c. Mudar data\n");
         iface->drawString("d. Remover despesa(!)\n");
         iface->drawString("q. Voltar...\n");
-        iface->drawString("   » ");
+        iface->drawString("   > ");
         char command;
         iface->readChar(command);
         if(command == 'a'){
@@ -509,7 +547,10 @@ bool Clube::manutencaoJogador(Jogador *j1){
         iface->drawString("b. Mudar idade\n");
         iface->drawString("c. Mudar NIF\n");
         iface->drawString("d. Mudar sexo\n");
-        iface->drawString("e. Associacao de (sub-)modalidades\n");
+        iface->drawString("d. Associacao de Modalidades\n");
+        iface->drawString("e. Associacao de sub-modalidades\n");
+        iface->drawString("d. Remover Modalidades\n");
+        iface->drawString("e. Remover sub-modalidades\n");
         iface->drawString("f. Remover jogador(!)\n");
         iface->drawString("q. Voltar...\n");
         iface->drawString("   » ");

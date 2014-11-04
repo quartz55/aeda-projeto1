@@ -47,7 +47,7 @@ bool Jogador::addSubModalidade(SubModalidade *sub){
 
 string Jogador::showModalidades() const{
     std::stringstream s;
-    if(modalidades.size() < 1) s << "O jogador " << nome << " nao pertence a nenhuma modalidade\n";
+    if(modalidades.size() < 1) s << "O " << classe << " " << nome << " nao pertence a nenhuma modalidade\n";
     else{
         s << "Modalidades de " << nome << std::endl;
         s << "--------------------------\n";
