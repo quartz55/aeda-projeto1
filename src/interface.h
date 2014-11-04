@@ -38,6 +38,8 @@ void Interface::readChar(Type &var){
     //var = getch();
     std::cin >> var;
     std::cin.ignore();
+	if (std::cin.fail())
+		std::cin.clear();
 }
 
 template<typename Type>
@@ -48,6 +50,8 @@ void Interface::read(Type &var){
     //s >> var;
     std::cin >> var;
     std::cin.ignore();
+	if (std::cin.fail())
+		std::cin.clear();
 }
 
 template<typename Type>

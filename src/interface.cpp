@@ -67,8 +67,11 @@ void Interface::readLine(std::string &STRING){
 }
 
 void Interface::cleanScr(){
-    for(unsigned int i = 0; i < 100; i++)
-        std::cout << std::endl;
+	#ifdef _WIN32 // Windows: Console command (alternative: Windows API)
+	system("cls");
+	#else // UNIX: ANSI escape codes
+	std::cout << "\x1B[2J\x1B[H";
+	#endif
 }
 void Interface::newLine(){
     std::cout << std::endl;
