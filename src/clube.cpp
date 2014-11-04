@@ -26,6 +26,51 @@ Clube::Clube(): dataActual(1,1,1900){
 #include "./clube/iooperations.h"
 //#############################
 
+
+void Clube::main()
+{
+	while (1){
+		iface->cleanScr();
+		char command;
+		iface->drawString(dataActual.showData());
+		iface->drawString("\n \n");
+		iface->drawString("a. Jogadores\n");
+		iface->drawString("b. Socios\n");
+		iface->drawString("c. Modalidades e submodalidades\n");
+		iface->drawString("d. Quotas\n");
+		iface->drawString("e. Despesas\n");
+		iface->drawString("f. Manutencao\n");
+		iface->drawString("q. Sair(!)\n");
+		iface->drawString("   > ");
+		iface->readChar(command);
+		if (command == 'a') listarJogadores();
+		if (command == 'f') manutencao();
+		else if (command == 'q'){
+			iface->drawString("Tem a certeza que deseja sair? (y/n)\n");
+			iface->drawString("   > ");
+			iface->readChar(command);
+			if (command == 'y'){
+				iface->drawString("Deseja gravar todas as alteracoes que efetuou? (y/n)\n");
+				iface->drawString("   > ");
+				iface->readChar(command);
+				if (command != 'n'){
+					iface->drawString("A gravar alteracoes...\n");
+					writeAll();
+					iface->drawString("Alteracoes gravadas com sucesso, a sair...\n");
+					quit();
+					return;
+				}
+				iface->drawString("A sair sem gravar alteracoes...\n");
+				quit();
+				return;
+			}
+			continue;
+		}
+	}
+}
+
+
+
 //#############################
 //##          ADD            ##
 //#############################
@@ -140,41 +185,6 @@ bool Clube::changeDespesa(Despesa* d, string newInfo, Data* novaData, float novo
     d->setData(novaData);
     d->setValor(novoValor);
     return true;
-}
-
-void Clube::CRUD(){
-    while(1){
-        iface->cleanScr();
-        char command;
-        iface->drawString(dataActual.showData());
-        iface->drawString("\n \n");
-        iface->drawString("a. Manutencao\n");
-        iface->drawString( "q. Sair(!)\n");
-        iface->drawString( "   > ");
-        iface->readChar(command);
-        if(command == 'a') manutencao();
-        else if(command == 'q'){
-            iface->drawString( "Tem a certeza que deseja sair? (y/n)\n");
-            iface->drawString( "   > ");
-            iface->readChar(command);
-            if(command == 'y'){
-                iface->drawString( "Deseja gravar todas as alteracoes que efetuou? (y/n)\n");
-                iface->drawString( "   > ");
-                iface->readChar(command);
-                if(command != 'n'){
-                    iface->drawString( "A gravar alteracoes...\n");
-                    writeAll();
-                    iface->drawString( "Alteracoes gravadas com sucesso, a sair...\n");
-                    quit();
-                    return;
-                }
-                iface->drawString( "A sair sem gravar alteracoes...\n");
-                quit();
-                return;
-            }
-            continue;
-        }
-    }
 }
 
 void Clube::manutencao(){
@@ -447,7 +457,11 @@ bool Clube::manutencaoDespesa(Despesa* d1) {
 }
 bool Clube::manutencaoJogadores(){
     iface->cleanScr();
-    listarJogadores();
+	std::vector <Jogador *> ordenado(jogadores);
+	std::sort(ordenado.begin(), ordenado.end(), sortByName);
+	iface->cleanScr();
+	iface->drawString("Jogadores ordenado por ordem alfabetica (A-Z):\n");
+	listar(ordenado, false, false);
     iface->drawString("(q para sair)\n");
     while(1){
         iface->drawString("Escolha o jogador a gerir: ");

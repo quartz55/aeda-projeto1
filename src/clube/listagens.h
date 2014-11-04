@@ -71,7 +71,8 @@ void Clube::listarJogadores(){
             listar(ordenado, false, true);
         }
         else if(command == 'q') return;
-
+		iface->drawString("q. Voltar\n");
+		iface->readChar(command);
         return;
     }
 }

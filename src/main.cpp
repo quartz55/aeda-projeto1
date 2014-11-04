@@ -4,7 +4,7 @@ int main(){
 
     Clube clube;
 
-    clube.CRUD();
+    clube.main();
 
     return 0;
 }
