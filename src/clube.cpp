@@ -517,24 +517,70 @@ bool Clube::manutencaoSocio(Socio *s1){
 }
 
 bool Clube::manutencaoDespesas() {
-    while(1){
-        iface->cleanScr();
-        listarDespesas();
-        iface->drawString("Escolha a despesa a gerir: ");
-        string nome_input;
-        iface->readLine(nome_input);
-        if(nome_input == "q") return true;
-        Despesa *d1 = NULL;
-        for(unsigned int i = 0; i< despesas.size(); i++){
-            if(despesas[i]->getInfo() == nome_input) d1 = despesas[i];
-        }
-        if(d1 != NULL) manutencaoDespesa(d1);
-        else {
-            iface->drawString("Essa despesa nao existe!\n");
-            continue;
-        }
-    }
-    return false;
+	iface->cleanScr();
+	iface->drawString("a. Adicionar despesa\n");
+	iface->drawString("b. Alterar despesa existente\n");
+	iface->drawString("\n(q para sair)\n\n\n");
+	iface->drawString("   > ");
+	char command;
+	iface->readChar(command);
+	if (command == 'a')
+	{
+		iface->cleanScr();
+		string nome;
+		iface->drawString("Info: ");
+		iface->readLine(nome);
+		if (nome == "q") return true;
+		float valor;
+		iface->drawString("Valor: ");
+		iface->read(valor);
+		if (valor < 0){
+			iface->drawString("\n \nO valor não pode ser negativo\n \n");
+			iface->getInput();
+			return true;
+		}
+		iface->drawString("Dia? ");
+		unsigned int dia;
+		iface->read(dia);
+		iface->drawString("Mes (inteiro equivalente)? ");
+		unsigned int mes;
+		iface->read(mes);
+		iface->drawString("Ano ? ");
+		unsigned int ano;
+		iface->read(ano);
+		Despesa * despesa = new Despesa(dia, mes, ano, valor, nome);
+		despesas.push_back(despesa);
+		iface->cleanScr();
+		iface->drawString(despesa->showInfo());
+		iface->drawString("\nA despesa foi criada");
+		iface->drawString("\n\n\n* Press ANY key to continue... *\n");
+		iface->getInput();
+		return true;
+
+	}
+	else if (command == 'b'){
+		while (1){
+			iface->cleanScr();
+			listarDespesas();
+			iface->drawString("Escolha a despesa a gerir: ");
+			string nome_input;
+			iface->readLine(nome_input);
+			if (nome_input == "q") return true;
+			Despesa *d1 = NULL;
+			for (unsigned int i = 0; i < despesas.size(); i++){
+				if (despesas[i]->getInfo() == nome_input) d1 = despesas[i];
+			}
+			if (d1 != NULL) manutencaoDespesa(d1);
+			else {
+				iface->drawString("Essa despesa nao existe!\n");
+				continue;
+			}
+		}
+		return false;
+	}
+	else if (command == 'q'){
+		return true;
+	}
 }
 
 bool Clube::manutencaoDespesa(Despesa* d1) {
@@ -654,8 +700,7 @@ bool Clube::manutencaoJogadores(){
         jogadores.push_back(j1);
         iface->cleanScr();
         iface->drawString(j1->showInfo());
-        iface->drawString("\n");
-        iface->drawString("O jogador foi criado");
+        iface->drawString("\nO jogador foi criado");
         iface->drawString("\n\n\n* Press ANY key to continue... *\n");
         iface->getInput();
         return true;
