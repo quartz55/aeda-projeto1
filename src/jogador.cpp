@@ -60,7 +60,7 @@ string Jogador::showModalidades() const{
 
 string Jogador::showSubModalidades() const{
     std::stringstream s;
-    if(modalidades.size() < 1) s << "O jogador " << nome << " nao pertence a nenhuma modalidade\n";
+    if(modalidades.size() < 1) s << nome << " nao pertence a nenhuma modalidade\n";
     else{
 
         s << "Modalidades e sub-modalidades de " << nome << std::endl;

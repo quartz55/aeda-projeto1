@@ -897,48 +897,88 @@ void Clube::update(){
 void Clube::alterarData(){
     iface->cleanScr();
     iface->drawString(dataActual.showData());
-    iface->drawString("\n\n\n\nNovo Dia? ");
-    unsigned int dia;
-    iface->read(dia);
-    if (dia < 1 || dia > 31){
-        iface->drawString("Erro, dia invalido!");
-        iface->getInput();
-        return;
-    }
-    iface->drawString("Novo Mes (inteiro equivalente)? ");
-    unsigned int mes;
-    iface->read(mes);
-    if (mes < 1 || mes > 12){
-        iface->drawString("Erro, mes invalido!");
-        iface->getInput();
-        return;
-    }
-    iface->drawString("Novo Ano ? ");
-    unsigned int ano;
-    iface->read(ano);
-    Data data = Data(dia, mes, ano);
-    iface->drawString("Alterar data atual de ");
-    iface->drawString(dataActual.showData());
-    iface->drawString(" para ");
-    iface->drawString(data.showData());
-    iface->drawString("? (y/n)\n");
-    iface->drawString("   > ");
-    char command;
-    iface->readChar(command);
-    if (command == 'y')
-    {
-        dataActual.setData(dia, mes, ano);
-        iface->cleanScr();
-        iface->drawString("\nData alterada com sucesso\n\n");
-        iface->getInput();
-    }
-    else
-    {
-        iface->drawString("\nOperacao cancelada\n\n");
-        iface->getInput();
-    }
+	iface->drawString("\n\na. Avancar uma semana\n");
+	iface->drawString("b. Avancar um mes\n");
+	iface->drawString("c. Avancar um ano\n");
+	iface->drawString("d. Escolher data manualmente\n");
+	iface->drawString("q. Voltar...\n");
+	iface->drawString("   > ");
+	char command;
+	iface->readChar(command);
+	if (command == 'a') {
+		iface->cleanScr();
+		dataActual.addDays(7);
+		iface->drawString("\n \nData alterada para ");
+		iface->drawString(dataActual.showData());
+		iface->drawString("\n\n\n* Press ANY key to continue... *\n");
+		iface->getInput();
+		return;
+	}
+	else if (command == 'b') {
+		iface->cleanScr();
+		dataActual.addMonths(1);
+		iface->drawString("\n \nData alterada para ");
+		iface->drawString(dataActual.showData());
+		iface->drawString("\n\n\n* Press ANY key to continue... *\n");
+		iface->getInput();
+		return;
+	}
+	else if (command == 'c') {
+		iface->cleanScr();
+		dataActual.addYears(1);
+		iface->drawString("\n \nData alterada para ");
+		iface->drawString(dataActual.showData());
+		iface->drawString("\n\n\n* Press ANY key to continue... *\n");
+		iface->getInput();
+		return;
+	}
+	else if (command == 'd')
+	{
+		iface->drawString("\n\n\n\nNovo Dia? ");
+		unsigned int dia;
+		iface->read(dia);
+		if (dia < 1 || dia > 31){
+			iface->drawString("Erro, dia invalido!");
+			iface->getInput();
+			return;
+		}
+		iface->drawString("Novo Mes (inteiro equivalente)? ");
+		unsigned int mes;
+		iface->read(mes);
+		if (mes < 1 || mes > 12){
+			iface->drawString("Erro, mes invalido!");
+			iface->getInput();
+			return;
+		}
+		iface->drawString("Novo Ano ? ");
+		unsigned int ano;
+		iface->read(ano);
+		Data data = Data(dia, mes, ano);
+		iface->drawString("Alterar data atual de ");
+		iface->drawString(dataActual.showData());
+		iface->drawString(" para ");
+		iface->drawString(data.showData());
+		iface->drawString("? (y/n)\n");
+		iface->drawString("   > ");
+		char command;
+		iface->readChar(command);
+		if (command == 'y')
+		{
+			dataActual.setData(dia, mes, ano);
+			iface->cleanScr();
+			iface->drawString("\nData alterada com sucesso\n\n");
+			iface->getInput();
+		}
+		else
+		{
+			iface->drawString("\nOperacao cancelada\n\n");
+			iface->getInput();
+		}
 
-    return;
+		return;
+	}
+	else if (command == 'q')
+		return;
 }
 
 bool Clube::quit(){
