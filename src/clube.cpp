@@ -12,6 +12,7 @@ Interface *Clube::iface = new Interface();
 
 Clube::Clube(): dataActual(1,1,1900){
     readAll();
+    update();
 }
 
 //SORT FUNCTIONS
@@ -49,11 +50,7 @@ void Clube::main()
                 iface->getInput();
                 continue;
             }
-            while(1){
-                if(!listarJogadores()) break;
-                iface->drawString("* Press ANY key to continue... *\n");
-                iface->getInput();
-            }
+            while(infoPessoal());
         }
         else if (command == 'b'){
             if(socios.size() == 0){
@@ -222,6 +219,35 @@ bool Clube::changeDespesa(Despesa* d, string newInfo, Data* novaData, float novo
     return true;
 }
 
+bool Clube::infoPessoal(){
+    while(1){
+        iface->cleanScr();
+        if(!listarJogadores())
+            return false;
+        iface->drawString("(q para sair)\n");
+        iface->drawString("Escolha o jogador para mostrar mais informacao: ");
+        string nome_input;
+        iface->readLine(nome_input);
+        if(nome_input == "q") return true;
+        Jogador *j1 = NULL;
+        for(unsigned int i = 0; i<jogadores.size(); i++){
+            if(jogadores[i]->getNome() == nome_input) j1 = jogadores[i];
+        }
+        if(j1 != NULL){
+            iface->cleanScr();
+            iface->drawString(j1->showInfo());
+            iface->drawString("* Press ANY key to continue... *\n");
+            iface->getInput();
+            continue;
+        }
+        else {
+            iface->drawString("Jogador nao existe!\n");
+            iface->getInput();
+            continue;
+        }
+    }
+    return false;
+}
 void Clube::manutencao(){
     while(1){
         iface->cleanScr();
@@ -235,8 +261,8 @@ void Clube::manutencao(){
         iface->drawString("q. Voltar\n");
         iface->drawString("   > ");
         iface->readChar(command);
-        if(command == 'a') manutencaoJogadores();
-        else if (command == 'b') manutencaoModalidades();
+        if(command == 'a') while(manutencaoJogadores());
+        else if (command == 'b') while(manutencaoModalidades());
         else if (command == 'c') manutencaoSocios();
         else if (command == 'd') manutencaoDespesas();
         else if (command == 'e'); //manutencaoQuotas();
@@ -632,7 +658,7 @@ bool Clube::manutencaoJogador(Jogador *j1){
 bool Clube::manutencaoModalidades(){
     while (1){
         iface->cleanScr();
-        listarModalidades();
+        if(!listarModalidades()) return false;
         iface->drawString("Escolha a modalidade a gerir: ");
         string nome_input;
         iface->readLine(nome_input);
@@ -708,6 +734,17 @@ bool Clube::manutencaoModalidade(Modalidade * m1){
         }
     }
     return false;
+}
+
+void Clube::update(){
+    unsigned int m1 = 0;
+    for(unsigned int k = 0; k < modalidades.size(); k++){
+        for(unsigned int i = 0; i < sub_modalidades.size(); i++){
+            if(sub_modalidades[i]->getMod() == modalidades[k]) m1++;
+        }
+        modalidades[k]->setNumSubs(m1);
+        m1=0;
+    }
 }
 
 bool Clube::quit(){

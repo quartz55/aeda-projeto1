@@ -10,7 +10,7 @@ using std::vector; using std::string;
 class Modalidade{
 
     string nome;
-
+    unsigned int num_submods;
 
     public:
     Modalidade(string nome);
@@ -20,9 +20,11 @@ class Modalidade{
 
     //GET
     string getNome(){return nome;}
+    unsigned int getNumSubs(){return num_submods;}
 
     //CHANGE
 	bool changeNome(string nome);
+    void setNumSubs(unsigned int I){this->num_submods = I;}
 
 	string showInfo() const;
 

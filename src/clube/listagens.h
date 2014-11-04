@@ -155,21 +155,19 @@ bool Clube::listarSocios(){
 
 void Clube::listarMods(vector <Modalidade *> modalidades){
     bool tem_subs = false;
-    std::vector <Modalidade *> ordenado(modalidades);
-    std::sort(ordenado.begin(), ordenado.end(), sortByNome);
-    for(unsigned int i = 0; i < ordenado.size(); i++){
+    for(unsigned int i = 0; i < modalidades.size(); i++){
         iface->drawString(" - ");
-        iface->drawString(ordenado[i]->getNome());
+        iface->drawString(modalidades[i]->getNome());
         iface->newLine();
         for(unsigned int k = 0; k < sub_modalidades.size(); k ++){
-            if(sub_modalidades[k]->getMod()->getNome() == ordenado[i]->getNome()){
+            if(sub_modalidades[k]->getMod()->getNome() == modalidades[i]->getNome()){
                 tem_subs = true;
                 iface->drawString("   > ");
                 iface->drawString(sub_modalidades[k]->getNome());
                 iface->newLine();
             }
         }
-        if(!tem_subs) iface->drawString("   * Nao tem subordenado associadas\n");
+        if(!tem_subs) iface->drawString("   * Nao tem submodalidades associadas\n");
         iface->newLine();
         tem_subs = false;
     }
@@ -188,16 +186,15 @@ bool Clube::listarModalidades(){
         iface->drawString("   > ");
         iface->readChar(command);
         if (command == 'a'){
-            std::vector <Modalidade *> ordenado(modalidades);
+            std::vector <Modalidade *> ordenado = modalidades;
             std::sort(ordenado.begin(), ordenado.end(), sortByNome);
             iface->cleanScr();
             iface->drawString("Modalidades por ordem alfabetica (A-Z):\n");
             listarMods(ordenado);
         }
         else if (command == 'b'){
-            std::vector <Modalidade *> ordenado(modalidades);
-            std::sort(ordenado.begin(), ordenado.end(), sortByNome);
-            //std::sort(ordenado.begin(), ordenado.end(), sortByIdade);
+            std::vector <Modalidade *> ordenado = modalidades;
+            std::sort(ordenado.begin(), ordenado.end(), sortByNum);
             iface->cleanScr();
             iface->drawString("Modalidades por numero de submodalidades:\n");
             listarMods(ordenado);

@@ -17,6 +17,6 @@ bool sortBySexo(Pessoa *lhs, Pessoa *rhs) { return lhs->getSexo() > rhs->getSexo
 
 bool sortByNome(Modalidade *lhs, Modalidade *rhs) { return lhs->getNome() < rhs->getNome();}
 
-//bool sortByIdade(const Modalidade *lhs, const Modalidade *rhs) { return lhs->getIdade() < rhs->getIdade();}
+bool sortByNum(Modalidade *lhs, Modalidade *rhs) { return lhs->getNumSubs() > rhs->getNumSubs();}
 
 #endif

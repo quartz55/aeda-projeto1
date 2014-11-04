@@ -3,6 +3,7 @@
 
 Modalidade::Modalidade(string nome){
     this->nome = nome;
+    this->num_submods = 0;
 }
 
 bool Modalidade::operator< (const Modalidade& mod)
@@ -15,8 +16,8 @@ bool Modalidade::operator< (const Modalidade& mod)
 
 bool Modalidade::changeNome(string nome)
 {
-	this->nome = nome; 
-	return true; 
+	this->nome = nome;
+	return true;
 }
 
 string Modalidade::showInfo() const

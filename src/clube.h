@@ -101,15 +101,16 @@ class Clube{
     //#######################################
 
     //CRUD
+    bool infoPessoal();
     void manutencao();
     bool manutencaoJogadores();
     bool manutencaoJogador(Jogador * j1);
-	bool manutencaoModalidades();
-	bool manutencaoModalidade(Modalidade * m1);
-	bool manutencaoSocios();
-	bool manutencaoSocio(Socio * s1);
-	bool manutencaoDespesas();
-	bool manutencaoDespesa(Despesa* d1);
+    bool manutencaoModalidades();
+    bool manutencaoModalidade(Modalidade * m1);
+    bool manutencaoSocios();
+    bool manutencaoSocio(Socio * s1);
+    bool manutencaoDespesas();
+    bool manutencaoDespesa(Despesa* d1);
     //#######################################
 
     //FILE MANAGEMENT
@@ -128,6 +129,8 @@ class Clube{
     bool readAll();
     bool writeAll();
     //#######################################
+
+    void update();
 
     bool quit();
 
