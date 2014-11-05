@@ -12,11 +12,11 @@ Hugo Almeida # 25 Macho 592312
 Futebol
 Futebol Masculino / #
 --------
-Cardoso # 24 Femea 292312
+Cardoso # 24 Macho 292312
 Futebol
 Futebol Masculino / #
 --------
-Luisao # 94 Femea 219234
+Luisao # 94 Macho 219234
 Futebol
 Futebol Masculino / #
 --------
@@ -26,5 +26,11 @@ Basket
 --------
 Nuno Pinto # 19 Macho 55500011
 Hoquei
-Sub 20 / #
+#
+--------
+Maria Cheirapovoa # 31 Femea 7271263
+--------
+Barbra Streisand # 40 Femea 1283731
+--------
+Telma Monteiro # 27 Femea 91738271
 --------
