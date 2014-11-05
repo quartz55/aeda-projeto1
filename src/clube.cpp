@@ -27,26 +27,37 @@ Clube::Clube(): dataActual(1,1,1900){
 #include "./clube/iooperations.h"
 //#############################
 
+void Clube::TopMenu(string name)
+{
+	iface->cleanScr();
+	iface->drawString("\n \n\tGD FEUP\n");
+	iface->drawString(dataActual.showData());
+	iface->drawString("\n\n\n");
+	iface->drawString(name);
+	iface->drawString("\n\n");
+}
 
 void Clube::main()
 {
 	while (1){
 		iface->cleanScr();
 		char command;
+		iface->drawString("\n \n\tGD FEUP\n");
 		iface->drawString(dataActual.showData());
-		iface->drawString("\n \n");
+		iface->drawString("\n\n\n\tMENU\n\n");
 		iface->drawString("a. Jogadores\n");
 		iface->drawString("b. Socios\n");
 		iface->drawString("c. Externos\n");
 		iface->drawString("d. Modalidades e submodalidades\n");
 		iface->drawString("e. Despesas\n");
 		iface->drawString("f. Manutencao\n");
-		iface->drawString("q. Sair(!)\n");
+		iface->drawString("q. Sair(!)\n\n");
 		iface->drawString("   > ");
         iface->readChar(command);
         if (command == 'a'){
             if(jogadores.size() == 0){
-                iface->drawString("O clube nao tem jogadores associados!\n");
+                iface->drawString("\nO clube nao tem jogadores associados!\n");
+				iface->drawString("\n * Carregue numa tecla para voltar... *\n");
                 iface->getInput();
                 continue;
             }
@@ -54,49 +65,53 @@ void Clube::main()
         }
         else if (command == 'b'){
             if(socios.size() == 0){
-                iface->drawString("O clube nao tem socios associados!\n");
+                iface->drawString("\nO clube nao tem socios associados!\n");
+				iface->drawString("\n * Carregue numa tecla para voltar... *\n");
                 iface->getInput();
                 continue;
             }
             while(1){
                 if(!listarSocios()) break;
-                iface->drawString("* Carregue numa tecla para voltar... *\n");
+                iface->drawString("\n* Carregue numa tecla para voltar... *\n");
                 iface->getInput();
             }
         }
 		else if (command == 'c') {
 			if (externos.size() == 0){
-				iface->drawString("O clube nao tem externos associados!\n");
+				iface->drawString("\nO clube nao tem externos associados!\n");
+				iface->drawString("\n * Carregue numa tecla para voltar... *\n");
 				iface->getInput();
 				continue;
 			}
 			while (1){
 				if (!listarExternos()) break;
-				iface->drawString("* Carregue numa tecla para voltar... *\n");
+				iface->drawString("\n* Carregue numa tecla para voltar... *\n");
 				iface->getInput();
 			}
 		}
         else if (command == 'd'){
             if(modalidades.size() == 0){
-                iface->drawString("O clube nao tem modalidades associados!\n");
+                iface->drawString("\nO clube nao tem modalidades associados!\n");
+				iface->drawString("\n * Carregue numa tecla para voltar... *\n");
                 iface->getInput();
                 continue;
             }
             while(1){
                 if(!listarModalidades()) break;
-				iface->drawString("* Carregue numa tecla para voltar... *\n");
+				iface->drawString("\n* Carregue numa tecla para voltar... *\n");
                 iface->getInput();
             }
         }
 		if (command == 'e'){
 			if (despesas.size() == 0){
-				iface->drawString("O clube nao tem despesas associadas!\n");
+				iface->drawString("\nO clube nao tem despesas associadas!\n");
+				iface->drawString("\n * Carregue numa tecla para voltar... *\n");
 				iface->getInput();
 				continue;
 			}
 			while (1){
 				if (!listarDespesas()) break;
-				iface->drawString("* Press ANY key to continue... *\n");
+				iface->drawString("\n * Carregue numa tecla para voltar... *\n");
 				iface->getInput();
 			}
 		}
@@ -260,12 +275,13 @@ bool Clube::infoPessoal(){
         if(j1 != NULL){
             iface->cleanScr();
             iface->drawString(j1->showInfo());
-			iface->drawString("* Carregue numa tecla para voltar... *\n");
+			iface->drawString("\n* Carregue numa tecla para voltar... *\n");
             iface->getInput();
             continue;
         }
         else {
             iface->drawString("Jogador nao existe!\n");
+			iface->drawString("\n * Carregue numa tecla para voltar... *\n");
             iface->getInput();
             continue;
         }
@@ -276,14 +292,14 @@ void Clube::manutencao(){
     while(1){
         iface->cleanScr();
         char command;
-        iface->drawString("MANUTENCAO\n\n");
+		TopMenu("MANUTENCAO");
         iface->drawString("a. Manutencao de jogadores\n");
 		iface->drawString("b. Manutencao de socios\n");
 		iface->drawString("c. Manutencao de externos\n");
         iface->drawString("d. Manutencao de modalidades\n");
         iface->drawString("e. Manutencao de despesas\n");
 		iface->drawString("f. Alterar data\n");
-        iface->drawString("q. Voltar\n");
+        iface->drawString("q. Voltar\n\n");
         iface->drawString("   > ");
         iface->readChar(command);
         if(command == 'a') while(manutencaoJogadores());
@@ -299,16 +315,16 @@ void Clube::manutencao(){
 
 
 bool Clube::manutencaoSocios(){
-	iface->cleanScr();
+	TopMenu("MANUTENCAO SOCIO");
 	iface->drawString("a. Adicionar socio\n");
 	iface->drawString("b. Alterar socio existente\n");
-	iface->drawString("\n(q para sair)\n\n\n");
+	iface->drawString("\n(q para sair)\n\n");
 	iface->drawString("   > ");
 	char command;
 	iface->readChar(command);
 	if (command == 'a')
 	{
-		iface->cleanScr();
+		TopMenu("ADICIONAR SOCIO");;
 		string nome, sexo;
 		iface->drawString("Nome: ");
 		iface->readLine(nome);
@@ -323,19 +339,18 @@ bool Clube::manutencaoSocios(){
 		iface->read(nif);
 		Socio *s1 = new Socio(nome, idade, nif, sexo);
 		socios.push_back(s1);
-		iface->cleanScr();
-		iface->drawString(s1->showInfo());
-		iface->drawString("\n");
-		iface->drawString("O socio foi criado");
+		TopMenu("ADICIONAR SOCIO");
+		iface->drawString("\nO socio foi criado");
 		iface->drawString("\n\n\n* Carregue numa tecla para voltar... *\n");
 		iface->getInput();
 		return true;
 
 	}
 	else if (command == 'b'){
-		iface->cleanScr();
+		TopMenu("ALTERAR SOCIO");
 		if (socios.size() == 0){
 			iface->drawString("O clube nao tem socios associados!\n");
+			iface->drawString("\n\n\n* Carregue numa tecla para voltar... *\n");
 			iface->getInput();
 			return false;
 		}
@@ -358,6 +373,7 @@ bool Clube::manutencaoSocios(){
 			}
 			else {
 				iface->drawString("Socio nao existe!\n");
+				iface->drawString("\n* Carregue numa tecla para voltar... *\n");
 				iface->getInput();
 				continue;
 			}
@@ -371,8 +387,7 @@ bool Clube::manutencaoSocios(){
 
 bool Clube::manutencaoSocio(Socio *s1){
     while (1){
-        iface->cleanScr();
-        iface->drawString("Informacao do socio:\n");
+		TopMenu("INFORMACAO DO SOCIO");
         iface->drawString(s1->showInfo());
         iface->drawString("\n\na. Mudar nome\n");
         iface->drawString("b. Mudar idade\n");
@@ -382,7 +397,7 @@ bool Clube::manutencaoSocio(Socio *s1){
         iface->drawString("f. Remover modalidades\n");
         iface->drawString("g. Pagar quotas\n");
         iface->drawString("h. Remover socio(!)\n");
-        iface->drawString("q. Voltar...\n");
+        iface->drawString("(q para sair)\n\n");
         iface->drawString("   > ");
         char command;
         iface->readChar(command);
@@ -391,14 +406,16 @@ bool Clube::manutencaoSocio(Socio *s1){
             string nome;
             iface->readLine(nome);
             if (s1->changeNome(nome)){
-                iface->cleanScr();
+				TopMenu("INFORMACAO DO SOCIO");
                 iface->drawString("\nNome foi mudado com sucesso\n\n");
+				iface->drawString("\n\n\n* Carregue numa tecla para voltar... *\n");
                 iface->getInput();
                 continue;
             }
             else{
-                iface->cleanScr();
+				TopMenu("INFORMACAO DO SOCIO");
                 iface->drawString("\nOcorreu um erro...\n\n");
+				iface->drawString("\n\n\n* Carregue numa tecla para voltar... *\n");
                 iface->getInput();
                 continue;
             }
@@ -409,13 +426,18 @@ bool Clube::manutencaoSocio(Socio *s1){
             iface->read(idade);
             if (s1->changeIdade(idade)){
                 iface->cleanScr();
+				iface->drawString("\n \n\tGD FEUP\n");
+				iface->drawString(dataActual.showData());
+				iface->drawString("\n\n\n\tINFORMACAO DO SOCIO\n\n");
                 iface->drawString("\nIdade foi mudada com sucesso\n\n");
+				iface->drawString("\n\n\n* Carregue numa tecla para voltar... *\n");
                 iface->getInput();
                 continue;
             }
             else{
-                iface->cleanScr();
+				TopMenu("INFORMACAO DO SOCIO");
                 iface->drawString("\nOcorreu um erro...\n\n");
+				iface->drawString("\n\n\n* Carregue numa tecla para voltar... *\n");
                 iface->getInput();
                 continue;
             }
@@ -425,14 +447,16 @@ bool Clube::manutencaoSocio(Socio *s1){
             unsigned long NIF;
             iface->read(NIF);
             if (s1->changeNIF(NIF)){
-                iface->cleanScr();
+				TopMenu("INFORMACAO DO SOCIO");
                 iface->drawString("\nNIF foi mudado com sucesso\n\n");
+				iface->drawString("\n\n\n* Carregue numa tecla para voltar... *\n");
                 iface->getInput();
                 continue;
             }
             else{
-                iface->cleanScr();
+				TopMenu("INFORMACAO DO SOCIO");
                 iface->drawString("\nOcorreu um erro...\n\n");
+				iface->drawString("\n\n\n* Carregue numa tecla para voltar... *\n");
                 iface->getInput();
                 continue;
             }
@@ -442,20 +466,22 @@ bool Clube::manutencaoSocio(Socio *s1){
             string sexo;
             iface->readLine(sexo);
             if (s1->changeSexo(sexo)){
-                iface->cleanScr();
+				TopMenu("INFORMACAO DO SOCIO");
                 iface->drawString("\nSexo foi mudado com sucesso\n\n");
+				iface->drawString("\n\n\n* Carregue numa tecla para voltar... *\n");
                 iface->getInput();
                 continue;
             }
             else{
-                iface->cleanScr();
+				TopMenu("INFORMACAO DO SOCIO");
                 iface->drawString("\nOcorreu um erro...\n\n");
+				iface->drawString("\n\n\n* Carregue numa tecla para voltar... *\n");
                 iface->getInput();
                 continue;
             }
         }
         if (command == 'e'){
-        	iface->cleanScr();
+			TopMenu("INFORMACAO DO SOCIO");
         	listarModalidades();
         	iface->drawString("Escolha a modalidade a associar: ");
         	string nome_input;
@@ -470,17 +496,19 @@ bool Clube::manutencaoSocio(Socio *s1){
         		}
         	}
         	else{
-        		iface->cleanScr();
+				TopMenu("INFORMACAO DO SOCIO");
         		iface->drawString("Nao se pode associar a uma nova modalidade com quotas em atraso\n");
+				iface->drawString("\n\n\n* Carregue numa tecla para voltar... *\n");
         		iface->getInput();
         		return false;
         	}
         	iface->drawString("\nModalidade desassociada com sucesso\n\n");
+			iface->drawString("\n\n\n* Carregue numa tecla para voltar... *\n");
         	iface->getInput();
         	return true;
         }
         if (command == 'f'){
-        	iface->cleanScr();
+			TopMenu("INFORMACAO DO SOCIO");
         	s1->showModalidades();
         	iface->drawString("Escolha a modalidade a remover: ");
         	string nome_input;
@@ -498,11 +526,11 @@ bool Clube::manutencaoSocio(Socio *s1){
         	return true;
         }
         if (command == 'g'){
-        	iface->cleanScr();
+			TopMenu("INFORMACAO DO SOCIO");
         	iface->drawString("O socio tem ");
         	iface->drawString(s1->QuotasAtrasadas(dataActual));
         	iface->drawString(" meses de quotas em atraso \n \n \n");
-        	iface->drawString("Quantos meses deseja pagar? (q para sair)");
+        	iface->drawString("Quantos meses deseja pagar? (q para sair)\n\n");
         	iface->drawString("   > ");
         	string nome_input;
         	iface->readLine(nome_input);
@@ -511,11 +539,10 @@ bool Clube::manutencaoSocio(Socio *s1){
         	ss << nome_input;
         	ss >> meses;
         	if (nome_input == "q") return true;
-        	iface->cleanScr();
+			TopMenu("INFORMACAO DO SOCIO");
         	iface->drawString("Quotas pagas: €");
         	iface->drawString(s1->pagarQuotas(meses, dataActual));
-        	iface->drawString("\n");
-        	iface->drawString("\nQuotas pagas com sucesso\n\n");
+        	iface->drawString("\n\nQuotas pagas com sucesso\n\n");
         	iface->getInput();
         	return true;
         }
@@ -526,6 +553,7 @@ bool Clube::manutencaoSocio(Socio *s1){
                     socios.erase(socios.begin() + i);
             }
             iface->drawString("\nSocio removido com sucesso\n\n");
+			iface->drawString("\n\n\n* Carregue numa tecla para voltar... *\n");
             iface->getInput();
             return true;
         }
@@ -537,16 +565,16 @@ bool Clube::manutencaoSocio(Socio *s1){
 }
 
 bool Clube::manutencaoDespesas() {
-	iface->cleanScr();
+	TopMenu("MANUTENCAO DE DESPESAS");
 	iface->drawString("a. Adicionar despesa\n");
 	iface->drawString("b. Alterar despesa existente\n");
-	iface->drawString("\n(q para sair)\n\n\n");
+	iface->drawString("\n(q para sair)\n\n");
 	iface->drawString("   > ");
 	char command;
 	iface->readChar(command);
 	if (command == 'a')
 	{
-		iface->cleanScr();
+		TopMenu("ADICIONAR DESPESA");
 		string nome;
 		iface->drawString("Info: ");
 		iface->readLine(nome);
@@ -556,6 +584,7 @@ bool Clube::manutencaoDespesas() {
 		iface->read(valor);
 		if (valor < 0){
 			iface->drawString("\n \nO valor não pode ser negativo\n \n");
+			iface->drawString("\n\n\n* Carregue numa tecla para voltar... *\n");
 			iface->getInput();
 			return true;
 		}
@@ -570,7 +599,7 @@ bool Clube::manutencaoDespesas() {
 		iface->read(ano);
 		Despesa * despesa = new Despesa(dia, mes, ano, valor, nome);
 		despesas.push_back(despesa);
-		iface->cleanScr();
+		TopMenu("ADICIONAR DESPESA");
 		iface->drawString(despesa->showInfo());
 		iface->drawString("\nA despesa foi criada");
 		iface->drawString("\n\n\n* Carregue numa tecla para voltar... *\n");
@@ -580,7 +609,6 @@ bool Clube::manutencaoDespesas() {
 	}
 	else if (command == 'b'){
 		while (1){
-			iface->cleanScr();
 			if (!listarDespesas())
 				return false;
 			iface->drawString("Escolha a despesa a gerir: ");

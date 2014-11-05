@@ -66,39 +66,38 @@ void Clube::listarPorModalidades(vector<C *> pessoas){
 
 bool Clube::listarJogadores(){
     while(1){
-        iface->cleanScr();
+		TopMenu("LISTAGEM DE JOGADORES");
         char command;
-        iface->drawString("LISTAGEM DE JOGADORES\n\n");
         iface->drawString("a. Listar por ordem alfabetica\n");
         iface->drawString("b. Listar por idade\n");
         iface->drawString("c. Listar por sexo\n");
         iface->drawString("d. Listar por modalidades\n");
-        iface->drawString("q. Voltar\n");
+        iface->drawString("q. Voltar\n\n");
         iface->drawString("   > ");
         iface->readChar(command);
         if(command == 'a'){
             std::vector <Jogador *> ordenado(jogadores);
             std::sort(ordenado.begin(), ordenado.end(), sortByName);
-            iface->cleanScr();
+			TopMenu("LISTAGEM DE JOGADORES");
             iface->drawString("Jogadores ordenados por ordem alfabetica (A-Z):\n");
             listarPessoas(ordenado, false, false);
         }
         else if (command == 'b'){
             std::vector <Jogador *> ordenado = jogadores;
             std::sort(ordenado.begin(), ordenado.end(), sortByIdade);
-            iface->cleanScr();
+			TopMenu("LISTAGEM DE JOGADORES");
             iface->drawString("Jogadores ordenados por ordem de idade:\n");
             listarPessoas(ordenado, true, false);
         }
         else if (command == 'c'){
             std::vector <Jogador *> ordenado = jogadores;
             std::sort(ordenado.begin(), ordenado.end(), sortBySexo);
-            iface->cleanScr();
+			TopMenu("LISTAGEM DE JOGADORES");
             iface->drawString("Jogadores ordenados por sexo:\n");
             listarPessoas(ordenado, false, true);
         }
         else if (command == 'd'){
-            iface->cleanScr();
+			TopMenu("LISTAGEM DE JOGADORES");
             iface->drawString("Jogadores ordenados por modalidades:\n");
             listarPorModalidades(jogadores);
         }
@@ -112,31 +111,31 @@ bool Clube::listarExternos(){
 	while (1){
 		iface->cleanScr();
 		char command;
-		iface->drawString("LISTAGEM DE EXTERNOS\n\n");
+		TopMenu("LISTAGEM DE EXTERNOS");
 		iface->drawString("a. Listar por ordem alfabetica\n");
 		iface->drawString("b. Listar por idade\n");
 		iface->drawString("c. Listar por sexo\n");
-		iface->drawString("q. Voltar\n");
+		iface->drawString("q. Voltar\n\n");
 		iface->drawString("   > ");
 		iface->readChar(command);
 		if (command == 'a'){
 			std::vector <Pessoa *> ordenado(externos);
 			std::sort(ordenado.begin(), ordenado.end(), sortByName);
-			iface->cleanScr();
+			TopMenu("LISTAGEM DE EXTERNOS");
 			iface->drawString("Externos ordenados por ordem alfabetica (A-Z):\n");
 			listarPessoas(ordenado, false, false);
 		}
 		else if (command == 'b'){
 			std::vector <Pessoa *> ordenado = externos;
 			std::sort(ordenado.begin(), ordenado.end(), sortByIdade);
-			iface->cleanScr();
+			TopMenu("LISTAGEM DE EXTERNOS");
 			iface->drawString("Externos ordenados por ordem de idade:\n");
 			listarPessoas(ordenado, true, false);
 		}
 		else if (command == 'c'){
 			std::vector <Pessoa *> ordenado = externos;
 			std::sort(ordenado.begin(), ordenado.end(), sortBySexo);
-			iface->cleanScr();
+			TopMenu("LISTAGEM DE EXTERNOS");
 			iface->drawString("Externos ordenados por sexo:\n");
 			listarPessoas(ordenado, false, true);
 		}
@@ -150,37 +149,37 @@ bool Clube::listarSocios(){
     while (1){
         iface->cleanScr();
         char command;
-        iface->drawString("LISTAGEM DE SOCIOS\n\n");
+		TopMenu("LISTAGEM DE SOCIOS");
         iface->drawString("a. Listar por ordem alfabetica\n");
         iface->drawString("b. Listar por idade\n");
         iface->drawString("c. Listar por sexo\n");
         iface->drawString("d. Listar por modalidades\n");
-        iface->drawString("q. Voltar\n");
+        iface->drawString("q. Voltar\n\n");
         iface->drawString("   > ");
         iface->readChar(command);
         if (command == 'a'){
             std::vector <Socio *> ordenado(socios);
             std::sort(ordenado.begin(), ordenado.end(), sortByName);
-            iface->cleanScr();
+			TopMenu("LISTAGEM DE SOCIOS");
             iface->drawString("Socios ordenados por ordem alfabetica (A-Z):\n");
             listarPessoas(ordenado, false, false);
         }
         else if (command == 'b'){
             std::vector <Socio *> ordenado = socios;
             std::sort(ordenado.begin(), ordenado.end(), sortByIdade);
-            iface->cleanScr();
+			TopMenu("LISTAGEM DE SOCIOS");
             iface->drawString("Socios ordenados por ordem de idade:\n");
             listarPessoas(ordenado, true, false);
         }
         else if (command == 'c'){
             std::vector <Socio *> ordenado = socios;
             std::sort(ordenado.begin(), ordenado.end(), sortBySexo);
-            iface->cleanScr();
+			TopMenu("LISTAGEM DE SOCIOS");
             iface->drawString("Socios ordenados por sexo:\n");
             listarPessoas(ordenado, false, true);
         }
         else if (command == 'd'){
-            iface->cleanScr();
+			TopMenu("LISTAGEM DE SOCIOS");
             iface->drawString("Socios ordenados por modalidades:\n");
             listarPorModalidades(socios);
         }
@@ -212,27 +211,27 @@ void Clube::listarMods(vector <Modalidade *> modalidades){
 
 bool Clube::listarModalidades(){
     while (1){
-        iface->cleanScr();
+		TopMenu("LISTAGEM DE MODALIDADES");
         char command;
         iface->drawString("LISTAGEM DE MODALIDADES\n\n");
         iface->drawString("a. Listar por ordem alfabetica\n");
         iface->drawString("b. Listar por numero de submodalidades\n");
         iface->drawString("c. Listar com jogadores\n");
         iface->drawString("d. Listar com socios\n");
-        iface->drawString("q. Voltar\n");
+        iface->drawString("q. Voltar\n\n");
         iface->drawString("   > ");
         iface->readChar(command);
         if (command == 'a'){
             std::vector <Modalidade *> ordenado = modalidades;
             std::sort(ordenado.begin(), ordenado.end(), sortByNome);
-            iface->cleanScr();
+			TopMenu("LISTAGEM DE MODALIDADES");
             iface->drawString("Modalidades por ordem alfabetica (A-Z):\n");
             listarMods(ordenado);
         }
         else if (command == 'b'){
             std::vector <Modalidade *> ordenado = modalidades;
             std::sort(ordenado.begin(), ordenado.end(), sortByNum);
-            iface->cleanScr();
+			TopMenu("LISTAGEM DE MODALIDADES");
             iface->drawString("Modalidades por numero de submodalidades:\n");
             listarMods(ordenado);
         }
@@ -252,7 +251,7 @@ bool Clube::listarModalidades(){
                 iface->getInput();
                 continue;
             }
-            iface->cleanScr();
+			TopMenu("LISTAGEM DE MODALIDADES");
             iface->drawString("Modalidades com socios:\n");
             listarPorModalidades(socios);
         }
@@ -265,45 +264,48 @@ bool Clube::listarModalidades(){
 bool Clube::listarDespesas() {
 	while(1){
 		char command;
-	    iface->cleanScr();
-	    iface->drawString("LISTAGEM DE DESPESAS\n\n");
+		TopMenu("LISTAGEM DE DESPESAS");
 	    iface->drawString("a. Listar por data\n");
 	    iface->drawString("b. Listar por valor\n");
-	    iface->drawString("q. Voltar\n");
+	    iface->drawString("q. Voltar\n\n");
 	    iface->drawString("   > ");
 	    iface->readChar(command);
 	    if (command == 'a'){
 			std::sort(despesas.begin(),despesas.end(),sortByData);
 	    	while(1){
-	    		iface->cleanScr();
-	    		iface->drawString("Alguma data especifica (y/n/q-voltar) \n");
+				TopMenu("LISTAGEM DE DESPESAS");
+	    		iface->drawString("Alguma data especifica (y/n/q-voltar) \n\n");
 	    		iface->drawString("   > ");
 	    		iface->readChar(command);
 	    		if(command == 'y'){
 	    			while(1){
-	    				iface->cleanScr();
+						TopMenu("LISTAGEM DE DESPESAS");
 	    				iface->drawString("a. Mes e Ano \n");
 	    				iface->drawString("b. Ano \n");
-	    				iface->drawString("q. Voltar\n");
+	    				iface->drawString("q. Voltar\n\n");
 	    				iface->drawString("   > ");
 	    				iface->readChar(command);
 	    				if (command == 'a'){
-	    					iface->cleanScr();
+							TopMenu("LISTAGEM DE DESPESAS");
 	    					iface->drawString("Mes (inteiro correspondente) :");
 	    					int mes;
 	    					iface->read(mes);
 	    					if(mes < 0 || mes > 12){
-	    						iface->drawString("Mes invalido!\n");
+	    						iface->drawString("Mes invalido!\n\n");
+								iface->drawString("\n* Carregue numa tecla para voltar... *\n");
+								iface->getInput();
 	    					}
 	    					else {
 	    						iface->drawString("Ano :");
 	    						int ano;
 	    						iface->read(ano);
 	    						if(ano < 0 || ano > 3000){
-	    							iface->drawString("Ano invalido!\n");
+	    							iface->drawString("Ano invalido!\n\n");
+									iface->drawString("\n* Carregue numa tecla para voltar... *\n");
+									iface->getInput();
 	    						}
 	    						else{
-	    							iface->cleanScr();
+									TopMenu("LISTAGEM DE DESPESAS");
 	    							iface->drawString("Despesas de ");
 	    							iface->drawString(mes);
 	    							iface->drawString(" de ");
@@ -326,9 +328,10 @@ bool Clube::listarDespesas() {
 	    					iface->read(ano);
 	    					if(ano < 0 || ano > 3000){
 	    						iface->drawString("Ano invalido!\n");
+								iface->getInput();
 	    					}
 	    					else{
-	    						iface->cleanScr();
+								TopMenu("LISTAGEM DE DESPESAS");
 	    						iface->drawString("Despesas de ");;
 	    						iface->drawString(ano);
 	    						iface->drawString(": \n\n");
@@ -347,7 +350,7 @@ bool Clube::listarDespesas() {
 	    			}
 	    		}
 	    		else if(command == 'n'){
-	    			iface->cleanScr();
+					TopMenu("LISTAGEM DE DESPESAS");
 	    			iface->drawString("Despesas listadas por data\n\n");
 	    			for(unsigned int i = 0; i < despesas.size(); i++){
 	    				iface->drawString(despesas[i]->showInfo());
@@ -363,8 +366,8 @@ bool Clube::listarDespesas() {
 	    if (command == 'b'){
 	    	std::sort(despesas.begin(),despesas.end(),sortByValor);
 	    	while(1){
-	    		iface->cleanScr();
-	    		iface->drawString("Alguma data especifica (y/n/q-voltar) \n");
+				TopMenu("LISTAGEM DE DESPESAS");
+	    		iface->drawString("Alguma data especifica (y/n/q-voltar) \n\n");
 	    		iface->drawString("   > ");
 	    		iface->readChar(command);
 	    		if(command == 'y'){
@@ -372,7 +375,7 @@ bool Clube::listarDespesas() {
 	    				iface->cleanScr();
 	    				iface->drawString("a. Mes e Ano \n");
 	    				iface->drawString("b. Ano \n");
-	    				iface->drawString("q. Voltar\n");
+	    				iface->drawString("q. Voltar\n\n");
 	    				iface->drawString("   > ");
 	    				iface->readChar(command);
 	    				if (command == 'a'){
@@ -381,7 +384,9 @@ bool Clube::listarDespesas() {
 	    					int mes;
 	    					iface->read(mes);
 	    					if(mes < 0 || mes > 12){
-	    						iface->drawString("Mes invalido!\n");
+	    						iface->drawString("Mes invalido!\n\n");
+								iface->drawString("\n* Carregue numa tecla para voltar... *\n");
+								iface->getInput();
 	    					}
 	    					else {
 	    						iface->drawString("Ano :");
@@ -389,9 +394,11 @@ bool Clube::listarDespesas() {
 	    						iface->read(ano);
 	    						if(ano < 0 || ano > 3000){
 	    							iface->drawString("Ano invalido!\n");
+									iface->drawString("* Carregue numa tecla para voltar... *\n\n");
+									iface->getInput();
 	    						}
 	    						else{
-	    							iface->cleanScr();
+									TopMenu("LISTAGEM DE DESPESAS");
 	    							iface->drawString("Despesas de ");
 	    							iface->drawString(mes);
 	    							iface->drawString(" de ");
@@ -408,15 +415,17 @@ bool Clube::listarDespesas() {
 	    					}
 	    				}
 	    				if (command == 'b'){
-	    					iface->cleanScr();
+							TopMenu("LISTAGEM DE DESPESAS");
 	    					iface->drawString("Ano :");
 	    					int ano;
 	    					iface->read(ano);
 	    					if(ano < 0 || ano > 3000){
-	    						iface->drawString("Ano invalido!\n");
+	    						iface->drawString("Ano invalido!\n\n");
+								iface->drawString("\n* Carregue numa tecla para voltar... *\n");
+								iface->getInput();
 	    					}
 	    					else{
-	    						iface->cleanScr();
+								TopMenu("LISTAGEM DE DESPESAS");
 	    						iface->drawString("Despesas de ");
 	    						iface->drawString(ano);
 	    						iface->drawString(": \n\n");
@@ -435,7 +444,7 @@ bool Clube::listarDespesas() {
 	    			}
 	    		}
 	    		else if(command == 'n'){
-	    			iface->cleanScr();
+					TopMenu("LISTAGEM DE DESPESAS");
 	    			iface->drawString("Despesas listadas por valor\n\n");
 	    			for(unsigned int i = 0; i < despesas.size(); i++){
 	    				iface->drawString(despesas[i]->showInfo());
