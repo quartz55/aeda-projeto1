@@ -10,3 +10,7 @@ Atletismo
 50 metros / 100 metros / Cooper / 1000 metros / #
 Futsal
 #
+Tenis
+Tenis Masculino / Tenis Feminino / #
+Karate
+Karate Feminino / Karate Masculino / Karate Misto / #

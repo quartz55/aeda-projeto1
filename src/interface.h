@@ -6,6 +6,9 @@
 #include <string>
 #include <sstream>
 
+#ifdef _WIN32
+#include <stdlib.h>
+#endif
 
 class Interface{
     int X,Y;
@@ -37,9 +40,9 @@ template<typename Type>
 void Interface::readChar(Type &var){
     //var = getch();
     std::cin >> var;
-    std::cin.ignore();
-	if (std::cin.fail())
-		std::cin.clear();
+    std::cin.ignore(1000, '\n');
+    if (std::cin.fail())
+        std::cin.clear();
 }
 
 template<typename Type>
@@ -49,7 +52,7 @@ void Interface::read(Type &var){
     //std::stringstream s(input);
     //s >> var;
     std::cin >> var;
-    std::cin.ignore();
+    std::cin.ignore(1000, '\n');
 	if (std::cin.fail())
 		std::cin.clear();
 }

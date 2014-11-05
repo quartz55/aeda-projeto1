@@ -1,5 +1,4 @@
 #include "interface.h"
-#include <stdlib.h>
 
 using std::string;
 
