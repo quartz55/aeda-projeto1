@@ -239,7 +239,7 @@ bool Clube::listarDespesas() {
 			std::sort(despesas.begin(),despesas.end(),sortByData);
 	    	while(1){
 	    		iface->cleanScr();
-	    		iface->drawString("Alguma data especifica (y/n) \n");
+	    		iface->drawString("Alguma data especifica (y/n/q-voltar) \n");
 	    		iface->drawString("   > ");
 	    		iface->readChar(command);
 	    		if(command == 'y'){
@@ -318,13 +318,16 @@ bool Clube::listarDespesas() {
 	    			}
 		    		return true;
 	    		}
+	    		else if(command == 'q'){
+	    			break;
+	    		}
 	    	}
 	    }
 	    if (command == 'b'){
 	    	std::sort(despesas.begin(),despesas.end(),sortByValor);
 	    	while(1){
 	    		iface->cleanScr();
-	    		iface->drawString("Alguma data especifica (y/n) \n");
+	    		iface->drawString("Alguma data especifica (y/n/q-voltar) \n");
 	    		iface->drawString("   > ");
 	    		iface->readChar(command);
 	    		if(command == 'y'){
@@ -402,6 +405,9 @@ bool Clube::listarDespesas() {
 	    				iface->newLine();
 	    			}
 		    		return true;
+	    		}
+	    		else if(command == 'q'){
+	    			break;
 	    		}
 	    	}
 	    }
