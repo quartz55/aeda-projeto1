@@ -90,7 +90,7 @@ class Clube{
     template<class C>
     void listarPorModalidades(vector<C *> pessoas);
 
-    void listarExternos();
+    bool listarExternos();
     bool listarJogadores();
     bool listarSocios();
 
@@ -105,10 +105,12 @@ class Clube{
     void manutencao();
     bool manutencaoJogadores();
     bool manutencaoJogador(Jogador * j1);
-	bool manutencaoModalidades();
-	bool manutencaoModalidade(Modalidade * m1);
 	bool manutencaoSocios();
 	bool manutencaoSocio(Socio * s1);
+	bool manutencaoExternos();
+	bool manutencaoExterno(Pessoa * p1);
+	bool manutencaoModalidades();
+	bool manutencaoModalidade(Modalidade * m1);
 	bool manutencaoDespesas();
 	bool manutencaoDespesa(Despesa* d1);
 	void alterarData();

@@ -37,9 +37,10 @@ void Clube::main()
 		iface->drawString("\n \n");
 		iface->drawString("a. Jogadores\n");
 		iface->drawString("b. Socios\n");
-		iface->drawString("c. Modalidades e submodalidades\n");
-		iface->drawString("d. Despesas\n");
-		iface->drawString("e. Manutencao\n");
+		iface->drawString("c. Externos\n");
+		iface->drawString("d. Modalidades e submodalidades\n");
+		iface->drawString("e. Despesas\n");
+		iface->drawString("f. Manutencao\n");
 		iface->drawString("q. Sair(!)\n");
 		iface->drawString("   > ");
         iface->readChar(command);
@@ -59,11 +60,23 @@ void Clube::main()
             }
             while(1){
                 if(!listarSocios()) break;
-                iface->drawString("* Press ANY key to continue... *\n");
+                iface->drawString("* Carregue numa tecla para voltar... *\n");
                 iface->getInput();
             }
         }
-        else if (command == 'c'){
+		else if (command == 'c') {
+			if (externos.size() == 0){
+				iface->drawString("O clube nao tem externos associados!\n");
+				iface->getInput();
+				continue;
+			}
+			while (1){
+				if (!listarExternos()) break;
+				iface->drawString("* Carregue numa tecla para voltar... *\n");
+				iface->getInput();
+			}
+		}
+        else if (command == 'd'){
             if(modalidades.size() == 0){
                 iface->drawString("O clube nao tem modalidades associados!\n");
                 iface->getInput();
@@ -71,11 +84,11 @@ void Clube::main()
             }
             while(1){
                 if(!listarModalidades()) break;
-                iface->drawString("* Press ANY key to continue... *\n");
+				iface->drawString("* Carregue numa tecla para voltar... *\n");
                 iface->getInput();
             }
         }
-        else if (command == 'd'){
+        if (command == 'f') manutencao();
         	if(despesas.size() == 0){
         		iface->drawString("O clube nao tem despesas associadas!\n");
         		iface->getInput();
@@ -87,7 +100,6 @@ void Clube::main()
         		iface->getInput();
         	}
         }
-        if (command == 'e') manutencao();
         else if (command == 'q'){
             iface->drawString("Tem a certeza que deseja sair? (y/n)\n");
             iface->drawString("   > ");
@@ -247,7 +259,7 @@ bool Clube::infoPessoal(){
         if(j1 != NULL){
             iface->cleanScr();
             iface->drawString(j1->showInfo());
-            iface->drawString("* Press ANY key to continue... *\n");
+			iface->drawString("* Carregue numa tecla para voltar... *\n");
             iface->getInput();
             continue;
         }
@@ -265,22 +277,25 @@ void Clube::manutencao(){
         char command;
         iface->drawString("MANUTENCAO\n\n");
         iface->drawString("a. Manutencao de jogadores\n");
-        iface->drawString("b. Manutencao de modalidades\n");
-        iface->drawString("c. Manutencao de socios\n");
-        iface->drawString("d. Manutencao de despesas\n");
-		iface->drawString("e. Alterar data\n");
+		iface->drawString("b. Manutencao de socios\n");
+		iface->drawString("c. Manutencao de externos\n");
+        iface->drawString("d. Manutencao de modalidades\n");
+        iface->drawString("e. Manutencao de despesas\n");
+		iface->drawString("f. Alterar data\n");
         iface->drawString("q. Voltar\n");
         iface->drawString("   > ");
         iface->readChar(command);
         if(command == 'a') while(manutencaoJogadores());
-        else if (command == 'b') while(manutencaoModalidades());
-        else if (command == 'c') manutencaoSocios();
-        else if (command == 'd') manutencaoDespesas();
-		else if (command == 'e') alterarData();
+        else if (command == 'b') manutencaoSocios();
+		else if (command == 'c') while (manutencaoExternos());
+		else if (command == 'd') while (manutencaoModalidades());
+        else if (command == 'e') manutencaoDespesas();
+		else if (command == 'f') alterarData();
         else if(command == 'q') return;
     }
     return;
 }
+
 
 bool Clube::manutencaoSocios(){
 	iface->cleanScr();
@@ -311,7 +326,7 @@ bool Clube::manutencaoSocios(){
 		iface->drawString(s1->showInfo());
 		iface->drawString("\n");
 		iface->drawString("O socio foi criado");
-		iface->drawString("\n\n\n* Press ANY key to continue... *\n");
+		iface->drawString("\n\n\n* Carregue numa tecla para voltar... *\n");
 		iface->getInput();
 		return true;
 
@@ -557,7 +572,7 @@ bool Clube::manutencaoDespesas() {
 		iface->cleanScr();
 		iface->drawString(despesa->showInfo());
 		iface->drawString("\nA despesa foi criada");
-		iface->drawString("\n\n\n* Press ANY key to continue... *\n");
+		iface->drawString("\n\n\n* Carregue numa tecla para voltar... *\n");
 		iface->getInput();
 		return true;
 
@@ -679,6 +694,175 @@ bool Clube::manutencaoDespesa(Despesa* d1) {
     return false;
 
 }
+
+
+bool Clube::manutencaoExternos(){
+	iface->cleanScr();
+	iface->drawString("a. Adicionar externo\n");
+	iface->drawString("b. Alterar externo existente\n");
+	iface->drawString("\n(q para sair)\n\n\n");
+	iface->drawString("   > ");
+	char command;
+	iface->readChar(command);
+	if (command == 'a')
+	{
+		iface->cleanScr();
+		string nome, sexo;
+		iface->drawString("Nome: ");
+		iface->readLine(nome);
+		if (nome == "q") return true;
+		iface->drawString("Sexo: ");
+		iface->readLine(sexo);
+		if (sexo == "q") return true;
+		unsigned int idade, nif;
+		iface->drawString("Idade: ");
+		iface->read(idade);
+		iface->drawString("NIF: ");
+		iface->read(nif);
+		Pessoa *p1 = new Pessoa(nome, idade, nif, sexo);
+		externos.push_back(p1);
+		iface->cleanScr();
+		iface->drawString(p1->showInfo());
+		iface->drawString("\nO externo foi criado");
+		iface->drawString("\n\n\n* Carregue numa tecla para voltar... *\n");
+		iface->getInput();
+		return true;
+
+	}
+	else if (command == 'b') {
+		if (externos.size() == 0){
+			iface->drawString("O clube nao tem externos associados!\n");
+			iface->getInput();
+			return false;
+		}
+		if (!listarExternos())
+			return false;
+		iface->drawString("(q para sair)\n");
+		while (1){
+			iface->drawString("Escolha o externo a gerir: ");
+			string nome_input;
+			iface->readLine(nome_input);
+			if (nome_input == "q") return true;
+			Pessoa *p1 = NULL;
+			for (unsigned int i = 0; i < externos.size(); i++){
+				if (externos[i]->getNome() == nome_input) p1 = jogadores[i];
+			}
+			if (j1 != NULL){
+				manutencaoExterno(p1);
+				return true;
+			}
+			else {
+				iface->drawString("Externo nao existe!\n");
+				iface->getInput();
+				continue;
+			}
+		}
+		return false;
+	}
+	else if (command == 'q')
+		return false;
+	return false;
+}
+bool Clube::manutencaoExterno(Pessoa * p1){
+	while (1){
+		iface->cleanScr();
+		iface->drawString("Informacao do externo:\n");
+		iface->drawString(p1->showInfo());
+		iface->drawString("\n\na. Mudar nome\n");
+		iface->drawString("b. Mudar idade\n");
+		iface->drawString("c. Mudar NIF\n");
+		iface->drawString("d. Mudar sexo\n");
+		iface->drawString("f. Remover externo(!)\n");
+		iface->drawString("q. Voltar...\n");
+		iface->drawString("   > ");
+		char command;
+		iface->readChar(command);
+		if (command == 'a'){
+			iface->drawString("Novo nome? ");
+			string nome;
+			iface->readLine(nome);
+			if (p1->changeNome(nome)){
+				iface->cleanScr();
+				iface->drawString("\nNome foi mudado com sucesso\n\n");
+				iface->getInput();
+				continue;
+			}
+			else{
+				iface->cleanScr();
+				iface->drawString("\nOcorreu um erro...\n\n");
+				iface->getInput();
+				continue;
+			}
+		}
+		if (command == 'b'){
+			iface->drawString("Nova idade? ");
+			unsigned int idade;
+			iface->read(idade);
+			if (p1->changeIdade(idade)){
+				iface->cleanScr();
+				iface->drawString("\nIdade foi mudada com sucesso\n\n");
+				iface->getInput();
+				continue;
+			}
+			else{
+				iface->cleanScr();
+				iface->drawString("\nOcorreu um erro...\n\n");
+				iface->getInput();
+				continue;
+			}
+		}
+		if (command == 'c'){
+			iface->drawString("Novo NIF? ");
+			unsigned long NIF;
+			iface->read(NIF);
+			if (p1->changeNIF(NIF)){
+				iface->cleanScr();
+				iface->drawString("\nNIF foi mudado com sucesso\n\n");
+				iface->getInput();
+				continue;
+			}
+			else{
+				iface->cleanScr();
+				iface->drawString("\nOcorreu um erro...\n\n");
+				iface->getInput();
+				continue;
+			}
+		}
+		if (command == 'd'){
+			iface->drawString("Novo sexo? ");
+			string sexo;
+			iface->readLine(sexo);
+			if (p1->changeSexo(sexo)){
+				iface->cleanScr();
+				iface->drawString("\nSexo foi mudado com sucesso\n\n");
+				iface->getInput();
+				continue;
+			}
+			else{
+				iface->cleanScr();
+				iface->drawString("\nOcorreu um erro...\n\n");
+				iface->getInput();
+				continue;
+			}
+		}
+		if (command == 'f'){
+			for (size_t i = 0; i < externos.size(); i++)
+			{
+				if (externos[i] == p1)
+					externos.erase(externos.begin() + i);
+			}
+			iface->drawString("\nExterno removido com sucesso\n\n");
+			iface->getInput();
+			return true;
+		}
+		else if (command == 'q'){
+			return true;
+		}
+	}
+	return false;
+}
+
+
 bool Clube::manutencaoJogadores(){
     iface->cleanScr();
     iface->drawString("a. Adicionar jogador\n");
@@ -1035,7 +1219,7 @@ void Clube::alterarData(){
 }
 
 bool Clube::quit(){
-    iface->drawString("\n\n\n* Press ANY KEY to exit... *\n");
+    iface->drawString("\n\n\n* Carregue numa tecla para sair... *\n");
     iface->getInput();
     iface->cleanScr();
     delete iface;
