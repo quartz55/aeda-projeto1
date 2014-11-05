@@ -88,18 +88,19 @@ void Clube::main()
                 iface->getInput();
             }
         }
+		if (command == 'e'){
+			if (despesas.size() == 0){
+				iface->drawString("O clube nao tem despesas associadas!\n");
+				iface->getInput();
+				continue;
+			}
+			while (1){
+				if (!listarDespesas()) break;
+				iface->drawString("* Press ANY key to continue... *\n");
+				iface->getInput();
+			}
+		}
         if (command == 'f') manutencao();
-        	if(despesas.size() == 0){
-        		iface->drawString("O clube nao tem despesas associadas!\n");
-        		iface->getInput();
-        		continue;
-        	}
-        	while(1){
-        		if(!listarDespesas()) break;
-        		iface->drawString("* Press ANY key to continue... *\n");
-        		iface->getInput();
-        	}
-        }
         else if (command == 'q'){
             iface->drawString("Tem a certeza que deseja sair? (y/n)\n");
             iface->drawString("   > ");
