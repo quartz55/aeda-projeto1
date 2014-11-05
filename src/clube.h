@@ -135,6 +135,7 @@ class Clube{
 
     void update();
 
+    void pressToContinue();
     bool quit();
 
     void clearScr();

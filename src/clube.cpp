@@ -60,8 +60,7 @@ void Clube::main()
             }
             while(1){
                 if(!listarSocios()) break;
-                iface->drawString("* Carregue numa tecla para voltar... *\n");
-                iface->getInput();
+                pressToContinue();
             }
         }
 		else if (command == 'c') {
@@ -72,8 +71,7 @@ void Clube::main()
 			}
 			while (1){
 				if (!listarExternos()) break;
-				iface->drawString("* Carregue numa tecla para voltar... *\n");
-				iface->getInput();
+                pressToContinue();
 			}
 		}
         else if (command == 'd'){
@@ -84,8 +82,7 @@ void Clube::main()
             }
             while(1){
                 if(!listarModalidades()) break;
-				iface->drawString("* Carregue numa tecla para voltar... *\n");
-                iface->getInput();
+                pressToContinue();
             }
         }
 		if (command == 'e'){
@@ -96,8 +93,7 @@ void Clube::main()
 			}
 			while (1){
 				if (!listarDespesas()) break;
-				iface->drawString("* Press ANY key to continue... *\n");
-				iface->getInput();
+                pressToContinue();
 			}
 		}
         if (command == 'f') manutencao();
@@ -260,8 +256,7 @@ bool Clube::infoPessoal(){
         if(j1 != NULL){
             iface->cleanScr();
             iface->drawString(j1->showInfo());
-			iface->drawString("* Carregue numa tecla para voltar... *\n");
-            iface->getInput();
+            pressToContinue();
             continue;
         }
         else {
@@ -327,8 +322,7 @@ bool Clube::manutencaoSocios(){
 		iface->drawString(s1->showInfo());
 		iface->drawString("\n");
 		iface->drawString("O socio foi criado");
-		iface->drawString("\n\n\n* Carregue numa tecla para voltar... *\n");
-		iface->getInput();
+        pressToContinue();
 		return true;
 
 	}
@@ -573,8 +567,7 @@ bool Clube::manutencaoDespesas() {
 		iface->cleanScr();
 		iface->drawString(despesa->showInfo());
 		iface->drawString("\nA despesa foi criada");
-		iface->drawString("\n\n\n* Carregue numa tecla para voltar... *\n");
-		iface->getInput();
+        pressToContinue();
 		return true;
 
 	}
@@ -725,8 +718,7 @@ bool Clube::manutencaoExternos(){
 		iface->cleanScr();
 		iface->drawString(p1->showInfo());
 		iface->drawString("\nO externo foi criado");
-		iface->drawString("\n\n\n* Carregue numa tecla para voltar... *\n");
-		iface->getInput();
+        pressToContinue();
 		return true;
 
 	}
@@ -892,8 +884,7 @@ bool Clube::manutencaoJogadores(){
         iface->cleanScr();
         iface->drawString(j1->showInfo());
         iface->drawString("\nO jogador foi criado");
-        iface->drawString("\n\n\n* Press ANY key to continue... *\n");
-        iface->getInput();
+        pressToContinue();
         return true;
 
     }
@@ -942,11 +933,11 @@ bool Clube::manutencaoJogador(Jogador *j1){
         iface->drawString("b. Mudar idade\n");
         iface->drawString("c. Mudar NIF\n");
         iface->drawString("d. Mudar sexo\n");
-        iface->drawString("d. Associacao de Modalidades\n");
-        iface->drawString("e. Associacao de sub-modalidades\n");
-        iface->drawString("d. Remover Modalidades\n");
-        iface->drawString("e. Remover sub-modalidades\n");
-        iface->drawString("f. Remover jogador(!)\n");
+        iface->drawString("e. Associacao de Modalidades\n");
+        iface->drawString("f. Associacao de sub-modalidades\n");
+        iface->drawString("g. Remover Modalidades\n");
+        iface->drawString("h. Remover sub-modalidades\n");
+        iface->drawString("i. Remover jogador(!)\n");
         iface->drawString("q. Voltar...\n");
         iface->drawString("   > ");
         char command;
@@ -1019,7 +1010,7 @@ bool Clube::manutencaoJogador(Jogador *j1){
                 continue;
             }
         }
-        if (command == 'f'){
+        if (command == 'i'){
             for (size_t i = 0; i < jogadores.size(); i++)
             {
                 if (jogadores[i] == j1)
@@ -1148,8 +1139,7 @@ void Clube::alterarData(){
 		dataActual.addDays(7);
 		iface->drawString("\n \nData alterada para ");
 		iface->drawString(dataActual.showData());
-		iface->drawString("\n\n\n* Press ANY key to continue... *\n");
-		iface->getInput();
+        pressToContinue();
 		return;
 	}
 	else if (command == 'b') {
@@ -1157,8 +1147,7 @@ void Clube::alterarData(){
 		dataActual.addMonths(1);
 		iface->drawString("\n \nData alterada para ");
 		iface->drawString(dataActual.showData());
-		iface->drawString("\n\n\n* Press ANY key to continue... *\n");
-		iface->getInput();
+        pressToContinue();
 		return;
 	}
 	else if (command == 'c') {
@@ -1166,8 +1155,7 @@ void Clube::alterarData(){
 		dataActual.addYears(1);
 		iface->drawString("\n \nData alterada para ");
 		iface->drawString(dataActual.showData());
-		iface->drawString("\n\n\n* Press ANY key to continue... *\n");
-		iface->getInput();
+        pressToContinue();
 		return;
 	}
 	else if (command == 'd')
@@ -1217,6 +1205,11 @@ void Clube::alterarData(){
 	}
 	else if (command == 'q')
 		return;
+}
+
+void Clube::pressToContinue(){
+    iface->drawString("\n\n* Carregue numa tecla para voltar... *\n");
+    iface->getInput();
 }
 
 bool Clube::quit(){
