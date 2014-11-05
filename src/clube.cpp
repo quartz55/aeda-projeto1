@@ -748,7 +748,7 @@ bool Clube::manutencaoExternos(){
 			for (unsigned int i = 0; i < externos.size(); i++){
 				if (externos[i]->getNome() == nome_input) p1 = jogadores[i];
 			}
-			if (j1 != NULL){
+			if (p1 != NULL){
 				manutencaoExterno(p1);
 				return true;
 			}
