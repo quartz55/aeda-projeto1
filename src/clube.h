@@ -1,6 +1,7 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
+#include <string>
 
 #include "interface.h"
 
@@ -38,7 +39,7 @@ class Clube{
     Clube();
 
 	void main();
-
+	void TopMenu(string name);
     //DATA
     static string FILE_JOGADORES;
     static string FILE_MODALIDADES;
