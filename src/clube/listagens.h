@@ -108,6 +108,43 @@ bool Clube::listarJogadores(){
     }
 }
 
+bool Clube::listarExternos(){
+	while (1){
+		iface->cleanScr();
+		char command;
+		iface->drawString("LISTAGEM DE EXTERNOS\n\n");
+		iface->drawString("a. Listar por ordem alfabetica\n");
+		iface->drawString("b. Listar por idade\n");
+		iface->drawString("c. Listar por sexo\n");
+		iface->drawString("q. Voltar\n");
+		iface->drawString("   > ");
+		iface->readChar(command);
+		if (command == 'a'){
+			std::vector <Pessoa *> ordenado(externos);
+			std::sort(ordenado.begin(), ordenado.end(), sortByName);
+			iface->cleanScr();
+			iface->drawString("Externos ordenados por ordem alfabetica (A-Z):\n");
+			listarPessoas(ordenado, false, false);
+		}
+		else if (command == 'b'){
+			std::vector <Pessoa *> ordenado = externos;
+			std::sort(ordenado.begin(), ordenado.end(), sortByIdade);
+			iface->cleanScr();
+			iface->drawString("Externos ordenados por ordem de idade:\n");
+			listarPessoas(ordenado, true, false);
+		}
+		else if (command == 'c'){
+			std::vector <Pessoa *> ordenado = externos;
+			std::sort(ordenado.begin(), ordenado.end(), sortBySexo);
+			iface->cleanScr();
+			iface->drawString("Externos ordenados por sexo:\n");
+			listarPessoas(ordenado, false, true);
+		}
+		else if (command == 'q') return false;
+		else continue;
+		return true;
+	}
+}
 
 bool Clube::listarSocios(){
     while (1){
