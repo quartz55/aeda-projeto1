@@ -308,7 +308,6 @@ bool Clube::infoSocios(){
 }
 void Clube::manutencao(){
     while(1){
-        iface->cleanScr();
         char command;
 		TopMenu("MANUTENCAO");
         iface->drawString("a. Manutencao de jogadores\n");
@@ -1363,7 +1362,8 @@ bool Clube::manutencaoModalidade(Modalidade * m1){
         iface->drawString("\n\na. Mudar nome\n");
         iface->drawString("b. Mudar preco de quota\n");
         iface->drawString("c. Criar submodalidade\n");
-        iface->drawString("d. Remover modalidade(!)\n");
+		iface->drawString("d. Alterar submodalidade\n");
+        iface->drawString("e. Remover modalidade(!)\n");
 		iface->drawString("q. Voltar\n\n");
         iface->drawString(" > ");
         char command;
@@ -1415,7 +1415,11 @@ bool Clube::manutencaoModalidade(Modalidade * m1){
             pressToContinue();
             continue;
         }
-        if (command == 'd'){
+		if (command == 'd'){
+			manutencaoSubModalidade(m1);
+			continue;
+		}
+        if (command == 'e'){
             TopMenu("ALTERAR MODALIDADE");
             for (size_t i = 0; i < modalidades.size(); i++)
             {
@@ -1441,6 +1445,108 @@ bool Clube::manutencaoModalidade(Modalidade * m1){
     }
     return false;
 }
+
+
+bool Clube::manutencaoSubModalidade(Modalidade * m1){
+	if (m1->getNumSubs() == 0){
+		iface->drawString("A modalidade nao tem submodalidades associadas!\n");
+		pressToContinue();
+		return false;
+	}
+	else
+	{
+		TopMenu("ALTERAR SUBMODALIDADE");
+		iface->drawString(" - ");
+		iface->drawString(m1->getNome());
+		iface->newLine();
+		for (unsigned int k = 0; k < sub_modalidades.size(); k++){
+			if (sub_modalidades[k]->getMod()->getNome() == m1->getNome()){
+				iface->drawString("   > ");
+				iface->drawString(sub_modalidades[k]->getNome());
+				iface->newLine();
+			}
+		}
+	}
+	iface->drawString("\nq. Voltar\n\n");
+	while (1){
+		iface->drawString("Escolha a submodalidade a gerir: ");
+		string nome_input;
+		iface->readLine(nome_input);
+		if (nome_input == "q") return true;
+		SubModalidade *sm1 = NULL;
+		for (unsigned int i = 0; i < sub_modalidades.size(); i++){
+			if (sub_modalidades[i]->getNome() == nome_input) sm1 = sub_modalidades[i];
+		}
+		if (sm1 != NULL){
+			manutencaoSubModalidade(sm1);
+			return true;
+		}
+		else {
+			iface->drawString("\nModalidade nao existe!\n");
+			pressToContinue();
+			return false;
+		}
+	}
+	return false;
+}
+
+
+bool Clube::manutencaoSubModalidade(SubModalidade * sm1)
+{
+	while (1){
+		TopMenu("ALTERAR SUBMODALIDADE");
+		iface->drawString(sm1->showInfo());
+		iface->drawString("\n\na. Mudar nome\n");
+		iface->drawString("b. Remover submodalidade(!)\n");
+		iface->drawString("q. Voltar\n\n");
+		iface->drawString(" > ");
+		char command;
+		iface->readChar(command);
+		if (command == 'a'){
+			TopMenu("ALTERAR SUBMODALIDADE");
+			iface->drawString("Novo nome? ");
+			string nome;
+			iface->readLine(nome);
+			if (sm1->changeNome(nome)){
+				TopMenu("ALTERAR SUBMODALIDADE");
+				iface->drawString("\nNome foi mudado com sucesso\n\n");
+				pressToContinue();
+				continue;
+			}
+			else{
+				TopMenu("ALTERAR SUBMODALIDADE");
+				iface->drawString("\nOcorreu um erro...\n\n");
+				pressToContinue();
+				continue;
+			}
+		}
+		
+		if (command == 'e'){
+			TopMenu("ALTERAR SUBMODALIDADE");
+			for (size_t i = 0; i < sub_modalidades.size(); i++)
+			{
+				if (sub_modalidades[i] == sm1)
+					sub_modalidades.erase(sub_modalidades.begin() + i);
+			}
+			for (size_t i = 0; i < jogadores.size(); i++)
+			{
+				jogadores[i]->removeSubModalidade(sm1);
+			}
+			for (size_t i = 0; i < socios.size(); i++)
+			{
+				socios[i]->removeSubModalidade(sm1);
+			}
+			iface->drawString("Modalidade removida com sucesso\n");
+			pressToContinue();
+			return true;
+		}
+		else if (command == 'q'){
+			return true;
+		}
+	}
+	return false;
+}
+
 
 void Clube::update(){
     unsigned int m1 = 0;

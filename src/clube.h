@@ -112,6 +112,8 @@ class Clube{
 	bool manutencaoExterno(Pessoa * p1);
 	bool manutencaoModalidades();
 	bool manutencaoModalidade(Modalidade * m1);
+	bool manutencaoSubModalidade(Modalidade * m1);
+	bool manutencaoSubModalidade(SubModalidade * sm1);
 	bool manutencaoDespesas();
 	bool manutencaoDespesa(Despesa* d1);
 	void alterarData();
