@@ -5,9 +5,11 @@
 -Na informaçao do socio mostrar quotas;
 -Na listagem de socios/jogadores por modalidades listar socios/jogadores que nao pertencem a nenhuma;
 -Na listagem de socios permitir seleçao de um socio para consultar informaçao(tal como no jogador);
--Incluir despesas automaticas para salarios de externos e jogadores;
+-Incluir despesas automaticas para salarios de externos e jogadores(?) ou criar uma despesa unitaria que engloba as duas(?);
 -No pdf diz para listarmos quotas pagas e em atraso por socios;
 
+
+SE SOUBEREM MAIS CENAS PONHA AQUI!
 
 
 
