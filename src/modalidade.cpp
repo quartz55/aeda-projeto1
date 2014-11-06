@@ -20,9 +20,10 @@ bool Modalidade::changeNome(string nome)
 	return true;
 }
 
+
 string Modalidade::showInfo() const
 {
 	std::stringstream s;
-	s << nome << std::endl;
+	s << "> " << nome << std::endl;
 	return s.str();
 }

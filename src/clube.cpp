@@ -249,6 +249,9 @@ bool Clube::changeDespesa(Despesa* d, string newInfo, Data* novaData, float novo
     return true;
 }
 
+
+
+
 bool Clube::infoPessoal(){
     while(1){
         iface->cleanScr();
@@ -264,7 +267,7 @@ bool Clube::infoPessoal(){
             if(jogadores[i]->getNome() == nome_input) j1 = jogadores[i];
         }
         if(j1 != NULL){
-            iface->cleanScr();
+			TopMenu("INFORMACAO JOGADOR");
             iface->drawString(j1->showInfo());
 			pressToContinue();
             continue;
@@ -399,12 +402,11 @@ bool Clube::manutencaoSocios(){
             }
             if (s1 != NULL){
                 manutencaoSocio(s1);
-                return true;
             }
             else {
                 iface->drawString("\nSocio nao existe!\n");
                 pressToContinue();
-                continue;
+				return false;
             }
         }
         return false;
@@ -660,7 +662,7 @@ bool Clube::manutencaoDespesas() {
             else {
                 iface->drawString("\nEssa despesa nao existe!\n");
                 pressToContinue();
-                continue;
+				return false;
             }
         }
         return false;
@@ -674,7 +676,6 @@ bool Clube::manutencaoDespesas() {
 bool Clube::manutencaoDespesa(Despesa* d1) {
     while(1){
         TopMenu("ALTERAR DESPESA");
-        iface->drawString("Informacao da despesa:\n");
         iface->drawString(d1->showInfo());
         iface->drawString("\n\na. Mudar info\n");
         iface->drawString("b. Mudar valor\n");
@@ -839,7 +840,7 @@ bool Clube::manutencaoExternos(){
             else {
                 iface->drawString("\nExterno nao existe!\n");
                 pressToContinue();
-                continue;
+				return false;
             }
         }
         return false;
@@ -1029,9 +1030,9 @@ bool Clube::manutencaoJogadores(){
                 return true;
             }
             else {
-                iface->drawString("Jogador nao existe!\n");
+                iface->drawString("\nJogador nao existe!\n");
                 pressToContinue();
-                continue;
+				return false;
             }
         }
         return false;
@@ -1316,9 +1317,9 @@ bool Clube::manutencaoModalidades(){
                 return true;
             }
             else {
-                iface->drawString("Modalidade nao existe!\n");
+				iface->drawString("\nModalidade nao existe!\n");
                 pressToContinue();
-                continue;
+				return false;
             }
         }
         return false;
@@ -1332,8 +1333,12 @@ bool Clube::manutencaoModalidades(){
 bool Clube::manutencaoModalidade(Modalidade * m1){
     while (1){
         TopMenu("ALTERAR MODALIDADE");
-        iface->drawString("Informacao da modalidade:\n");
         iface->drawString(m1->showInfo());
+		std::stringstream s;
+		for (unsigned int k = 0; k < sub_modalidades.size(); k++)
+		if (sub_modalidades[k]->getMod()->getNome() == m1->getNome())
+			s << "   -" << sub_modalidades[k]->getNome() << std::endl;
+		iface->drawString(s.str());
         iface->drawString("\n\na. Mudar nome\n");
         iface->drawString("b. Criar submodalidade\n");
         iface->drawString("c. Remover modalidade(!)\n");
