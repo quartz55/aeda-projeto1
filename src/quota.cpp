@@ -1,6 +1,6 @@
 #include "quota.h"
 
-Quota::Quota(int m, int ano, Modalidade * mod,float valor): last_payed(new Data(8,m,ano)) { //preco de uma quota de uma modalidade
+Quota::Quota(int m, int ano, Modalidade * mod,float *valor): last_payed(new Data(8,m,ano)) { //preco de uma quota de uma modalidade
 	modalidade =mod;
 	preco=valor;
 }
@@ -14,11 +14,7 @@ void Quota::setLastPayed(Data* lastPayed) {
 }
 
 float Quota::getPreco() const{
-	return preco;
-}
-
-void Quota::setPreco(float preco) {
-	this->preco = preco;
+	return *preco;
 }
 
 void Quota::pagarQuota(int meses) {
@@ -37,6 +33,6 @@ Modalidade* Quota::getModalidade() const {
 
 string Quota::showQuota() const {
 	std::stringstream ss;
-	ss << last_payed->showData() << " | " << preco << modalidade->getNome();
+	ss << modalidade->getNome() << " : " << last_payed->showData() << " | "  << *preco;
 	return ss.str();
 }

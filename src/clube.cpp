@@ -1337,6 +1337,9 @@ bool Clube::manutencaoModalidade(Modalidade * m1){
 		if (sub_modalidades[k]->getMod()->getNome() == m1->getNome())
 			s << "   -" << sub_modalidades[k]->getNome() << std::endl;
 		iface->drawString(s.str());
+		iface->drawString("\n\nPreco Quota: ");
+		float *p = m1->getPrecoQuota();
+		iface->drawString(*p);
         iface->drawString("\n\na. Mudar nome\n");
         iface->drawString("b. Mudar preco de quota\n");
         iface->drawString("c. Criar submodalidade\n");

@@ -22,7 +22,7 @@ class Modalidade{
     //GET
     string getNome(){return nome;}
     unsigned int getNumSubs(){return num_submods;}
-    float getPrecoQuota(){return precoQuota;}
+    float * getPrecoQuota(){float *pt;pt = &precoQuota; return pt;}
     bool setPrecoQuota(float novoPreco) {this->precoQuota = novoPreco; return true;}
     //CHANGE
 	bool changeNome(string nome);

@@ -235,7 +235,8 @@ bool Clube::writeModalidades(vector<Modalidade *> modalidades, string filename){
             ss << "#";
             file << ss.str();
             file << endl;
-            file << modalidades[i]->getPrecoQuota();
+            float *p = modalidades[i]->getPrecoQuota();
+            file << *p;
             file << endl;
         }
         file.close();
