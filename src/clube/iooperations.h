@@ -28,6 +28,7 @@ bool Clube::readModalidades(string filename){
 			}
 			float valor;
 			file >> valor;
+			m1->setPrecoQuota(valor);
 			getline(file,line);
 		}
 		file.close();
