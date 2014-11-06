@@ -1288,6 +1288,10 @@ bool Clube::manutencaoModalidades(){
         iface->readLine(nome);
         if (nome == "q") return true;
         Modalidade *m1 = new Modalidade(nome);
+        iface->drawString("Preco da quota: ");
+        float preco;
+        iface->read(preco);
+        m1->setPrecoQuota(preco);
         if (addModalidade(m1))
         {
             TopMenu("ADICIONAR MODALIDADE");
