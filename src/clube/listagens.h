@@ -306,12 +306,18 @@ bool Clube::listarDespesas() {
 	    							iface->drawString(" de ");
 	    							iface->drawString(ano);
 	    							iface->drawString(": \n\n");
+	    							float total = 0;
 	    							for(unsigned int i = 0; i < despesas.size(); i++){
 	    								if(despesas[i]->getData()->getMonth() == mes && despesas[i]->getData()->getYear() == ano){
+	    									total += despesas[i]->getValor();
 	    									iface->drawString(despesas[i]->showInfo());
 	    									iface->newLine();
 	    								}
 	    							}
+	    							iface->newLine();
+	    							iface->drawString("Total do mes: ");
+	    							iface->drawString(total);
+	    							iface->newLine();
 	    							return true;
 	    						}
 	    					}
@@ -330,12 +336,18 @@ bool Clube::listarDespesas() {
 	    						iface->drawString("Despesas de ");;
 	    						iface->drawString(ano);
 	    						iface->drawString(": \n\n");
+	    						float total = 0;
 	    						for(unsigned int i = 0; i < despesas.size(); i++){
 	    							if(despesas[i]->getData()->getYear() == ano){
+	    								total += despesas[i]->getValor();
 	    								iface->drawString(despesas[i]->showInfo());
 	    								iface->newLine();
 	    							}
 	    						}
+	    						iface->newLine();
+	    						iface->drawString("Total do ano: ");
+	    						iface->drawString(total);
+	    						iface->newLine();
 	    						return true;
 	    					}
 	    				}
@@ -398,12 +410,18 @@ bool Clube::listarDespesas() {
 	    							iface->drawString(" de ");
 	    							iface->drawString(ano);
 	    							iface->drawString(": \n\n");
+	    							float total =0;
 	    							for(unsigned int i = 0; i < despesas.size(); i++){
 	    								if(despesas[i]->getData()->getMonth() == mes && despesas[i]->getData()->getYear() == ano){
+	    									total += despesas[i]->getValor();
 	    									iface->drawString(despesas[i]->showInfo());
 	    									iface->newLine();
 	    								}
 	    							}
+	    							iface->newLine();
+	    							iface->drawString("Total do mes: ");
+	    							iface->drawString(total);
+	    							iface->newLine();
 	    							return true;
 	    						}
 	    					}
@@ -422,12 +440,18 @@ bool Clube::listarDespesas() {
 	    						iface->drawString("Despesas de ");
 	    						iface->drawString(ano);
 	    						iface->drawString(": \n\n");
+	    						float total=0;
 	    						for(unsigned int i = 0; i < despesas.size(); i++){
 	    							if(despesas[i]->getData()->getYear() == ano){
+	    								total += despesas[i]->getValor();
 	    								iface->drawString(despesas[i]->showInfo());
 	    								iface->newLine();
 	    							}
 	    						}
+	    						iface->newLine();
+	    						iface->drawString("Total do ano: ");
+	    						iface->drawString(total);
+	    						iface->newLine();
 	    						return true;
 	    					}
 	    				}

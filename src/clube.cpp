@@ -69,7 +69,7 @@ void Clube::main()
                 continue;
             }
             while(1){
-                if(!listarSocios()) break;
+                if(!infoSocios()) break;
 				pressToContinue();
             }
         }
@@ -271,6 +271,34 @@ bool Clube::infoPessoal(){
         }
         else {
             iface->drawString("\n\nJogador nao existe!\n");
+			pressToContinue();
+            continue;
+        }
+    }
+    return false;
+}
+bool Clube::infoSocios(){
+    while(1){
+        iface->cleanScr();
+        if(!listarSocios())
+            return false;
+        iface->drawString("(q para sair)\n\n");
+        iface->drawString("Escolha o socio para mostrar mais informacao: ");
+        string nome_input;
+        iface->readLine(nome_input);
+        if(nome_input == "q") return true;
+        Socio *s1 = NULL;
+        for(unsigned int i = 0; i<socios.size(); i++){
+            if(socios[i]->getNome() == nome_input) s1 = socios[i];
+        }
+        if(s1 != NULL){
+            iface->cleanScr();
+            iface->drawString(s1->showInfo());
+			pressToContinue();
+            continue;
+        }
+        else {
+            iface->drawString("\n\nSocio nao existe!\n");
 			pressToContinue();
             continue;
         }
@@ -1464,7 +1492,6 @@ void Clube::alterarData(){
     else if (command == 'q')
         return;
 }
-
 void Clube::pressToContinue(){
     iface->drawString("\n\n* Carregue numa tecla para voltar... *\n");
     iface->getInput();
