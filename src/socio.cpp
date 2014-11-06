@@ -27,7 +27,7 @@ int Socio::QuotasAtrasadas(Data dataActual) {
     return meses_atrasados;
 }
 
-float Socio::pagarQuotas(int meses,Data dataActual) {
+float Socio::pagarQuotas(int meses,Data dataActual, bool pagar) {
     float total = 0;
     float multa = 0;
     if(QuotasAtrasadas(dataActual) >= meses){
@@ -38,7 +38,7 @@ float Socio::pagarQuotas(int meses,Data dataActual) {
     }
     for(size_t i = 0; i < quotas.size(); i++){
         total += quotas[i]->getPreco();
-        quotas[i]->pagarQuota(meses);
+        if(pagar) quotas[i]->pagarQuota(meses);
     }
     if(modalidades.size() >= 3){
         total *= 0.95;

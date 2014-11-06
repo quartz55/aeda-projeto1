@@ -14,6 +14,7 @@ public:
 	Modalidade * getModalidade() const;
 	float getPreco() const;
 	void setPreco(float preco);
+	void setData(Data* data){last_payed = data;};
 	void pagarQuota(int meses);
 	bool operator< (const Quota& quota) const;
 	string showQuota() const;

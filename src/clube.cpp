@@ -379,17 +379,17 @@ bool Clube::manutencaoSocios(){
 
     }
     else if (command == 'b'){
-        TopMenu("ALTERAR SOCIO");
-        if (socios.size() == 0){
-            iface->drawString("O clube nao tem socios associados!\n");
-            pressToContinue();
-            return false;
-        }
-        if (!listarSocios())
-            return false;
-
-        iface->drawString("\n(q para sair)\n\n");
         while (1){
+            TopMenu("ALTERAR SOCIO");
+            if (socios.size() == 0){
+                iface->drawString("O clube nao tem socios associados!\n");
+                pressToContinue();
+                return false;
+            }
+            if (!listarSocios())
+                return false;
+
+            iface->drawString("\n(q para sair)\n\n");
             iface->drawString("Escolha o socio a gerir: ");
             string nome_input;
             iface->readLine(nome_input);
@@ -568,12 +568,25 @@ bool Clube::manutencaoSocio(Socio *s1){
             ss << nome_input;
             ss >> meses;
             if (nome_input == "q") return true;
-            TopMenu("INFORMACAO DO SOCIO");
-            iface->drawString("Quotas pagas: €");
-            iface->drawString(s1->pagarQuotas(meses, dataActual));
-            iface->drawString("\n\nQuotas pagas com sucesso\n\n");
-            pressToContinue();
-            return true;
+            while(1){
+            	TopMenu("INFORMACAO DO SOCIO");
+            	iface->drawString("Valor total a pagar: ");
+            	iface->drawString(s1->pagarQuotas(meses, dataActual, false));
+            	iface->drawString("\n\n Confirmar pagamento? (y/n)\n\n");
+            	iface->drawString("   > ");
+            	char command;
+            	iface->readChar(command);
+            	if (command == 'y') {
+            		s1->pagarQuotas(meses, dataActual, true);
+            		iface->drawString("\n\nQuotas pagas com sucesso\n\n");
+            		return true;
+            	}
+            	else if(command == 'n'){
+            		iface->drawString("\n\nOperacao cancelada\n\n");
+            		pressToContinue();
+            		return true;
+            	}
+            }
         }
         if (command == 'h'){
             TopMenu("ALTERAR SOCIO");
