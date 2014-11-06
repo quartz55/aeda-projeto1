@@ -32,7 +32,7 @@ void Clube::TopMenu(string name)
 	iface->cleanScr();
 	iface->drawString("\n \n\tGD FEUP\n");
 	iface->drawString(dataActual.showData());
-	iface->drawString("\n\n\n");
+	iface->drawString("\n\n\n\t");
 	iface->drawString(name);
 	iface->drawString("\n\n");
 }
@@ -42,9 +42,7 @@ void Clube::main()
 	while (1){
 		iface->cleanScr();
 		char command;
-		iface->drawString("\n \n\tGD FEUP\n");
-		iface->drawString(dataActual.showData());
-		iface->drawString("\n\n\n\tMENU\n\n");
+        TopMenu("MENU PRINCIPAL");
 		iface->drawString("a. Jogadores\n");
 		iface->drawString("b. Socios\n");
 		iface->drawString("c. Externos\n");

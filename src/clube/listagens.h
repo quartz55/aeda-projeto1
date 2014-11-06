@@ -259,7 +259,7 @@ bool Clube::listarModalidades(){
             }
 			TopMenu("LISTAGEM DE MODALIDADES");
             iface->drawString("Modalidades com jogadores:\n");
-            listarPorModalidades(jogadores);
+            iface->drawString(listarPorModalidades(jogadores));
         }
         else if (command == 'd'){
             if(socios.size() == 0){
@@ -269,7 +269,7 @@ bool Clube::listarModalidades(){
             }
 			TopMenu("LISTAGEM DE MODALIDADES");
             iface->drawString("Modalidades com socios:\n");
-            listarPorModalidades(socios);
+            iface->drawString(listarPorModalidades(socios));
         }
         else if(command == 'q') return false;
         else continue;
