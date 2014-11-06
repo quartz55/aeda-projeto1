@@ -256,7 +256,7 @@ bool Clube::infoPessoal(){
     while(1){
         if(!listarJogadores())
             return false;
-        iface->drawString("(q para sair)\n\n");
+		iface->drawString("\nq. Voltar\n\n");
         iface->drawString("Escolha o jogador para mostrar mais informacao: ");
         string nome_input;
         iface->readLine(nome_input);
@@ -283,7 +283,7 @@ bool Clube::infoSocios(){
     while(1){
         if(!listarSocios())
             return false;
-        iface->drawString("(q para sair)\n\n");
+		iface->drawString("\nq. Voltar\n\n");
         iface->drawString("Escolha o socio para mostrar mais informacao: ");
         string nome_input;
         iface->readLine(nome_input);
@@ -336,7 +336,7 @@ bool Clube::manutencaoSocios(){
 	TopMenu("MANUTENCAO SOCIO");
 	iface->drawString("a. Adicionar socio\n");
 	iface->drawString("b. Alterar socio existente\n");
-	iface->drawString("q. Voltar...\n\n");
+	iface->drawString("q. Voltar\n\n");
 	iface->drawString("   > ");
 	char command;
 	iface->readChar(command);
@@ -389,7 +389,7 @@ bool Clube::manutencaoSocios(){
             if (!listarSocios())
                 return false;
 
-            iface->drawString("\n(q para sair)\n\n");
+			iface->drawString("\nq. Voltar\n\n");
             iface->drawString("Escolha o socio a gerir: ");
             string nome_input;
             iface->readLine(nome_input);
@@ -427,7 +427,7 @@ bool Clube::manutencaoSocio(Socio *s1){
         iface->drawString("f. Remover modalidades\n");
         iface->drawString("g. Pagar quotas\n");
         iface->drawString("h. Remover socio(!)\n");
-        iface->drawString("(q para sair)\n\n");
+		iface->drawString("q. Voltar\n\n");
         iface->drawString("   > ");
         char command;
         iface->readChar(command);
@@ -608,7 +608,7 @@ bool Clube::manutencaoDespesas() {
     TopMenu("MANUTENCAO DE DESPESAS");
     iface->drawString("a. Adicionar despesa\n");
     iface->drawString("b. Alterar despesa existente\n");
-	iface->drawString("q. Voltar...\n\n");
+	iface->drawString("q. Voltar\n\n");
     iface->drawString("   > ");
     char command;
     iface->readChar(command);
@@ -658,7 +658,7 @@ bool Clube::manutencaoDespesas() {
         while (1){
             if (!listarDespesas())
                 return false;
-            iface->drawString("\n(q para sair)\n\n");
+			iface->drawString("\nq. Voltar\n\n");
             iface->drawString("Escolha a despesa a gerir: ");
             string nome_input;
             iface->readLine(nome_input);
@@ -693,7 +693,7 @@ bool Clube::manutencaoDespesa(Despesa* d1) {
         iface->drawString("b. Mudar valor\n");
         iface->drawString("c. Mudar data\n");
         iface->drawString("d. Remover despesa(!)\n");
-        iface->drawString("q. Voltar...\n\n");
+		iface->drawString("q. Voltar\n\n");
         iface->drawString("   > ");
         char command;
         iface->readChar(command);
@@ -783,7 +783,7 @@ bool Clube::manutencaoExternos(){
     TopMenu("MANUTENCAO EXTERNOS");
     iface->drawString("a. Adicionar externo\n");
     iface->drawString("b. Alterar externo existente\n");
-	iface->drawString("q. Voltar...\n\n");
+	iface->drawString("q. Voltar\n\n");
     iface->drawString("   > ");
     char command;
     iface->readChar(command);
@@ -835,7 +835,7 @@ bool Clube::manutencaoExternos(){
         }
         if (!listarExternos())
             return false;
-        iface->drawString("\n(q para sair)\n\n");
+		iface->drawString("\nq. Voltar\n\n");
         while (1){
             iface->drawString("Escolha o externo a gerir: ");
             string nome_input;
@@ -870,7 +870,7 @@ bool Clube::manutencaoExterno(Pessoa * p1){
         iface->drawString("c. Mudar NIF\n");
         iface->drawString("d. Mudar sexo\n");
         iface->drawString("e. Remover externo(!)\n");
-        iface->drawString("q. Voltar...\n");
+		iface->drawString("q. Voltar\n\n");
         iface->drawString("   > ");
         char command;
         iface->readChar(command);
@@ -976,7 +976,7 @@ bool Clube::manutencaoJogadores(){
     TopMenu("MANUTENCAO JOGADORES");
     iface->drawString("a. Adicionar jogador\n");
     iface->drawString("b. Alterar jogador existente\n");
-	iface->drawString("q. Voltar...\n\n");
+	iface->drawString("q. Voltar\n\n");
     iface->drawString("   > ");
     char command;
     iface->readChar(command);
@@ -1027,7 +1027,7 @@ bool Clube::manutencaoJogadores(){
         }
         if (!listarJogadores())
             return false;
-        iface->drawString("(q para sair)\n\n");
+		iface->drawString("\nq. Voltar\n\n");
         while (1){
             iface->drawString("Escolha o jogador a gerir: ");
             string nome_input;
@@ -1068,7 +1068,7 @@ bool Clube::manutencaoJogador(Jogador *j1){
         iface->drawString("g. Remover Modalidades\n");
         iface->drawString("h. Remover sub-modalidades\n");
         iface->drawString("i. Remover jogador(!)\n");
-        iface->drawString("q. Voltar...\n\n");
+		iface->drawString("q. Voltar\n\n");
         iface->drawString("   > ");
         char command;
         iface->readChar(command);
@@ -1279,7 +1279,7 @@ bool Clube::manutencaoModalidades(){
     TopMenu("MANUTENCAO MODALIDADES");
     iface->drawString("a. Adicionar modalidade\n");
     iface->drawString("b. Alterar modalidade existente\n");
-	iface->drawString("q. Voltar...\n\n");
+	iface->drawString("q. Voltar\n\n");
     iface->drawString("   > ");
     char command;
     iface->readChar(command);
@@ -1320,7 +1320,7 @@ bool Clube::manutencaoModalidades(){
         }
         if (!listarModalidades())
             return false;
-        iface->drawString("(q para sair)\n\n");
+		iface->drawString("\nq. Voltar\n\n");
         while (1){
             iface->drawString("Escolha a modalidade a gerir: ");
             string nome_input;
@@ -1364,7 +1364,7 @@ bool Clube::manutencaoModalidade(Modalidade * m1){
         iface->drawString("b. Mudar preco de quota\n");
         iface->drawString("c. Criar submodalidade\n");
         iface->drawString("d. Remover modalidade(!)\n");
-        iface->drawString("q. Voltar...\n\n");
+		iface->drawString("q. Voltar\n\n");
         iface->drawString(" > ");
         char command;
         iface->readChar(command);
@@ -1458,7 +1458,7 @@ void Clube::alterarData(){
     iface->drawString("b. Avancar um mes\n");
     iface->drawString("c. Avancar um ano\n");
     iface->drawString("d. Escolher data manualmente\n");
-    iface->drawString("q. Voltar...\n\n");
+	iface->drawString("q. Voltar\n\n");
     iface->drawString("   > ");
     char command;
     iface->readChar(command);

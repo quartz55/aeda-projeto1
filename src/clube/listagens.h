@@ -62,6 +62,17 @@ void Clube::listarPorModalidades(vector<C *> pessoas){
         iface->newLine();
         existe = false;
     }
+	iface->drawString(" - Sem modalidades associadas\n");
+	for (unsigned int i = 0; i < pessoas.size(); i++)
+	{
+		if (pessoas[i]->getMods().size() == 0)
+		{
+			iface->drawString("   > ");
+			iface->drawString(pessoas[i]->getNome());
+			iface->newLine();
+		}
+	}
+
 }
 
 bool Clube::listarJogadores(){

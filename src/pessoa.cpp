@@ -18,7 +18,7 @@ bool Pessoa::operator< (const Pessoa& pessoa)
 }
 
 bool Pessoa::changeNome(string nome){
-	if (nome == "")
+	if (nome != "")
 	{
 		this->nome = nome;
 		return true;
