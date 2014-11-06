@@ -37,7 +37,6 @@ class Clube{
     public:
 
     Clube();
-
 	void main();
 	void TopMenu(string name);
     //DATA
@@ -103,6 +102,7 @@ class Clube{
 
     //CRUD
     bool infoPessoal();
+    bool infoSocios();
     void manutencao();
     bool manutencaoJogadores();
     bool manutencaoJogador(Jogador * j1);
