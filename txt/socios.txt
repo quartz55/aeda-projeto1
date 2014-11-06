@@ -1,10 +1,10 @@
 Senhor Socio1 # 25 Macho 128381
 Futebol
-#
+8 8 2015
 Futsal
-#
+8 8 2015
 Atletismo
-#
+8 8 2015
 --------
 Senhor Socio2 # 45 Macho 371273
 --------
