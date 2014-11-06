@@ -1,16 +1,23 @@
 Futebol
 Futebol Masculino / Sub19 / #
+5
 Basket
-#
+5
 Hoquei
 Sub20 / #
+6
 Natacao
 50 metros / 100 metros / #
+10
 Atletismo
 50 metros / 100 metros / Cooper / 1000 metros / #
+10
 Futsal
 #
+5
 Tenis
 Tenis Masculino / Tenis Feminino / #
+5
 Karate
 Karate Feminino / Karate Masculino / Karate Misto / #
+6

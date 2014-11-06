@@ -5,7 +5,8 @@ Socio::Socio(string nome, unsigned int idade, unsigned long NIF, string sexo):Jo
 }
 
 bool Socio::addModalidade(Modalidade* mod, int mes, int ano) {
-	Quota* quota = new Quota(mes,ano,mod);
+	float preco = mod->getPrecoQuota();
+	Quota* quota = new Quota(mes,ano, mod, preco);
 	quotas.push_back(quota);
 	return Jogador::addModalidade(mod);
 }

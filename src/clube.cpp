@@ -1338,8 +1338,9 @@ bool Clube::manutencaoModalidade(Modalidade * m1){
 			s << "   -" << sub_modalidades[k]->getNome() << std::endl;
 		iface->drawString(s.str());
         iface->drawString("\n\na. Mudar nome\n");
-        iface->drawString("b. Criar submodalidade\n");
-        iface->drawString("c. Remover modalidade(!)\n");
+        iface->drawString("b. Mudar preco de quota\n");
+        iface->drawString("c. Criar submodalidade\n");
+        iface->drawString("d. Remover modalidade(!)\n");
         iface->drawString("q. Voltar...\n\n");
         iface->drawString(" > ");
         char command;
@@ -1363,6 +1364,24 @@ bool Clube::manutencaoModalidade(Modalidade * m1){
             }
         }
         if (command == 'b'){
+            TopMenu("ALTERAR MODALIDADE");
+            iface->drawString("Novo preco? ");
+            float preco;
+            iface->read(preco);
+            if (m1->setPrecoQuota(preco)){
+                TopMenu("ALTERAR MODALIDADE");
+                iface->drawString("\nPreco foi mudado com sucesso\n\n");
+                pressToContinue();
+                continue;
+            }
+            else{
+                TopMenu("ALTERAR MODALIDADE");
+                iface->drawString("\nOcorreu um erro...\n\n");
+                pressToContinue();
+                continue;
+            }
+        }
+        if (command == 'c'){
             TopMenu("NOVA SUBMODALIDADE");
             iface->drawString("\nNome? ");
             string nome;
@@ -1373,7 +1392,7 @@ bool Clube::manutencaoModalidade(Modalidade * m1){
             pressToContinue();
             continue;
         }
-        if (command == 'c'){
+        if (command == 'd'){
             TopMenu("ALTERAR MODALIDADE");
             for (size_t i = 0; i < modalidades.size(); i++)
             {
