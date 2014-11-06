@@ -22,8 +22,12 @@ bool Pessoa::changeNome(string nome){
     return true;
 }
 bool Pessoa::changeIdade(unsigned int idade){
-    this->idade = idade;
-    return true;
+	if (idade < 120)
+	{
+		this->idade = idade;
+		return true;
+	}
+	return false;
 }
 bool Pessoa::changeNIF(unsigned long NIF){
     this->NIF = NIF;
