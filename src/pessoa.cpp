@@ -18,8 +18,12 @@ bool Pessoa::operator< (const Pessoa& pessoa)
 }
 
 bool Pessoa::changeNome(string nome){
-    this->nome = nome;
-    return true;
+	if (nome == "")
+	{
+		this->nome = nome;
+		return true;
+	}
+		return false;
 }
 bool Pessoa::changeIdade(unsigned int idade){
 	if (idade < 120)
