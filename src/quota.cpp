@@ -31,7 +31,7 @@ bool Quota::operator< (const Quota& quota) const
 	return *last_payed < *quota.last_payed;
 }
 
-const Modalidade* Quota::getModalidade() const {
+Modalidade* Quota::getModalidade() const {
 	return modalidade;
 }
 
