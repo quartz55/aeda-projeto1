@@ -1,10 +1,10 @@
--Na manutençao de modalidades mostrar as submodalidades da modalidade;
--Na associaçao de mods/submods nos jogadores mostrar as mods/submods existentes antes da insersao do texto;
--Na escolha/mudança de sexo permitir so duas opcoes;
+-Na manutenÃ§ao de modalidades mostrar as submodalidades da modalidade;
+-Na associaÃ§ao de mods/submods nos jogadores mostrar as mods/submods existentes antes da insersao do texto;
+(JOAO) -Na escolha/mudanÃ§a de sexo permitir so duas opcoes;
 -Nao permitir mais que 120 anos;
--Na informaçao do socio mostrar quotas;
+-Na informaÃ§ao do socio mostrar quotas;
 -Na listagem de socios/jogadores por modalidades listar socios/jogadores que nao pertencem a nenhuma;
--Na listagem de socios permitir seleçao de um socio para consultar informaçao(tal como no jogador);
+-Na listagem de socios permitir seleÃ§ao de um socio para consultar informaÃ§ao(tal como no jogador);
 -Incluir despesas automaticas para salarios de externos e jogadores(?) ou criar uma despesa unitaria que engloba as duas(?);
 -No pdf diz para listarmos quotas pagas e em atraso por socios;
 
@@ -14,5 +14,5 @@ SE SOUBEREM MAIS CENAS PONHA AQUI!
 
 
 
--Documentaçao Doxygen;
+-DocumentaÃ§ao Doxygen;
 -Relatorio;
