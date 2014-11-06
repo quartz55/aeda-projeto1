@@ -26,6 +26,7 @@ class Modalidade{
 	bool changeNome(string nome);
     void setNumSubs(unsigned int I){this->num_submods = I;}
 
+	string showSubModalidades();
 	string showInfo() const;
 
     protected:
