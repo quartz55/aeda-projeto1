@@ -532,7 +532,7 @@ bool Clube::manutencaoSocio(Socio *s1){
                 pressToContinue();
                 return false;
             }
-            iface->drawString("\nModalidade desassociada com sucesso\n\n");
+            iface->drawString("\nModalidade associada com sucesso\n\n");
             pressToContinue();
             return true;
         }
