@@ -5,7 +5,7 @@
 -Na listagem de socios/jogadores por modalidades listar socios/jogadores que nao pertencem a nenhuma;
 -Incluir despesas automaticas para salarios de externos e jogadores(?) ou criar uma despesa unitaria que engloba as duas(?);
 -No pdf diz para listarmos quotas pagas e em atraso por socios;
--Fazer o voltar(q. Voltar) voltar sempre para o menu anterior e nao 2/3 menus anteriores(acontece em alguns)
+(JOAO) -Fazer o voltar(q. Voltar) voltar sempre para o menu anterior e nao 2/3 menus anteriores(acontece em alguns)
 
 
 SE SOUBEREM MAIS CENAS PONHA AQUI!
