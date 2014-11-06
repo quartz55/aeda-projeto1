@@ -26,6 +26,9 @@ bool Clube::readModalidades(string filename){
 				sub_modalidades.push_back(s1);
 				ss >> helper;
 			}
+			float valor;
+			file >> valor;
+			getline(file,line);
 		}
 		file.close();
 		return true;
@@ -180,29 +183,19 @@ bool Clube::readSocios(string filename){
             getline(file, line);
             while(line != "--------"){
                 for(unsigned int i = 0; i < modalidades.size(); i++){
-                    if(modalidades[i]->getNome() == line)
+                    if(modalidades[i]->getNome() == line){
                         s1->addModalidade(modalidades[i], dataActual.getMonth(), dataActual.getYear());
-                }
-
-                string helper;
-                getline(file,line);
-
-                std::stringstream ss(line);
-
-                ss >> helper;
-                while(helper != "#"){
-                    std::stringstream sub;
-                    while(helper != "/"){
-                        sub << helper << " ";
-                        ss >> helper;
+                        int dia,mes,ano;
+                        file >> dia >> mes >> ano;
+                        vector <Quota*> quotas = s1->getQuotas();
+                        for(size_t k=0;k < quotas.size(); k++){
+                        	if(quotas[k]->getModalidade() == modalidades[i]){
+                        		Data *data = new Data(dia,mes,ano);
+                        		quotas[k]->setData(data);
+                        	}
+                        }
+                        getline(file,line);
                     }
-                    string nome_sub = sub.str();
-                    nome_sub.erase(nome_sub.size()-1);
-                    for(unsigned int i = 0; i < sub_modalidades.size(); i++){
-                        if(sub_modalidades[i]->getNome() == nome_sub)
-                            s1->addSubModalidade(sub_modalidades[i]);
-                    }
-                    ss >> helper;
                 }
 
                 getline(file, line);
@@ -229,6 +222,9 @@ bool Clube::writeModalidades(vector<Modalidade *> modalidades, string filename){
             }
             ss << "#";
             file << ss.str();
+            file << endl;
+            float *p = modalidades[i]->getPrecoQuota();
+            file << *p;
             file << endl;
         }
         file.close();
@@ -286,17 +282,16 @@ bool Clube::writeSocios(vector<Socio *> socios, string filename){
             file << ss.str();
             file << endl;
             vector <Modalidade *> mods = socios[i]->getMods();
-            vector <SubModalidade *> sub_mods = socios[i]->getSubMods();
+            vector<Quota *> quotas =socios[i]->getQuotas();
             for(unsigned int k = 0; k < mods.size(); k++){
                 string mod_nome = mods[k]->getNome();
-                file << mod_nome << endl;;
+                file << mod_nome << endl;
                 ss.str(string()); //Clears the stringstream
-                for(unsigned int j = 0; j < sub_mods.size(); j++){
-                    if(sub_mods[j]->getMod()->getNome() == mod_nome)
-                        ss << sub_mods[j]->getNome() << " / ";
+                for(size_t j = 0; j < quotas.size(); j++){
+                	if(quotas[j]->getModalidade() == mods[k]){
+                		file << quotas[j]->getLastPayed()->getDay() << " " << quotas[j]->getLastPayed()->getMonth() << " " << quotas[j]->getLastPayed()->getYear();
+                	}
                 }
-                ss << "#";
-                file << ss.str();
                 file << endl;
             }
             file << "--------\n";

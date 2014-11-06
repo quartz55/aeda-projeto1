@@ -52,7 +52,7 @@ string Jogador::showModalidades() const{
         s << "Modalidades de " << nome << std::endl;
         s << "--------------------------\n";
         for(unsigned int i = 0; i<modalidades.size(); i++){
-            s << "» " << modalidades[i]->getNome() << std::endl;
+            s << "> " << modalidades[i]->getNome() << std::endl;
         }
     }
     return s.str();

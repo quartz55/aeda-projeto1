@@ -17,10 +17,11 @@ class Socio: public Jogador{
     Socio(string nome, unsigned int idade, unsigned long NIF, string sexo);
     bool addModalidade(Modalidade *mod, int mes, int ano);
     int QuotasAtrasadas(Data dataActual);
-    float pagarQuotas(int meses, Data dataActual);
+    float pagarQuotas(int meses, Data dataActual, bool pagar);
     bool removeQuota(Modalidade* mod);
+    vector <Quota *> getQuotas() const {return quotas;};
 
-    string showInfo() const {return Jogador::showInfo();}
+    string showInfo() const;
 };
 
 #endif
