@@ -206,27 +206,29 @@ bool Clube::listarExternos(){
 }
 
 
-void Clube::listarMods(vector <Modalidade *> modalidades){
+string Clube::listarMods(vector <Modalidade *> modalidades){
     bool tem_subs = false;
+    std::stringstream ss;
     for(unsigned int i = 0; i < modalidades.size(); i++){
-        iface->drawString(" - ");
-        iface->drawString(modalidades[i]->getNome());
-        iface->newLine();
+        ss << " - ";
+        ss << modalidades[i]->getNome();
+        ss << "\n";
         for(unsigned int k = 0; k < sub_modalidades.size(); k ++){
             if(sub_modalidades[k]->getMod()->getNome() == modalidades[i]->getNome()){
                 tem_subs = true;
-                iface->drawString("   > ");
-                iface->drawString(sub_modalidades[k]->getNome());
-                iface->newLine();
+                ss << "   > ";
+                ss << sub_modalidades[k]->getNome();
+                ss << "\n";
             }
         }
-        if(!tem_subs) iface->drawString("   * Nao tem submodalidades associadas\n");
-        iface->newLine();
+        if(!tem_subs) ss << "   * Nao tem submodalidades associadas\n";
+        ss << "\n";
         tem_subs = false;
     }
+    return ss.str();
 }
 
-bool Clube::listarModalidades(){
+bool Clube::listarModalidades(string &lista){
     while (1){
 		TopMenu("LISTAGEM DE MODALIDADES");
         char command;
@@ -237,19 +239,23 @@ bool Clube::listarModalidades(){
         iface->drawString("q. Voltar\n\n");
         iface->drawString("   > ");
         iface->readChar(command);
+        std::stringstream ss;
+        ss.str(string());
         if (command == 'a'){
             std::vector <Modalidade *> ordenado = modalidades;
             std::sort(ordenado.begin(), ordenado.end(), sortByNome);
 			TopMenu("LISTAGEM DE MODALIDADES");
-            iface->drawString("Modalidades por ordem alfabetica (A-Z):\n");
-            listarMods(ordenado);
+            ss << "Modalidades por ordem alfabetica (A-Z):\n";
+            ss << listarMods(ordenado);
+            lista = ss.str();
         }
         else if (command == 'b'){
             std::vector <Modalidade *> ordenado = modalidades;
             std::sort(ordenado.begin(), ordenado.end(), sortByNum);
 			TopMenu("LISTAGEM DE MODALIDADES");
-            iface->drawString("Modalidades por numero de submodalidades:\n");
-            listarMods(ordenado);
+            ss << "Modalidades por numero de submodalidades:\n";
+            ss << listarMods(ordenado);
+            lista = ss.str();
         }
         else if (command == 'c'){
             if(jogadores.size() == 0){
@@ -258,8 +264,9 @@ bool Clube::listarModalidades(){
                 continue;
             }
 			TopMenu("LISTAGEM DE MODALIDADES");
-            iface->drawString("Modalidades com jogadores:\n");
-            iface->drawString(listarPorModalidades(jogadores));
+            ss << "Modalidades com jogadores:\n";
+            ss << listarPorModalidades(jogadores);
+            lista = ss.str();
         }
         else if (command == 'd'){
             if(socios.size() == 0){
@@ -268,8 +275,9 @@ bool Clube::listarModalidades(){
                 continue;
             }
 			TopMenu("LISTAGEM DE MODALIDADES");
-            iface->drawString("Modalidades com socios:\n");
-            iface->drawString(listarPorModalidades(socios));
+            ss << "Modalidades com socios:\n";
+            ss << listarPorModalidades(socios);
+            lista = ss.str();
         }
         else if(command == 'q') return false;
         else continue;
