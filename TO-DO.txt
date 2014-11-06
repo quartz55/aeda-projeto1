@@ -39,7 +39,9 @@
 »»»NOT FIXED«««
 
 (RUI) -Bug ao ler o valor das quotas do ficehiro de modalidades
+(JOAO) -Bug no pagamento de quotas(nao volta atraz)
 -Por alguma razao os sorts nao estao a funcionar depois de se modificar alguma coisa(por exemplo, depois de mudar o nome de uma modalidade o sortByNome nao funciona bem)
+
 
 
 
