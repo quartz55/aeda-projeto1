@@ -88,3 +88,16 @@ bool Jogador::removeModalidade(Modalidade *mod)
 	return false;
 }
 
+bool Jogador::removeSubModalidade(SubModalidade *mod)
+{
+	for (size_t i = 0; i < sub_modalidades.size(); i++)
+	{
+		if (sub_modalidades[i] == mod)
+		{
+			sub_modalidades.erase(sub_modalidades.begin() + i);
+			return true;
+		}
+	}
+	return false;
+}
+

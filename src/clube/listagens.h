@@ -109,7 +109,6 @@ bool Clube::listarJogadores(){
 
 bool Clube::listarExternos(){
 	while (1){
-		iface->cleanScr();
 		char command;
 		TopMenu("LISTAGEM DE EXTERNOS");
 		iface->drawString("a. Listar por ordem alfabetica\n");
@@ -147,7 +146,6 @@ bool Clube::listarExternos(){
 
 bool Clube::listarSocios(){
     while (1){
-        iface->cleanScr();
         char command;
 		TopMenu("LISTAGEM DE SOCIOS");
         iface->drawString("a. Listar por ordem alfabetica\n");
@@ -213,7 +211,6 @@ bool Clube::listarModalidades(){
     while (1){
 		TopMenu("LISTAGEM DE MODALIDADES");
         char command;
-        iface->drawString("LISTAGEM DE MODALIDADES\n\n");
         iface->drawString("a. Listar por ordem alfabetica\n");
         iface->drawString("b. Listar por numero de submodalidades\n");
         iface->drawString("c. Listar com jogadores\n");
@@ -237,18 +234,18 @@ bool Clube::listarModalidades(){
         }
         else if (command == 'c'){
             if(jogadores.size() == 0){
-                iface->drawString("O clube nao tem socios associados!\n");
-                iface->getInput();
+                iface->drawString("\n\nO clube nao tem socios associados!\n");
+				pressToContinue();
                 continue;
             }
-            iface->cleanScr();
+			TopMenu("LISTAGEM DE MODALIDADES");
             iface->drawString("Modalidades com jogadores:\n");
             listarPorModalidades(jogadores);
         }
         else if (command == 'd'){
             if(socios.size() == 0){
-                iface->drawString("O clube nao tem socios associados!\n");
-                iface->getInput();
+                iface->drawString("\n\nO clube nao tem socios associados!\n");
+				pressToContinue();
                 continue;
             }
 			TopMenu("LISTAGEM DE MODALIDADES");
@@ -291,18 +288,16 @@ bool Clube::listarDespesas() {
 	    					int mes;
 	    					iface->read(mes);
 	    					if(mes < 0 || mes > 12){
-	    						iface->drawString("Mes invalido!\n\n");
-								iface->drawString("\n* Carregue numa tecla para voltar... *\n");
-								iface->getInput();
+	    						iface->drawString("\n\nMes invalido!\n\n");
+								pressToContinue();
 	    					}
 	    					else {
 	    						iface->drawString("Ano :");
 	    						int ano;
 	    						iface->read(ano);
 	    						if(ano < 0 || ano > 3000){
-	    							iface->drawString("Ano invalido!\n\n");
-									iface->drawString("\n* Carregue numa tecla para voltar... *\n");
-									iface->getInput();
+	    							iface->drawString("\n\nAno invalido!\n\n");
+									pressToContinue();
 	    						}
 	    						else{
 									TopMenu("LISTAGEM DE DESPESAS");
@@ -322,13 +317,13 @@ bool Clube::listarDespesas() {
 	    					}
 	    				}
 	    				if (command == 'b'){
-	    					iface->cleanScr();
+							TopMenu("LISTAGEM DE DESPESAS");
 	    					iface->drawString("Ano :");
 	    					int ano;
 	    					iface->read(ano);
 	    					if(ano < 0 || ano > 3000){
-	    						iface->drawString("Ano invalido!\n");
-								iface->getInput();
+	    						iface->drawString("\n\nAno invalido!\n");
+								pressToContinue();
 	    					}
 	    					else{
 								TopMenu("LISTAGEM DE DESPESAS");
@@ -372,30 +367,29 @@ bool Clube::listarDespesas() {
 	    		iface->readChar(command);
 	    		if(command == 'y'){
 	    			while(1){
-	    				iface->cleanScr();
+						TopMenu("LISTAGEM DE DESPESAS");
 	    				iface->drawString("a. Mes e Ano \n");
 	    				iface->drawString("b. Ano \n");
 	    				iface->drawString("q. Voltar\n\n");
 	    				iface->drawString("   > ");
 	    				iface->readChar(command);
 	    				if (command == 'a'){
-	    					iface->cleanScr();
+							TopMenu("LISTAGEM DE DESPESAS");
 	    					iface->drawString("Mes (inteiro correspondente) :");
 	    					int mes;
 	    					iface->read(mes);
 	    					if(mes < 0 || mes > 12){
-	    						iface->drawString("Mes invalido!\n\n");
-								iface->drawString("\n* Carregue numa tecla para voltar... *\n");
-								iface->getInput();
+	    						iface->drawString("\n\nMes invalido!\n\n");
+								pressToContinue();
 	    					}
 	    					else {
+								TopMenu("LISTAGEM DE DESPESAS");
 	    						iface->drawString("Ano :");
 	    						int ano;
 	    						iface->read(ano);
 	    						if(ano < 0 || ano > 3000){
-	    							iface->drawString("Ano invalido!\n");
-									iface->drawString("* Carregue numa tecla para voltar... *\n\n");
-									iface->getInput();
+	    							iface->drawString("\n\nAno invalido!\n");
+									pressToContinue();
 	    						}
 	    						else{
 									TopMenu("LISTAGEM DE DESPESAS");
@@ -420,9 +414,8 @@ bool Clube::listarDespesas() {
 	    					int ano;
 	    					iface->read(ano);
 	    					if(ano < 0 || ano > 3000){
-	    						iface->drawString("Ano invalido!\n\n");
-								iface->drawString("\n* Carregue numa tecla para voltar... *\n");
-								iface->getInput();
+	    						iface->drawString("\n\nAno invalido!\n\n");
+								pressToContinue();
 	    					}
 	    					else{
 								TopMenu("LISTAGEM DE DESPESAS");
