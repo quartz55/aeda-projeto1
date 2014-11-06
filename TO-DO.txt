@@ -5,8 +5,9 @@
 -Incluir despesas automaticas para salarios de externos e jogadores(?) ou criar uma despesa unitaria que engloba as duas(?);
 -No pdf diz para listarmos quotas pagas e em atraso por socios;
 (JOAO) -Fazer o voltar(q. Voltar) voltar sempre para o menu anterior e nao 2/3 menus anteriores(acontece em alguns)
-- (DIOGO) Guarda informacao das ultimas quotas pagas no txt dos socios;
+*** (DIOGO) Guarda informacao das ultimas quotas pagas no txt dos socios; *** FEITO
 *** (DIOGO) Mudar preço de uma quota na modalidade; *** FEITO
+-Bug ao ler o valor das quotas do ficehiro de modalidades
 -Manutenção de submodalidade;
 -Nao aceitar strings vazias para nomes, etc... 
 -Excepcoes
