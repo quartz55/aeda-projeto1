@@ -1,5 +1,5 @@
-﻿(RUI)-Na manutençao de modalidades mostrar as submodalidades da modalidade;
--Na associaçao de mods/submods nos jogadores mostrar as mods/submods existentes antes da insersao do texto;
+*** (RUI)-Na manutençao de modalidades mostrar as submodalidades da modalidade;
+(RUI) Na associaçao de mods/submods nos jogadores mostrar as mods/submods existentes antes da insersao do texto;
 *** (JOAO) -Na escolha/mudança de sexo permitir so duas opcoes; *** FEITO
 (DIOGO)-Na informaçao do socio mostrar quotas;
 -Na listagem de socios/jogadores por modalidades listar socios/jogadores que nao pertencem a nenhuma;
@@ -7,6 +7,7 @@
 -No pdf diz para listarmos quotas pagas e em atraso por socios;
 (JOAO) -Fazer o voltar(q. Voltar) voltar sempre para o menu anterior e nao 2/3 menus anteriores(acontece em alguns)
 
+-Manutenção de submodalidade
 
 SE SOUBEREM MAIS CENAS PONHA AQUI!
 
