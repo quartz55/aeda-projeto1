@@ -11,6 +11,7 @@ class Modalidade{
 
     string nome;
     unsigned int num_submods;
+    float precoQuota;
 
     public:
     Modalidade(string nome);
@@ -21,7 +22,8 @@ class Modalidade{
     //GET
     string getNome(){return nome;}
     unsigned int getNumSubs(){return num_submods;}
-
+    float * getPrecoQuota(){float *pt;pt = &precoQuota; return pt;}
+    bool setPrecoQuota(float novoPreco) {this->precoQuota = novoPreco; return true;}
     //CHANGE
 	bool changeNome(string nome);
     void setNumSubs(unsigned int I){this->num_submods = I;}

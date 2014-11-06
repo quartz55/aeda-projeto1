@@ -20,7 +20,7 @@ class Socio: public Jogador{
     float pagarQuotas(int meses, Data dataActual);
     bool removeQuota(Modalidade* mod);
 
-    string showInfo() const {return Jogador::showInfo();}
+    string showInfo() const;
 };
 
 #endif

@@ -26,6 +26,11 @@ bool Clube::readModalidades(string filename){
 				sub_modalidades.push_back(s1);
 				ss >> helper;
 			}
+			std::stringstream preco;
+			float valor;
+			getline(file,line);
+			preco << line;
+			preco >> valor;
 		}
 		file.close();
 		return true;
@@ -229,6 +234,9 @@ bool Clube::writeModalidades(vector<Modalidade *> modalidades, string filename){
             }
             ss << "#";
             file << ss.str();
+            file << endl;
+            float *p = modalidades[i]->getPrecoQuota();
+            file << *p;
             file << endl;
         }
         file.close();

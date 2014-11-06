@@ -8,10 +8,10 @@
 class Quota{
 
 public:
-	Quota(int m, int ano, Modalidade* mod);
+	Quota(int m, int ano, Modalidade* mod, float *valor);
 	const Data* getLastPayed() const;
 	void setLastPayed(Data* lastPayed);
-	const Modalidade * getModalidade() const;
+	Modalidade * getModalidade() const;
 	float getPreco() const;
 	void setPreco(float preco);
 	void pagarQuota(int meses);
@@ -21,7 +21,7 @@ public:
 protected:
 	Modalidade * modalidade;
 	Data * last_payed; // data da ultima quota paga
-	static float preco;
+	float* preco;
 };
 
 #endif

@@ -5,7 +5,7 @@ Socio::Socio(string nome, unsigned int idade, unsigned long NIF, string sexo):Jo
 }
 
 bool Socio::addModalidade(Modalidade* mod, int mes, int ano) {
-	Quota* quota = new Quota(mes,ano,mod);
+	Quota* quota = new Quota(mes,ano, mod, mod->getPrecoQuota());
 	quotas.push_back(quota);
 	return Jogador::addModalidade(mod);
 }
@@ -54,4 +54,17 @@ bool Socio::removeQuota(Modalidade* mod) {
         }
     }
     return false;
+}
+
+string Socio::showInfo() const {
+	std::stringstream ss;
+	ss << Jogador::showInfo();
+	ss << "Ultimas quotas pagas: \n\n";
+	if(quotas.size() >0) {
+		for(size_t i = 0; i < quotas.size(); i++){
+			ss << quotas[i]->showQuota() << "\n";
+		}
+		ss << "\n \n";
+	}
+	return ss.str();
 }
