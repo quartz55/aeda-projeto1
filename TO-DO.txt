@@ -1,0 +1,2 @@
+-Na manutençao de modalidades mostrar as submodalidades da modalidade;
+-Na associaçao de mods/submods nos jogadores/socios mostrar as mods/submods existentes antes da insersao do texto;
