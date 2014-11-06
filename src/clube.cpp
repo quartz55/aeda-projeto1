@@ -60,7 +60,7 @@ void Clube::main()
 				pressToContinue();
                 continue;
             }
-            while(infoPessoal());
+            while(infoJogadores());
         }
         else if (command == 'b'){
             if(socios.size() == 0){
@@ -68,10 +68,7 @@ void Clube::main()
 				pressToContinue();
                 continue;
             }
-            while(1){
-                if(!infoSocios()) break;
-				pressToContinue();
-            }
+            while(infoSocios());
         }
 		else if (command == 'c') {
 			if (externos.size() == 0){
@@ -249,58 +246,70 @@ bool Clube::changeDespesa(Despesa* d, string newInfo, Data* novaData, float novo
     return true;
 }
 
-bool Clube::infoPessoal(){
+bool Clube::infoJogadores(){
     while(1){
-        iface->cleanScr();
-        if(!listarJogadores())
+        string lista;
+        if(!listarJogadores(lista))
             return false;
-        iface->drawString("(q para sair)\n\n");
-        iface->drawString("Escolha o jogador para mostrar mais informacao: ");
-        string nome_input;
-        iface->readLine(nome_input);
-        if(nome_input == "q") return true;
-        Jogador *j1 = NULL;
-        for(unsigned int i = 0; i<jogadores.size(); i++){
-            if(jogadores[i]->getNome() == nome_input) j1 = jogadores[i];
-        }
-        if(j1 != NULL){
+        while(1){
             iface->cleanScr();
-            iface->drawString(j1->showInfo());
-			pressToContinue();
-            continue;
-        }
-        else {
-            iface->drawString("\n\nJogador nao existe!\n");
-			pressToContinue();
-            continue;
+			TopMenu("LISTAGEM DE JOGADORES");
+            iface->drawString(lista);
+            iface->drawString("(q para sair)\n\n");
+            iface->drawString("Escolha o jogador para mostrar mais informacao: ");
+            string nome_input;
+            iface->readLine(nome_input);
+            if(nome_input == "q") return true;
+            Jogador *j1 = NULL;
+            for(unsigned int i = 0; i<jogadores.size(); i++){
+                if(jogadores[i]->getNome() == nome_input) j1 = jogadores[i];
+            }
+            if(j1 != NULL){
+                iface->cleanScr();
+			    TopMenu("INFO DE JOGADOR");
+                iface->drawString(j1->showInfo());
+                pressToContinue();
+                continue;
+            }
+            else {
+                iface->drawString("\n\nJogador nao existe!\n");
+                pressToContinue();
+                continue;
+            }
         }
     }
     return false;
 }
 bool Clube::infoSocios(){
     while(1){
-        iface->cleanScr();
-        if(!listarSocios())
+        string lista;
+        if(!listarSocios(lista))
             return false;
-        iface->drawString("(q para sair)\n\n");
-        iface->drawString("Escolha o socio para mostrar mais informacao: ");
-        string nome_input;
-        iface->readLine(nome_input);
-        if(nome_input == "q") return true;
-        Socio *s1 = NULL;
-        for(unsigned int i = 0; i<socios.size(); i++){
-            if(socios[i]->getNome() == nome_input) s1 = socios[i];
-        }
-        if(s1 != NULL){
+        while(1){
             iface->cleanScr();
-            iface->drawString(s1->showInfo());
-			pressToContinue();
-            continue;
-        }
-        else {
-            iface->drawString("\n\nSocio nao existe!\n");
-			pressToContinue();
-            continue;
+			TopMenu("LISTAGEM DE SOCIOS");
+            iface->drawString(lista);
+            iface->drawString("(q para sair)\n\n");
+            iface->drawString("Escolha o socio para mostrar mais informacao: ");
+            string nome_input;
+            iface->readLine(nome_input);
+            if(nome_input == "q") return true;
+            Socio *s1 = NULL;
+            for(unsigned int i = 0; i<socios.size(); i++){
+                if(socios[i]->getNome() == nome_input) s1 = socios[i];
+            }
+            if(s1 != NULL){
+                iface->cleanScr();
+			    TopMenu("INFO DE SOCIO");
+                iface->drawString(s1->showInfo());
+                pressToContinue();
+                continue;
+            }
+            else {
+                iface->drawString("\n\nSocio nao existe!\n");
+                pressToContinue();
+                continue;
+            }
         }
     }
     return false;
@@ -309,22 +318,22 @@ void Clube::manutencao(){
     while(1){
         iface->cleanScr();
         char command;
-		TopMenu("MANUTENCAO");
+        TopMenu("MANUTENCAO");
         iface->drawString("a. Manutencao de jogadores\n");
-		iface->drawString("b. Manutencao de socios\n");
-		iface->drawString("c. Manutencao de externos\n");
+        iface->drawString("b. Manutencao de socios\n");
+        iface->drawString("c. Manutencao de externos\n");
         iface->drawString("d. Manutencao de modalidades\n");
         iface->drawString("e. Manutencao de despesas\n");
-		iface->drawString("f. Alterar data\n");
+        iface->drawString("f. Alterar data\n");
         iface->drawString("q. Voltar\n\n");
         iface->drawString("   > ");
         iface->readChar(command);
         if(command == 'a') while(manutencaoJogadores());
-        else if (command == 'b') manutencaoSocios();
-		else if (command == 'c') while (manutencaoExternos());
-		else if (command == 'd') while (manutencaoModalidades());
+        else if (command == 'b') while(manutencaoSocios());
+        else if (command == 'c') while (manutencaoExternos());
+        else if (command == 'd') while (manutencaoModalidades());
         else if (command == 'e') manutencaoDespesas();
-		else if (command == 'f') alterarData();
+        else if (command == 'f') alterarData();
         else if(command == 'q') return;
     }
     return;
@@ -332,19 +341,19 @@ void Clube::manutencao(){
 
 
 bool Clube::manutencaoSocios(){
-	TopMenu("MANUTENCAO SOCIO");
-	iface->drawString("a. Adicionar socio\n");
-	iface->drawString("b. Alterar socio existente\n");
-	iface->drawString("\n(q para sair)\n\n");
-	iface->drawString("   > ");
-	char command;
-	iface->readChar(command);
-	if (command == 'a')
-	{
-		TopMenu("ADICIONAR SOCIO");;
-		string nome, sexo;
+    TopMenu("MANUTENCAO SOCIO");
+    iface->drawString("a. Adicionar socio\n");
+    iface->drawString("b. Alterar socio existente\n");
+    iface->drawString("\n(q para sair)\n\n");
+    iface->drawString("   > ");
+    char command;
+    iface->readChar(command);
+    if (command == 'a')
+    {
+        TopMenu("ADICIONAR SOCIO");;
+        string nome, sexo;
         char sexo_c = ' ';
-		iface->drawString("Nome: ");
+        iface->drawString("Nome: ");
         iface->readLine(nome);
         if (nome == "q") return true;
         while(sexo_c != 'm' && sexo_c != 'f' && sexo_c != 'q'){
@@ -382,10 +391,11 @@ bool Clube::manutencaoSocios(){
         if (socios.size() == 0){
             iface->drawString("O clube nao tem socios associados!\n");
             pressToContinue();
-            return false;
+            return true;
         }
-        if (!listarSocios())
-            return false;
+        string lista;
+        if (!listarSocios(lista))
+            return true;
 
         iface->drawString("\n(q para sair)\n\n");
         while (1){
@@ -1007,15 +1017,18 @@ bool Clube::manutencaoJogadores(){
 
     }
     else if (command == 'b') {
+        string lista;
         if (jogadores.size() == 0){
             iface->drawString("O clube nao tem jogadores associados!\n");
             pressToContinue();
-            return false;
+            return true;
         }
-        if (!listarJogadores())
-            return false;
-        iface->drawString("(q para sair)\n\n");
+        if (!listarJogadores(lista))
+            return true;
         while (1){
+            iface->cleanScr();
+            iface->drawString(lista);
+            iface->drawString("(q para sair)\n\n");
             iface->drawString("Escolha o jogador a gerir: ");
             string nome_input;
             iface->readLine(nome_input);

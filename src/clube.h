@@ -85,14 +85,14 @@ class Clube{
     void listarPessoal();
 
     template<class C>
-    void listarPessoas(vector <C *> pessoas, bool idade, bool sexo);
+    std::string listarPessoas(vector <C *> pessoas, bool idade, bool sexo);
 
     template<class C>
-    void listarPorModalidades(vector<C *> pessoas);
+    std::string listarPorModalidades(vector<C *> pessoas);
 
     bool listarExternos();
-    bool listarJogadores();
-    bool listarSocios();
+    bool listarJogadores(string &lista);
+    bool listarSocios(string &lista);
 
     void listarMods(vector <Modalidade *> modalidades);
     bool listarModalidades();
@@ -101,7 +101,7 @@ class Clube{
     //#######################################
 
     //CRUD
-    bool infoPessoal();
+    bool infoJogadores();
     bool infoSocios();
     void manutencao();
     bool manutencaoJogadores();

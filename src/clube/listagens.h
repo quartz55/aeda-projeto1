@@ -3,6 +3,8 @@
 
 #include "sorts.h"
 #include <algorithm>
+#include <string>
+#include <sstream>
 #include <vector>
 
 void Clube::listarPessoal(){
@@ -20,51 +22,55 @@ void Clube::listarPessoal(){
 }
 
 template<class C>
-void Clube::listarPessoas(vector<C *> pessoas, bool idade, bool sexo){
+string Clube::listarPessoas(vector<C *> pessoas, bool idade, bool sexo){
+    std::stringstream ss;
     for(unsigned int i = 0; i < pessoas.size(); i++){
-        iface->drawString("   > ");
-        iface->drawString(pessoas[i]->getNome());
+        ss << "   > ";
+        ss << pessoas[i]->getNome();
         if(idade){
-            iface->drawString(", ");
-            iface->drawString(pessoas[i]->getIdade());
+            ss << ", ";
+            ss << pessoas[i]->getIdade();
         }
         if(sexo){
-            iface->drawString(" - ");
-            iface->drawString(pessoas[i]->getSexo());
+            ss << " - ";
+            ss << pessoas[i]->getSexo();
         }
-        iface->newLine();
+        ss << "\n";
     }
-    iface->newLine();
+    ss << "\n";
+    return ss.str();
 }
 
 template<class C>
-void Clube::listarPorModalidades(vector<C *> pessoas){
+string Clube::listarPorModalidades(vector<C *> pessoas){
+    std::stringstream ss;
     bool existe = false;
     for(unsigned int i = 0; i < modalidades.size(); i++){
-        iface->drawString(" - ");
-        iface->drawString(modalidades[i]->getNome());
-        iface->newLine();
+        ss << " - ";
+        ss << modalidades[i]->getNome();
+        ss << "\n";
         for(unsigned int k = 0; k < pessoas.size(); k++){
             for(unsigned int j = 0; j < pessoas[k]->getMods().size(); j++){
                 if(pessoas[k]->getMods()[j] == modalidades[i]){
                     existe = true;
-                    iface->drawString("   > ");
-                    iface->drawString(pessoas[k]->getNome());
-                    iface->newLine();
+                    ss << "   > ";
+                    ss << pessoas[k]->getNome();
+                    ss << "\n";
                 }
             }
         }
         if(!existe){
-            iface->drawString("   * Nenhum ");
-            iface->drawString(pessoas[0]->getClasse());
-            iface->drawString(" pertence a esta modalidade\n");
+            ss << "   * Nenhum ";
+            ss << pessoas[0]->getClasse();
+            ss << " pertence a esta modalidade\n";
         }
-        iface->newLine();
+        ss << "\n";
         existe = false;
     }
+    return ss.str();
 }
 
-bool Clube::listarJogadores(){
+bool Clube::listarJogadores(string &lista){
     while(1){
 		TopMenu("LISTAGEM DE JOGADORES");
         char command;
@@ -75,31 +81,86 @@ bool Clube::listarJogadores(){
         iface->drawString("q. Voltar\n\n");
         iface->drawString("   > ");
         iface->readChar(command);
+        std::stringstream ss;
+        ss.str(string());
         if(command == 'a'){
             std::vector <Jogador *> ordenado(jogadores);
             std::sort(ordenado.begin(), ordenado.end(), sortByName);
 			TopMenu("LISTAGEM DE JOGADORES");
-            iface->drawString("Jogadores ordenados por ordem alfabetica (A-Z):\n");
-            listarPessoas(ordenado, false, false);
+            ss << "Jogadores ordenados por ordem alfabetica (A-Z):\n";
+            ss << listarPessoas(ordenado, false, false);
+            lista = ss.str();
         }
         else if (command == 'b'){
             std::vector <Jogador *> ordenado = jogadores;
             std::sort(ordenado.begin(), ordenado.end(), sortByIdade);
 			TopMenu("LISTAGEM DE JOGADORES");
-            iface->drawString("Jogadores ordenados por ordem de idade:\n");
-            listarPessoas(ordenado, true, false);
+            ss << "Jogadores ordenados por ordem de idade:\n";
+            ss << listarPessoas(ordenado, true, false);
+            lista = ss.str();
         }
         else if (command == 'c'){
             std::vector <Jogador *> ordenado = jogadores;
             std::sort(ordenado.begin(), ordenado.end(), sortBySexo);
 			TopMenu("LISTAGEM DE JOGADORES");
-            iface->drawString("Jogadores ordenados por sexo:\n");
-            listarPessoas(ordenado, false, true);
+            ss << "Jogadores ordenados por sexo:\n";
+            ss << listarPessoas(ordenado, false, true);
+            lista = ss.str();
         }
         else if (command == 'd'){
 			TopMenu("LISTAGEM DE JOGADORES");
-            iface->drawString("Jogadores ordenados por modalidades:\n");
-            listarPorModalidades(jogadores);
+            ss << "Jogadores ordenados por modalidades:\n";
+            ss << listarPorModalidades(jogadores);
+            lista = ss.str();
+        }
+        else if(command == 'q') return false;
+        else continue;
+        return true;
+    }
+}
+
+bool Clube::listarSocios(string &lista){
+    while (1){
+        char command;
+		TopMenu("LISTAGEM DE SOCIOS");
+        iface->drawString("a. Listar por ordem alfabetica\n");
+        iface->drawString("b. Listar por idade\n");
+        iface->drawString("c. Listar por sexo\n");
+        iface->drawString("d. Listar por modalidades\n");
+        iface->drawString("q. Voltar\n\n");
+        iface->drawString("   > ");
+        iface->readChar(command);
+        std::stringstream ss;
+        ss.str(string());
+        if(command == 'a'){
+            std::vector <Socio *> ordenado(socios);
+            std::sort(ordenado.begin(), ordenado.end(), sortByName);
+			TopMenu("LISTAGEM DE SOCIOS");
+            ss << "Socios ordenados por ordem alfabetica (A-Z):\n";
+            ss << listarPessoas(ordenado, false, false);
+            lista = ss.str();
+        }
+        else if (command == 'b'){
+            std::vector <Socio *> ordenado = socios;
+            std::sort(ordenado.begin(), ordenado.end(), sortByIdade);
+			TopMenu("LISTAGEM DE SOCIOS");
+            ss << "Socios ordenados por ordem de idade:\n";
+            ss << listarPessoas(ordenado, true, false);
+            lista = ss.str();
+        }
+        else if (command == 'c'){
+            std::vector <Socio *> ordenado = socios;
+            std::sort(ordenado.begin(), ordenado.end(), sortBySexo);
+			TopMenu("LISTAGEM DE SOCIOS");
+            ss << "Socios ordenados por sexo:\n";
+            ss << listarPessoas(ordenado, false, true);
+            lista = ss.str();
+        }
+        else if (command == 'd'){
+			TopMenu("LISTAGEM DE SOCIOS");
+            ss << "Socios ordenados por modalidades:\n";
+            ss << listarPorModalidades(socios);
+            lista = ss.str();
         }
         else if(command == 'q') return false;
         else continue;
@@ -144,48 +205,6 @@ bool Clube::listarExternos(){
 	}
 }
 
-bool Clube::listarSocios(){
-    while (1){
-        char command;
-		TopMenu("LISTAGEM DE SOCIOS");
-        iface->drawString("a. Listar por ordem alfabetica\n");
-        iface->drawString("b. Listar por idade\n");
-        iface->drawString("c. Listar por sexo\n");
-        iface->drawString("d. Listar por modalidades\n");
-        iface->drawString("q. Voltar\n\n");
-        iface->drawString("   > ");
-        iface->readChar(command);
-        if (command == 'a'){
-            std::vector <Socio *> ordenado(socios);
-            std::sort(ordenado.begin(), ordenado.end(), sortByName);
-			TopMenu("LISTAGEM DE SOCIOS");
-            iface->drawString("Socios ordenados por ordem alfabetica (A-Z):\n");
-            listarPessoas(ordenado, false, false);
-        }
-        else if (command == 'b'){
-            std::vector <Socio *> ordenado = socios;
-            std::sort(ordenado.begin(), ordenado.end(), sortByIdade);
-			TopMenu("LISTAGEM DE SOCIOS");
-            iface->drawString("Socios ordenados por ordem de idade:\n");
-            listarPessoas(ordenado, true, false);
-        }
-        else if (command == 'c'){
-            std::vector <Socio *> ordenado = socios;
-            std::sort(ordenado.begin(), ordenado.end(), sortBySexo);
-			TopMenu("LISTAGEM DE SOCIOS");
-            iface->drawString("Socios ordenados por sexo:\n");
-            listarPessoas(ordenado, false, true);
-        }
-        else if (command == 'd'){
-			TopMenu("LISTAGEM DE SOCIOS");
-            iface->drawString("Socios ordenados por modalidades:\n");
-            listarPorModalidades(socios);
-        }
-        else if(command == 'q') return false;
-        else continue;
-        return true;
-    }
-}
 
 void Clube::listarMods(vector <Modalidade *> modalidades){
     bool tem_subs = false;
