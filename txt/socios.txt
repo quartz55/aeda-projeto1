@@ -1,0 +1,14 @@
+Senhor Socio1 # 25 Macho 128381
+Futebol
+#
+Futsal
+#
+Atletismo
+#
+--------
+Senhor Socio2 # 45 Macho 371273
+--------
+Senhora Socia # 32 Femea 123781
+--------
+Senhora Socia2 # 25 Femea 127371
+--------
