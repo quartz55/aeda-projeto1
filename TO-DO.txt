@@ -1,9 +1,8 @@
-(RUI)-Na manutençao de modalidades mostrar as submodalidades da modalidade;
+﻿(RUI)-Na manutençao de modalidades mostrar as submodalidades da modalidade;
 -Na associaçao de mods/submods nos jogadores mostrar as mods/submods existentes antes da insersao do texto;
 (JOAO) -Na escolha/mudança de sexo permitir so duas opcoes;
--Na informaçao do socio mostrar quotas;
+(DIOGO)-Na informaçao do socio mostrar quotas;
 -Na listagem de socios/jogadores por modalidades listar socios/jogadores que nao pertencem a nenhuma;
--Na listagem de socios permitir seleçao de um socio para consultar informaçao(tal como no jogador);
 -Incluir despesas automaticas para salarios de externos e jogadores(?) ou criar uma despesa unitaria que engloba as duas(?);
 -No pdf diz para listarmos quotas pagas e em atraso por socios;
 -Fazer o voltar(q. Voltar) voltar sempre para o menu anterior e nao 2/3 menus anteriores(acontece em alguns)
