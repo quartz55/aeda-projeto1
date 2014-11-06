@@ -1,7 +1,7 @@
-﻿*** (RUI)-Na manutençao de modalidades mostrar as submodalidades da modalidade;
-(RUI) Na associaçao de mods/submods nos jogadores mostrar as mods/submods existentes antes da insersao do texto;
+*** (RUI)-Na manutençao de modalidades mostrar as submodalidades da modalidade; *** FEITO
+*** (RUI) Na associaçao de mods/submods nos jogadores mostrar as mods/submods existentes antes da insersao do texto; *** FEITO
 *** (JOAO) -Na escolha/mudança de sexo permitir so duas opcoes; *** FEITO
--Na listagem de socios/jogadores por modalidades listar socios/jogadores que nao pertencem a nenhuma;
+(RUI)Na listagem de socios/jogadores por modalidades listar socios/jogadores que nao pertencem a nenhuma;
 -Incluir despesas automaticas para salarios de externos e jogadores(?) ou criar uma despesa unitaria que engloba as duas(?);
 -No pdf diz para listarmos quotas pagas e em atraso por socios;
 (JOAO) -Fazer o voltar(q. Voltar) voltar sempre para o menu anterior e nao 2/3 menus anteriores(acontece em alguns)
@@ -9,7 +9,7 @@
 *** (DIOGO) Mudar preço de uma quota na modalidade; *** FEITO
 -Bug ao ler o valor das quotas do ficehiro de modalidades
 -Manutenção de submodalidade;
--Nao aceitar strings vazias para nomes, etc... 
+*** (RUI)Nao aceitar strings vazias para nomes, etc... *** FEITO
 -Excepcoes
 
 SE SOUBEREM MAIS CENAS PONHA AQUI!
