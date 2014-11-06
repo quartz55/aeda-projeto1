@@ -254,7 +254,6 @@ bool Clube::changeDespesa(Despesa* d, string newInfo, Data* novaData, float novo
 
 bool Clube::infoPessoal(){
     while(1){
-        iface->cleanScr();
         if(!listarJogadores())
             return false;
         iface->drawString("(q para sair)\n\n");
@@ -282,7 +281,6 @@ bool Clube::infoPessoal(){
 }
 bool Clube::infoSocios(){
     while(1){
-        iface->cleanScr();
         if(!listarSocios())
             return false;
         iface->drawString("(q para sair)\n\n");
@@ -295,7 +293,7 @@ bool Clube::infoSocios(){
             if(socios[i]->getNome() == nome_input) s1 = socios[i];
         }
         if(s1 != NULL){
-            iface->cleanScr();
+			TopMenu("INFORMACAO SOCIO");
             iface->drawString(s1->showInfo());
 			pressToContinue();
             continue;
