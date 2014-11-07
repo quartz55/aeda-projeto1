@@ -473,7 +473,7 @@ bool Clube::manutencaoSocio(Socio *s1){
             string nome_input;
             iface->readLine(nome_input);
             if (nome_input == "q") continue;
-            if(s1->QuotasAtrasadas(dataActual) == 0){
+            if(s1->QuotasAtrasadas(dataActual, NULL) == 0){
                 for(size_t i = 0; i < modalidades.size(); i++){
                     if(modalidades[i]->getNome() == nome_input){
                         s1->addModalidade(modalidades[i], dataActual.getMonth(),dataActual.getYear());
@@ -513,37 +513,53 @@ bool Clube::manutencaoSocio(Socio *s1){
         }
         if (command == 'g'){
             TopMenu("INFORMACAO DO SOCIO");
-            iface->drawString("O socio tem ");
-            iface->drawString(s1->QuotasAtrasadas(dataActual));
-            iface->drawString(" meses de quotas em atraso \n \n \n");
-            iface->drawString("Quantos meses deseja pagar? (q para sair)\n\n");
-            iface->drawString("   > ");
+            iface->drawString("Escolha a modalidade: \n\n");
+            iface->drawString(s1->showModalidades());
+            iface->drawString("\n\n   > ");
             string nome_input;
             iface->readLine(nome_input);
-            int meses;
-            std::stringstream ss;
-            ss << nome_input;
-            ss >> meses;
-            if (nome_input == "q") continue;;
-            while(1){
-                TopMenu("INFORMACAO DO SOCIO");
-                iface->drawString("Valor total a pagar: ");
-                iface->drawString(s1->pagarQuotas(meses, dataActual, false));
-                iface->drawString("\n\n Confirmar pagamento? (y/n)\n\n");
-                iface->drawString("   > ");
-                char command;
-                iface->readChar(command);
-                if (command == 'y') {
-                    s1->pagarQuotas(meses, dataActual, true);
-                    iface->drawString("\n\nQuotas pagas com sucesso\n\n");
-                    alterado = true;
-                    break;
-                }
-                else if(command == 'n'){
-                    iface->drawString("\n\nOperacao cancelada\n\n");
-                    pressToContinue();
-                    break;
-                }
+            Modalidade * mod = NULL;
+            for(size_t i = 0;i < modalidades.size(); i++){
+            	if(modalidades[i]->getNome() == nome_input)
+            		mod = modalidades[i];
+            }
+            if(mod != NULL){
+            	iface->drawString("O socio tem ");
+            	iface->drawString(s1->QuotasAtrasadas(dataActual, mod));
+            	iface->drawString(" meses de quotas em atraso \n \n \n");
+            	iface->drawString("Quantos meses deseja pagar? (q para sair)\n\n");
+            	iface->drawString("   > ");
+            	iface->readLine(nome_input);
+            	int meses;
+            	std::stringstream ss;
+            	ss << nome_input;
+            	ss >> meses;
+            	if (nome_input == "q") continue;;
+            	while(1){
+            		TopMenu("INFORMACAO DO SOCIO");
+            		iface->drawString("Valor total a pagar: ");
+            		iface->drawString(s1->pagarQuotas(meses, dataActual, false, mod));
+            		iface->drawString("\n\n Confirmar pagamento? (y/n)\n\n");
+            		iface->drawString("   > ");
+            		char command;
+            		iface->readChar(command);
+            		if (command == 'y') {
+            			s1->pagarQuotas(meses, dataActual, true, mod);
+            			iface->drawString("\n\nQuotas pagas com sucesso\n\n");
+            			alterado = true;
+            			break;
+            		}
+            		else if(command == 'n'){
+            			iface->drawString("\n\nOperacao cancelada\n\n");
+            			pressToContinue();
+            			break;
+            		}
+            	}
+            }
+            else{
+            	TopMenu("INFORMACAO DO SOCIO");
+            	iface->drawString("\n\nOperacao cancelada (nome invalido para modalidade)\n\n");
+            	pressToContinue();
             }
         }
         if (command == 'h'){
