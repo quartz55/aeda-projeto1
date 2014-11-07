@@ -7,8 +7,10 @@
 bool Clube::addExterno(Pessoa *p){
     if(p->getClasse() == "Externo"){
         for(unsigned int i = 0; i<externos.size(); i++){
-            if(externos[i] == p)
-                return false;
+            if(externos[i]->getNIF() == p->getNIF() || externos[i] == p)
+                throw p->getNIF();
+            if(externos[i]->getNome() == p->getNome())
+                throw p->getNome();
         }
         externos.push_back(p);
         return true;
@@ -18,8 +20,10 @@ bool Clube::addExterno(Pessoa *p){
 
 bool Clube::addJogador(Jogador *j){
     for(unsigned int i = 0; i<jogadores.size(); i++){
-        if(jogadores[i] == j)
-            return false;
+        if(jogadores[i]->getNIF() == j->getNIF() || jogadores[i] == j)
+            throw j->getNIF();
+        if(jogadores[i]->getNome() == j->getNome())
+            throw j->getNome();
     }
     jogadores.push_back(j);
     return true;
@@ -27,8 +31,10 @@ bool Clube::addJogador(Jogador *j){
 
 bool Clube::addSocio(Socio *s){
     for(unsigned int i = 0; i<socios.size(); i++){
-        if(socios[i] == s)
-            return false;
+        if(socios[i] == s || socios[i]->getNIF() == s->getNIF())
+            throw s->getNIF();
+        if(socios[i]->getNome() == s->getNome())
+        	throw s->getNome();
     }
     socios.push_back(s);
     return true;
