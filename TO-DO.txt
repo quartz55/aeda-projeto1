@@ -1,21 +1,54 @@
-*** (RUI)-Na manutençao de modalidades mostrar as submodalidades da modalidade; *** FEITO
-*** (RUI) Na associaçao de mods/submods nos jogadores mostrar as mods/submods existentes antes da insersao do texto; *** FEITO
-*** (JOAO) -Na escolha/mudança de sexo permitir so duas opcoes; *** FEITO
-*** (RUI)Na listagem de socios/jogadores por modalidades listar socios/jogadores que nao pertencem a nenhuma; *** FEITO
-*** (RUI)-Incluir despesas automaticas para salarios de externos e jogadores(?) ou criar uma despesa unitaria que engloba as duas(?); *** FEITO
--No pdf diz para listarmos quotas pagas e em atraso por socios;
-(JOAO) -Fazer o voltar(q. Voltar) voltar sempre para o menu anterior e nao 2/3 menus anteriores(acontece em alguns)
-*** (DIOGO) Guarda informacao das ultimas quotas pagas no txt dos socios; *** FEITO
-*** (DIOGO) Mudar preço de uma quota na modalidade; *** FEITO
-(RUI) -Bug ao ler o valor das quotas do ficehiro de modalidades
-*** (RUI)-Manutenção de submodalidade; *** FEITO
-*** (RUI)Nao aceitar strings vazias para nomes, etc... *** FEITO
--Excepcoes(se falhar leitura de ficheiros)
+##############
+###FEATURES###
+##############
 
-SE SOUBEREM MAIS CENAS PONHA AQUI!
+----------------------------------------------------------------------
 
+»»»TO DO«««
 
+-Excepcoes(se falhar leitura de ficheiros);
+(RUI)-Leitura e escrita de externos
 
-
+--
 -Documentaçao Doxygen;
 -Relatorio;
+
+----------------------------------------------------------------------
+
+»»»DONE«««
+
+*** (JOAO)-Fazer o voltar(q. Voltar) voltar sempre para o menu anterior e nao 2/3 menus anteriores(acontece em alguns) ***
+*** (RUI)-Na manutençao de modalidades mostrar as submodalidades da modalidade; *** FEITO
+*** (RUI) Na associaçao de mods/submods nos jogadores mostrar as mods/submods existentes antes da insersao do texto; *** FEITO
+*** (RUI) Na listagem de socios/jogadores por modalidades listar socios/jogadores que nao pertencem a nenhuma; *** FEITO
+*** (RUI)-Incluir despesas automaticas para salarios de externos e jogadores(?) ou criar uma despesa unitaria que engloba as duas(?); *** FEITO
+*** (DIOGO) Guarda informacao das ultimas quotas pagas no txt dos socios; *** FEITO
+*** (DIOGO) Mudar preço de uma quota na modalidade; *** FEITO
+*** (RUI)-Manutenção de submodalidade; *** FEITO
+*** (DIOGO)-No pdf diz para listarmos quotas pagas e em atraso por socios; *** FEITO
+
+----------------------------------------------------------------------
+
+##############
+#####BUGS#####
+##############
+
+----------------------------------------------------------------------
+
+»»»NOT FIXED«««
+
+
+----------------------------------------------------------------------
+
+»»»FIXED«««
+
+*** (JOAO) -Bug no pagamento de quotas(nao volta atraz) ***
+*** (JOAO) -Fazer update do numero de submodalidades de uma modalidade(funcao update()) sempre que se modifica alguma coisa referente a isso ***
+*** (JOAO) -Na escolha/mudança de sexo permitir so duas opcoes; *** FEITO
+*** (RUI)Nao aceitar strings vazias para nomes, etc... *** FEITO
+*** (RUI) -Bug ao ler o valor das quotas do ficehiro de modalidades *** FEITO
+
+----------------------------------------------------------------------
+
+#######
+END

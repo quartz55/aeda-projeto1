@@ -90,17 +90,18 @@ class Clube{
     template<class C>
     std::string listarPorModalidades(vector<C *> pessoas);
 
-    bool listarExternos();
+    bool listarExternos(string &lista);
     bool listarJogadores(string &lista);
     bool listarSocios(string &lista);
 
     std::string listarMods(vector <Modalidade *> modalidades);
     bool listarModalidades(string &lista);
 
-    bool listarDespesas();
+    bool listarDespesas(string &lista);
     //#######################################
 
     //CRUD
+    bool infoExternos();
     bool infoJogadores();
     bool infoSocios();
     void manutencao();
