@@ -1326,20 +1326,19 @@ bool Clube::manutencaoModalidades(){
         float preco;
         iface->read(preco);
         m1->setPrecoQuota(preco);
-        if (addModalidade(m1))
-        {
-            TopMenu("ADICIONAR MODALIDADE");
-            iface->drawString(m1->showInfo());
-            iface->drawString("\nA modalidade foi criada");
-            pressToContinue();
+        try{
+        	addModalidade(m1);
         }
-        else
-        {
-            TopMenu("ADICIONAR MODALIDADE");
-            iface->drawString(m1->showInfo());
-            iface->drawString("\nA modalidade já existe");
-            pressToContinue();
+        catch(std::string nome){
+        	TopMenu("ADICIONAR MODALIDADE");
+        	iface->drawString(m1->showInfo());
+        	iface->drawString("\nA modalidade já existe ou uma com o mesmo nome)");
+        	pressToContinue();
         }
+        TopMenu("ADICIONAR MODALIDADE");
+        iface->drawString(m1->showInfo());
+        iface->drawString("\nA modalidade foi criada");
+        pressToContinue();
         return true;
 
     }

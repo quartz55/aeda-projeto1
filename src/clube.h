@@ -90,7 +90,16 @@ class Clube{
     /**Adiciona uma nova modalidade ao clube. Retorna true em caso de sucesso e false caso contrario.
      *@param m apontador para a nova modalidade.
      */
-    bool addModalidade(Modalidade *m){modalidades.push_back(m); return true;}
+    bool addModalidade(Modalidade *m){
+    	for(size_t i = 0; i < modalidades.size(); i++){
+    		if(modalidades[i]->getNome() == m->getNome()){
+    			throw modalidades[i]->getNome();
+    			return false;
+    		}
+    	}
+    	modalidades.push_back(m);
+    	return true;
+    }
     /**Adiciona uma nova sub-modalidade ao clube. Retorna true em caso de sucesso e false caso contrario.
      *@param sm apontador para a nova sub-modalidade.
      */
