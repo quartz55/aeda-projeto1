@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['removemodalidade',['removeModalidade',['../class_jogador.html#add113a9f38dec5fcb0128c754fa1a483',1,'Jogador']]],
-  ['removequota',['removeQuota',['../class_socio.html#ad658dfb3d57c46f7f524ae687f583e80',1,'Socio']]],
-  ['removesubmodalidade',['removeSubModalidade',['../class_jogador.html#aa86790f512e5b615b976806601335b99',1,'Jogador']]]
+  ['quit',['quit',['../class_clube.html#a5ab939c2dec7ad55d327425546215381',1,'Clube']]],
+  ['quota',['Quota',['../class_quota.html',1,'Quota'],['../class_quota.html#a7a402ae782a80e60b68628466befd840',1,'Quota::Quota()']]],
+  ['quotasatrasadas',['QuotasAtrasadas',['../class_socio.html#a009527ec5ea0cceff72f13c12e143576',1,'Socio']]]
 ];

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['modalidade',['modalidade',['../class_quota.html#a129deb74ccc276164f8314908735e622',1,'Quota']]],
-  ['modalidades',['modalidades',['../class_jogador.html#a1f556b9a468bb5483ce3d15b67275932',1,'Jogador']]]
+  ['last_5fpayed',['last_payed',['../class_quota.html#aca5ffe7b00d1f27cc2f23c70c688644b',1,'Quota']]]
 ];

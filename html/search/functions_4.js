@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['jogador',['Jogador',['../class_jogador.html#abf4f0d8a66b1e7ec408f1b8e4aa8a7d8',1,'Jogador']]]
+  ['infoexternos',['infoExternos',['../class_clube.html#aedae7cd9e9273e4234b11cdd69e7b6ec',1,'Clube']]],
+  ['infojogadores',['infoJogadores',['../class_clube.html#adb1c52d43329b48bbd7ad3bca354aa89',1,'Clube']]],
+  ['infosocios',['infoSocios',['../class_clube.html#aa967c3ba40e76f9368119445f6ea0423',1,'Clube']]],
+  ['interface',['Interface',['../class_interface.html#a4406d74c75bdfe150bf72be1f1cda8b1',1,'Interface']]]
 ];
