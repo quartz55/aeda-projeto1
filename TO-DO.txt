@@ -7,7 +7,6 @@
 »»»TO DO«««
 
 -Excepcoes(se falhar leitura de ficheiros);
-(RUI)-Leitura e escrita de externos
 
 --
 -Documentaçao Doxygen;
@@ -26,6 +25,7 @@
 *** (DIOGO) Mudar preço de uma quota na modalidade; *** FEITO
 *** (RUI)-Manutenção de submodalidade; *** FEITO
 *** (DIOGO)-No pdf diz para listarmos quotas pagas e em atraso por socios; *** FEITO
+*** (RUI)-Leitura e escrita de externos *** FEITO
 
 ----------------------------------------------------------------------
 

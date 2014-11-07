@@ -7,6 +7,7 @@ string Clube::FILE_MODALIDADES = "../txt/modalidades.txt";
 string Clube::FILE_SOCIOS = "../txt/socios.txt";
 string Clube::FILE_DATA = "../txt/data.txt";
 string Clube::FILE_DESPESAS = "../txt/despesas.txt";
+string Clube::FILE_EXTERNOS = "../txt/externos.txt";
 
 Interface *Clube::iface = new Interface();
 

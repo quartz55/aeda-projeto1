@@ -45,6 +45,7 @@ class Clube{
     static string FILE_SOCIOS;
     static string FILE_DATA;
     static string FILE_DESPESAS;
+	static string FILE_EXTERNOS;
     static Interface *iface;
 
     //GET
@@ -126,12 +127,14 @@ class Clube{
     bool readSocios(string filename);
     bool readData(string filename);
     bool readDespesas(string filename);
+	bool readExternos(string filename);
 
     bool writeModalidades(vector<Modalidade *> modalidade, string filename);
     bool writeJogadores(vector<Jogador *> jogadores, string filename);
     bool writeSocios(vector<Socio *> socios, string filename);
     bool writeData(string filename);
     bool writeDespesas(string filename);
+	bool writeExternos(vector<Pessoa *> externos, string filename);
 
     bool readAll();
     bool writeAll();
