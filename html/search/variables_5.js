@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['nif',['NIF',['../class_pessoa.html#a5d3428bcb35df16ad2a5a2fa25d15282',1,'Pessoa']]],
-  ['nome',['nome',['../class_pessoa.html#ad4e88b8f3499405a7a03df648857c338',1,'Pessoa']]],
-  ['nomes',['nomes',['../class_calendario.html#ae9ade316b45e94fa31db842af9d5de6d',1,'Calendario']]]
+  ['modalidade',['modalidade',['../class_quota.html#a129deb74ccc276164f8314908735e622',1,'Quota']]],
+  ['modalidades',['modalidades',['../class_jogador.html#a1f556b9a468bb5483ce3d15b67275932',1,'Jogador']]]
 ];

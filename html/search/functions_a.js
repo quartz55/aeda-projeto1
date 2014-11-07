@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['removemodalidade',['removeModalidade',['../class_jogador.html#add113a9f38dec5fcb0128c754fa1a483',1,'Jogador']]],
-  ['removequota',['removeQuota',['../class_socio.html#ad658dfb3d57c46f7f524ae687f583e80',1,'Socio']]],
-  ['removesubmodalidade',['removeSubModalidade',['../class_jogador.html#aa86790f512e5b615b976806601335b99',1,'Jogador']]]
+  ['pagarquota',['pagarQuota',['../class_quota.html#a8646870f0ead9a16fb6d722839579efc',1,'Quota']]],
+  ['pagarquotas',['pagarQuotas',['../class_socio.html#aff8b29ef23276eeba6e51b9aefa31faf',1,'Socio']]],
+  ['pessoa',['Pessoa',['../class_pessoa.html#a09fc2411765aeb5d88b25adcb6fa304b',1,'Pessoa']]],
+  ['presstocontinue',['pressToContinue',['../class_clube.html#a94d09d6fcf714721957d3152430cc369',1,'Clube']]]
 ];

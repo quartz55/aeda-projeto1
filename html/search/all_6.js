@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['last_5fpayed',['last_payed',['../class_quota.html#aca5ffe7b00d1f27cc2f23c70c688644b',1,'Quota']]],
-  ['leapyear',['leapYear',['../class_data.html#aae5767f9479050a0f70ae19e865a7326',1,'Data']]]
+  ['jogador',['Jogador',['../class_jogador.html',1,'Jogador'],['../class_jogador.html#abf4f0d8a66b1e7ec408f1b8e4aa8a7d8',1,'Jogador::Jogador()']]]
 ];

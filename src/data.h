@@ -49,7 +49,7 @@ class Data : public Calendario{
      */
     void setData(int day, int month, int year);
     /** Overload do operador <. Retorna true se a data anterior a data a comparar.
-     * @para d1 refercia da data a pagar
+     *@param d1 refercia da data a pagar
      */
     bool operator< (const Data &d1) const;
     /** Retorna um inteiro com o dia do mes da data.

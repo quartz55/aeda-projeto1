@@ -90,73 +90,69 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef _INTERFACE_H_</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define _INTERFACE_H_</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">//#include &lt;curses.h&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;sstream&gt;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#ifdef _WIN32</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="class_interface.html">   13</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_interface.html">Interface</a>{</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keywordtype">int</span> X,Y;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="class_interface.html">Interface</a>();</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    ~<a class="code" href="class_interface.html">Interface</a>();</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordtype">void</span> getInput();</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Type&gt;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordtype">void</span> readChar(Type &amp;var);</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;sstream&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifdef _WIN32</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="class_interface.html">   14</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_interface.html">Interface</a>{</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="class_interface.html#a4406d74c75bdfe150bf72be1f1cda8b1">Interface</a>();</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="class_interface.html#a19179888f29f18f1be54a3dfe98f68c0">~Interface</a>();</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">void</span> readLine(std::string &amp;STRING);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Type&gt;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">void</span> read(Type &amp;var);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">void</span> drawChar(<span class="keywordtype">char</span> CHAR);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_interface.html#aa127047bfcb60018174c0e9b5414f736">getInput</a>();</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Type&gt;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">void</span> drawString(Type STRING);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">void</span> newLine();</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">void</span> cleanScr();</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;};</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Type&gt;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keywordtype">void</span> Interface::readChar(Type &amp;var){</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="comment">//var = getch();</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    std::cin &gt;&gt; var;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    std::cin.ignore(1000, <span class="charliteral">&#39;\n&#39;</span>);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordflow">if</span> (std::cin.fail())</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        std::cin.clear();</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;}</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Type&gt;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keywordtype">void</span> Interface::read(Type &amp;var){</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="comment">//char *input = new char;</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="comment">//getstr(input);</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">//std::stringstream s(input);</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="comment">//s &gt;&gt; var;</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    std::cin &gt;&gt; var;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    std::cin.ignore(1000, <span class="charliteral">&#39;\n&#39;</span>);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordflow">if</span> (std::cin.fail())</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        std::cin.clear();</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;}</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Type&gt;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="keywordtype">void</span> Interface::drawString(Type STRING){</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    std::cout &lt;&lt; STRING;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;}</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="class_interface_html"><div class="ttname"><a href="class_interface.html">Interface</a></div><div class="ttdef"><b>Definition:</b> interface.h:13</div></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_interface.html#ab62e35649447a55a867b1ad0977b94d9">readChar</a>(Type &amp;var);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_interface.html#abb5683788638b105638e355ae4aaabdd">readLine</a>(std::string &amp;STRING);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Type&gt;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_interface.html#a173aa25edc65f6b0b13070f20498b273">read</a>(Type &amp;var);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_interface.html#ad2f1797f11f53685667803403bb7ab2a">drawChar</a>(<span class="keywordtype">char</span> CHAR);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Type&gt;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_interface.html#accca907d6d5744ac7a2c91d4c3ae7209">drawString</a>(Type STRING);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_interface.html#a327a7ee3201c3ef48939f3717797729e">newLine</a>();</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_interface.html#a281f8f9f14320fdd2be4b634eadcba48">cleanScr</a>();</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;};</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Type&gt;</div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="class_interface.html#ab62e35649447a55a867b1ad0977b94d9">   63</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_interface.html#ab62e35649447a55a867b1ad0977b94d9">Interface::readChar</a>(Type &amp;var){</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    std::cin &gt;&gt; var;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    std::cin.ignore(1000, <span class="charliteral">&#39;\n&#39;</span>);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordflow">if</span> (std::cin.fail())</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        std::cin.clear();</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;}</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Type&gt;</div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="class_interface.html#a173aa25edc65f6b0b13070f20498b273">   71</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_interface.html#a173aa25edc65f6b0b13070f20498b273">Interface::read</a>(Type &amp;var){</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    std::cin &gt;&gt; var;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    std::cin.ignore(1000, <span class="charliteral">&#39;\n&#39;</span>);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordflow">if</span> (std::cin.fail())</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        std::cin.clear();</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;}</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Type&gt;</div>
+<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="class_interface.html#accca907d6d5744ac7a2c91d4c3ae7209">   79</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_interface.html#accca907d6d5744ac7a2c91d4c3ae7209">Interface::drawString</a>(Type STRING){</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    std::cout &lt;&lt; STRING;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;}</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="class_interface_html_ad2f1797f11f53685667803403bb7ab2a"><div class="ttname"><a href="class_interface.html#ad2f1797f11f53685667803403bb7ab2a">Interface::drawChar</a></div><div class="ttdeci">void drawChar(char CHAR)</div><div class="ttdef"><b>Definition:</b> interface.cpp:16</div></div>
+<div class="ttc" id="class_interface_html_a327a7ee3201c3ef48939f3717797729e"><div class="ttname"><a href="class_interface.html#a327a7ee3201c3ef48939f3717797729e">Interface::newLine</a></div><div class="ttdeci">void newLine()</div><div class="ttdef"><b>Definition:</b> interface.cpp:31</div></div>
+<div class="ttc" id="class_interface_html_aa127047bfcb60018174c0e9b5414f736"><div class="ttname"><a href="class_interface.html#aa127047bfcb60018174c0e9b5414f736">Interface::getInput</a></div><div class="ttdeci">void getInput()</div><div class="ttdef"><b>Definition:</b> interface.cpp:12</div></div>
+<div class="ttc" id="class_interface_html_abb5683788638b105638e355ae4aaabdd"><div class="ttname"><a href="class_interface.html#abb5683788638b105638e355ae4aaabdd">Interface::readLine</a></div><div class="ttdeci">void readLine(std::string &amp;STRING)</div><div class="ttdef"><b>Definition:</b> interface.cpp:20</div></div>
+<div class="ttc" id="class_interface_html_a173aa25edc65f6b0b13070f20498b273"><div class="ttname"><a href="class_interface.html#a173aa25edc65f6b0b13070f20498b273">Interface::read</a></div><div class="ttdeci">void read(Type &amp;var)</div><div class="ttdef"><b>Definition:</b> interface.h:71</div></div>
+<div class="ttc" id="class_interface_html_accca907d6d5744ac7a2c91d4c3ae7209"><div class="ttname"><a href="class_interface.html#accca907d6d5744ac7a2c91d4c3ae7209">Interface::drawString</a></div><div class="ttdeci">void drawString(Type STRING)</div><div class="ttdef"><b>Definition:</b> interface.h:79</div></div>
+<div class="ttc" id="class_interface_html"><div class="ttname"><a href="class_interface.html">Interface</a></div><div class="ttdef"><b>Definition:</b> interface.h:14</div></div>
+<div class="ttc" id="class_interface_html_ab62e35649447a55a867b1ad0977b94d9"><div class="ttname"><a href="class_interface.html#ab62e35649447a55a867b1ad0977b94d9">Interface::readChar</a></div><div class="ttdeci">void readChar(Type &amp;var)</div><div class="ttdef"><b>Definition:</b> interface.h:63</div></div>
+<div class="ttc" id="class_interface_html_a4406d74c75bdfe150bf72be1f1cda8b1"><div class="ttname"><a href="class_interface.html#a4406d74c75bdfe150bf72be1f1cda8b1">Interface::Interface</a></div><div class="ttdeci">Interface()</div><div class="ttdef"><b>Definition:</b> interface.cpp:6</div></div>
+<div class="ttc" id="class_interface_html_a281f8f9f14320fdd2be4b634eadcba48"><div class="ttname"><a href="class_interface.html#a281f8f9f14320fdd2be4b634eadcba48">Interface::cleanScr</a></div><div class="ttdeci">void cleanScr()</div><div class="ttdef"><b>Definition:</b> interface.cpp:24</div></div>
+<div class="ttc" id="class_interface_html_a19179888f29f18f1be54a3dfe98f68c0"><div class="ttname"><a href="class_interface.html#a19179888f29f18f1be54a3dfe98f68c0">Interface::~Interface</a></div><div class="ttdeci">~Interface()</div><div class="ttdef"><b>Definition:</b> interface.cpp:9</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Nov 7 2014 20:45:27 for Gestão de um Clube Desportivo by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Nov 7 2014 22:35:07 for Gestão de um Clube Desportivo by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

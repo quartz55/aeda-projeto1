@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['operator_3c',['operator&lt;',['../class_data.html#af14ac65821109616c994205d4e56ad32',1,'Data::operator&lt;()'],['../class_despesa.html#a76ab8adf5e3735ff1f402641749f0378',1,'Despesa::operator&lt;()'],['../class_modalidade.html#aab6ed2bccfe771055001d4bbf02e63a6',1,'Modalidade::operator&lt;()'],['../class_pessoa.html#afd566cd91d65f5a708f25b5e2abbd6b3',1,'Pessoa::operator&lt;()'],['../class_quota.html#a0a6923d3681353268a01e77e6f8357d8',1,'Quota::operator&lt;()']]]
+  ['newline',['newLine',['../class_interface.html#a327a7ee3201c3ef48939f3717797729e',1,'Interface']]],
+  ['nif',['NIF',['../class_pessoa.html#a5d3428bcb35df16ad2a5a2fa25d15282',1,'Pessoa']]],
+  ['nome',['nome',['../class_pessoa.html#ad4e88b8f3499405a7a03df648857c338',1,'Pessoa']]],
+  ['nomes',['nomes',['../class_calendario.html#ae9ade316b45e94fa31db842af9d5de6d',1,'Calendario']]]
 ];
