@@ -33,6 +33,7 @@
 #####BUGS#####
 ##############
 
+(RUI) -Bug ao ler o valor das quotas do ficehiro de modalidades
 ----------------------------------------------------------------------
 
 »»»NOT FIXED«««

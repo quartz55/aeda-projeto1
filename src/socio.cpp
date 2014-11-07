@@ -59,7 +59,7 @@ bool Socio::removeQuota(Modalidade* mod) {
 string Socio::showInfo() const {
 	std::stringstream ss;
 	ss << Jogador::showInfo();
-	ss << "Ultimas quotas pagas: \n\n";
+	ss << "Quotas associadas: \n\n";
 	if(quotas.size() >0) {
 		for(size_t i = 0; i < quotas.size(); i++){
 			ss << quotas[i]->showQuota() << "\n";

@@ -44,7 +44,6 @@ void Clube::TopMenu(string name)
 void Clube::main()
 {
 	while (1){
-		iface->cleanScr();
 		char command;
         TopMenu("MENU PRINCIPAL");
 		iface->drawString("a. Jogadores\n");
