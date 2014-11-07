@@ -6,7 +6,7 @@
 
 »»»TO DO«««
 
-(JOAO)-Excepcoes(se falhar leitura de ficheiros);
+
 
 --
 -Documentaçao Doxygen;
@@ -16,6 +16,7 @@
 
 »»»DONE«««
 
+*** (JOAO)-Excepcoes(se falhar leitura de ficheiros); ***
 *** (JOAO)-Fazer o voltar(q. Voltar) voltar sempre para o menu anterior e nao 2/3 menus anteriores(acontece em alguns) ***
 *** (RUI)-Na manutençao de modalidades mostrar as submodalidades da modalidade; *** FEITO
 *** (RUI) Na associaçao de mods/submods nos jogadores mostrar as mods/submods existentes antes da insersao do texto; *** FEITO
