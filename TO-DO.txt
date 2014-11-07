@@ -36,12 +36,12 @@
 
 »»»NOT FIXED«««
 
-(JOAO) -Bug no pagamento de quotas(nao volta atraz)
 
 ----------------------------------------------------------------------
 
 »»»FIXED«««
 
+*** (JOAO) -Bug no pagamento de quotas(nao volta atraz) ***
 *** (JOAO) -Fazer update do numero de submodalidades de uma modalidade(funcao update()) sempre que se modifica alguma coisa referente a isso ***
 *** (JOAO) -Na escolha/mudança de sexo permitir so duas opcoes; *** FEITO
 *** (RUI)Nao aceitar strings vazias para nomes, etc... *** FEITO
