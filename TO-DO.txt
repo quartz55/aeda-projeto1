@@ -8,6 +8,7 @@
 
 -No pdf diz para listarmos quotas pagas e em atraso por socios;
 -Excepcoes(se falhar leitura de ficheiros);
+-Leitura e escrita de externos
 
 --
 -Documentaçao Doxygen;
