@@ -2,16 +2,6 @@
 ###FEATURES###
 ##############
 
-»»»DONE«««
-
-*** (RUI)-Na manutençao de modalidades mostrar as submodalidades da modalidade; *** FEITO
-*** (RUI) Na associaçao de mods/submods nos jogadores mostrar as mods/submods existentes antes da insersao do texto; *** FEITO
-*** (RUI) Na listagem de socios/jogadores por modalidades listar socios/jogadores que nao pertencem a nenhuma; *** FEITO
-*** (RUI)-Incluir despesas automaticas para salarios de externos e jogadores(?) ou criar uma despesa unitaria que engloba as duas(?); *** FEITO
-*** (DIOGO) Guarda informacao das ultimas quotas pagas no txt dos socios; *** FEITO
-*** (DIOGO) Mudar preço de uma quota na modalidade; *** FEITO
-*** (RUI)-Manutenção de submodalidade; *** FEITO
-
 ----------------------------------------------------------------------
 
 »»»TO DO«««
@@ -24,10 +14,32 @@
 -Documentaçao Doxygen;
 -Relatorio;
 
+----------------------------------------------------------------------
+
+»»»DONE«««
+
+*** (RUI)-Na manutençao de modalidades mostrar as submodalidades da modalidade; *** FEITO
+*** (RUI) Na associaçao de mods/submods nos jogadores mostrar as mods/submods existentes antes da insersao do texto; *** FEITO
+*** (RUI) Na listagem de socios/jogadores por modalidades listar socios/jogadores que nao pertencem a nenhuma; *** FEITO
+*** (RUI)-Incluir despesas automaticas para salarios de externos e jogadores(?) ou criar uma despesa unitaria que engloba as duas(?); *** FEITO
+*** (DIOGO) Guarda informacao das ultimas quotas pagas no txt dos socios; *** FEITO
+*** (DIOGO) Mudar preço de uma quota na modalidade; *** FEITO
+*** (RUI)-Manutenção de submodalidade; *** FEITO
+
+----------------------------------------------------------------------
 
 ##############
 #####BUGS#####
 ##############
+
+----------------------------------------------------------------------
+
+»»»NOT FIXED«««
+
+(JOAO) -Bug no pagamento de quotas(nao volta atraz)
+(JOAO) -Fazer update do numero de submodalidades de uma modalidade(funcao update()) sempre que se modifica alguma coisa referente a isso
+
+----------------------------------------------------------------------
 
 »»»FIXED«««
 
@@ -36,15 +48,6 @@
 *** (RUI) -Bug ao ler o valor das quotas do ficehiro de modalidades *** FEITO
 
 ----------------------------------------------------------------------
-
-»»»NOT FIXED«««
-
-(JOAO) -Bug no pagamento de quotas(nao volta atraz)
-(JOAO) - Fazer update do numero de submodalidades de uma modalidade(funcao update()) sempre que se modifica alguma coisa referente a isso
-
-
-
-
 
 #######
 END
