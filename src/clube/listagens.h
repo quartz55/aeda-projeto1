@@ -12,11 +12,11 @@ void Clube::listarPessoal(){
     iface->drawString("Listagem de todos os associados ao clube\n");
     iface->drawString("-------------------------------\n");
     iface->drawString("-------------------------------\n");
-    listarPessoas(externos, false, false);
+    iface->drawString(listarPessoas(externos, false, false));
     iface->drawString("-------------------------------\n");
-    listarPessoas(jogadores, false, false);
+    iface->drawString(listarPessoas(jogadores, false, false));
     iface->drawString("-------------------------------\n");
-    listarPessoas(socios, false, false);
+    iface->drawString(listarPessoas(socios, false, false));
     iface->drawString("-------------------------------\n");
     iface->newLine();
 }
@@ -179,7 +179,7 @@ bool Clube::listarSocios(string &lista){
     }
 }
 
-bool Clube::listarExternos(){
+bool Clube::listarExternos(string &lista){
     while (1){
         char command;
         TopMenu("LISTAGEM DE EXTERNOS");
@@ -189,29 +189,32 @@ bool Clube::listarExternos(){
         iface->drawString("q. Voltar\n\n");
         iface->drawString("   > ");
         iface->readChar(command);
+        std::stringstream ss;
+        ss.str(string());
         if (command == 'a'){
             std::vector <Pessoa *> ordenado(externos);
             std::sort(ordenado.begin(), ordenado.end(), sortByName);
             TopMenu("LISTAGEM DE EXTERNOS");
-            iface->drawString("Externos ordenados por ordem alfabetica (A-Z):\n");
-            listarPessoas(ordenado, false, false);
+            ss << "Externos ordenados por ordem alfabetica (A-Z):\n";
+            ss << listarPessoas(ordenado, false, false);
         }
         else if (command == 'b'){
             std::vector <Pessoa *> ordenado = externos;
             std::sort(ordenado.begin(), ordenado.end(), sortByIdade);
             TopMenu("LISTAGEM DE EXTERNOS");
-            iface->drawString("Externos ordenados por ordem de idade:\n");
-            listarPessoas(ordenado, true, false);
+            ss << "Externos ordenados por ordem de idade:\n";
+            ss << listarPessoas(ordenado, true, false);
         }
         else if (command == 'c'){
             std::vector <Pessoa *> ordenado = externos;
             std::sort(ordenado.begin(), ordenado.end(), sortBySexo);
             TopMenu("LISTAGEM DE EXTERNOS");
-            iface->drawString("Externos ordenados por sexo:\n");
-            listarPessoas(ordenado, false, true);
+            ss << "Externos ordenados por sexo:\n";
+            ss << listarPessoas(ordenado, false, true);
         }
         else if (command == 'q') return false;
         else continue;
+        lista = ss.str();
         return true;
     }
 }
@@ -296,7 +299,7 @@ bool Clube::listarModalidades(string &lista){
     }
     return true;
 }
-bool Clube::listarDespesas() {
+bool Clube::listarDespesas(string &lista) {
     while(1){
         char command;
         TopMenu("LISTAGEM DE DESPESAS");
@@ -305,6 +308,8 @@ bool Clube::listarDespesas() {
         iface->drawString("q. Voltar\n\n");
         iface->drawString("   > ");
         iface->readChar(command);
+        std::stringstream ss;
+        ss.str(string());
         if (command == 'a'){
             std::sort(despesas.begin(),despesas.end(),sortByData);
             while(1){
@@ -339,28 +344,29 @@ bool Clube::listarDespesas() {
                                 }
                                 else{
                                     TopMenu("LISTAGEM DE DESPESAS");
-                                    iface->drawString("Despesas de ");
-                                    iface->drawString(mes);
-                                    iface->drawString(" de ");
-                                    iface->drawString(ano);
-                                    iface->drawString(": \n\n");
+                                    ss << "Despesas de ";
+                                    ss << mes;
+                                    ss << " de ";
+                                    ss << ano;
+                                    ss << ": \n\n";
                                     float total = 0;
                                     for(unsigned int i = 0; i < despesas.size(); i++){
                                         if(despesas[i]->getData()->getMonth() == mes && despesas[i]->getData()->getYear() == ano){
                                             total += despesas[i]->getValor();
-                                            iface->drawString(despesas[i]->showInfo());
-                                            iface->newLine();
+                                            ss << despesas[i]->showInfo();
+                                            ss << "\n";
                                         }
                                     }
-                                    iface->newLine();
-                                    iface->drawString("Total do mes: ");
-                                    iface->drawString(total);
-                                    iface->newLine();
+                                    ss << "\n";
+                                    ss << "Total do mes: ";
+                                    ss << total;
+                                    ss << "\n";
+                                    lista = ss.str();
                                     return true;
                                 }
                             }
                         }
-                        if (command == 'b'){
+                        else if (command == 'b'){
                             TopMenu("LISTAGEM DE DESPESAS");
                             iface->drawString("Ano :");
                             int ano;
@@ -371,21 +377,22 @@ bool Clube::listarDespesas() {
                             }
                             else{
                                 TopMenu("LISTAGEM DE DESPESAS");
-                                iface->drawString("Despesas de ");;
-                                iface->drawString(ano);
-                                iface->drawString(": \n\n");
+                                ss << "Despesas de ";
+                                ss << ano;
+                                ss << ": \n\n";
                                 float total = 0;
                                 for(unsigned int i = 0; i < despesas.size(); i++){
                                     if(despesas[i]->getData()->getYear() == ano){
                                         total += despesas[i]->getValor();
-                                        iface->drawString(despesas[i]->showInfo());
-                                        iface->newLine();
+                                        ss << despesas[i]->showInfo();
+                                        ss << "\n";
                                     }
                                 }
-                                iface->newLine();
-                                iface->drawString("Total do ano: ");
-                                iface->drawString(total);
-                                iface->newLine();
+                                ss << "\n";
+                                ss << "Total do ano: ";
+                                ss << total;
+                                ss << "\n";
+                                lista = ss.str();
                                 return true;
                             }
                         }
@@ -396,11 +403,12 @@ bool Clube::listarDespesas() {
                 }
                 else if(command == 'n'){
                     TopMenu("LISTAGEM DE DESPESAS");
-                    iface->drawString("Despesas listadas por data\n\n");
+                    ss << "Despesas listadas por data\n\n";
                     for(unsigned int i = 0; i < despesas.size(); i++){
-                        iface->drawString(despesas[i]->showInfo());
-                        iface->newLine();
+                        ss << despesas[i]->showInfo();
+                        ss << "\n";
                     }
+                    lista = ss.str();
                     return true;
                 }
                 else if(command == 'q'){
@@ -408,7 +416,7 @@ bool Clube::listarDespesas() {
                 }
             }
         }
-        if (command == 'b'){
+        else if (command == 'b'){
             std::sort(despesas.begin(),despesas.end(),sortByValor);
             while(1){
                 TopMenu("LISTAGEM DE DESPESAS");
@@ -443,23 +451,24 @@ bool Clube::listarDespesas() {
                                 }
                                 else{
                                     TopMenu("LISTAGEM DE DESPESAS");
-                                    iface->drawString("Despesas de ");
-                                    iface->drawString(mes);
-                                    iface->drawString(" de ");
-                                    iface->drawString(ano);
-                                    iface->drawString(": \n\n");
+                                    ss << "Despesas de ";
+                                    ss << mes;
+                                    ss << " de ";
+                                    ss << ano;
+                                    ss << ": \n\n";
                                     float total =0;
                                     for(unsigned int i = 0; i < despesas.size(); i++){
                                         if(despesas[i]->getData()->getMonth() == mes && despesas[i]->getData()->getYear() == ano){
                                             total += despesas[i]->getValor();
-                                            iface->drawString(despesas[i]->showInfo());
-                                            iface->newLine();
+                                            ss << despesas[i]->showInfo();
+                                            ss << "\n";
                                         }
                                     }
-                                    iface->newLine();
-                                    iface->drawString("Total do mes: ");
-                                    iface->drawString(total);
-                                    iface->newLine();
+                                    ss << "\n";
+                                    ss << "Total do mes: ";
+                                    ss << total;
+                                    ss << "\n";
+                                    lista = ss.str();
                                     return true;
                                 }
                             }
@@ -475,21 +484,22 @@ bool Clube::listarDespesas() {
                             }
                             else{
                                 TopMenu("LISTAGEM DE DESPESAS");
-                                iface->drawString("Despesas de ");
-                                iface->drawString(ano);
-                                iface->drawString(": \n\n");
+                                ss << "Despesas de ";
+                                ss << ano;
+                                ss << ": \n\n";
                                 float total=0;
                                 for(unsigned int i = 0; i < despesas.size(); i++){
                                     if(despesas[i]->getData()->getYear() == ano){
                                         total += despesas[i]->getValor();
-                                        iface->drawString(despesas[i]->showInfo());
-                                        iface->newLine();
+                                        ss << despesas[i]->showInfo();
+                                        ss << "\n";
                                     }
                                 }
-                                iface->newLine();
-                                iface->drawString("Total do ano: ");
-                                iface->drawString(total);
-                                iface->newLine();
+                                ss << "\n";
+                                ss << "Total do ano: ";
+                                ss << total;
+                                ss << "\n";
+                                lista = ss.str();
                                 return true;
                             }
                         }
@@ -500,11 +510,12 @@ bool Clube::listarDespesas() {
                 }
                 else if(command == 'n'){
                     TopMenu("LISTAGEM DE DESPESAS");
-                    iface->drawString("Despesas listadas por valor\n\n");
+                    ss << "Despesas listadas por valor\n\n";
                     for(unsigned int i = 0; i < despesas.size(); i++){
-                        iface->drawString(despesas[i]->showInfo());
-                        iface->newLine();
+                        ss << despesas[i]->showInfo();
+                        ss << "\n";
                     }
+                    lista = ss.str();
                     return true;
                 }
                 else if(command == 'q'){
