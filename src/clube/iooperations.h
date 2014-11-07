@@ -398,6 +398,7 @@ bool Clube::readAll(){
         readJogadores(FILE_JOGADORES);
         readSocios(FILE_SOCIOS);
         readDespesas(FILE_DESPESAS);
+		readExternos(FILE_EXTERNOS);
     }
     catch(std::string file){
         iface->drawString("Unable to read file '"); iface->drawString(file); iface->drawString("'"); iface->newLine();
@@ -413,6 +414,7 @@ bool Clube::writeAll(){
         writeSocios(socios, FILE_SOCIOS);
         writeData(FILE_DATA);
         writeDespesas(FILE_DESPESAS);
+		writeExternos(externos, FILE_EXTERNOS);
     }
     catch(std::string file){
         iface->drawString("Unable to write file '"); iface->drawString(file); iface->drawString("'"); iface->newLine();
