@@ -34,7 +34,7 @@ bool Clube::readModalidades(string filename){
 		file.close();
 		return true;
 	}
-	iface->drawString("Unable to open file '"); iface->drawString(filename); iface->drawString("'"); iface->newLine();
+    throw filename;
 	return false;
 }
 bool Clube::readData(string filename){
@@ -48,7 +48,7 @@ bool Clube::readData(string filename){
 		file.close();
 		return true;
 	}
-	iface->drawString("Unable to open file '"); iface->drawString(filename); iface->drawString("'"); iface->newLine();
+    throw filename;
 	return false;
 
 }
@@ -72,7 +72,7 @@ bool Clube::readDespesas(string filename){
 		file.close();
 		return true;
 	}
-	iface->drawString("Unable to open file '"); iface->drawString(filename); iface->drawString("'"); iface->newLine();
+    throw filename;
 	return false;
 }
 
@@ -144,7 +144,7 @@ bool Clube::readJogadores(string filename){
         file.close();
         return true;
     }
-    iface->drawString("Unable to open file '"); iface->drawString(filename); iface->drawString("'"); iface->newLine();
+    throw filename;
     return false;
 }
 
@@ -206,7 +206,7 @@ bool Clube::readSocios(string filename){
         file.close();
         return true;
     }
-    iface->drawString("Unable to open file '"); iface->drawString(filename); iface->drawString("'"); iface->newLine();
+    throw filename;
     return false;
 }
 bool Clube::writeModalidades(vector<Modalidade *> modalidades, string filename){
@@ -231,7 +231,7 @@ bool Clube::writeModalidades(vector<Modalidade *> modalidades, string filename){
         file.close();
         return true;
     }
-    iface->drawString("Unable to open file '"); iface->drawString(filename); iface->drawString("'"); iface->newLine();
+    throw filename;
     return false;
 }
 
@@ -266,7 +266,7 @@ bool Clube::writeJogadores(vector<Jogador *> jogadores, string filename){
         file.close();
         return true;
     }
-    iface->drawString("Unable to open file '"); iface->drawString(filename); iface->drawString("'"); iface->newLine();
+    throw filename;
     return false;
 }
 
@@ -300,7 +300,7 @@ bool Clube::writeSocios(vector<Socio *> socios, string filename){
         file.close();
         return true;
     }
-    iface->drawString("Unable to open file '"); iface->drawString(filename); iface->drawString("'"); iface->newLine();
+    throw filename;
     return false;
 }
 bool Clube::writeData(string filename) {
@@ -311,7 +311,7 @@ bool Clube::writeData(string filename) {
         file.close();
         return true;
     }
-    iface->drawString("Unable to open file '"); iface->drawString(filename); iface->drawString("'"); iface->newLine();
+    throw filename;
     return false;
 }
 bool Clube::writeDespesas(string filename){
@@ -327,29 +327,39 @@ bool Clube::writeDespesas(string filename){
         file.close();
         return true;
     }
-    iface->drawString("Unable to open file '"); iface->drawString(filename); iface->drawString("'"); iface->newLine();
+    throw filename;
     return false;
 
 }
 
 bool Clube::readAll(){
-    if(!readData(FILE_DATA)) return false;
-    if(!readModalidades(FILE_MODALIDADES)) return false;
-    if(!readJogadores(FILE_JOGADORES)) return false;
-    if(!readSocios(FILE_SOCIOS)) return false;
-    if(!readDespesas(FILE_DESPESAS)) return false;
-
+    try{
+        readData(FILE_DATA);
+        readModalidades(FILE_MODALIDADES);
+        readJogadores(FILE_JOGADORES);
+        readSocios(FILE_SOCIOS);
+        readDespesas(FILE_DESPESAS);
+    }
+    catch(std::string file){
+        iface->drawString("Unable to read file '"); iface->drawString(file); iface->drawString("'"); iface->newLine();
+        return false;
+    }
     return true;
 }
 
 bool Clube::writeAll(){
-    if(!writeModalidades(modalidades, FILE_MODALIDADES)) return false;
-    if(!writeJogadores(jogadores, FILE_JOGADORES)) return false;
-    if(!writeSocios(socios, FILE_SOCIOS)) return false;
-    if(!writeData(FILE_DATA)) return false;
-    if(!writeDespesas(FILE_DESPESAS)) return false;
-
-
+    try{
+        writeModalidades(modalidades, FILE_MODALIDADES);
+        writeJogadores(jogadores, FILE_JOGADORES);
+        writeSocios(socios, FILE_SOCIOS);
+        writeData(FILE_DATA);
+        writeDespesas(FILE_DESPESAS);
+    }
+    catch(std::string file){
+        iface->drawString("Unable to write file '"); iface->drawString(file); iface->drawString("'"); iface->newLine();
+        throw;
+        return false;
+    }
     return true;
 }
 
