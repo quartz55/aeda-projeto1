@@ -303,22 +303,26 @@ bool Clube::manutencaoSocios(){
         iface->drawString("NIF: ");
         iface->read(nif);
         Socio *s1 = new Socio(nome, idade, nif, sexo);
-        if (addSocio(s1))
-        {
-            TopMenu("ADICIONAR SOCIO");
-            iface->drawString(s1->showInfo());
-            iface->drawString("\nO socio foi criado");
-            pressToContinue();
+        try{
+        	addSocio(s1);
         }
-        else
-        {
-            TopMenu("ADICIONAR SOCIO");
-            iface->drawString(s1->showInfo());
-            iface->drawString("\nErro! O socio já existe");
-            pressToContinue();
+        catch(unsigned int NIF){
+        	TopMenu("ADICIONAR SOCIO");
+        	iface->drawString("\nErro!Esse socio ja existe (NIF ja existente)\n \n");
+        	pressToContinue();
+        	return false;
         }
+        catch(std::string nome){
+        	TopMenu("ADICIONAR SOCIO");
+        	iface->drawString("\nErro!Esse socio ja existe (Nome ja existente)\n \n");
+        	pressToContinue();
+        	return false;
+        }
+        TopMenu("ADICIONAR SOCIO");
+        iface->drawString(s1->showInfo());
+        iface->drawString("\nO socio foi criado");
+        pressToContinue();
         return true;
-
     }
     else if (command == 'b'){
         TopMenu("ALTERAR SOCIO");
@@ -806,20 +810,25 @@ bool Clube::manutencaoExternos(){
         iface->read(nif);
         Pessoa *p1 = new Pessoa(nome, idade, nif, sexo);
         p1->setExterno();
-        if (addExterno(p1))
-        {
-            TopMenu("ADICIONAR EXTERNO");
-            iface->drawString(p1->showInfo());
-            iface->drawString("\nO externo foi criado");
-            pressToContinue();
+        try{
+        	addExterno(p1);
         }
-        else
-        {
-            TopMenu("ADICIONAR EXTERNO");
-            //iface->drawString(p1->showInfo());
-            iface->drawString("\nErro! O externo já existe");
-            pressToContinue();
+        catch(unsigned int NIF){
+        	TopMenu("ADICIONAR EXTERNO");
+        	iface->drawString("\nErro!Esse externo ja existe (NIF ja existente)\n \n");
+        	pressToContinue();
+        	return false;
         }
+        catch(std::string nome){
+        	TopMenu("ADICIONAR EXTERNO");
+        	iface->drawString("\nErro!Esse externo ja existe (Nome ja existente)\n \n");
+        	pressToContinue();
+        	return false;
+        }
+        TopMenu("ADICIONAR EXTERNO");
+        iface->drawString(p1->showInfo());
+        iface->drawString("\nO externo foi criado");
+        pressToContinue();
         return true;
 
     }
@@ -1010,20 +1019,25 @@ bool Clube::manutencaoJogadores(){
         iface->drawString("NIF: ");
         iface->read(nif);
         Jogador *j1 = new Jogador(nome, idade, nif, sexo);
-        if (addJogador(j1))
-        {
-            TopMenu("ADICIONAR JOGADOR");
-            iface->drawString(j1->showInfo());
-            iface->drawString("\nO jogador foi criado");
-            pressToContinue();
+        try{
+        	addJogador(j1);
         }
-        else
-        {
-            TopMenu("ADICIONAR JOGADOR");
-            iface->drawString(j1->showInfo());
-            iface->drawString("\nErro! O jogador já existe");
-            pressToContinue();
+        catch(unsigned int NIF){
+        	TopMenu("ADICIONAR JOGADOR");
+        	iface->drawString("\nErro!Esse jogador ja existe (NIF ja existente)\n \n");
+        	pressToContinue();
+        	return false;
         }
+        catch(std::string nome){
+        	TopMenu("ADICIONAR JOGADOR");
+        	iface->drawString("\nErro!Esse jogador ja existe (Nome ja existente)\n \n");
+        	pressToContinue();
+        	return false;
+        }
+        TopMenu("ADICIONAR JOGADOR");
+        iface->drawString(j1->showInfo());
+        iface->drawString("\nO jogador foi criado");
+        pressToContinue();
     }
     else if (command == 'b') {
         string lista;
