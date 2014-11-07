@@ -138,6 +138,7 @@ bool Clube::listarSocios(string &lista){
         iface->drawString("b. Listar por idade\n");
         iface->drawString("c. Listar por sexo\n");
         iface->drawString("d. Listar por modalidades\n");
+        iface->drawString("e. Listar com quotas em atraso\n");
         iface->drawString("q. Voltar\n\n");
         iface->drawString("   > ");
         iface->readChar(command);
@@ -173,6 +174,14 @@ bool Clube::listarSocios(string &lista){
             ss << listarPorModalidades(socios);
             lista = ss.str();
         }
+        else if (command == 'e'){
+        	std::vector <Socio *> ordenado(socios);
+        	std::sort(ordenado.begin(), ordenado.end(), sortByName);
+              TopMenu("LISTAGEM DE SOCIOS");
+              ss << "Socios ordenados por modalidades:\n";
+              ss << listarComQuotas(ordenado);
+              lista = ss.str();
+         }
         else if(command == 'q') return false;
         else continue;
         return true;
@@ -526,6 +535,19 @@ bool Clube::listarDespesas(string &lista) {
         else if (command == 'q') return false;
     }
     return true;
+}
+string Clube::listarComQuotas(vector <Socio*> socios){
+	std::stringstream ss;
+	for(unsigned int i = 0; i < socios.size(); i++){
+		ss << "   > ";
+		ss << socios[i]->getNome() << "\n";
+		vector<Quota*> quotas = socios[i]->getQuotas();
+		for(size_t k = 0; k < quotas.size(); k++){
+			ss << "       -" << quotas[k]->getModalidade()->getNome() << ": " << socios[i]->QuotasAtrasadas(dataActual, quotas[k]->getModalidade()) << " meses atrasados\n";
+		}
+	}
+	ss << "\n";
+	return ss.str();
 }
 
 #endif

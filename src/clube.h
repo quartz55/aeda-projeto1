@@ -94,6 +94,7 @@ class Clube{
     bool listarExternos(string &lista);
     bool listarJogadores(string &lista);
     bool listarSocios(string &lista);
+    std::string listarComQuotas(vector<Socio*> socios);
 
     std::string listarMods(vector <Modalidade *> modalidades);
     bool listarModalidades(string &lista);
