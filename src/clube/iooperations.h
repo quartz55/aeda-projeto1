@@ -148,6 +148,45 @@ bool Clube::readJogadores(string filename){
     return false;
 }
 
+bool Clube::readExternos(string filename){
+	std::ifstream file;
+	file.open(filename.c_str());
+	if (file.is_open()){
+		string line;
+		while (getline(file, line)){
+
+			std::stringstream dados_externo(line);
+
+			//Ler nome jogador
+			std::stringstream nome_externo;
+			string helper;
+			dados_externo >> helper;
+			while (helper != "#"){
+				nome_externo << helper << " ";
+				dados_externo >> helper;
+			}
+			string nome = nome_externo.str();
+			nome.erase(nome.size() - 1);
+			//------------
+			//DADOS INICIAIS DO JOGADOR
+			unsigned int idade;
+			unsigned long NIF;
+			string sexo;
+			dados_externo >> idade;
+			dados_externo >> sexo;
+			dados_externo >> NIF;
+			Pessoa *p1 = new Pessoa(nome, idade, NIF, sexo);
+			p1->setExterno();
+			//------------
+			addExterno(p1);
+		}
+		file.close();
+		return true;
+	}
+	iface->drawString("Unable to open file '"); iface->drawString(filename); iface->drawString("'"); iface->newLine();
+	return false;
+}
+
 bool Clube::readSocios(string filename){
     std::ifstream file;
     file.open(filename.c_str());
@@ -268,6 +307,26 @@ bool Clube::writeJogadores(vector<Jogador *> jogadores, string filename){
     }
     throw filename;
     return false;
+}
+
+bool Clube::writeExternos(vector<Pessoa *> externos, string filename){
+	std::ofstream file;
+	file.open(filename.c_str());
+	if (file.is_open()){
+		for (unsigned int i = 0; i<externos.size(); i++){
+			std::stringstream ss;
+			ss << externos[i]->getNome() << " # ";
+			ss << externos[i]->getIdade() << " ";
+			ss << externos[i]->getSexo() << " ";
+			ss << externos[i]->getNIF();
+			file << ss.str();
+			file << endl;
+		}
+		file.close();
+		return true;
+	}
+	iface->drawString("Unable to open file '"); iface->drawString(filename); iface->drawString("'"); iface->newLine();
+	return false;
 }
 
 bool Clube::writeSocios(vector<Socio *> socios, string filename){
