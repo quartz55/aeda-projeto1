@@ -16,8 +16,8 @@ class Socio: public Jogador{
     public:
     Socio(string nome, unsigned int idade, unsigned long NIF, string sexo);
     bool addModalidade(Modalidade *mod, int mes, int ano);
-    int QuotasAtrasadas(Data dataActual);
-    float pagarQuotas(int meses, Data dataActual, bool pagar);
+    int QuotasAtrasadas(Data dataActual, Modalidade *mod);
+    float pagarQuotas(int meses, Data dataActual, bool pagar, Modalidade *mod);
     bool removeQuota(Modalidade* mod);
     vector <Quota *> getQuotas() const {return quotas;};
 

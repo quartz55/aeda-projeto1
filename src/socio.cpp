@@ -10,38 +10,58 @@ bool Socio::addModalidade(Modalidade* mod, int mes, int ano) {
 	return Jogador::addModalidade(mod);
 }
 
-int Socio::QuotasAtrasadas(Data dataActual) {
+int Socio::QuotasAtrasadas(Data dataActual, Modalidade * mod) {
     int meses_atrasados = 0;
-    if(quotas.size() > 0){
-        if(dataActual.getDay() <= 8){
-            if(quotas[0]->getLastPayed()->getMonth() < dataActual.getMonth() - 1){
-                meses_atrasados = dataActual.getMonth() - 1 - quotas[0]->getLastPayed()->getMonth();
-            }
-        }
-        else{
-            if(quotas[0]->getLastPayed()->getMonth() < dataActual.getMonth()){
-                meses_atrasados = dataActual.getMonth() - quotas[0]->getLastPayed()->getMonth();
-            }
-        }
+    if(mod == NULL){
+    	for(size_t i = 0; i < quotas.size(); i++){
+    		if(dataActual.getDay() <= 8){
+    			if(quotas[i]->getLastPayed()->getMonth() < dataActual.getMonth() - 1 && quotas[i]->getLastPayed()->getYear() <= dataActual.getYear() ){
+    				meses_atrasados = 1;
+    				return meses_atrasados;
+    			}
+    		}
+    		else{
+    			if(quotas[i]->getLastPayed()->getMonth() < dataActual.getMonth() && quotas[i]->getLastPayed()->getYear() <= dataActual.getYear()){
+    				meses_atrasados = 1;
+    				return meses_atrasados;
+    			}
+    		}
+    	}
+    }
+    for(size_t i = 0; i < quotas.size(); i++){
+    	if(quotas[i]->getModalidade() == mod){
+    		if(dataActual.getDay() <= 8){
+    			if(quotas[i]->getLastPayed()->getMonth() < dataActual.getMonth() - 1 && quotas[i]->getLastPayed()->getYear() <= dataActual.getYear() ){
+    				meses_atrasados = dataActual.getMonth() - 1 - quotas[i]->getLastPayed()->getMonth() + 12 *(dataActual.getYear() - quotas[i]->getLastPayed()->getYear());
+    			}
+    		}
+    		else{
+    			if(quotas[i]->getLastPayed()->getMonth() < dataActual.getMonth() && quotas[i]->getLastPayed()->getYear() <= dataActual.getYear()){
+    				meses_atrasados = dataActual.getMonth() - quotas[i]->getLastPayed()->getMonth() + 12 *(dataActual.getYear() - quotas[i]->getLastPayed()->getYear());
+    			}
+    		}
+    	}
     }
     return meses_atrasados;
 }
 
-float Socio::pagarQuotas(int meses,Data dataActual, bool pagar) {
+float Socio::pagarQuotas(int meses,Data dataActual, bool pagar, Modalidade *mod) {
     float total = 0;
     float multa = 0;
-    if(QuotasAtrasadas(dataActual) >= meses){
+    if(QuotasAtrasadas(dataActual, mod) >= meses){
         multa = 5*meses;
     }
     else{
-        multa = QuotasAtrasadas(dataActual)*5;
+        multa = QuotasAtrasadas(dataActual, mod)*5;
     }
     for(size_t i = 0; i < quotas.size(); i++){
-        total += quotas[i]->getPreco();
-        if(pagar) quotas[i]->pagarQuota(meses);
+    	if(mod == quotas[i]->getModalidade()){
+    		total += quotas[i]->getPreco();
+    		if(pagar) quotas[i]->pagarQuota(meses);
+    	}
     }
     if(modalidades.size() >= 3){
-        total *= 0.95;
+        total *= 0.95*meses;
     }
     return total + multa;
 }
