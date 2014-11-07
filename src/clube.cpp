@@ -523,12 +523,12 @@ bool Clube::manutencaoSocio(Socio *s1){
                     s1->pagarQuotas(meses, dataActual, true);
                     iface->drawString("\n\nQuotas pagas com sucesso\n\n");
                     alterado = true;
-                    continue;
+                    break;
                 }
                 else if(command == 'n'){
                     iface->drawString("\n\nOperacao cancelada\n\n");
                     pressToContinue();
-                    continue;
+                    break;
                 }
             }
         }
