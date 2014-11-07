@@ -231,7 +231,7 @@ bool Clube::readSocios(string filename){
                         for(size_t k=0;k < quotas.size(); k++){
                         	if(quotas[k]->getModalidade() == modalidades[i]){
                         		Data *data = new Data(dia,mes,ano);
-                        		quotas[k]->setData(data);
+                        		quotas[k]->setLastPayed(data);
                         	}
                         }
                         getline(file,line);
