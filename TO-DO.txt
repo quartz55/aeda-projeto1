@@ -6,9 +6,8 @@
 
 »»»TO DO«««
 
--No pdf diz para listarmos quotas pagas e em atraso por socios;
 -Excepcoes(se falhar leitura de ficheiros);
--Leitura e escrita de externos
+(RUI)-Leitura e escrita de externos
 
 --
 -Documentaçao Doxygen;
@@ -26,6 +25,7 @@
 *** (DIOGO) Guarda informacao das ultimas quotas pagas no txt dos socios; *** FEITO
 *** (DIOGO) Mudar preço de uma quota na modalidade; *** FEITO
 *** (RUI)-Manutenção de submodalidade; *** FEITO
+*** (DIOGO)-No pdf diz para listarmos quotas pagas e em atraso por socios; *** FEITO
 
 ----------------------------------------------------------------------
 
@@ -33,7 +33,6 @@
 #####BUGS#####
 ##############
 
-(RUI) -Bug ao ler o valor das quotas do ficehiro de modalidades
 ----------------------------------------------------------------------
 
 »»»NOT FIXED«««
