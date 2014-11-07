@@ -1411,12 +1411,14 @@ bool Clube::manutencaoModalidade(Modalidade * m1){
             SubModalidade *s1 = new SubModalidade(nome, m1);
             sub_modalidades.push_back(s1);
             iface->drawString("\n\nSubmodalidade criada com sucesso\n");
+            update();
             alterado = true;
             pressToContinue();
             continue;
         }
         else if (command == 'd'){
             manutencaoSubModalidade(m1);
+            alterado = true;
             continue;
         }
         else if (command == 'e'){
@@ -1521,7 +1523,7 @@ bool Clube::manutencaoSubModalidade(SubModalidade * sm1)
             }
         }
 
-        if (command == 'e'){
+        else if (command == 'b'){
             TopMenu("ALTERAR SUBMODALIDADE");
             for (size_t i = 0; i < sub_modalidades.size(); i++)
             {
@@ -1536,7 +1538,8 @@ bool Clube::manutencaoSubModalidade(SubModalidade * sm1)
             {
                 socios[i]->removeSubModalidade(sm1);
             }
-            iface->drawString("Modalidade removida com sucesso\n");
+            iface->drawString("Submodalidade removida com sucesso\n");
+            update();
             pressToContinue();
             return true;
         }
