@@ -513,9 +513,13 @@ bool Clube::manutencaoSocio(Socio *s1){
         }
         if (command == 'g'){
             TopMenu("INFORMACAO DO SOCIO");
-            iface->drawString("Escolha a modalidade: \n\n");
             iface->drawString(s1->showModalidades());
-            iface->drawString("\n\n   > ");
+			if (s1->getMods().size() < 1)
+			{
+				pressToContinue();
+				continue;
+			}
+			iface->drawString("\n\nEscolha a modalidade: ");
             string nome_input;
             iface->readLine(nome_input);
             Modalidade * mod = NULL;
@@ -524,9 +528,14 @@ bool Clube::manutencaoSocio(Socio *s1){
             		mod = modalidades[i];
             }
             if(mod != NULL){
-            	iface->drawString("O socio tem ");
+            	iface->drawString("\n\nO socio tem ");
             	iface->drawString(s1->QuotasAtrasadas(dataActual, mod));
             	iface->drawString(" meses de quotas em atraso \n \n \n");
+				if (s1->QuotasAtrasadas(dataActual, mod) < 1)
+				{
+					pressToContinue();
+					continue;
+				}
             	iface->drawString("Quantos meses deseja pagar? (q para sair)\n\n");
             	iface->drawString("   > ");
             	iface->readLine(nome_input);
