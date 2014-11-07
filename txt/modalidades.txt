@@ -8,7 +8,7 @@ Hoquei
 Sub20 / #
 3
 Natacao
-50 metros / 100 metros / #
+50 metros / 100 metros / 1000 metros / #
 7
 Atletismo
 50 metros / 100 metros / Cooper / 1000 metros / #
