@@ -31,12 +31,12 @@ int Socio::QuotasAtrasadas(Data dataActual, Modalidade * mod) {
     for(size_t i = 0; i < quotas.size(); i++){
     	if(quotas[i]->getModalidade() == mod){
     		if(dataActual.getDay() <= 8){
-    			if(quotas[i]->getLastPayed()->getMonth() < dataActual.getMonth() - 1 && quotas[i]->getLastPayed()->getYear() <= dataActual.getYear() ){
+    			if(*quotas[i]->getLastPayed() < dataActual){
     				meses_atrasados = dataActual.getMonth() - 1 - quotas[i]->getLastPayed()->getMonth() + 12 *(dataActual.getYear() - quotas[i]->getLastPayed()->getYear());
     			}
     		}
     		else{
-    			if(quotas[i]->getLastPayed()->getMonth() < dataActual.getMonth() && quotas[i]->getLastPayed()->getYear() <= dataActual.getYear()){
+    			if(*quotas[i]->getLastPayed() < dataActual){
     				meses_atrasados = dataActual.getMonth() - quotas[i]->getLastPayed()->getMonth() + 12 *(dataActual.getYear() - quotas[i]->getLastPayed()->getYear());
     			}
     		}
