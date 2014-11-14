@@ -20,7 +20,7 @@ Luisao # 94 Macho 219234
 Futebol
 Futebol Masculino / #
 --------
-Michael Jordanos # 34 Macho 18273641
+Michael Jordan # 34 Macho 18273641
 Basket
 #
 --------
@@ -28,9 +28,13 @@ Nuno Pinto # 19 Macho 55500011
 Hoquei
 #
 --------
-Maria Cheirapovoa # 31 Femea 7271263
+Maria Sharapovoa # 31 Femea 7271263
 --------
-Barbra Streisand # 40 Femea 1283731
+Joana Teixiera # 40 Femea 1283731
 --------
 Telma Monteiro # 27 Femea 91738271
+Tenis
+Tenis Feminino / #
+Karate
+Karate Feminino / #
 --------

@@ -87,7 +87,7 @@ string Data::showData() const {
 }
 bool Data::operator< (const Data &d1) const{
 
-	if(year * 10000 + month * 10 + day  < d1.year * 10000 + d1.month * 10 + d1.day){
+	if(year * 10000 + month * 100 + day  < d1.year * 10000 + d1.month * 100 + d1.day){
 		return true;
 	}
 	else {

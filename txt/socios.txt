@@ -1,14 +1,14 @@
-Senhor Socio1 # 25 Macho 128381
+Manuel Ribeiro # 25 Macho 128381
 Futebol
-8 8 2014
-Futsal
-8 3 2014
-Atletismo
 8 4 2014
+Futsal
+8 8 2014
+Atletismo
+8 3 2015
 --------
-Senhor Socio2 # 45 Macho 371273
+Joaquim Fernandes # 45 Macho 371273
 --------
-Senhora Socia # 32 Femea 123781
+Maria Carneiro # 32 Femea 123781
 --------
-Senhora Socia2 # 25 Femea 127371
+Rita Sampaio # 25 Femea 127371
 --------
