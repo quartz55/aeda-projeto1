@@ -2,6 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <set>
 
 #include "interface.h"
 
@@ -15,8 +16,9 @@
 #include "quota.h"
 #include "despesa.h"
 #include "data.h"
+#include "lugar.h"
 
-using std::vector;using std::string;
+using std::vector; using std::string; using std::set;
 /**Classe responsavel por criar um clube.
  *
  */
@@ -34,6 +36,7 @@ class Clube{
 
     vector <Despesa *> despesas;
 
+	set<Lugar *> lugares;
 
 
     public:
@@ -56,6 +59,7 @@ class Clube{
     static string FILE_DATA;//!< Directorio do ficheiro txt com informacoes da data
     static string FILE_DESPESAS;//!< Directorio do ficheiro txt com informacoes das despesas
 	static string FILE_EXTERNOS;//!< Directorio do ficheiro txt com informacoes dos externos
+	static string FILE_LUGARES;//!< Directorio do ficheiro txt com informacoes dos lugares
     static Interface *iface;//!< Interface "grafica"
 
     //GET
@@ -108,6 +112,8 @@ class Clube{
      *@param d apontador para a nova despesa.
      */
     bool addDespesa(Despesa *d);
+
+	bool addLugar(Lugar *l){ lugares.insert(l); return true; }
     //#######################################
 
     //REMOVE
@@ -206,6 +212,8 @@ class Clube{
      *@param lista No final da funcao lista contem a listagem de despesas de acordo com a ordenacao escolhida.
      */
     bool listarDespesas(string &lista);
+
+	bool listarLugares(string &lista);
     //#######################################
 
     //CRUD
@@ -274,6 +282,9 @@ class Clube{
      *@param d1	apontador para despesa a sofrer alteracoes.
      */
 	bool manutencaoDespesa(Despesa* d1);
+
+	bool manutencaoLugares();
+	bool manutencaoLugares(Lugar* l1);
     /** Menu de alteracao da data actual.
      *
      */
@@ -306,6 +317,8 @@ class Clube{
 	 */
 	bool readExternos(string filename);
 
+	bool readLugares(string filename);
+
 	/**Guarda as modalidades e as suas informacoes no ficheio txt. Retorna true em caso de sucesso e falso em caso de insucesso.
 	 *@param filename Directorio do ficheiro onde sao gravadas as informacoes.
 	 *@param modalidade vector de apontadores com as modalidades a guardar.
@@ -334,6 +347,8 @@ class Clube{
 	 *@param externos vector de apontadores com os externos a guardar.
 	 */
 	bool writeExternos(vector<Pessoa *> externos, string filename);
+
+	bool writeLugares(string filename);
 
 	/**Le todos os ficheiros com as informacoes do clube. Retorna true em caso de sucesso e falso em caso de insucesso.
 	 *

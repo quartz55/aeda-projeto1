@@ -8,6 +8,7 @@ string Clube::FILE_SOCIOS = "../txt/socios.txt";
 string Clube::FILE_DATA = "../txt/data.txt";
 string Clube::FILE_DESPESAS = "../txt/despesas.txt";
 string Clube::FILE_EXTERNOS = "../txt/externos.txt";
+string Clube::FILE_LUGARES = "../txt/lugares.txt";
 
 Interface *Clube::iface = new Interface();
 
@@ -66,7 +67,8 @@ void Clube::main()
         iface->drawString("c. Externos\n");
         iface->drawString("d. Modalidades e submodalidades\n");
         iface->drawString("e. Despesas\n");
-        iface->drawString("f. Manutencao\n");
+		iface->drawString("f. Lugares\n");
+        iface->drawString("g. Manutencao\n");
         iface->drawString("q. Sair(!)\n\n");
         iface->drawString("   > ");
         iface->readChar(command);
@@ -120,7 +122,15 @@ void Clube::main()
                 pressToContinue();
             }
         }
-        else if (command == 'f') manutencao();
+		else if (command == 'f'){
+			while (1){
+				string lista;
+				if (!listarLugares(lista)) break;
+				iface->drawString(lista);
+				pressToContinue();
+			}
+		}
+        else if (command == 'g') manutencao();
         else if (command == 'q'){
             iface->drawString("Tem a certeza que deseja sair? (y/n)\n");
             iface->drawString("   > ");
@@ -248,30 +258,263 @@ bool Clube::infoSocios(){
     }
     return false;
 }
+
+
 void Clube::manutencao(){
-    while(1){
-        char command;
-        TopMenu("MANUTENCAO");
-        iface->drawString("a. Manutencao de jogadores\n");
-        iface->drawString("b. Manutencao de socios\n");
-        iface->drawString("c. Manutencao de externos\n");
-        iface->drawString("d. Manutencao de modalidades\n");
-        iface->drawString("e. Manutencao de despesas\n");
-        iface->drawString("f. Alterar data\n");
-        iface->drawString("q. Voltar\n\n");
-        iface->drawString("   > ");
-        iface->readChar(command);
-        if(command == 'a') while(manutencaoJogadores());
-        else if (command == 'b') while(manutencaoSocios());
-        else if (command == 'c') while (manutencaoExternos());
-        else if (command == 'd') while (manutencaoModalidades());
-        else if (command == 'e') while(manutencaoDespesas());
-        else if (command == 'f') alterarData();
-        else if(command == 'q') return;
-    }
-    return;
+	while (1){
+		char command;
+		TopMenu("MANUTENCAO");
+		iface->drawString("a. Manutencao de jogadores\n");
+		iface->drawString("b. Manutencao de socios\n");
+		iface->drawString("c. Manutencao de externos\n");
+		iface->drawString("d. Manutencao de modalidades\n");
+		iface->drawString("e. Manutencao de despesas\n");
+		iface->drawString("f. Manutencao de lugares\n");
+		iface->drawString("g. Alterar data\n");
+		iface->drawString("q. Voltar\n\n");
+		iface->drawString("   > ");
+		iface->readChar(command);
+		if (command == 'a') while (manutencaoJogadores());
+		else if (command == 'b') while (manutencaoSocios());
+		else if (command == 'c') while (manutencaoExternos());
+		else if (command == 'd') while (manutencaoModalidades());
+		else if (command == 'e') while (manutencaoDespesas());
+		else if (command == 'f') while (manutencaoLugares());
+		else if (command == 'g') alterarData();
+		else if (command == 'q') return;
+	}
+	return;
 }
 
+bool Clube::manutencaoLugares(){
+	TopMenu("MANUTENCAO LUGARES");
+	iface->drawString("a. Criar lugar\n");
+	iface->drawString("b. Alterar lugar existente\n");
+	iface->drawString("q. Voltar\n\n");
+	iface->drawString("   > ");
+	char command;
+	iface->readChar(command);
+	if (command == 'a') {
+		string lista;
+		TopMenu("CRIAR LUGAR");
+		while (1){
+			if (!listarSocios(lista))
+				return true;
+			while (1){
+				iface->cleanScr();
+				TopMenu("LISTAGEM DE SOCIOS");
+				iface->drawString(lista);
+				iface->drawString("\nq. Voltar\n\n");
+				iface->drawString("Escolha um socio para proprietario do lugar: ");
+				string nome_input;
+				iface->readLine(nome_input);
+				if (nome_input == "q") break;
+				Socio *s1 = NULL;
+				Lugar *l1 = NULL;
+				for (unsigned int i = 0; i < socios.size(); i++){
+					if (socios[i]->getNome() == nome_input){
+						s1 = socios[i];
+						break;
+					}
+				}
+				if (s1 != NULL){
+					for (set<Lugar*>::const_iterator it = lugares.begin(); it != lugares.end(); it++){
+						if ((*it)->getSocio()->getNIF() == s1->getNIF()){
+							l1 = (*it);
+							break;
+						}
+					}
+				}
+				TopMenu("CRIAR LUGAR");
+				if (l1 == NULL){
+					iface->drawString("Indique o tipo de lugar? ");
+					string tipo;
+					iface->readLine(tipo);
+					l1 = new Lugar(dataActual.getDay(), dataActual.getMonth(), dataActual.getYear(), tipo, s1);
+					addLugar(l1);
+					iface->cleanScr();
+					TopMenu("LUGAR CRIADO");
+					iface->drawString(l1->showInfo());
+					pressToContinue();
+					continue;
+				}
+				else {
+					iface->drawString("Socio nao existe ou ja e proprietario de algum lugar!\n");
+					pressToContinue();
+					continue;
+				}
+			}
+		}
+		return false;
+	}
+	else if (command == 'b') {
+		string lista;
+		TopMenu("ALTERAR LUGAR");
+		if (lugares.size() == 0){
+			iface->drawString("O clube nao tem lugares alugados!\n");
+			pressToContinue();
+			return true;
+		}
+		while (1){
+			if (!listarSocios(lista))
+				return true;
+				iface->cleanScr();
+				TopMenu("LISTAGEM DE SOCIOS");
+				iface->drawString(lista);
+				iface->drawString("\nq. Voltar\n\n");
+				iface->drawString("Escolha o socio proprietario do lugar: ");
+				string nome_input;
+				iface->readLine(nome_input);
+				if (nome_input == "q") break;
+				Socio *s1 = NULL;
+				Lugar *l1 = NULL;
+				for (unsigned int i = 0; i < socios.size(); i++){
+					if (socios[i]->getNome() == nome_input){
+						s1 = socios[i];
+						break;
+					}
+				}
+				if (s1 != NULL){
+					for (set<Lugar*>::const_iterator it = lugares.begin(); it != lugares.end(); it++){
+						if ((*it)->getSocio()->getNIF() == s1->getNIF()){
+							l1 = (*it);
+							break;
+						}
+					}
+				}
+				if (l1 != NULL){
+					manutencaoLugares(l1);
+					return true;
+				}
+				else {
+					iface->drawString("\n\nSocio nao existe ou nao e proprietario de nenhum lugar!\n");
+					pressToContinue();
+					return true;
+				}
+			}
+		return false;
+	}
+	else if (command == 'q')
+		return false;
+	return true;
+}
+
+
+bool Clube::manutencaoLugares(Lugar* l1){
+	bool alterado = false;
+	while (1){
+		TopMenu("ALTERAR LUGAR");
+		iface->drawString(l1->showInfo());
+		iface->drawString("\na. Mudar socio\n");
+		iface->drawString("b. Mudar data de ultimo pagamento\n");
+		iface->drawString("c. Mudar tipo de lugar\n");
+		iface->drawString("d. Remover aluguer(!)\n");
+		iface->drawString("q. Voltar\n\n");
+		iface->drawString("   > ");
+		char command;
+		iface->readChar(command);
+		if (command == 'a'){
+			string lista;
+				if (!listarSocios(lista))
+					return true;
+				while (1){
+					TopMenu("LISTAGEM DE SOCIOS");
+					iface->drawString(lista);
+					iface->drawString("\nq. Voltar\n\n");
+					iface->drawString("Escolha o novo socio proprietario do lugar: ");
+					string nome_input;
+					iface->readLine(nome_input);
+					if (nome_input == "q") break;
+					Socio *s1 = NULL;
+					for (unsigned int i = 0; i < socios.size(); i++){
+						if (socios[i]->getNome() == nome_input){
+							s1 = socios[i];
+							break;
+						}
+					}
+					TopMenu("LUGAR CRIADO");
+					if (s1 != NULL){
+						for (set<Lugar*>::const_iterator it = lugares.begin(); it != lugares.end(); it++){
+							if ((*it)->getSocio()->getNIF() == s1->getNIF()){
+								s1 = NULL;
+								break;
+							}
+						}
+						l1->setSocio(s1);
+						iface->drawString(l1->showInfo());
+						iface->drawString("\n\nAluguer alterado com sucesso\n\n");
+						alterado = true;
+						pressToContinue();
+						break;
+					}
+					else {
+						iface->drawString(l1->showInfo());
+						iface->drawString("\n\nSocio nao existe ou ja e proprietario de um lugar!\n");
+						pressToContinue();
+						break;
+					}
+				}
+		}
+		else if (command == 'b'){
+			TopMenu("ALTERAR LUGAR");
+			iface->drawString(l1->showInfo());
+			iface->drawString("\nNovo dia? ");
+			unsigned int dia;
+			iface->read(dia);
+			iface->drawString("\nNovo mes? ");
+			unsigned int mes;
+			iface->read(mes);
+			iface->drawString("\nNovo ano? ");
+			unsigned int ano;
+			iface->read(ano);
+			TopMenu("ALTERAR LUGAR");
+			if (dia <= 31 && mes <= 12){
+				l1->setLast_payed(dia, ano, mes);
+				iface->drawString(l1->showInfo());
+				iface->drawString("\n\nData foi mudada com sucesso\n\n");
+				alterado = true;
+				pressToContinue();
+				continue;
+			}
+			else{
+				iface->drawString(l1->showInfo());
+				iface->drawString("\n\nOcorreu um erro...\n\n");
+				pressToContinue();
+				continue;
+			}
+		}
+		else if (command == 'c'){
+			TopMenu("ALTERAR LUGAR");
+			iface->drawString(l1->showInfo());
+			iface->drawString("\nNovo tipo de lugar? ");
+			string tipo;
+			iface->readLine(tipo);
+			if (l1->setTipo(tipo) == true){
+				TopMenu("ALTERAR LUGAR");
+				iface->drawString(l1->showInfo());
+				pressToContinue();
+			}
+			else
+			{
+				iface->drawString("\n\nOcorreu um erro. Tipo inexistente!");
+				pressToContinue();
+			}
+		}
+		else if (command == 'd'){
+			TopMenu("REMOVER ALUGUER");
+			iface->drawString(l1->showInfo());
+			iface->drawString("\n\nO aluguer foi removido do socio");
+			lugares.erase(l1);
+			pressToContinue();
+			alterado = true;
+			break;
+		}
+		else if (command == 'q'){
+			return alterado;
+		}
+	}
+	return true;
+}
 
 bool Clube::manutencaoSocios(){
     TopMenu("MANUTENCAO SOCIO");
