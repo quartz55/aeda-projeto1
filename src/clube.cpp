@@ -287,6 +287,8 @@ void Clube::manutencao(){
 }
 
 bool Clube::manutencaoLugares(){
+	while (1)
+	{
 	TopMenu("MANUTENCAO LUGARES");
 	iface->drawString("a. Criar lugar\n");
 	iface->drawString("b. Alterar lugar existente\n");
@@ -297,56 +299,52 @@ bool Clube::manutencaoLugares(){
 	if (command == 'a') {
 		string lista;
 		TopMenu("CRIAR LUGAR");
-		while (1){
 			if (!listarSocios(lista))
 				return true;
-			while (1){
-				iface->cleanScr();
-				TopMenu("LISTAGEM DE SOCIOS");
-				iface->drawString(lista);
-				iface->drawString("\nq. Voltar\n\n");
-				iface->drawString("Escolha um socio para proprietario do lugar: ");
-				string nome_input;
-				iface->readLine(nome_input);
-				if (nome_input == "q") break;
-				Socio *s1 = NULL;
-				Lugar *l1 = NULL;
-				for (unsigned int i = 0; i < socios.size(); i++){
-					if (socios[i]->getNome() == nome_input){
-						s1 = socios[i];
+			iface->cleanScr();
+			TopMenu("LISTAGEM DE SOCIOS");
+			iface->drawString(lista);
+			iface->drawString("\nq. Voltar\n\n");
+			iface->drawString("Escolha um socio para proprietario do lugar: ");
+			string nome_input;
+			iface->readLine(nome_input);
+			if (nome_input == "q") break;
+			Socio *s1 = NULL;
+			Lugar *l1 = NULL;
+			for (unsigned int i = 0; i < socios.size(); i++){
+				if (socios[i]->getNome() == nome_input){
+					s1 = socios[i];
+					break;
+				}
+			}
+			if (s1 != NULL){
+				for (set<Lugar*>::const_iterator it = lugares.begin(); it != lugares.end(); it++){
+					if ((*it)->getSocio()->getNIF() == s1->getNIF()){
+						l1 = (*it);
 						break;
 					}
 				}
-				if (s1 != NULL){
-					for (set<Lugar*>::const_iterator it = lugares.begin(); it != lugares.end(); it++){
-						if ((*it)->getSocio()->getNIF() == s1->getNIF()){
-							l1 = (*it);
-							break;
-						}
-					}
-				}
-				TopMenu("CRIAR LUGAR");
-				if (l1 == NULL){
-					iface->drawString("Indique o tipo de lugar? ");
-					string tipo;
-					iface->readLine(tipo);
-					l1 = new Lugar(dataActual.getDay(), dataActual.getMonth(), dataActual.getYear(), tipo, s1);
-					addLugar(l1);
-					iface->cleanScr();
-					TopMenu("LUGAR CRIADO");
-					iface->drawString(l1->showInfo());
-					pressToContinue();
-					continue;
-				}
-				else {
-					iface->drawString("Socio nao existe ou ja e proprietario de algum lugar!\n");
-					pressToContinue();
-					continue;
-				}
 			}
+			TopMenu("CRIAR LUGAR");
+			if (l1 == NULL){
+				iface->drawString("Indique o tipo de lugar? ");
+				string tipo;
+				iface->readLine(tipo);
+				l1 = new Lugar(dataActual.getDay(), dataActual.getMonth(), dataActual.getYear(), tipo, s1);
+				addLugar(l1);
+				iface->cleanScr();
+				TopMenu("LUGAR CRIADO");
+				iface->drawString(l1->showInfo());
+				pressToContinue();
+				continue;
+			}
+			else {
+				iface->drawString("Socio nao existe ou ja e proprietario de algum lugar!\n");
+				pressToContinue();
+				continue;
+			}
+			return false;
 		}
-		return false;
-	}
 	else if (command == 'b') {
 		string lista;
 		TopMenu("ALTERAR LUGAR");
@@ -358,44 +356,45 @@ bool Clube::manutencaoLugares(){
 		while (1){
 			if (!listarSocios(lista))
 				return true;
-				iface->cleanScr();
-				TopMenu("LISTAGEM DE SOCIOS");
-				iface->drawString(lista);
-				iface->drawString("\nq. Voltar\n\n");
-				iface->drawString("Escolha o socio proprietario do lugar: ");
-				string nome_input;
-				iface->readLine(nome_input);
-				if (nome_input == "q") break;
-				Socio *s1 = NULL;
-				Lugar *l1 = NULL;
-				for (unsigned int i = 0; i < socios.size(); i++){
-					if (socios[i]->getNome() == nome_input){
-						s1 = socios[i];
+			iface->cleanScr();
+			TopMenu("LISTAGEM DE SOCIOS");
+			iface->drawString(lista);
+			iface->drawString("\nq. Voltar\n\n");
+			iface->drawString("Escolha o socio proprietario do lugar: ");
+			string nome_input;
+			iface->readLine(nome_input);
+			if (nome_input == "q") break;
+			Socio *s1 = NULL;
+			Lugar *l1 = NULL;
+			for (unsigned int i = 0; i < socios.size(); i++){
+				if (socios[i]->getNome() == nome_input){
+					s1 = socios[i];
+					break;
+				}
+			}
+			if (s1 != NULL){
+				for (set<Lugar*>::const_iterator it = lugares.begin(); it != lugares.end(); it++){
+					if ((*it)->getSocio()->getNIF() == s1->getNIF()){
+						l1 = (*it);
 						break;
 					}
 				}
-				if (s1 != NULL){
-					for (set<Lugar*>::const_iterator it = lugares.begin(); it != lugares.end(); it++){
-						if ((*it)->getSocio()->getNIF() == s1->getNIF()){
-							l1 = (*it);
-							break;
-						}
-					}
-				}
-				if (l1 != NULL){
-					manutencaoLugares(l1);
-					return true;
-				}
-				else {
-					iface->drawString("\n\nSocio nao existe ou nao e proprietario de nenhum lugar!\n");
-					pressToContinue();
-					return true;
-				}
 			}
+			if (l1 != NULL){
+				manutencaoLugares(l1);
+				return true;
+			}
+			else {
+				iface->drawString("\n\nSocio nao existe ou nao e proprietario de nenhum lugar!\n");
+				pressToContinue();
+				return true;
+			}
+		}
 		return false;
 	}
 	else if (command == 'q')
 		return false;
+	}
 	return true;
 }
 

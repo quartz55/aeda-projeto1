@@ -62,5 +62,5 @@ string Lugar::showInfo() const{
 }
 
 void Lugar::setLast_payed(unsigned int dia, unsigned int mes, unsigned int ano){
-	last_payed->setData(dia, mes, ano);
+	last_payed->setData(dia, ano, mes);
 }
