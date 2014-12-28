@@ -1,6 +1,7 @@
 #ifndef LISTAGENS_H
 #define LISTAGENS_H
 
+#include "../clube.h"
 #include "sorts.h"
 #include <algorithm>
 #include <string>
@@ -129,7 +130,6 @@ bool Clube::listarJogadores(string &lista){
         return true;
     }
 }
-
 bool Clube::listarSocios(string &lista){
     while (1){
         char command;
@@ -187,7 +187,6 @@ bool Clube::listarSocios(string &lista){
         return true;
     }
 }
-
 bool Clube::listarExternos(string &lista){
     while (1){
         char command;
@@ -227,7 +226,6 @@ bool Clube::listarExternos(string &lista){
         return true;
     }
 }
-
 
 string Clube::listarMods(vector <Modalidade *> modalidades){
     bool tem_subs = false;
@@ -548,6 +546,18 @@ string Clube::listarComQuotas(vector <Socio*> socios){
 	}
 	ss << "\n";
 	return ss.str();
+}
+
+bool Clube::listarEmpresas(string &lista){
+  EMP_QUEUE dummy = empresas;
+  std::ostringstream ss;
+  ss << "Empresas por ordem crescente de distancia:\n";
+  while(!dummy.empty()){
+    ss << "   > " << dummy.top()->getNome() << ", " << dummy.top()->getLocalizacao() << " kms (" << dummy.top()->getServicos().size() << " servicos disponiveis)\n";
+    dummy.pop();
+  }
+  lista = ss.str();
+  return true;
 }
 
 #endif

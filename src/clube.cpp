@@ -8,6 +8,7 @@ string Clube::FILE_SOCIOS = "../txt/socios.txt";
 string Clube::FILE_DATA = "../txt/data.txt";
 string Clube::FILE_DESPESAS = "../txt/despesas.txt";
 string Clube::FILE_EXTERNOS = "../txt/externos.txt";
+string Clube::FILE_EMPRESAS = "../txt/empresas.txt";
 
 Interface *Clube::iface = new Interface();
 
@@ -63,7 +64,8 @@ void Clube::main()
         TopMenu("MENU PRINCIPAL");
         iface->drawString("a. Jogadores\n");
         iface->drawString("b. Socios\n");
-        iface->drawString("c. Externos\n");
+        // iface->drawString("c. Externos\n");
+        iface->drawString("c. Empresas\n");
         iface->drawString("d. Modalidades e submodalidades\n");
         iface->drawString("e. Despesas\n");
         iface->drawString("f. Manutencao\n");
@@ -87,13 +89,21 @@ void Clube::main()
             while(infoSocios());
         }
         else if (command == 'c') {
-            if (externos.size() == 0){
-                iface->drawString("\nO clube nao tem externos associados!\n");
+            if (empresas.empty()){
+                iface->drawString("\nO clube nao tem empresas associadas!\n");
                 pressToContinue();
                 continue;
             }
-            while(infoExternos());
+            while(infoEmpresas());
         }
+        // else if (command == 'c') {
+        //     if (externos.size() == 0){
+        //         iface->drawString("\nO clube nao tem externos associados!\n");
+        //         pressToContinue();
+        //         continue;
+        //     }
+        //     while(infoExternos());
+        // }
         else if (command == 'd'){
             if(modalidades.size() == 0){
                 iface->drawString("\nO clube nao tem modalidades associados!\n");
@@ -241,6 +251,43 @@ bool Clube::infoSocios(){
             }
             else {
                 iface->drawString("\n\nSocio nao existe!\n");
+                pressToContinue();
+                continue;
+            }
+        }
+    }
+    return false;
+}
+
+bool Clube::infoEmpresas(){
+    while(1){
+        string lista;
+        if(!listarEmpresas(lista))
+            return false;
+        while(1){
+            iface->cleanScr();
+            TopMenu("LISTAGEM DE EMPRESAS");
+            iface->drawString(lista);
+            iface->drawString("(q para sair)\n\n");
+            iface->drawString("Escolha a empresa para mostrar mais informacao: ");
+            string nome_input;
+            iface->readLine(nome_input);
+            if(nome_input == "q") return false;
+            Empresa *e1 = NULL;
+            EMP_QUEUE dummy = empresas;
+            while(!dummy.empty()){
+              if(dummy.top()->getNome() == nome_input) e1 = dummy.top();
+              dummy.pop();
+            }
+            if(e1 != NULL){
+                iface->cleanScr();
+                TopMenu("INFO DE EMPRESA");
+                iface->drawString(e1->showInfo());
+                pressToContinue();
+                continue;
+            }
+            else {
+                iface->drawString("\n\nEmpresa nao existe!\n");
                 pressToContinue();
                 continue;
             }
@@ -1594,6 +1641,219 @@ bool Clube::manutencaoSubModalidade(SubModalidade * sm1)
     return false;
 }
 
+/**
+ *@parte2
+ */
+bool Clube::manutencaoEmpresas(){
+    TopMenu("MANUTENCAO EMPRESAS");
+    iface->drawString("a. Adicionar empresa\n");
+    iface->drawString("b. Alterar empresa existente\n");
+    iface->drawString("q. Voltar\n\n");
+    iface->drawString("   > ");
+    char command;
+    iface->readChar(command);
+    if (command == 'a')
+    {
+        TopMenu("ADICIONAR EXTERNO");
+        string nome, sexo;
+        char sexo_c = ' ';
+        iface->drawString("Nome: ");
+        iface->readLine(nome);
+        if (nome == "q") return true;
+        while(sexo_c != 'm' && sexo_c != 'f' && sexo_c != 'q'){
+            iface->drawString("Novo sexo(m/f)? ");
+            iface->readChar(sexo_c);
+        }
+        if(sexo_c == 'm') sexo = "Macho";
+        else if(sexo_c == 'f') sexo = "Femea";
+        else if (sexo_c == 'q') return true;
+
+        unsigned int idade, nif;
+        iface->drawString("Idade: ");
+        iface->read(idade);
+        iface->drawString("NIF: ");
+        iface->read(nif);
+        Pessoa *p1 = new Pessoa(nome, idade, nif, sexo);
+        p1->setExterno();
+        try{
+        	addExterno(p1);
+        }
+        catch(unsigned int NIF){
+        	TopMenu("ADICIONAR EXTERNO");
+        	iface->drawString("\nErro!Esse externo ja existe (NIF ja existente)\n \n");
+        	pressToContinue();
+        	return false;
+        }
+        catch(std::string nome){
+        	TopMenu("ADICIONAR EXTERNO");
+        	iface->drawString("\nErro!Esse externo ja existe (Nome ja existente)\n \n");
+        	pressToContinue();
+        	return false;
+        }
+        TopMenu("ADICIONAR EXTERNO");
+        iface->drawString(p1->showInfo());
+        iface->drawString("\nO externo foi criado");
+        pressToContinue();
+        return true;
+
+    }
+    else if (command == 'b') {
+        if (empresas.size() == 0){
+            iface->drawString("\n\nO clube nao tem empresas associadas!\n");
+            pressToContinue();
+            return true;
+        }
+        string lista;
+        while(1){
+            if (!listarExternos(lista))
+                return true;
+            while (1){
+                iface->cleanScr();
+                TopMenu("LISTAGEM DE EMPRESAS");
+                iface->drawString(lista);
+                iface->drawString("\nq. Voltar\n\n");
+                iface->drawString("Escolha a empresa a gerir: ");
+                string nome_input;
+                iface->readLine(nome_input);
+                if (nome_input == "q") return true;
+                Pessoa *p1 = NULL;
+                for (unsigned int i = 0; i < externos.size(); i++){
+                    if (externos[i]->getNome() == nome_input) p1 = externos[i];
+                }
+                if (p1 != NULL){
+                    if(manutencaoExterno(p1))
+                        break;
+                    continue;
+                }
+                else {
+                    iface->drawString("\nExterno nao existe!\n");
+                    pressToContinue();
+                    continue;
+                }
+            }
+        }
+        return false;
+    }
+    else if (command == 'q')
+        return false;
+    return false;
+}
+// bool Clube::manutencaoEmpresa(Empresa * e1){
+//     bool alterado = false;
+//     while (1){
+//         TopMenu("ALTERAR EXTERNO");
+//         iface->drawString(e1->showInfo());
+//         iface->drawString("\n\na. Mudar nome\n");
+//         iface->drawString("b. Mudar idade\n");
+//         iface->drawString("c. Mudar NIF\n");
+//         iface->drawString("d. Mudar sexo\n");
+//         iface->drawString("e. Remover externo(!)\n");
+//         iface->drawString("q. Voltar\n\n");
+//         iface->drawString("   > ");
+//         char command;
+//         iface->readChar(command);
+//         if (command == 'a'){
+//             TopMenu("ALTERAR EXTERNO");
+//             iface->drawString("Novo nome? ");
+//             string nome;
+//             iface->readLine(nome);
+//             if (p1->changeNome(nome)){
+//                 TopMenu("ADICIONAR EXTERNO");
+//                 iface->drawString("\nNome foi mudado com sucesso\n\n");
+//                 alterado = true;
+//                 pressToContinue();
+//                 continue;
+//             }
+//             else{
+//                 TopMenu("ADICIONAR EXTERNO");
+//                 iface->drawString("\nOcorreu um erro...\n\n");
+//                 pressToContinue();
+//                 continue;
+//             }
+//         }
+//         if (command == 'b'){
+//             TopMenu("ALTERAR EXTERNO");
+//             iface->drawString("Nova idade? ");
+//             unsigned int idade;
+//             iface->read(idade);
+//             if (p1->changeIdade(idade)){
+//                 TopMenu("ADICIONAR EXTERNO");
+//                 iface->drawString("\nIdade foi mudada com sucesso\n\n");
+//                 alterado = true;
+//                 pressToContinue();
+//                 continue;
+//             }
+//             else{
+//                 TopMenu("ADICIONAR EXTERNO");
+//                 iface->drawString("\nOcorreu um erro...\n\n");
+//                 pressToContinue();
+//                 continue;
+//             }
+//         }
+//         if (command == 'c'){
+//             TopMenu("ALTERAR EXTERNO");
+//             iface->drawString("Novo NIF? ");
+//             unsigned long NIF;
+//             iface->read(NIF);
+//             if (p1->changeNIF(NIF)){
+//                 TopMenu("ADICIONAR EXTERNO");
+//                 iface->drawString("\nNIF foi mudado com sucesso\n\n");
+//                 alterado = true;
+//                 pressToContinue();
+//                 continue;
+//             }
+//             else{
+//                 TopMenu("ADICIONAR EXTERNO");
+//                 iface->drawString("\nOcorreu um erro...\n\n");
+//                 pressToContinue();
+//                 continue;
+//             }
+//         }
+//         if (command == 'd'){
+//             TopMenu("ALTERAR EXTERNO");
+//             string sexo;
+//             char sexo_c = ' ';
+//             while(sexo_c != 'm' && sexo_c != 'f' && sexo_c != 'q'){
+//                 iface->drawString("Novo sexo(m/f)? ");
+//                 iface->readChar(sexo_c);
+//             }
+//             if(sexo_c == 'm') sexo = "Macho";
+//             else if(sexo_c == 'q') sexo = "Femea";
+//             else if (sexo_c == 'q') continue;
+
+//             if (p1->changeSexo(sexo)){
+//                 TopMenu("ADICIONAR EXTERNO");
+//                 iface->drawString("\nSexo foi mudado com sucesso\n\n");
+//                 alterado = true;
+//                 pressToContinue();
+//                 continue;
+//             }
+//             else{
+//                 TopMenu("ADICIONAR EXTERNO");
+//                 iface->drawString("\nOcorreu um erro...\n\n");
+//                 pressToContinue();
+//                 continue;
+//             }
+//         }
+//         if (command == 'e'){
+//             for (size_t i = 0; i < externos.size(); i++)
+//             {
+//                 if (externos[i] == p1)
+//                     externos.erase(externos.begin() + i);
+//             }
+//             TopMenu("ALTERAR EXTERNO");
+//             iface->drawString("\nExterno removido com sucesso\n\n");
+//             pressToContinue();
+//             return true;
+//         }
+//         else if (command == 'q'){
+//             return alterado;
+//         }
+//     }
+//     return false;
+// }
+
+//*****************
 
 void Clube::update(){
     unsigned int m1 = 0;

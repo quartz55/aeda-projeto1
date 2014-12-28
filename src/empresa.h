@@ -9,7 +9,8 @@ using std::string; using std::vector;
 
 #include "interface.h"
 
-struct Servico{
+class Servico{
+public:
   string titulo;
   string descricao;
 };
@@ -25,6 +26,7 @@ public:
   }
 };
 
+
 class Empresa{
   string nome;
   unsigned long NIF;
@@ -32,8 +34,11 @@ class Empresa{
   vector<Servico*> servicos;
 
 public:
-  Empresa(string nome, unsigned long NIF, unsigned int localizacao);
-  void manutentaoEmpresa(Interface* i);
+  Empresa(string nome, unsigned long NIF, unsigned int localizacao){
+    this->nome = nome; this->NIF = NIF; this->localizacao = localizacao;
+  }
+  string showInfo();
+  string showServicos();
 
   /*
    * Basic Class methods
@@ -58,19 +63,22 @@ public:
 
   bool hasService(Servico* s);
   bool hasService(string titulo);
-  
-  // Needed for priority_queue
-  bool operator()(Empresa& e1, Empresa& e2){ return e1.localizacao < e2.localizacao;}
 };
 
 inline void Empresa::removeServico(Servico* s){
   for(unsigned int i = 0; i < servicos.size(); i++){
     if(s == servicos[i]){
-     servicos.erase(servicos.begin()+i); 
-     return;
+      servicos.erase(servicos.begin()+i); 
+      return;
     }
   }
   throw(ServiceNotFound(*s)); // Throw exception if not found
 }
+
+// Needed for priority_queue
+class CompareEmpresas {
+    public:
+  bool operator()(Empresa* e1, Empresa* e2){ return e1->getLocalizacao() > e2->getLocalizacao();} 
+};
 
 #endif
