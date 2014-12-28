@@ -56,7 +56,7 @@ bool Clube::addEmpresa(Empresa *e){
   while(!dummy.empty()){
     if(dummy.top()->getNome()==e->getNome() ||
        dummy.top()->getNIF()==e->getNIF()){
-      return false;
+      throw "Erro!Essa empresa ja existe\n\n";
     }
     dummy.pop();
   }
