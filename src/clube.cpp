@@ -248,6 +248,7 @@ bool Clube::infoSocios(){
     }
     return false;
 }
+
 void Clube::manutencao(){
     while(1){
         char command;
@@ -271,7 +272,6 @@ void Clube::manutencao(){
     }
     return;
 }
-
 
 bool Clube::manutencaoSocios(){
     TopMenu("MANUTENCAO SOCIO");
@@ -367,7 +367,6 @@ bool Clube::manutencaoSocios(){
         return false;
     return true;
 }
-
 bool Clube::manutencaoSocio(Socio *s1){
     bool alterado = false;
     while (1){
@@ -680,7 +679,6 @@ bool Clube::manutencaoDespesas() {
     }
     return false;
 }
-
 bool Clube::manutencaoDespesa(Despesa* d1) {
     bool alterado = false;
     while(1){
@@ -1081,8 +1079,6 @@ bool Clube::manutencaoJogadores(){
         return false;
     return true;
 }
-
-
 bool Clube::manutencaoJogador(Jogador *j1){
     bool alterado = false;
     while(1){
@@ -1393,8 +1389,6 @@ bool Clube::manutencaoModalidades(){
         return false;
     return true;
 }
-
-
 bool Clube::manutencaoModalidade(Modalidade * m1){
     bool alterado = false;
     while (1){
@@ -1543,8 +1537,6 @@ bool Clube::manutencaoSubModalidade(Modalidade * m1){
     }
     return false;
 }
-
-
 bool Clube::manutencaoSubModalidade(SubModalidade * sm1)
 {
     while (1){
