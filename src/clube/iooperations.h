@@ -271,10 +271,12 @@ bool Clube::readEmpresas(string filename){
 			//------------
 			//DADOS INICIAIS DA EMPRESA
 			unsigned long NIF;
-			unsigned int localizacao;
+			unsigned int localizacao, contrato;
 			dados_empresa >> NIF;
 			dados_empresa >> localizacao;
+			dados_empresa >> contrato;
 			Empresa *e1 = new Empresa(nome,NIF,localizacao);
+      if(contrato) e1->changeContrato(true);
 			//------------
 
 			addEmpresa(e1);
@@ -453,7 +455,8 @@ bool Clube::writeEmpresas(EMP_QUEUE empresas, string filename){
       std::stringstream ss;
       ss << dummy.top()->getNome() << " # ";
       ss << dummy.top()->getNIF() << " ";
-      ss << dummy.top()->getLocalizacao();
+      ss << dummy.top()->getLocalizacao() << " ";
+      ss << dummy.top()->getContrato();
       file << ss.str();
       file << endl;
       vector <Servico *> serv = dummy.top()->getServicos();

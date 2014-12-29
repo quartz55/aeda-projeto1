@@ -270,7 +270,7 @@ bool Clube::infoEmpresas(){
       iface->drawString("Escolha a empresa para mostrar mais informacao: ");
       string nome_input;
       iface->readLine(nome_input);
-      if(nome_input == "q") return false;
+      if(nome_input == "q") break;
       Empresa *e1 = NULL;
       EMP_QUEUE dummy = empresas;
       while(!dummy.empty()){
@@ -1636,20 +1636,16 @@ bool Clube::manutencaoSubModalidade(SubModalidade * sm1)
   return false;
 }
 
-/**
- *@parte2
- */
 bool Clube::manutencaoEmpresas(){
   TopMenu("MANUTENCAO EMPRESAS");
-  iface->drawString("a. Adicionar empresa\n");
+  iface->drawString("a. Criar empresa\n");
   iface->drawString("b. Alterar empresa existente\n");
   iface->drawString("q. Voltar\n\n");
   iface->drawString("   > ");
   char command;
   iface->readChar(command);
-  if (command == 'a')
-    {
-      TopMenu("ADICIONAR EMPRESA");
+  if (command == 'a'){
+      TopMenu("CRIAR EMPRESA");
       string nome;
       iface->drawString("Nome: ");
       while(nome=="") iface->readLine(nome);
@@ -1662,21 +1658,18 @@ bool Clube::manutencaoEmpresas(){
       iface->drawString("Distancia: ");
       iface->read(localizacao);
       Empresa *e1 = new Empresa(nome, NIF, localizacao);
-      try{
-        addEmpresa(e1);
-      }
+      try{addEmpresa(e1);}
       catch(std::string mensagem){
-        TopMenu("ADICIONAR EMPRESA");
+        TopMenu("CRIAR EMPRESA");
         iface->drawString(mensagem);
         pressToContinue();
         return false;
       }
-      TopMenu("ADICIONAR EMPRESA");
+      TopMenu("CRIAR EMPRESA");
       iface->drawString(e1->showInfo());
       iface->drawString("\nA empresa foi criado");
       pressToContinue();
       return true;
-
     }
   else if (command == 'b') {
     if (empresas.empty()){
@@ -1696,7 +1689,7 @@ bool Clube::manutencaoEmpresas(){
         iface->drawString("Escolha a empresa a gerir: ");
         string nome_input;
         iface->readLine(nome_input);
-        if(nome_input == "q") return false;
+        if(nome_input == "q") break;
         Empresa *e1 = NULL;
         EMP_QUEUE dummy = empresas;
         while(!dummy.empty()){
@@ -1721,7 +1714,6 @@ bool Clube::manutencaoEmpresas(){
         }
       }
     }
-    return false;
   }
   else if (command == 'q')
     return false;
@@ -1730,18 +1722,22 @@ bool Clube::manutencaoEmpresas(){
 bool Clube::manutencaoEmpresa(Empresa * e1){
   bool alterado = false;
   while (1){
-    TopMenu("ALTERAR EXTERNO");
+    TopMenu("ALTERAR EMPRESA");
     iface->drawString(e1->showInfo());
     iface->drawString("\n\na. Mudar nome\n");
     iface->drawString("b. Mudar NIF\n");
     iface->drawString("c. Mudar Localizacao\n");
-    iface->drawString("d. Remover empresa(!)\n");
+    iface->drawString("d. Gerir Servicos\n");
+    if(e1->getContrato())iface->drawString("e. Remover contrato\n");
+    else iface->drawString("e. Assinar contrato\n");
+    iface->drawString("f. Remover Empresa(!)\n");
     iface->drawString("q. Voltar\n\n");
     iface->drawString("   > ");
     char command;
     iface->readChar(command);
     if (command == 'a'){
       TopMenu("ALTERAR EMPRESA");
+      iface->drawString(e1->showBasicInfo());
       iface->drawString("Novo nome? ");
       string nome="";
       while(nome=="") iface->readLine(nome);
@@ -1753,6 +1749,7 @@ bool Clube::manutencaoEmpresa(Empresa * e1){
       }
       e1->changeNome(nome);
       TopMenu("ALTERAR EMPRESA");
+      iface->drawString(e1->showBasicInfo());
       iface->drawString("\nNome foi mudado com sucesso\n\n");
       alterado = true;
       pressToContinue();
@@ -1760,11 +1757,13 @@ bool Clube::manutencaoEmpresa(Empresa * e1){
     }
     if (command == 'b'){
       TopMenu("ALTERAR EMPRESA");
+      iface->drawString(e1->showBasicInfo());
       iface->drawString("Novo NIF? ");
       unsigned long NIF;
       iface->read(NIF);
       e1->changeNIF(NIF);
       TopMenu("ALTERAR EMPRESA");
+      iface->drawString(e1->showBasicInfo());
       iface->drawString("\nNIF foi mudado com sucesso\n\n");
       alterado = true;
       pressToContinue();
@@ -1772,17 +1771,196 @@ bool Clube::manutencaoEmpresa(Empresa * e1){
     }
     if (command == 'c'){
       TopMenu("ALTERAR EMPRESA");
+      iface->drawString(e1->showBasicInfo());
       iface->drawString("Nova distancia? ");
       unsigned int localizacao;
       iface->read(localizacao);
       e1->changeLocalizacao(localizacao);
       TopMenu("ALTERAR EMPRESA");
+      iface->drawString(e1->showBasicInfo());
       iface->drawString("\nLocalizacao foi mudada com sucesso\n\n");
       alterado = true;
       pressToContinue();
       continue;
     }
     if (command == 'd'){
+      TopMenu("GERIR SERVICOS");
+      if(e1->getServicos().empty()){
+        iface->drawString("\nA empresa nao possui nenhum servico\n");
+        iface->drawString("\nDeseja criar um servico novo?(y/N) ");
+        iface->readChar(command);
+        if(command == 'y'){
+          TopMenu("ADICIONAR SERVICO");
+          Servico *s1 = new Servico();
+          iface->drawString("Titulo do servico: ");
+          string titulo_input;
+          iface->readLine(titulo_input);
+          s1->titulo = titulo_input;
+          iface->drawString("Descricao do servico: ");
+          string descricao_input="";
+          while(descricao_input=="") iface->readLine(descricao_input);
+          s1->descricao = descricao_input;
+          TopMenu("ADICIONAR SERVICO");
+          e1->addServico(s1);
+          iface->drawString(s1->showInfo());
+          iface->drawString("\nServico criado com sucesso\n\n");
+          alterado = true;
+          pressToContinue();
+          continue;
+        }
+        pressToContinue();
+        continue;
+      }
+      TopMenu("GERIR SERVICOS");
+      iface->drawString(e1->showServicos());
+      iface->drawString("\n(Escrever um titulo diferente para criar um servico novo)\n");
+      iface->drawString("q. Voltar\n\n");
+      iface->drawString("Escolha o servico a gerir: ");
+      string titulo_input;
+      iface->readLine(titulo_input);
+      if(titulo_input == "q") continue;
+      Servico *s1 = NULL;
+      for(unsigned int i = 0; i < e1->getServicos().size(); i++){
+        if(titulo_input == e1->getServicos()[i]->titulo) s1 = e1->getServicos()[i];
+      }
+      if(s1 == NULL){
+        TopMenu("ADICIONAR SERVICO");
+        iface->drawString("O servico de titulo '");
+        iface->drawString(titulo_input);
+        iface->drawString("' nao existe, deseja criar um servico novo?(y/N) ");
+        iface->readChar(command);
+        if(command == 'y'){
+          s1 = new Servico();
+          s1->titulo = titulo_input;
+          iface->drawString("Descricao do servico: ");
+          string descricao_input="";
+          while(descricao_input=="") iface->readLine(descricao_input);
+          s1->descricao = descricao_input;
+          TopMenu("ADICIONAR SERVICO");
+          e1->addServico(s1);
+          iface->drawString(s1->showInfo());
+          iface->drawString("\nServico criado com sucesso\n\n");
+          alterado = true;
+          pressToContinue();
+          continue;
+        }
+      }
+      if(s1 != NULL){
+        /*
+         * Manutencao Servico
+         */
+        while(1){
+          TopMenu("ALTERAR SERVICO");
+          iface->drawString(s1->showInfo());
+          iface->drawString("\n\na. Mudar titulo\n");
+          iface->drawString("b. Mudar descricao\n");
+          iface->drawString("c. Remover servico(!)\n");
+          iface->drawString("q. Voltar\n\n");
+          iface->drawString("   > ");
+          char command;
+          iface->readChar(command);
+          if (command == 'a'){
+            TopMenu("ALTERAR SERVICO");
+            iface->drawString(s1->showInfo());
+            iface->drawString("Novo titulo? ");
+            string titulo="";
+            while(titulo=="") iface->readLine(titulo);
+            if(titulo=="q"){
+              TopMenu("ALTERAR SERVICO");
+              iface->drawString("\nTitulo nao foi alterado\n\n");
+              pressToContinue();
+              continue;
+            }
+            s1->titulo = titulo;
+            TopMenu("ALTERAR SERVICO");
+            iface->drawString(s1->showInfo());
+            iface->drawString("\nTitulo foi alterado com sucesso\n\n");
+            alterado = true;
+            pressToContinue();
+            continue;
+          }
+          if (command == 'b'){
+            TopMenu("ALTERAR SERVICO");
+            iface->drawString(s1->showInfo());
+            iface->drawString("Nova descricao? ");
+            string descricao="";
+            while(descricao=="") iface->readLine(descricao);
+            if(descricao=="q"){
+              TopMenu("ALTERAR SERVICO");
+              iface->drawString("\nDescricao nao foi alterada\n\n");
+              pressToContinue();
+              continue;
+            }
+            s1->descricao = descricao;
+            TopMenu("ALTERAR SERVICO");
+            iface->drawString(s1->showInfo());
+            iface->drawString("\nDescricao foi alterada com sucesso\n\n");
+            alterado = true;
+            pressToContinue();
+            continue;
+          }
+          if (command == 'c'){
+            TopMenu("REMOVER SERVICO");
+            try{e1->removeServico(s1);}
+            catch(ServiceNotFound s1){
+              iface->drawString("\nErro!Esse servico nao foi encontrado na empresa\n \n");
+              iface->drawString(s1.showInfo());
+              pressToContinue();
+              continue;
+            }
+            iface->drawString("\nServico removido com sucesso\n");
+            pressToContinue();
+            return true;
+          }
+          if (command == 'q'){
+            break;
+          }
+        }
+      }
+    }
+    if (command == 'e'){
+      if(e1->getContrato()){
+        TopMenu("REMOVER CONTRATO");
+        iface->drawString("Tem a certeza que pretende remover o contrato?(y/N) ");
+        iface->readChar(command);
+        if(command == 'y'){
+          TopMenu("REMOVER CONTRATO");
+          e1->changeContrato(false);
+          iface->drawString("\nContrato removido com sucesso\n\n");
+          pressToContinue();
+          alterado = true;
+          continue;
+        }
+        else{
+          TopMenu("REMOVER CONTRATO");
+          iface->drawString("\nContrato nao foi alterado\n\n");
+          pressToContinue();
+          alterado = true;
+          continue;
+        }
+      }
+      else{
+        TopMenu("ASSINAR CONTRATO");
+        iface->drawString("Tem a certeza que pretende assinar contrato?(y/N) ");
+        iface->readChar(command);
+        if(command == 'y'){
+          TopMenu("ASSINAR CONTRATO");
+          e1->changeContrato(true);
+          iface->drawString("\nContrato assinado com sucesso\n\n");
+          pressToContinue();
+          alterado = true;
+          continue;
+        }
+        else{
+          TopMenu("ASSINAR CONTRATO");
+          iface->drawString("\nContrato nao foi alterado\n\n");
+          pressToContinue();
+          alterado = true;
+          continue;
+        }
+      }
+    }
+    if (command == 'f'){
       EMP_QUEUE new_queue;
       while(!empresas.empty()){
         if(empresas.top() != e1) new_queue.push(empresas.top());
@@ -1801,7 +1979,6 @@ bool Clube::manutencaoEmpresa(Empresa * e1){
   return false;
 }
 
-//*****************
 
 void Clube::update(){
   unsigned int m1 = 0;

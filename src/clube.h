@@ -218,6 +218,8 @@ public:
   bool listarDespesas(string &lista);
 
   bool listarEmpresas(string &lista);
+  bool listarEmpresasPorServicos(string &lista);
+  string listarServicos(vector<std::string> &vector_ref);
   //#######################################
 
   //CRUD

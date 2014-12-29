@@ -1,14 +1,24 @@
-Manutencoes LDA # 20310232 8
+Dust Busters & Co # 3123821 3 0
+Limpesa de Pavilhoes
+Ate 500m2
+--------
+Manutencoes LDA # 20310232 8 0
 Manutencao de Relvados
 Inclui restauracao
 --------
-Limpesas LDA # 1238173 10
+Limpatudo LDA # 1238173 20 1
 Limpesa de Balnearios
 Inclui lavagem de roupa
+Limpesa de Piscinas
+Ate 1000m3
 Limpesa de Bancadas
-Ate 2000 lugares
+Ate 5000 lugares
+Limpesa de Relvados
+Sinteticos ou Naturais
 --------
-Dust Busters & Co # 4818232 13
-Limpesa de Pavilhoes
-Ate 500m2
+Equips&Loads # 7312362 20 1
+Manutencao de Equipamentos
+De qualquer tipo
+Transporte de Equipamentos
+De qualquer tipo
 --------

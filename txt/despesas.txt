@@ -1,9 +1,9 @@
-31 8 2014
-Manutencao Estadio
-150.45
-1 9 2015
-Salarios dos externos
-300
 1 9 2014
 Salarios dos jogadores
 500
+1 9 2015
+Salarios dos externos
+300
+31 8 2014
+Manutencao Estadio
+150.45
