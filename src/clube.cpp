@@ -21,11 +21,13 @@ Clube::Clube(): dataActual(1,1,1900){
     iface->readChar(cont);
     if(cont == 'n') quit();
     else{
+      updateHashTable();
       update();
       main();
     }
   }
   else{
+	updateHashTable();
     update();
     main();
   }
@@ -251,6 +253,14 @@ bool Clube::infoSocios(){
       Socio *s1 = NULL;
       for(unsigned int i = 0; i<socios.size(); i++){
         if(socios[i]->getNome() == nome_input) s1 = socios[i];
+      }
+      SociosHash::const_iterator it = socios_em_atraso.begin();
+      while(it != socios_em_atraso.end()){
+    	  if((*it)->getNome() == nome_input){
+    		  s1 = *it;
+    		  break;
+    	  }
+    	  it++;
       }
       if(s1 != NULL){
         iface->cleanScr();
@@ -614,7 +624,7 @@ bool Clube::manutencaoSocios(){
     }
   else if (command == 'b'){
     TopMenu("ALTERAR SOCIO");
-    if (socios.size() == 0){
+    if (socios.size() == 0 && socios_em_atraso.empty()){
       iface->drawString("O clube nao tem socios associados!\n");
       pressToContinue();
       return true;
@@ -634,11 +644,30 @@ bool Clube::manutencaoSocios(){
         iface->readLine(nome_input);
         if (nome_input == "q") break;
         Socio *s1 = NULL;
+        bool hash = false;
         for (unsigned int i = 0; i < socios.size(); i++){
           if (socios[i]->getNome() == nome_input) s1 = socios[i];
         }
+        SociosHash::const_iterator it = socios_em_atraso.begin();
+        while(it != socios_em_atraso.end()){
+      	  if((*it)->getNome() == nome_input){
+      		  s1 = *it;
+      		  socios_em_atraso.erase(it);
+      		  hash = true;
+      		  break;
+      	  }
+      	  it++;
+        }
         if (s1 != NULL){
           if(manutencaoSocio(s1))
+        	  if(hash){
+        		  if(s1->QuotasAtrasadas(dataActual, NULL) != 0){
+        			  socios_em_atraso.insert(s1);
+        		  }
+        		  else{
+        			  socios.push_back(s1);
+        		  }
+        	  }
             break;
           continue;
         }
@@ -2246,6 +2275,7 @@ void Clube::alterarData(){
   if (command == 'a') {
     TopMenu("ALTERAR DATA");
     dataActual.addDays(7);
+    updateHashTable();
     iface->drawString("\n \nData alterada para ");
     iface->drawString(dataActual.showData());
     pressToContinue();
@@ -2254,6 +2284,7 @@ void Clube::alterarData(){
   else if (command == 'b') {
     TopMenu("ALTERAR DATA");
     dataActual.addMonths(1);
+    updateHashTable();
     iface->drawString("\n \nData alterada para ");
     iface->drawString(dataActual.showData());
     pressToContinue();
@@ -2262,6 +2293,7 @@ void Clube::alterarData(){
   else if (command == 'c') {
     TopMenu("ALTERAR DATA");
     dataActual.addYears(1);
+    updateHashTable();
     iface->drawString("\n \nData alterada para ");
     iface->drawString(dataActual.showData());
     pressToContinue();
@@ -2301,7 +2333,14 @@ void Clube::alterarData(){
       iface->readChar(command);
       if (command == 'y')
         {
+    	  if(data < dataActual){
+    		  TopMenu("ALTERAR DATA");
+    		  iface->drawString("\nErro! A nova data e anterior a data actual\n\n");
+    		  pressToContinue();
+    		  return;
+    	  }
           dataActual.setData(dia, mes, ano);
+          updateHashTable();
           TopMenu("ALTERAR DATA");
           iface->drawString("\nData alterada com sucesso\n\n");
           pressToContinue();
@@ -2317,6 +2356,14 @@ void Clube::alterarData(){
     }
   else if (command == 'q')
     return;
+}
+void Clube::updateHashTable(){
+	for(unsigned int i = 0; i < socios.size(); i++){
+		if(socios[i]->QuotasAtrasadas(dataActual,NULL) != 0){
+			socios_em_atraso.insert(socios[i]);
+			socios.erase(socios.begin()+i);
+		}
+	}
 }
 void Clube::pressToContinue(){
   iface->drawString("\n\n* Carregue numa tecla para voltar... *\n");

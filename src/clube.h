@@ -7,6 +7,7 @@
 #include <string>
 #include <queue>
 #include <set>
+#include <tr1/unordered_set>
 
 #include "interface.h"
 
@@ -29,6 +30,23 @@ using std::vector;using std::string;using std::priority_queue; using std::set;
  *
  */
 
+struct Hash{
+	int operator()(const Socio* s1) const{
+		string nome = s1->getNome();
+		int key = 0;
+		for(unsigned int i = 0; i < nome.size(); i++){
+			key = key*37 + nome[i];
+		}
+		return key;
+	}
+	bool operator()(const Socio* s1, const Socio* s2)const{
+		if(s1->getNome() == s2->getNome() || s1->getNIF() == s2->getNIF()){
+			return true;
+		}
+		return false;
+	}
+};
+
 class Clube{
 
 	Data dataActual;
@@ -42,9 +60,11 @@ class Clube{
 
   vector <Despesa *> despesas;
 
+  typedef std::tr1::unordered_set<Socio*,Hash,Hash> SociosHash;
   typedef priority_queue<Empresa*, vector<Empresa *>, CompareEmpresas> EMP_QUEUE;
+  SociosHash socios_em_atraso;
   EMP_QUEUE empresas;
-	set<Lugar *> lugares;
+  set<Lugar *> lugares;
 
 public:
   /**Construtor da classe. Inicializa o clube (chama o menu princiapal e a leitura de ficheiros.
@@ -407,6 +427,10 @@ public:
    */
   void clearScr();
 
+  /**Atualiza a tabela de dispersao socios_em_atraso.
+   *
+   */
+  void updateHashTable();
 };
 
 #endif
