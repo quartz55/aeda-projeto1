@@ -30,6 +30,6 @@ bool sortByData(Despesa *lhs, Despesa *rhs) {
 	return  d1 < d2;
 }
 
-bool sortByValor(Despesa *lhs, Despesa *rhs) { return lhs->getValor() > rhs->getValor();}
+bool sortByValor(Despesa *lhs, Despesa *rhs) { return lhs->getValor() > rhs->getValor(); }
 
 #endif

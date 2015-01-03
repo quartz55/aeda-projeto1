@@ -534,6 +534,146 @@ bool Clube::listarDespesas(string &lista) {
   }
   return true;
 }
+
+bool Clube::listarLugares(string &lista) {
+	while (1){
+		char command;
+		TopMenu("LISTAGEM DE LUGARES");
+		iface->drawString("a. Listar por tipo\n");
+		iface->drawString("b. Listar por nome de socio\n");
+		iface->drawString("c. Listar por ultimo pagamento\n");
+		iface->drawString("q. Voltar\n\n");
+		iface->drawString("   > ");
+		iface->readChar(command);
+		std::stringstream ss;
+		ss.str(string());
+		if (command == 'a'){
+			//std::sort(lugares.begin(), lugares.end(), sortByTipo);
+			while (1){
+				TopMenu("LISTAGEM DE LUGARES");
+				ss << "Lugares listados por tipo:\n\n";
+				for (set<Lugar*>::iterator it = lugares.begin(); it != lugares.end(); it++){
+					ss << (*it)->showInfo();
+					ss << "\n";
+				}
+				lista = ss.str();
+				return true;
+			}
+		}
+		else if (command == 'b'){
+			//std::sort(lugares.begin(), lugares.end(), sortBySocio);
+			while (1){
+				TopMenu("LISTAGEM DE LUGARES");
+				ss << "Lugares listados por nome de socio:\n\n";
+				for (set<Lugar*>::iterator it = lugares.begin(); it != lugares.end(); it++){
+					ss << (*it)->showInfo();
+					ss << "\n";
+				}
+				lista = ss.str();
+				return true;
+			}
+		}
+		else if (command == 'c'){
+			//std::sort(lugares.begin(), lugares.end(), sortLugByData);
+			while (1){
+				TopMenu("LISTAGEM DE LUGARES");
+				iface->drawString("Alguma data especifica (y/n/q-voltar) \n\n");
+				iface->drawString("   > ");
+				iface->readChar(command);
+				if (command == 'y'){
+					while (1){
+						TopMenu("LISTAGEM DE LUGARES");
+						iface->drawString("a. Mes e Ano \n");
+						iface->drawString("b. Ano \n");
+						iface->drawString("q. Voltar\n\n");
+						iface->drawString("   > ");
+						iface->readChar(command);
+						if (command == 'a'){
+							TopMenu("LISTAGEM DE LUGARES");
+							iface->drawString("Mes (inteiro correspondente) :");
+							int mes;
+							iface->read(mes);
+							if (mes < 0 || mes > 12){
+								iface->drawString("\n\nMes invalido!\n\n");
+								pressToContinue();
+							}
+							else {
+								iface->drawString("Ano :");
+								int ano;
+								iface->read(ano);
+								if (ano < 0 || ano > 3000){
+									iface->drawString("\n\nAno invalido!\n\n");
+									pressToContinue();
+								}
+								else{
+									TopMenu("LISTAGEM DE LUGARES");
+									ss << "Lugares com ultimo pagamento a ";
+									ss << mes;
+									ss << " de ";
+									ss << ano;
+									ss << ": \n\n";
+									for (set<Lugar*>::iterator it = lugares.begin(); it != lugares.end(); it++){
+										if ((*it)->getLast_payed()->getMonth() == mes && (*it)->getLast_payed()->getYear() == ano){
+											ss << (*it)->showInfo();
+											ss << "\n";
+										}
+									}
+									ss << "\n";
+									lista = ss.str();
+									return true;
+								}
+							}
+						}
+						else if (command == 'b'){
+							TopMenu("LISTAGEM DE LUGARES");
+							iface->drawString("Ano :");
+							int ano;
+							iface->read(ano);
+							if (ano < 0 || ano > 3000){
+								iface->drawString("\n\nAno invalido!\n");
+								pressToContinue();
+							}
+							else{
+								TopMenu("LISTAGEM DE LUGARES");
+								ss << "Lugares com ultimo pagamento em ";
+								ss << ano;
+								ss << ": \n\n";
+								for (set<Lugar*>::iterator it = lugares.begin(); it != lugares.end(); it++){
+									if ((*it)->getLast_payed()->getYear() == ano){
+										ss << (*it)->showInfo();
+										ss << "\n";
+									}
+								}
+								ss << "\n";
+								lista = ss.str();
+								return true;
+							}
+						}
+						else if (command == 'q'){
+							break;
+						}
+					}
+				}
+				else if (command == 'n'){
+					TopMenu("LISTAGEM DE LUGARES");
+					ss << "Lugares listados por data\n\n";
+					for (set<Lugar*>::iterator it = lugares.begin(); it != lugares.end(); it++){
+						ss << (*it)->showInfo();
+						ss << "\n";
+					}
+					lista = ss.str();
+					return true;
+				}
+				else if (command == 'q'){
+					break;
+				}
+			}
+		}
+		else if (command == 'q') return false;
+	}
+	return true;
+}
+
 string Clube::listarComQuotas(vector <Socio*> socios){
 	std::stringstream ss;
 	for(unsigned int i = 0; i < socios.size(); i++){

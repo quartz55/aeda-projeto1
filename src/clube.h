@@ -6,6 +6,7 @@
 #include <sstream>
 #include <string>
 #include <queue>
+#include <set>
 
 #include "interface.h"
 
@@ -19,10 +20,11 @@
 #include "quota.h"
 #include "despesa.h"
 #include "data.h"
+#include "lugar.h"
 
 #include "empresa.h"
 
-using std::vector;using std::string;using std::priority_queue;
+using std::vector;using std::string;using std::priority_queue; using std::set;
 /**Classe responsavel por criar um clube.
  *
  */
@@ -42,6 +44,7 @@ class Clube{
 
   typedef priority_queue<Empresa*, vector<Empresa *>, CompareEmpresas> EMP_QUEUE;
   EMP_QUEUE empresas;
+	set<Lugar *> lugares;
 
 public:
   /**Construtor da classe. Inicializa o clube (chama o menu princiapal e a leitura de ficheiros.
@@ -64,6 +67,7 @@ public:
   static string FILE_DESPESAS;//!< Directorio do ficheiro txt com informacoes das despesas
 	static string FILE_EXTERNOS;//!< Directorio do ficheiro txt com informacoes dos externos
 	static string FILE_EMPRESAS;//!< Directorio do ficheiro txt com informacoes das empresas 
+	static string FILE_LUGARES;//!< Directorio do ficheiro txt com informacoes dos lugares
   static Interface *iface;//!< Interface "grafica"
 
   //GET
@@ -118,6 +122,8 @@ public:
   bool addDespesa(Despesa *d);
 
   bool addEmpresa(Empresa *e);
+
+	bool addLugar(Lugar *l){ lugares.insert(l); return true; }
   //#######################################
 
   //REMOVE
@@ -220,6 +226,8 @@ public:
   bool listarEmpresas(string &lista);
   bool listarEmpresasPorServicos(string &lista);
   string listarServicos(vector<std::string> &vector_ref);
+
+	bool listarLugares(string &lista);
   //#######################################
 
   //CRUD
@@ -300,6 +308,11 @@ public:
   /** Menu de alteracao da data actual.
    *
    */
+	bool manutencaoLugares();
+	bool manutencaoLugares(Lugar* l1);
+    /** Menu de alteracao da data actual.
+     *
+     */
 	void alterarData();
   //#######################################
 
@@ -331,6 +344,8 @@ public:
 
 	bool readEmpresas(string filename);
 
+	bool readLugares(string filename);
+
 	/**Guarda as modalidades e as suas informacoes no ficheio txt. Retorna true em caso de sucesso e falso em caso de insucesso.
 	 *@param filename Directorio do ficheiro onde sao gravadas as informacoes.
 	 *@param modalidade vector de apontadores com as modalidades a guardar.
@@ -361,6 +376,8 @@ public:
 	bool writeExternos(vector<Pessoa *> externos, string filename);
 
   bool writeEmpresas(EMP_QUEUE empresas, string filename);
+  
+	bool writeLugares(string filename);
 
 	/**Le todos os ficheiros com as informacoes do clube. Retorna true em caso de sucesso e falso em caso de insucesso.
 	 *

@@ -5,9 +5,10 @@
 #include <string>
 #include <vector>
 #include <sstream>
-using std::string; using std::vector;
 
 #include "interface.h"
+
+using std::string; using std::vector;
 
 class Servico{
 public:
@@ -31,7 +32,6 @@ public:
     return ss.str();
   }
 };
-
 
 class Empresa{
   string nome;
