@@ -332,7 +332,8 @@ void Clube::manutencao(){
     iface->readChar(command);
     if (command == 'a') while (manutencaoJogadores());
     else if (command == 'b') while (manutencaoSocios());
-    else if (command == 'c') while (manutencaoExternos());
+    else if (command == 'c') while (manutencaoEmpresas());
+    // else if (command == 'c') while (manutencaoExternos());
     else if (command == 'd') while (manutencaoModalidades());
     else if (command == 'e') while (manutencaoDespesas());
     else if (command == 'f') while (manutencaoLugares());
