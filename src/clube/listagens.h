@@ -146,6 +146,11 @@ bool Clube::listarSocios(string &lista){
     ss.str(string());
     if(command == 'a'){
       std::vector <Socio *> ordenado(socios);
+      SociosHash::const_iterator it = socios_em_atraso.begin();
+      while(it != socios_em_atraso.end()){
+    	 ordenado.push_back(*it);
+    	 it++;
+      }
       std::sort(ordenado.begin(), ordenado.end(), sortByName);
       TopMenu("LISTAGEM DE SOCIOS");
       ss << "Socios ordenados por ordem alfabetica (A-Z):\n";
@@ -154,6 +159,11 @@ bool Clube::listarSocios(string &lista){
     }
     else if (command == 'b'){
       std::vector <Socio *> ordenado = socios;
+      SociosHash::const_iterator it = socios_em_atraso.begin();
+      while(it != socios_em_atraso.end()){
+    	 ordenado.push_back(*it);
+    	 it++;
+      }
       std::sort(ordenado.begin(), ordenado.end(), sortByIdade);
       TopMenu("LISTAGEM DE SOCIOS");
       ss << "Socios ordenados por ordem de idade:\n";
@@ -162,6 +172,11 @@ bool Clube::listarSocios(string &lista){
     }
     else if (command == 'c'){
       std::vector <Socio *> ordenado = socios;
+      SociosHash::const_iterator it = socios_em_atraso.begin();
+      while(it != socios_em_atraso.end()){
+    	 ordenado.push_back(*it);
+    	 it++;
+      }
       std::sort(ordenado.begin(), ordenado.end(), sortBySexo);
       TopMenu("LISTAGEM DE SOCIOS");
       ss << "Socios ordenados por sexo:\n";
@@ -169,16 +184,27 @@ bool Clube::listarSocios(string &lista){
       lista = ss.str();
     }
     else if (command == 'd'){
+      std::vector <Socio *> ordenado = socios;
+      SociosHash::const_iterator it = socios_em_atraso.begin();
+      while(it != socios_em_atraso.end()){
+    	ordenado.push_back(*it);
+    	it++;
+      }
       TopMenu("LISTAGEM DE SOCIOS");
       ss << "Socios ordenados por modalidades:\n";
       ss << listarPorModalidades(socios);
       lista = ss.str();
     }
     else if (command == 'e'){
-      std::vector <Socio *> ordenado(socios);
+      std::vector <Socio *> ordenado;
+      SociosHash::const_iterator it = socios_em_atraso.begin();
+      while(it != socios_em_atraso.end()){
+    	ordenado.push_back(*it);
+    	it++;
+      }
       std::sort(ordenado.begin(), ordenado.end(), sortByName);
       TopMenu("LISTAGEM DE SOCIOS");
-      ss << "Socios ordenados por modalidades:\n";
+      ss << "Socios ordenados com quotas em atraso:\n";
       ss << listarComQuotas(ordenado);
       lista = ss.str();
     }
