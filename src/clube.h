@@ -26,9 +26,6 @@
 #include "empresa.h"
 
 using std::vector;using std::string;using std::priority_queue; using std::set;
-/**Classe responsavel por criar um clube.
- *
- */
 
 struct Hash{
 	int operator()(const Socio* s1) const{
@@ -55,6 +52,9 @@ struct setCompair
   }
 };
 
+/**
+ * Classe responsavel por criar um clube.
+ */
 class Clube{
 
 	Data dataActual;
@@ -70,8 +70,9 @@ class Clube{
 
   typedef std::tr1::unordered_set<Socio*,Hash,Hash> SociosHash;
   typedef priority_queue<Empresa*, vector<Empresa *>, CompareEmpresas> EMP_QUEUE;
+
   SociosHash socios_em_atraso;
-  EMP_QUEUE empresas;
+  EMP_QUEUE empresas;           /**< Empresas existentes guardadas numa fila de prioridade */
   set<Lugar *,setCompair> lugares;
 
 
@@ -149,7 +150,13 @@ public:
    *@param d apontador para a nova despesa.
    */
   bool addDespesa(Despesa *d);
-
+  /** 
+   * Adiciona uma Empresa a fila de prioridade de empresas existente
+   * @note A funcao lanca uma excepcao do tipo 'string' se a empresa ja existir
+   *
+   * @param e Empresa a dicionar
+   * @return TRUE se adicionar com sucesso
+   */
   bool addEmpresa(Empresa *e);
 
 	bool addLugar(Lugar *l){ lugares.insert(l); return true; }
@@ -251,9 +258,30 @@ public:
    *@param lista No final da funcao lista contem a listagem de despesas de acordo com a ordenacao escolhida.
    */
   bool listarDespesas(string &lista);
-
+  /** 
+   * Permite listar as empresas existentes de várias maneiras possíveis
+   * à escolha do utilizador
+   * @note A lista é guardada na string enviada por referencia
+   * 
+   * @param lista String a modificar com a listagem escohida
+   * @return TRUE se listagem bem sucedida, FALSE se o utilizador escolheu a opcao sair
+   */
   bool listarEmpresas(string &lista);
+  /** 
+   * Permite listar as empresas existentes que possuem o servico escolhido pelo
+   * utilizador
+   * 
+   * @param lista String a modificar com a listagem escolhida 
+   * @return TRUE se listagem bem sucedida, FALSE se o utilizador escolheu a opcao sair
+   */
   bool listarEmpresasPorServicos(string &lista);
+  /** 
+   * Guarda todos os servicos disponiveis numa string para mostrar no ecra
+   * 
+   * @param vector_ref Vetor de strings com os titulos de todos os servicos
+   * 
+   * @return String com os todos os servicos
+   */
   string listarServicos(vector<std::string> &vector_ref);
 
 	bool listarLugares(string &lista);
@@ -274,8 +302,8 @@ public:
    */
   bool infoSocios();
 
-  /** Escolha de empresa para ver a sua informaçao.
-   *
+  /**
+   * Escolha de empresa para ver a sua informaçao.
    */
   bool infoEmpresas();
   /** Menu de manutencao.
@@ -331,8 +359,16 @@ public:
    */
 	bool manutencaoDespesa(Despesa* d1);
 
-  
+  /** 
+   * Menu de manutencao de empresas
+   * @return TRUE se sair com sucesso, FALSE se ocorreu algum erro
+   */ 
   bool manutencaoEmpresas();
+  /** 
+   * Menu te manutencao de uma empresa
+   * @param e1 Empresa a gerir
+   * @return TRUE se houve alguma alteração à empresa, FALSE se não
+   */
   bool manutencaoEmpresa(Empresa *e1);
   /** Menu de alteracao da data actual.
    *
@@ -371,6 +407,10 @@ public:
 	 */
 	bool readExternos(string filename);
 
+	/**
+   * Le as empresas e as suas informacoes do ficheio txt. Retorna true em caso de sucesso e falso em caso de insucesso.
+	 *@param filename Directorio do ficheiro com as informacoes.
+	 */
 	bool readEmpresas(string filename);
 
 	bool readLugares(string filename);
@@ -404,6 +444,11 @@ public:
 	 */
 	bool writeExternos(vector<Pessoa *> externos, string filename);
 
+	/**
+   * Guarda as empresas e as suas informacoes no ficheio txt. Retorna true em caso de sucesso e falso em caso de insucesso.
+	 *@param empresas Fila de prioridade com as empresas a guardar
+	 *@param filename Directorio do ficheiro onde sao gravadas as informacoes.
+	 */
   bool writeEmpresas(EMP_QUEUE empresas, string filename);
   
 	bool writeLugares(string filename);
