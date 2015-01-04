@@ -47,6 +47,14 @@ struct Hash{
 	}
 };
 
+struct setCompair
+{
+  bool operator()(Lugar* l1, Lugar*l2) const
+  {
+    return *l1 < *l2;
+  }
+};
+
 class Clube{
 
 	Data dataActual;
@@ -64,7 +72,8 @@ class Clube{
   typedef priority_queue<Empresa*, vector<Empresa *>, CompareEmpresas> EMP_QUEUE;
   SociosHash socios_em_atraso;
   EMP_QUEUE empresas;
-  set<Lugar *> lugares;
+  set<Lugar *,setCompair> lugares;
+
 
 public:
   /**Construtor da classe. Inicializa o clube (chama o menu princiapal e a leitura de ficheiros.
