@@ -159,6 +159,9 @@ public:
    */
   bool addEmpresa(Empresa *e);
 
+  /**Adiciona um novo lugar ao clube. Retorna true em caso de sucesso e false caso contrario.
+  *@param l apontador para o novo lugar.
+  */
 	bool addLugar(Lugar *l){ lugares.insert(l); return true; }
   //#######################################
 
@@ -283,7 +286,9 @@ public:
    * @return String com os todos os servicos
    */
   string listarServicos(vector<std::string> &vector_ref);
-
+  /**Lista os lugares tendo em conta os servicos prestados por estes
+  *@param lista No final da funcao lista contem a listagem de lugares de acordo com a ordenacao escolhida
+  */
 	bool listarLugares(string &lista);
   //#######################################
 
@@ -370,10 +375,13 @@ public:
    * @return TRUE se houve alguma alteração à empresa, FALSE se não
    */
   bool manutencaoEmpresa(Empresa *e1);
-  /** Menu de alteracao da data actual.
+  /** Menu de alteracao de lugares.
    *
    */
 	bool manutencaoLugares();
+	/** Menu de manutencao de um lugar.
+	*@param l1	apontador para um lugar a sofrer alteracoes.
+	*/
 	bool manutencaoLugares(Lugar* l1);
     /** Menu de alteracao da data actual.
      *
@@ -412,7 +420,9 @@ public:
 	 *@param filename Directorio do ficheiro com as informacoes.
 	 */
 	bool readEmpresas(string filename);
-
+	/**Le os lugares e as suas informacoes do ficheio txt. Retorna true em caso de sucesso e falso em caso de insucesso.
+	*@param filename Directorio do ficheiro com as informacoes.
+	*/
 	bool readLugares(string filename);
 
 	/**Guarda as modalidades e as suas informacoes no ficheio txt. Retorna true em caso de sucesso e falso em caso de insucesso.
@@ -450,7 +460,9 @@ public:
 	 *@param filename Directorio do ficheiro onde sao gravadas as informacoes.
 	 */
   bool writeEmpresas(EMP_QUEUE empresas, string filename);
-  
+  /**Guarda os lugares e as suas informacoes no ficheio txt. Retorna true em caso de sucesso e falso em caso de insucesso.
+  *@param filename Directorio do ficheiro onde sao gravadas as informacoes.
+  */
 	bool writeLugares(string filename);
 
 	/**Le todos os ficheiros com as informacoes do clube. Retorna true em caso de sucesso e falso em caso de insucesso.
