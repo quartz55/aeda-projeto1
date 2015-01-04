@@ -26,8 +26,8 @@ public:
 	bool setTipo(string tipo);
 	void setLast_payed(unsigned int dia, unsigned int mes, unsigned int ano);
 	void setSocio(Socio* socio){ this->socio = socio; }
-	bool operator==(Lugar* l);
-	bool operator<(Lugar* l);
+	bool operator==(Lugar l)const;
+	bool operator<(Lugar l) const;
 	string showInfo() const;
 };
 

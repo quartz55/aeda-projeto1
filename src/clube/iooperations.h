@@ -453,6 +453,31 @@ bool Clube::writeSocios(vector<Socio *> socios, string filename){
 			}
 			file << "--------\n";
 		}
+		SociosHash::const_iterator it = socios_em_atraso.begin();
+		while(it !=socios_em_atraso.end()){
+			std::stringstream ss;
+			ss << (*it)->getNome() << " # ";
+			ss << (*it)->getIdade() << " ";
+			ss << (*it)->getSexo() << " ";
+			ss << (*it)->getNIF();
+			file << ss.str();
+			file << endl;
+			vector <Modalidade *> mods = (*it)->getMods();
+			vector<Quota *> quotas = (*it)->getQuotas();
+			for (unsigned int k = 0; k < mods.size(); k++){
+				string mod_nome = mods[k]->getNome();
+				file << mod_nome << endl;
+				ss.str(string()); //Clears the stringstream
+				for (size_t j = 0; j < quotas.size(); j++){
+					if (quotas[j]->getModalidade() == mods[k]){
+						file << quotas[j]->getLastPayed()->getDay() << " " << quotas[j]->getLastPayed()->getMonth() << " " << quotas[j]->getLastPayed()->getYear();
+					}
+				}
+				file << endl;
+			}
+			file << "--------\n";
+			it++;
+		}
 		file.close();
 		return true;
 	}
