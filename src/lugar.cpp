@@ -37,15 +37,15 @@ bool Lugar::setTipo(string tipo){
 	return false;
 }
 
-bool Lugar::operator==(Lugar* l){
-	if (socio->getNIF() == l->getSocio()->getNIF())
+bool Lugar::operator==(Lugar l) const{
+	if (socio->getNIF() == l.getSocio()->getNIF())
 		return true;
 	else
 		return false;
 }
 
-bool Lugar::operator<(Lugar* l){
-	if (socio->getNome() < l->getSocio()->getNome())
+bool Lugar::operator<(Lugar l) const{
+	if (socio->getNome() < l.getSocio()->getNome())
 		return true;
 	else
 		return false;
