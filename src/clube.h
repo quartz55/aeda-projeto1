@@ -149,9 +149,14 @@ public:
    *@param d apontador para a nova despesa.
    */
   bool addDespesa(Despesa *d);
-
+  /**Adiciona uma nova empresa ao clube. Retorna true em caso de sucesso e false caso contrario.
+  *@param e apontador para a nova empresa.
+  */
   bool addEmpresa(Empresa *e);
 
+  /**Adiciona um novo lugar ao clube. Retorna true em caso de sucesso e false caso contrario.
+  *@param l apontador para o novo lugar.
+  */
 	bool addLugar(Lugar *l){ lugares.insert(l); return true; }
   //#######################################
 
@@ -251,11 +256,21 @@ public:
    *@param lista No final da funcao lista contem a listagem de despesas de acordo com a ordenacao escolhida.
    */
   bool listarDespesas(string &lista);
-
+  /**Altera o parametro lista de acordo com a listagem escolhida na funcao(por todas, servico ou contrato).
+   *@param lista No final da funcao lista contem a listagem de empresas de acordo com a ordenacao escolhida.
+   */
   bool listarEmpresas(string &lista);
+  /**Lista as empresas tendo em conta os servicos prestados por estas
+  *@param lista No final da funcao lista contem a listagem de empresas por servicos
+  */
   bool listarEmpresasPorServicos(string &lista);
+  /**Lista os servicos
+  *@param vector_ref onde são registados os servicos.
+  */
   string listarServicos(vector<std::string> &vector_ref);
-
+  /**Lista os lugares tendo em conta os servicos prestados por estes
+  *@param lista No final da funcao lista contem a listagem de lugares de acordo com a ordenacao escolhida
+  */
 	bool listarLugares(string &lista);
   //#######################################
 
@@ -331,13 +346,21 @@ public:
    */
 	bool manutencaoDespesa(Despesa* d1);
 
-  
+	/** Menu de manutencao de empresas.
+	*
+	*/
   bool manutencaoEmpresas();
+  /** Menu de manutencao de uma empresa.
+  *@param e1	apontador para a empresa a sofrer alteracoes.
+  */
   bool manutencaoEmpresa(Empresa *e1);
-  /** Menu de alteracao da data actual.
+  /** Menu de alteracao de lugares.
    *
    */
 	bool manutencaoLugares();
+	/** Menu de manutencao de um lugar.
+	*@param l1	apontador para um lugar a sofrer alteracoes.
+	*/
 	bool manutencaoLugares(Lugar* l1);
     /** Menu de alteracao da data actual.
      *
@@ -370,9 +393,13 @@ public:
 	 *@param filename Directorio do ficheiro com as informacoes.
 	 */
 	bool readExternos(string filename);
-
+	/**Le as empresas e as suas informacoes do ficheio txt. Retorna true em caso de sucesso e falso em caso de insucesso.
+	*@param filename Directorio do ficheiro com as informacoes.
+	*/
 	bool readEmpresas(string filename);
-
+	/**Le os lugares e as suas informacoes do ficheio txt. Retorna true em caso de sucesso e falso em caso de insucesso.
+	*@param filename Directorio do ficheiro com as informacoes.
+	*/
 	bool readLugares(string filename);
 
 	/**Guarda as modalidades e as suas informacoes no ficheio txt. Retorna true em caso de sucesso e falso em caso de insucesso.
@@ -403,9 +430,14 @@ public:
 	 *@param externos vector de apontadores com os externos a guardar.
 	 */
 	bool writeExternos(vector<Pessoa *> externos, string filename);
-
+	/**Guarda as empresas e as suas informacoes no ficheio txt. Retorna true em caso de sucesso e falso em caso de insucesso.
+	*@param empresas fila de prioridade de apontadores com as empresas a guardar.
+	*@param filename Directorio do ficheiro onde sao gravadas as informacoes.
+	*/
   bool writeEmpresas(EMP_QUEUE empresas, string filename);
-  
+  /**Guarda os lugares e as suas informacoes no ficheio txt. Retorna true em caso de sucesso e falso em caso de insucesso.
+  *@param filename Directorio do ficheiro onde sao gravadas as informacoes.
+  */
 	bool writeLugares(string filename);
 
 	/**Le todos os ficheiros com as informacoes do clube. Retorna true em caso de sucesso e falso em caso de insucesso.
