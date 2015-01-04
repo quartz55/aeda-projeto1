@@ -1,0 +1,23 @@
+var searchData=
+[
+  ['read',['read',['../class_interface.html#a173aa25edc65f6b0b13070f20498b273',1,'Interface']]],
+  ['readall',['readAll',['../class_clube.html#ae386be7d5d4732c61e5268d70c8d8232',1,'Clube']]],
+  ['readchar',['readChar',['../class_interface.html#ab62e35649447a55a867b1ad0977b94d9',1,'Interface']]],
+  ['readdata',['readData',['../class_clube.html#aa4a90d08ad7c397825d2f62d6a81911a',1,'Clube']]],
+  ['readdespesas',['readDespesas',['../class_clube.html#a89d6e56648f62cf74950076ed7e04928',1,'Clube']]],
+  ['readempresas',['readEmpresas',['../class_clube.html#a88c56dad5ee2e3579e5e2cecb861f818',1,'Clube']]],
+  ['readexternos',['readExternos',['../class_clube.html#aaef6ed5cdaf515ae8e0141254fab8621',1,'Clube']]],
+  ['readjogadores',['readJogadores',['../class_clube.html#ad9a2fa3f72ac73662978084582e7640e',1,'Clube']]],
+  ['readline',['readLine',['../class_interface.html#abb5683788638b105638e355ae4aaabdd',1,'Interface']]],
+  ['readlugares',['readLugares',['../class_clube.html#a302b422451be704a915ebb92cae928fc',1,'Clube']]],
+  ['readmodalidades',['readModalidades',['../class_clube.html#a56168368c54ae4eed432bc2c12f2622b',1,'Clube']]],
+  ['readsocios',['readSocios',['../class_clube.html#a966ed4f152f26a8ae4fcaf7dd6da9da3',1,'Clube']]],
+  ['removedespesa',['removeDespesa',['../class_clube.html#a6d3f336b1e509e61e984cf1692059c19',1,'Clube']]],
+  ['removeexterno',['removeExterno',['../class_clube.html#a56ed55716bac92d58bf0af78e0fcfb92',1,'Clube']]],
+  ['removejogador',['removeJogador',['../class_clube.html#a6dd0bb5e80cb9503b5b0a4b1dca2ac72',1,'Clube']]],
+  ['removemodalidade',['removeModalidade',['../class_clube.html#a1803e3d8b0d52248cf8f87516dfd5218',1,'Clube::removeModalidade()'],['../class_jogador.html#add113a9f38dec5fcb0128c754fa1a483',1,'Jogador::removeModalidade()']]],
+  ['removequota',['removeQuota',['../class_socio.html#ad658dfb3d57c46f7f524ae687f583e80',1,'Socio']]],
+  ['removeservico',['removeServico',['../group__empresa_class.html#ga727f2c14dbfa426f474e76def49cd5a5',1,'Empresa']]],
+  ['removesocio',['removeSocio',['../class_clube.html#af3e298798c898ccf9855907e75c4b9b2',1,'Clube']]],
+  ['removesubmodalidade',['removeSubModalidade',['../class_clube.html#ae645ba58bce8b51546c19be8edcc8d0c',1,'Clube::removeSubModalidade()'],['../class_jogador.html#aa86790f512e5b615b976806601335b99',1,'Jogador::removeSubModalidade()']]]
+];

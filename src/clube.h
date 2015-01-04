@@ -1,3 +1,10 @@
+/**
+ * @file   clube.h
+ * 
+ * @brief Ficheiro responsável pela classe Clube
+ * 
+ */
+
 #ifndef CLUBE_H
 #define CLUBE_H
 
@@ -26,7 +33,8 @@
 #include "empresa.h"
 
 using std::vector;using std::string;using std::priority_queue; using std::set;
-/*
+
+/**
  * Operadores da tabela de dispersão.
  */
 struct Hash{
@@ -45,7 +53,8 @@ struct Hash{
 		return false;
 	}
 };
-/*
+
+/**
  * Operador da BST
  */
 struct setCompair

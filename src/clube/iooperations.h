@@ -1,3 +1,11 @@
+/**
+ * @file   iooperations.h
+ * 
+ * @brief  Ficheiro responsável pela funcoes de leitura e escrita em ficheiros da classe Clube
+ * 
+ * 
+ */
+
 #ifndef IOOPERATIONS_H
 #define IOOPERATIONS_H
 

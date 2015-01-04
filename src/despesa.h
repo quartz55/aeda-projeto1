@@ -1,3 +1,12 @@
+/**
+ * @file   despesa.h
+ * @author Diogo Trindade
+ * 
+ * @brief  Ficheiro responsável pela classe Despesa
+ * 
+ * 
+ */
+
 #ifndef _DESPESA_H_
 #define _DESPESA_H_
 

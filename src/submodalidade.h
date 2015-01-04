@@ -1,3 +1,12 @@
+/**
+ * @file   submodalidade.h
+ * @author Joao Costa, Rui Vilares
+ * 
+ * @brief  Ficheiro responsável pela classe SubModalidade
+ * 
+ * 
+ */
+
 #ifndef _SUBMODALIDADE_H_
 #define _SUBMODALIDADE_H_
 

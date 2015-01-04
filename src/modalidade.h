@@ -1,3 +1,12 @@
+/**
+ * @file   modalidade.h
+ * @author Joao Costa, Rui Vilares
+ * 
+ * @brief  Ficheiro responsável pela classe Modalidade
+ * 
+ * 
+ */
+
 #ifndef _MODALIDADE_H_
 #define _MODALIDADE_H_
 

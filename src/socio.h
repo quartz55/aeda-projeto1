@@ -1,3 +1,10 @@
+/**
+ * @file   socio.h
+ * 
+ * @brief Ficheiro responsável pela classe Socio
+ * 
+ */
+
 #ifndef _SOCIO_H_
 #define _SOCIO_H_
 

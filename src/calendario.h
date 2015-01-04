@@ -1,3 +1,12 @@
+/**
+ * @file   calendario.h
+ * @author Diogo Trindade
+ * 
+ * @brief  Ficheiro responsável pela classe Calendario
+ * 
+ * 
+ */
+
 #ifndef _CALENDARIO_H_
 #define _CALENDARIO_H_
 

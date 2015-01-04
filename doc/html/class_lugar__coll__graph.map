@@ -1,0 +1,7 @@
+<map id="Lugar" name="Lugar">
+<area shape="rect" id="node2" href="$class_socio.html" title="Socio" alt="" coords="211,315,267,341"/>
+<area shape="rect" id="node3" href="$class_jogador.html" title="Jogador" alt="" coords="274,213,345,240"/>
+<area shape="rect" id="node4" href="$class_pessoa.html" title="Pessoa" alt="" coords="359,124,427,151"/>
+<area shape="rect" id="node9" href="$class_calendario.html" title="Calendario" alt="" coords="43,124,133,151"/>
+<area shape="rect" id="node8" href="$class_data.html" title="Data" alt="" coords="61,264,115,291"/>
+</map>

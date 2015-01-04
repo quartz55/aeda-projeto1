@@ -1,3 +1,12 @@
+/**
+ * @file   interface.h
+ * @author Joao Costa
+ * 
+ * @brief  Ficheiro responsável pela classe Interface
+ * 
+ * 
+ */
+
 #ifndef _INTERFACE_H_
 #define _INTERFACE_H_
 

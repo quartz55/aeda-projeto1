@@ -1,3 +1,11 @@
+/**
+ * @file   listagens.h
+ * 
+ * @brief  Ficheiro responsável pelas funcoes de listagem da classe Clube
+ * 
+ * 
+ */
+
 #ifndef LISTAGENS_H
 #define LISTAGENS_H
 

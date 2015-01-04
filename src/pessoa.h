@@ -1,3 +1,12 @@
+/**
+ * @file   pessoa.h
+ * @author Joao Costa
+ * 
+ * @brief  Ficheiro responsável pela classe Pessoa
+ * 
+ * 
+ */
+
 #ifndef _PESSOA_H
 #define _PESSOA_H
 

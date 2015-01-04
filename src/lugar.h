@@ -1,3 +1,11 @@
+/**
+ * @file  lugar.h
+ * @author Rui Vilares
+ * 
+ * @brief Ficheiro responsável pela classe Lugar
+ * 
+ */
+
 #ifndef _LUGAR_H_
 #define _LUGAR_H_
 

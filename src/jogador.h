@@ -1,3 +1,12 @@
+/**
+ * @file   jogador.h
+ * @author Joao Costa
+ * 
+ * @brief  Ficheiro responsável pela classe Jogador
+ * 
+ * 
+ */
+
 #ifndef _JOGADOR_H_
 #define _JOGADOR_H_
 

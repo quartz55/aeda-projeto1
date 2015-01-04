@@ -4,7 +4,7 @@
  * @file   empresa.h
  * @author Joao Costa
  * 
- * @brief Ficheiro resposável pela classe Empresa e suas classes associadas
+ * @brief Ficheiro responsável pela classe Empresa e suas classes associadas
  * 
  */
 
@@ -18,6 +18,16 @@
 #include "interface.h"
 
 using std::string; using std::vector;
+
+/**
+ * @defgroup empresa Empresa
+ * @{
+ */
+
+/**
+ * @defgroup servico Servico
+ * @{
+ */
 
 /**
  * Classe responsavel por criar um servico e mostrar a informacao deste
@@ -66,6 +76,13 @@ public:
     return ss.str();
   }
 };
+/**
+ * @} end of servico */
+
+/**
+ * @defgroup empresaClass Classe Empresa
+ * @{
+ */
 
 /**
  * Classe responsavel pela criacao de uma Empresa
@@ -186,5 +203,11 @@ public:
     else return e1->getServicos().size() < e2->getServicos().size();
   } 
 };
+
+/**
+ * @} end of classEmpresa */
+
+/**
+ * @} end of empresa */
 
 #endif

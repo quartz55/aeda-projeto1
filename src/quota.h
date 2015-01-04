@@ -1,3 +1,11 @@
+/**
+ * @file  quota.h
+ * @author Diogo Trindade
+ * 
+ * @brief Ficheiro responsável pela classe Quota
+ * 
+ */
+
 #ifndef _QUOTA_H_
 #define _QUOTA_H_
 

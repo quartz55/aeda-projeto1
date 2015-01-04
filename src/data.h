@@ -1,3 +1,11 @@
+/**
+ * @file   data.h
+ * @author Diogo Trindade
+ * 
+ * @brief Ficheiro responsável pela classe Data
+ * 
+ */
+
 #ifndef _DATA_H
 #define _DATA_H
 

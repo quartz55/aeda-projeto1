@@ -1,0 +1,5 @@
+<map id="Quota" name="Quota">
+<area shape="rect" id="node2" href="$class_modalidade.html" title="Modalidade" alt="" coords="5,171,100,197"/>
+<area shape="rect" id="node3" href="$class_data.html" title="Data" alt="" coords="137,171,190,197"/>
+<area shape="rect" id="node4" href="$class_calendario.html" title="Calendario" alt="" coords="118,95,209,121"/>
+</map>

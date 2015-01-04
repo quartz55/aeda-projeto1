@@ -1,3 +1,11 @@
+/**
+ * @file   sorts.h
+ * 
+ * @brief  Ficheiro responsável pelas funcoes sort usadas em varias listagens
+ * 
+ * 
+ */
+
 #ifndef SORTS_H
 #define SORTS_H
 

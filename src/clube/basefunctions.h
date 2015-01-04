@@ -1,3 +1,11 @@
+/**
+ * @file   basefunctions.h
+ * 
+ * @brief  Ficheiro responsável pelas funcoes basicas da classe Clube
+ * 
+ * 
+ */
+
 #ifndef BASEFUNCTIONS_H
 #define BASEFUNCTIONS_H
 
