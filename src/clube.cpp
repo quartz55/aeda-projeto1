@@ -31,7 +31,7 @@ Clube::Clube(): dataActual(1,1,1900){
     update();
     main();
   }
-}
+
 
 //ADD/REMOVE/CHANGE FUNCTIONS
 #include "./clube/basefunctions.h"
