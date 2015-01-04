@@ -566,7 +566,8 @@ bool Clube::listarLugares(string &lista) {
 		char command;
 		TopMenu("LISTAGEM DE LUGARES");
 		iface->drawString("a. Listar por nome de socio\n");
-		iface->drawString("b. Listar por ultimo pagamento\n");
+		iface->drawString("b. Listar por tipo de lugar\n");
+		iface->drawString("c. Listar por ultimo pagamento\n");
 		iface->drawString("q. Voltar\n\n");
 		iface->drawString("   > ");
 		iface->readChar(command);
@@ -585,6 +586,35 @@ bool Clube::listarLugares(string &lista) {
 			}
 		}
 		else if (command == 'b'){
+			string tipo;
+			while (1){
+				TopMenu("LISTAGEM DE LUGARES");
+				iface->drawString("Introduza o tipo de lugar a listar: ");
+				iface->readLine(tipo);
+				if (tipo == "Anual" || tipo == "Cativo" || tipo == "Camarote")
+				{
+					TopMenu("LISTAGEM DE LUGARES");
+					ss << "Lugares do tipo ";
+					ss << tipo;
+					ss << ": \n\n";
+					for (set<Lugar*>::iterator it = lugares.begin(); it != lugares.end(); it++){
+						if ((*it)->getTipo() == tipo){
+							ss << (*it)->showInfo();
+							ss << "\n";
+						}
+					}
+					ss << "\n";
+					lista = ss.str();
+					return true;
+				}
+				else if (tipo == "q") break;
+				else{
+					iface->drawString("\n\n\nTipo de lugar inexistente!\n");
+					return true;
+				}
+			}
+		}
+		else if (command == 'c'){
 			while (1){
 				TopMenu("LISTAGEM DE LUGARES");
 				iface->drawString("Alguma data especifica (y/n/q-voltar) \n\n");
