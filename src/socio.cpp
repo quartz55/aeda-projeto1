@@ -1,4 +1,5 @@
 #include "socio.h"
+#include <algorithm>
 
 Socio::Socio(string nome, unsigned int idade, unsigned long NIF, string sexo):Jogador(nome,idade,NIF, sexo){
 	this->classe = "Socio";
@@ -87,4 +88,16 @@ string Socio::showInfo() const {
 		ss << "\n \n";
 	}
 	return ss.str();
+}
+
+bool Socio::supportsMod(string modalidade) {
+	std::transform(modalidade.begin(), modalidade.end(), modalidade.begin(), ::tolower);
+	for(unsigned int i = 0; i < modalidades.size(); i++){
+		string data = modalidades[i]->getNome();
+		std::transform(data.begin(), data.end(), data.begin(), ::tolower);
+		if(data == modalidade){
+			return true;
+		}
+	}
+	return false;
 }

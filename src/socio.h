@@ -55,6 +55,8 @@ class Socio: public Jogador{
      *
      */
     string showInfo() const;
+
+    bool supportsMod(string modalidade);
 };
 
 #endif

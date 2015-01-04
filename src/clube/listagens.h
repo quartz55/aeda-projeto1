@@ -192,7 +192,7 @@ bool Clube::listarSocios(string &lista){
       }
       TopMenu("LISTAGEM DE SOCIOS");
       ss << "Socios ordenados por modalidades:\n";
-      ss << listarPorModalidades(socios);
+      ss << listarPorModalidades(ordenado);
       lista = ss.str();
     }
     else if (command == 'e'){

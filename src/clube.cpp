@@ -374,6 +374,19 @@ bool Clube::manutencaoLugares(){
             break;
           }
         }
+        if(s1==NULL){
+        	SociosHash::const_iterator it = socios_em_atraso.begin();
+        	while(it != socios_em_atraso.end()){
+        		if((*it)->getNome() == nome_input){
+        			TopMenu("CRIAR LUGAR");
+        			iface->drawString("Socio tem quotas em atraso nao podendo fazer reservas de lugares!\n");
+        			pressToContinue();
+        			return false;
+        		}
+        		it++;
+        	}
+
+        }
         if (s1 != NULL){
           for (set<Lugar*>::const_iterator it = lugares.begin(); it != lugares.end(); it++){
             if ((*it)->getSocio()->getNIF() == s1->getNIF()){
@@ -383,7 +396,13 @@ bool Clube::manutencaoLugares(){
           }
         }
         TopMenu("CRIAR LUGAR");
-        if (l1 == NULL){
+        if (l1 == NULL && s1 != NULL){
+          if(!s1->supportsMod("futebol")){
+        	  iface->drawString("Socio nao acompanha a modalidade de Futebol!\n");
+        	  pressToContinue();
+        	  return false;
+
+          }
           iface->drawString("Indique o tipo de lugar? ");
           string tipo;
           iface->readLine(tipo);
