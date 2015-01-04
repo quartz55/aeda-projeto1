@@ -26,7 +26,9 @@
 #include "empresa.h"
 
 using std::vector;using std::string;using std::priority_queue; using std::set;
-
+/*
+ * Operadores da tabela de dispersão.
+ */
 struct Hash{
 	int operator()(const Socio* s1) const{
 		string nome = s1->getNome();
@@ -43,7 +45,9 @@ struct Hash{
 		return false;
 	}
 };
-
+/*
+ * Operador da BST
+ */
 struct setCompair
 {
   bool operator()(Lugar* l1, Lugar*l2) const
@@ -71,9 +75,9 @@ class Clube{
   typedef std::tr1::unordered_set<Socio*,Hash,Hash> SociosHash;
   typedef priority_queue<Empresa*, vector<Empresa *>, CompareEmpresas> EMP_QUEUE;
 
-  SociosHash socios_em_atraso;
+  SociosHash socios_em_atraso; /**< Socios com quotas em atraso guardados numa tabela de dispersão */
   EMP_QUEUE empresas;           /**< Empresas existentes guardadas numa fila de prioridade */
-  set<Lugar *,setCompair> lugares;
+  set<Lugar *,setCompair> lugares; /**< Lugares existentes guardados numa BST */
 
 
 public:
