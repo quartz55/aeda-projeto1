@@ -565,29 +565,14 @@ bool Clube::listarLugares(string &lista) {
 	while (1){
 		char command;
 		TopMenu("LISTAGEM DE LUGARES");
-		iface->drawString("a. Listar por tipo\n");
-		iface->drawString("b. Listar por nome de socio\n");
-		iface->drawString("c. Listar por ultimo pagamento\n");
+		iface->drawString("a. Listar por nome de socio\n");
+		iface->drawString("b. Listar por ultimo pagamento\n");
 		iface->drawString("q. Voltar\n\n");
 		iface->drawString("   > ");
 		iface->readChar(command);
 		std::stringstream ss;
 		ss.str(string());
 		if (command == 'a'){
-			//std::sort(lugares.begin(), lugares.end(), sortByTipo);
-			while (1){
-				TopMenu("LISTAGEM DE LUGARES");
-				ss << "Lugares listados por tipo:\n\n";
-				for (set<Lugar*>::iterator it = lugares.begin(); it != lugares.end(); it++){
-					ss << (*it)->showInfo();
-					ss << "\n";
-				}
-				lista = ss.str();
-				return true;
-			}
-		}
-		else if (command == 'b'){
-			//std::sort(lugares.begin(), lugares.end(), sortBySocio);
 			while (1){
 				TopMenu("LISTAGEM DE LUGARES");
 				ss << "Lugares listados por nome de socio:\n\n";
@@ -599,8 +584,7 @@ bool Clube::listarLugares(string &lista) {
 				return true;
 			}
 		}
-		else if (command == 'c'){
-			//std::sort(lugares.begin(), lugares.end(), sortLugByData);
+		else if (command == 'b'){
 			while (1){
 				TopMenu("LISTAGEM DE LUGARES");
 				iface->drawString("Alguma data especifica (y/n/q-voltar) \n\n");
@@ -682,7 +666,7 @@ bool Clube::listarLugares(string &lista) {
 				}
 				else if (command == 'n'){
 					TopMenu("LISTAGEM DE LUGARES");
-					ss << "Lugares listados por data\n\n";
+					ss << "Lugares listados por nome de socio:\n\n";
 					for (set<Lugar*>::iterator it = lugares.begin(); it != lugares.end(); it++){
 						ss << (*it)->showInfo();
 						ss << "\n";

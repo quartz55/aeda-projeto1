@@ -387,6 +387,7 @@ bool Clube::manutencaoLugares(){
           iface->drawString("Indique o tipo de lugar? ");
           string tipo;
           iface->readLine(tipo);
+		  if (tipo == "q") break;
           l1 = new Lugar(dataActual.getDay(), dataActual.getMonth(), dataActual.getYear(), tipo, s1);
           addLugar(l1);
           iface->cleanScr();
@@ -545,6 +546,7 @@ bool Clube::manutencaoLugares(Lugar* l1){
       iface->drawString("\nNovo tipo de lugar? ");
       string tipo;
       iface->readLine(tipo);
+	  if (tipo == "q") break;
       if (l1->setTipo(tipo) == true){
         TopMenu("ALTERAR LUGAR");
         iface->drawString(l1->showInfo());
